@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PREACUVINTELE - Volum complet | Adrian Constantin Burdușa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Palatino', serif;
+            line-height: 1.8;
+            color: #2c2c2c;
+            background: linear-gradient(135deg, #fdfbf7 0%, #f5f2ed 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #8b4789 0%, #6d3a6b 100%);
+            color: white;
+            padding: 3rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .volume-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .volume-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .cuvant-inainte {
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border-left: 5px solid #8b4789;
+        }
+
+        .cuvant-inainte h2 {
+            font-size: 2rem;
+            color: #8b4789;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .cuvant-inainte p {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #333;
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .poems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .poem-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 4px solid #8b4789;
+            position: relative;
+        }
+
+        .poem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-left-width: 8px;
+        }
+
+        .poem-number {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #8b4789;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .poem-title {
+            font-size: 1.5rem;
+            color: #8b4789;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            font-style: italic;
+            padding-right: 80px;
+        }
+
+        .poem-preview {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .read-more {
+            color: #8b4789;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 800px;
+            width: 100%;
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            color: #999;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .modal-title {
+            font-size: 2.5rem;
+            color: #8b4789;
+            margin-bottom: 2rem;
+            font-weight: bold;
+            font-style: italic;
+            padding-right: 50px;
+        }
+
+        .modal-text {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #333;
+            white-space: pre-wrap;
+        }
+
+        @media (max-width: 768px) {
+            .volume-title {
+                font-size: 2rem;
+            }
+            .poems-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-content {
+                padding: 2rem;
+            }
+            .modal-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1 class="volume-title">✨ PREACUVINTELE</h1>
+            <p class="volume-subtitle">Poeme de sorginte religioasă</p>
+            <p style="margin-top: 1rem; opacity: 0.8;">📅 Editura Mirton Timișoara, 2016 | 📖 139 poeme</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- Cuvânt înainte -->
+        <div class="cuvant-inainte">
+            <h2>✍️ Dedicație</h2>
+            <p>
+                Cad cu umilință în genunche și închin această carte celei care cu sârguință și pioșenie s-a rugat pentru mine întru atâta viața ei.
+            </p>
+            <p>
+                Măicuței Celestina îi dărui cu adâncă plecăciune aceste lacrime ale mele care nu puteau curge decât în lumină.
+            </p>
+            <p style="margin-top: 1.5rem;">
+                În numele Tatălui și al Fiului și al Sfântului Duh,<br>
+                Amin!
+            </p>
+        </div>
+
+        <h2 style="text-align: center; font-size: 2rem; color: #8b4789; margin-bottom: 2rem; font-style: italic;">📚 Volumul complet</h2>
+
+        <div class="poems-grid" id="poemsGrid"></div>
+    </main>
+
+    <!-- Modal pentru afișarea poemelor -->
+    <div class="modal" id="poemModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <div class="modal-text" id="modalText"></div>
+        </div>
+    </div>
+
+    <script>
+        // Datele poemelor
+        const poems = [
+        {
+                "title": "preacuvintele",
+                "text": "am să îți vorbesc despre ostrovul singurătății care curge\nacolo unde începe unul\nşi unde tot el Unul se sfârşeşte nesfârşindu-se pe sine\nacolo unde începe singurătatea\nşi unde tot ea se sfârşeşte necuprinzându-se pe sine\nacolo unde începe totul\nşi aidoma Totului\ncând se sfârşeşte pe sine începându-te\npre veşnicia mea\n- zise\nzise El ridicând tăcerea în chip de cer\nglăsuind clopotelor murmurul vorbelor uitate -\nşi cu vecinicia asta ajută-mă\ncum din tine doi va rămâne pereche\nşi nu unul\nci noi\ncăci nici copac nici sămânță nici floare nu poți fi\nşi cum mare poți tu oare păcătui\nclopotului cuvântându-i\nveşnicia\ndintr-o singură boare\nfă-mă vecinic murindu-te deci\nla fiecare plecare\nRugăciunea dintâiu\ncât de adânc frig lăcrimele astea\nDoamne\ncât de adânc se împlântă în mine\nîn formă de cuie\nşi ce plouă înlăuntru\nşi ce freamăt şi ce durere se lasă\nca o ceață peste valea ochilor mei\noh\nDoamne\nde atâta dor de linişte\nde atâta dor de lumină curbă\nde atâta duioşie a semnului\nrămas pe venele mele\nîmplântate în senin\nla miezul nopții\nşi ce strigăt\nde vulture\ndus de zbor\nspre țărmurile vânturilor\noh\ntu\ndurere a durerilor\nsemene al meu\nrătăcitoriu\nde sensuri\niată\ncoborându-te linişte\nîn strigăt\nîn dunga clopotelor care răsună în propriul meu strigăt\npână la patimă\nşi\niartă-ne\nDoamne\ncă nu ştim încotro mergem\nşi nici de unde venim\nci doar înflorim\nîntr-o primăvară\nde atâta iubire\ncâtă putem\niubi\nAmin!"
+        },
+        {
+                "title": "cel prevestitoriu de timpuri",
+                "text": "şi când n-am să fiu am să fiu\n- zise Enoh măsurând lumina cu lungimea cuvântului -\ncând rugăciunea mea scrisă de mine\nva ajunge să curgă\nrâuri\nlăuntrului meu cel de umbre curbat\nşi când deasupra mea se va deschide poarta misterului\nca un alb crin\nsă-mi lăsați cuvintele să umble libere printre zidurile cetăților\nridicându-şi propriile lor ziduri\nşi să se împerecheze pe măsura credinței\ncelei din lăuntrul lor\ncăci numai aşa\naripile pot clădi zborul\nşi apa zidi ulciorul\nşi înlăuntrul seminței numai aşa firul vieții copacului\npoate curge lumină\nde la stânga la dreapta\nde la ochiul stâng al femeii\npână la ochiul drept al bărbatului\nde la piciorul ei de freamăt\npân'  la piciorul lui de taur\nsăditoriu de case\natât de adânc duce-m-oi în lumina rece a neluminii\nîncât să pot vedea secunda cum tremură în copacul timpului\nşi de acolo vă voi trimite sămânță pentru rodul vostru\n- spuse iar Enoch răzbătând prin liniştea lăsată de  întredeschisă a morții -\nsă rodiți zbor lumină şi apă vie\natât de profund\ncât lumea să țină minte semnul\npe piatră înscris\npe pânză prelins\npe lemn ucis\nşi sensul\nsensul să rămână mister\netern\ncât lemnul e lemn\nşi sensul în semn\nOh!\n- spuse Enoh acum obosit de atâta cale -\nşi-apoi cuvintele se vor zidi pe cuvinte\ndin naştere până-n morminte\ndar numai în sensul acelor de ceasornic\ncăci ochiul nu poate lumina decât înapoi\nşi mâna măsura numai cu pasul\npăşind şi nu curgând prin linişte\nşi nu cosind prin suspin parfumul iasomiei\neşti\nOmule\nrod în rodul pustiei\nşi nod\n- spus Enoh plecându-şi capul obosit în poala Măicuței hrănind\nizbăvitorul izvor al măsurii\nde dor"
+        },
+        {
+                "title": "despletirea sărutului din val",
+                "text": "(predescântec)\nîn curgerea semnelor\ntu\nsuflete\nînger-te\nplângerii frânge-te\nde-a valului curge-te\nde-a timpului scurge-te\nîn iconoclastul clepsidral\ntu\nînger-te\nlâncede aripi crâncene\nzborului sprâncen-te\nrodului curge-ne\nîn imaginariumul quaternal\nal luminii\nîn care mă ar\nmă mal\nmă dar din darul ce dor\nsămânței\npurtător de semne\neu ar cu semne pe har din lumină\nMărie\neu ar în sămânțar"
+        },
+        {
+                "title": "esența rugăciunii",
+                "text": "la un capăt al rugăciunii sunt eu îngenunchind pe lacrimi\nla celălalt capăt al rugăciunii eşti tu îngenunchind pe lacrimi\nîntre noi doi un ocean de lacrimi curbând lumina\nîn semne"
+        },
+        {
+                "title": "semn pe vis desprins la răsărit de timp",
+                "text": "sunt prea demult sau prea de-acum\nşi totuşi pare că deodată\nse lasă seara peste scrum\nşi va să urle marea spartă\nşi-n vis văd luna răsărind\nîmbujorată dintre perne\nşi pletele-i curg peste sâni\nşi apă vie cerul cerne\nsunt un ocean într-o durere\nşi doar o clipă în etern\nmi-am pus iubirea în atele\nşi la tăcere mi-am pus semn\nşi-ntoarce noaptea rătăcind\ncuvinte oarbe-ntre mistere\nl-aud pe Dumnezeu gândind\nşi văd pădurea dintre stele\nşi o aud pe Maică-n plâns\nşi-o port pe aripe de rugă\nşi-s numa' semn pe poartă pus\nce din cuvinte va să curgă\nsunt doar lacrimă în val\ndar doar un val sărută marea\nşi-s sub o pleoapă un ocean\nce-neacă în cuvinte zarea\nl-aud pe Dumnezeu gândind\nşi văd pădurea dintre stele\nşi din ocean curg şiroind\nîn zbor deplin tăcute sfere\nl-aud pe Dumnezeu plângând\nși Maica-n lacrime tăcută\nse curbă-n orizont secund\nși pleacă luna absolută"
+        },
+        {
+                "title": "parabola semnelor din cuvinte",
+                "text": "construiesc ancestral casa mea\ndin tăceri şi cuvinte\nferestrele sunt vocalele\nele deschid tăcerea către linişte\nconsoanele se îndeasă unele într-altele şi\nîntăresc construcția\nzidurile devin cu greu penetrabile şi viețuiesc mai mult\ndecât mine\niar poemele\npoemele se înalță ca turnurile către cer\nscări albe\nsprijinite pe lacrimile\ncu care Maica spală pământul\nîn cinstea Domnului\nîn Crede mă\nîn iubire\nca semn în Cale\ntu femeie\ncea care pe mine Tu mă naşti\niubindu-mă"
+        },
+        {
+                "title": "de semnele lacrimei",
+                "text": "m-am întors în liniște\nașa cum m-aș întoarce în pântecul  Măicuței\nla secunda care lăcrimá\nsemne\nadânc\nîn lumina lumii\nredându-i universului\nforma sa primordială de lacrimă\nm-am întors în iubire\nşi liniştea lăcrima şi ea deplin\npe pragul sărutului\nrespirându-mă semn"
+        },
+        {
+                "title": "că a rămas prins într-un zid caraghios în chip de erou",
+                "text": "eroul\ncu mâna pusă zăgaz luminii\ncelei ce-mi luminează privirea\neroul\nprivind în zare\nla acasa lui de casă\nla casa lui de-a cuvântului patrie\nacel erou\natât de neînțeles în iubirea lui\npentru țară\ncare pentru țărână era\ncum flutură ea la țărmul vântului\nadus pe-nserat de lumină\ncare vrednică era\nde legea cântului ce înflorea\nde-a dreapta drapelului\nce flutura\nîn numele neamului meu de năluci medaliate\nrăstignite în pădurile iernii ce-au trecut demult\ncu atâta patimă\ncu atâta durere\ncu atâtea regrete\ncând se lasă pe mine tăcerea\nunde eu\neu şi cu mine mă-nnod\nşi mă-mpletesc în cuvinte puține\nîn chip semnului\ncând rodului mă rod\nşi se lasă pe mine un pod\nde-a privirii\neroul - spuneam\nba nu – urlam\ndurându-mă atât de tare şi de mult\nde două mii de ani şi ceva\nîncât simt inima mea crăpându-se în mine\nîn universuri secunde\nîn universuri fecunde\nacolo unde\nmă-mpământenesc şi eu lor\nalăturându-mă ei\ncelei\nîn chip de femeie pură\nşi marşul ecvestru\nO\nTu\nDoamne\nmarşul cu care urmează să-mi aşez apusul\nde-a latul umerilor\nca pe o cruce\nşi lacrimilor\nca din sânge pavăză\ncând îmi plimb nărăvaşul mânz în buiestru\nşi\nîn genunchi cad\nalbului din alb\nalbului pe alb\nşi oboseala\nşi somnul\nşi déjà -vu-ul\ncel pescuit de pe zid\nîn chipul lui cărunt\nde Ion\ncel care fost-a devenit demult\nşi așteptat inutil\ncăci acum\nse lăsase întunericul să stea de pavăză\nbasmului\ncare devine\nviral\nîn somnul pruncului meu\nlegănat de mine\ncu  herghelii de cuvinte adăpate\nla izvorul\ndin care te-adap pe tine\ntemeinic\ndin aceeaşi iubire"
+        },
+        {
+                "title": "esențiale. despre crini",
+                "text": "secretul\ncel care nu este secret\nci nepermis de limpede\nsecretul - spuneam -\ncel din lăuntrul ochilor mei strânşi\ncel pe care mi-l țin înlăuntrul privirii\nînlăuntrul privirii cu care mă ştiu\nîncă de pe când nu mă ştiam\nşi nici nu ştiam c-o să mă ştiu\nşi nici de tine nu ştiam\ncum nici tu nu aflaseşi încă\ndespre cuvintele mele desprinse de mine\ndinlăuntrul tău\ncare încă sosesc în trecerea lor\ncătre versul meu\npremonitic\nsecretul\nnu este nici un secret\nci o citire altfel a măsurii\nrespirării\nca şi cum ți-aş spune cer\nşi tu ai fi apă curgătoare\nadăpând  fântâna păsării\nsusurând uşor şi depărtat\ndar întotdeauna de bine\ndar tu\ntragi aer în piept\nşi mie mi se aşează sunetele în cuvinte\nde-a lungul țărmului\nacolo unde ploaia nu udă\nci mângâie mirosind\na crini"
+        },
+        {
+                "title": "privind iarna din pragul crucii",
+                "text": "O\nMaică\nnimic înapoi\nnimic înainte\nse zbate şi noaptea\nîn gheare de ger\nse pune zăpada şi-ntre cuvinte\ntrece-un tramvai amorțit în mister\nO\nDoamne\ncum curg râuri fulgii de nea\nşi ce iarnă adâncă\nMaică\nse lasă\nşi lumea\nşi cerul\nşi noaptea apasă\nşi apune întruna inima mea\nO\nDoamne\ncum curg fiorduri albe\nce-ngheață suflarea\nîn forme de sticlă\nşi clipele-ngheață\nşi ele în salbe\nşi noaptea-adoarme într-o firidă\nO\nMaică\nfac smerit legământ\nşi în cuvinte\nmir mi Te lasă\nse-nvârte tot cerul\nîntr-un viscol cărunt\nşi se aşează omătul  pe casă\nO\nDoamne\nse lasă liniştea-n mine\nşi-n poală Măicuței\nîmi  şade tăcerea\ntroianu-i cât casa\nşi noaptea ce vine\nîngroapă durerea\nO\nMaică\nnimic înapoi\nnimic înainte\nse zbate şi noaptea\nîn aspre tăceri\nse pune zăpada şi-ntre cuvinte\ntrece-un tramvai amorțit într-un ieri"
+        },
+        {
+                "title": "orb. subliminal. sublim",
+                "text": "sunt orb\nprivirea mea s-a scurs aidoma parfumului luminii\npe sub porțile închise sau deschise\ndând preț aşteptării aşezate la pândă în chip de leu\nşi acum simt cum mă scufund înlăuntrul meu\nca valul înlăuntrul mării\nca nisipul la poalele țărmului\ntotuna cu\nneclipirea care aşterne neplânsa lacrimă\nîn lumina sublimă\nîn forma durerii sale celei mai pure\npurtând disperarea ca zâmbet pe buzele arse\npână când cuvintele capătă culoarea lutului\nîmi acopăr ochii cu privirea ta\npână când lacrimile curg întru fervoarea netimpului\nîmi îmbrac trupul în mirosul de crini albi\nal ființării tale\npână când inimii mele i se desfac petalele\nîmi îmbrac umbra în dâra de parfum a sufletului tău\npână când stele de toamnă simt înfrigurarea inimii mele\nşi reuşesc să-i împletesc cununi de frig în ani lumină\nde drum tăcut\nsunt orb\nsunt atât de orb\nşi totuşi atât de aproape\nde sentimentul profund de linişte\nîncât până şi mângâierea ta îmi ține de sete"
+        },
+        {
+                "title": "cufundându-mă",
+                "text": "ce adânc\nce adânc va cădea luna înspre zborul păsării\nmărturisind lacrima sărutului\nla adăpostul fântânii\nîn care susură\nînceputul şi sfârşitul\nsunetul şi tăcerea\ndurerea şi liniştea\nla adăpostul\nmăsurii\ncu care\nvindec cuvintele\nde atâta nerostire\nşi ce adânc\nmă rostesc\nrostuindu-mă Ție cu nesaț\ncu atâta sete de necuprindere\ncă mă simt strecurându-mă prin versuri\nîn grădina cu iasomie\nîn care cântă\natât de fecund\nmarea"
+        },
+        {
+                "title": "cuvântul. sunetul şi liniştea",
+                "text": "din fiecare lacrimă curge un cuvânt\nla fel de adânc precum un ocean\ndoar pasărea rămâne semn\ndoar zborul este sunetul semnului\nşi nu este nimic altceva\ndoar sunetul care strigă\nlăuntrului\ncoborând pe vene şi artere\nîntru devenirea tăcerii\nspre linişte\nşi eu\nla marginea legii\nla marginea oricărei legi\nsimt cum mă curăț de mirosul fetid\nsimt cum mă curăț de mine\nşi nici nu mai sunt\nşi nici nu aş mai fi\ndacă răsăritul nu ar fi tangent\nla lacrimile cu care\nîmi semnez poemul\nTău"
+        },
+        {
+                "title": "în luntrul fiirii mele",
+                "text": "ceasul  face țăndări noaptea\nşi albastrul adânc se împrăştie pe podea\ncu-n zgomot surd pe catifeaua irespirabilă\nînfruntând tăcerea\nca-ntr-un dulap cu haine\ndin care nu aflu uşile\nîntind întunericul\npână la marginea privirii\nşi ochii curg pe dungile durerii\ncurbându-mă\nîntr-un gest de nepătrundere\nmiroase putred a fum de  arse\nprin  ferestrele oarbe\ncând mersul meu grăbit şi apăsat\ndelirează profund\ndin măsura drumului\ntic tac tic tac\ncrapă ireparabil visul\nşi liniştea curge\nrănită\nîntr-o mantie strâmtă şi rece a unui trecut\ncare abia vine\nla capăt Măicuța îmi face şăgalnic cu ochiul\nşi eu cred în Dumnezeu Unul\nîn Fiirea Lui\nlăuntrului meu\nfiiri mele\nîntr-un timp care curge altfel\naşa cum cred în propria mea fiire\nca semn"
+        },
+        {
+                "title": "inițiatică",
+                "text": "leagă-mă\nde tine\nvântule\nleagă-mă bine de tine\ncu toate lacrimile pământului\nropotind înlăuntrul meu\nfără frâie\ncălărind iepele nărăvaşe despletite\nla capătul seninului\nacolo unde marea se împleteşte cu cerul\ncuvântând cu lumină\npână în adâncul\nsufletului meu curb\nca o pasăre\nroib\ntropotind nărăvaş\npeste cuvinte\nca-ntr-un ritual\nde inițiere\nîn liniştea care-mi pândeşte\ndescântecul\nnevătămat de om\nşi strigă-mă curb\nlacrimei\nsă-şi deschidă brațele larg\nîntru luminii semn\naşezat pe pervazul apusului\nleagă-mă bine de tine\nvântule\ncătre trecătorile cuvintelor\nşi necuvintelor mele\nmugind la țărmurile unei vieți\ncât o insulă abia descălecată\ndin clopotul\ncu care\ndeschid întotdeauna poarta\ncătre\ncelestul semn al uimirii\nîntru măsura\nnemăsurii\ncredinței"
+        },
+        {
+                "title": "nodul clopotului",
+                "text": "eu şi\nTu\nvalul şi marea\npasărea şi fântâna\nlacrima şi eternul\nploaia şi cerul oprit deasupra ploii\nsecunda şi capătul orizontului\ndar neapărat\neu şi Tu\ncuvântul şi semnul său\nînnodate\nîn glasului clopotului\ncu care măsuri\nveşnicia"
+        },
+        {
+                "title": "râul. semnul. nodul",
+                "text": "eu curg deplin către tine\nMaică\neu curg limpede ca râul\nca vântul\nca sunetul deplin şi unic\neu curg ca viața şi ca moartea laolaltă\nsemn\nflacără de lumânare aprinsă\nla capătul seninului\nsămânță cuvântului cu care leg pasărea de zbor\nizvorul de ulcior\nşi urma de cărare\nşi cât mă doare\no\nDoamne\ncât mă doare\nsămânța care-nfloare\nîntru atâta repaos al veşniciei\neu curg în nod 'napoi spre marea mea uitare"
+        },
+        {
+                "title": "tubular murmur cum pământului adus",
+                "text": "încet\nfoarte încet\nrar\nfoarte rar\nmurmurat şi îngânat\naproape de capătul ecoului\ndar nu singur\nci înlăuntru\nîncet\nfoarte încet\nrar\nfoarte rar\nmurmurat şi îngânat\nînlăuntrul meu\nde pretutindeni înlăuntrul meu\nadunându-mă de pe toți pereții lumii\ncu o frică aproape dureroasă\nla sosirea sunetului\nîncet\nfoarte încet\nrar\nfoarte rar\nmurmurat şi îngânat\nîncet\nfoarte încet\nrar\nfoarte rar\nmurmurat şi îngânat\nte-aştept\nfreamătule\nnecuvântule necuvântat\nci trecut prin vânt\nci trecut prin secunde\naltfel\nîncet\nfoarte încet\nrar\nfoarte rar\nmurmurat şi îngânat\nfără să se măsoare\nlipind timpul de zid\nîncet\nfoarte încet\nrar\nfoarte rar\nmurmurat şi îngânat\natent\nîncerc să mă deschid lumină\nîntr-o\npermanentă fugă de materie\nde atingerea ei\nde impuritatea ei\ndar nu de cuvântul care nu mai e cuvânt\nşi nici sunet\nci cale\nîncet\nfoarte încet\nrar\nfoarte rar\nmurmurat şi îngânat\nmai aproape de ecou\nşoptit poate vântului\nmurmurat poate pământului\nîngânat poate cerului\nmăsură a nemăsurării\necoul măsurii\nadică cel fără greutate\ndoar ciclic\nşi rotund\nîncet\nfoarte încet\nrar\nfoarte rar\nmurmurat şi îngânat\npoartă în nepoartă\nfără putință de capăt\nfără putință de atingere\ndoar încet\nfoarte încet\nrar\nfoarte rar\nmurmurat şi îngânat\ncoboarât în necoborât\nurcat în neurcat\nniciunde\nnicicum\nnicând\ndoar Tu acum\nTu"
+        },
+        {
+                "title": "doemul care-a rămas şi fără titlu*",
+                "text": "în mine\nlăuntric lăuntrului meu\nca dor şi semn\ndoar de tine am loc\nm-ai învelit\nm-ai copleşit\nm-ai ocupat\nîmi aud inima încet\nfoarte încet\nfoarte departe\nfrunzărind inevitabil respirația\nam alungat-o\nsă ai tu loc\nMaică\n*doem scris cu Mirela Mareş"
+        },
+        {
+                "title": "în deplinul nemăsurii de mine",
+                "text": "ascultă-mă cum curg\npe-o măsură a întoarcerii în clipa în care m-am născut\nnu aici nu acum\nci la vremea când piatra săruta sămânța cerului\nprin colțul sărat al ochilor ninşi de tăcere\ncu linişte-n al maicii sân\nmăsuram cu strigătul necuprinderea\nmângâiam cu ecoul ferestrele munților\nşi crestam marea cu valuri\npână-n adâncul\ncelor spuse şi celor nespuse\nacum curg în cuvinte\nşi-n tăceri\nîncercând lumina cu degetul\ndegetul meu se udă de atâta lumină\nşi ochiul porneşte singur înlăuntru fântânii\ncu setea aprinsă a căutătorului de suflete\ncel care zboară planat şi circular înlăuntru său\npândindu-se pe sine până la durere\nsau până la lacrimă\nînlăuntrul lacrimei\nînotând în oceanul sărat al nefiirii\nînfruntând valurile uriaşe ale trecerii prin mine ca om\ncătre un adânc mai adânc\nşi mai limpede\ndin când în când ridic capul din lacrimi să respir\ntot la a treia bătaie de aripă\ncând aerul miroase a crini\nşi atunci\nbrusc lacrimile țâşnesc din mine\nşi strigătul capătă ecou\nşi ecoul caută necuprinderea\nşi poemul îşi caută cuvintele\nşi iubirea rostul ei de iubire\nacolo unde\nnu a mai  rămas\ndecât dorul etern de sânul maicii\nîntr-o altă măsură a sfâşierii\nca şi cum ai dezbrăca lumina\nîn căutarea pură de sine\na iubirii de iubire"
+        },
+        {
+                "title": "descântec tras pe prag pe mâna stângă de mumă ştiutoare de gemeni născătoare",
+                "text": "cântă-mă\ndescântă-mă\nîn verde împlântă-mă\nîn roată ascultă-mă\nîn iubire sfântă-mă\ncântă-mă\ndescântă-mă\nşi-n cântare uită-mă\nşi-n uitare gândă-mă\ntu de tine cântă-mă\ntu de mine plângă-mă\nneştiute cântări de deochi\ntainice semne pe ochi\ndescântă-mă vertical\ndescântă-mă abisal\ndescântă-mă tropical\ndescântă-mă goală\nla luna fecioară\nşi nu prima oară\nnici a doua oară\nci a noua oară\ncând luna măsoară\numbra subțioară\ncând fiecare vertebră a mea\ncolumnă ți se făcea\nşi se curba\nîn respirarea ta\ndescântă-mă de mare\ndescântă-mă de soare\nvale peste vale\nsemn de întrebare\nvara pică-n mare\nlumea cade-n soare\nşi suflă spre mine\nsemnele puține\ncând intru în val\ndescântă-mă amar\nde noi\nde voi\nde unu\nde doi\nde amândoi\ndescântă-mă\ncând unu mă simt\nşi nu doi\ndescântă-mă de tine\ndescântă-mă de mine\ncând luna îmi curge\ncu argint ce plânge\nsemn pe semn de sânge\nochi\nfiebinte\nîn chip de ochi\nlimbă aspră de deochi\ndescântă-mă\nîn crin afundă-mă\nîn suspin rotundă-mă\nîn pelin împlântă-mă\nsântă-mă sărutu-mă\nTu Mărie\nsuntu-mă"
+        },
+        {
+                "title": "esențiale. Credința ca nod",
+                "text": "te-ascund în fiecare clipă\ndupă fiecare clipire\nte-ascund după fiecare respirație\ndupă fiecare tăcere\ndupă fiecare gest care te cheamă\nrămas inert în aşteptare până la capătul\necoului\nte-ascund\nmai ales\nînlăuntrul propriei mele tăceri\nacolo unde nimeni nu mai ştie\nde unde încep şi unde te termini\ncăci marginile\nda\nmarginile propriei mele tăceri\nsunt plecate în căutarea ecoului\ncare\nşi el\ne plecat în căutarea mea\nde-o jumătate de secol\nte-ascund atât de adânc\nîncât cu greu aş mai putea spune acum\nde unde încep şi unde mă termin\nşi nu m-aş mira nicicum\nsă mă trezesc terminându-mă în sărutul tău\nsau locuind în lacrima ta\nşi nici nu mai ştiu\ndacă tu eşti înlăuntrul meu\nsau eu m-am pierdut înlăuntrul iubirii tale\natât de curbe\nîncât mă-nnod cu tine\nla propria mea\nuitare de mine\nîn dreptul cuvântului\ncred"
+        },
+        {
+                "title": "începutul",
+                "text": "a toarce lumină din întuneric\nla miez de tăcere\nO\nDoamne\ncâtă durere a facerii"
+        },
+        {
+                "title": "- despre făurirea iadului şi raiului",
+                "text": "adevăr vă grăiesc vouă\n-  zise El coborându-se-n acea zi de mai\nprecum cerul peste mare rostogolindu-se\nşi vi-l sădesc în seminția voastră\nsă-l beți de sete\n- spuse El pogorându-se în cuvinte\ncu înțelepciunea luminii\ncu adâncul cerului Lui săpat în lacrimele crinilor revărsați\n- şi luați aminte azi\nnici ieri nici mâine\nnici înapoi nici înainte\nafară de-acelea din voi\niadul şi raiul sunt propriile voastre brațe şi jurăminte\nlabirinte vă sunt revărsate în sânge\nochiul care râde şi ochiul care plânge\nele păcatele vă stau căpătâi\nşi nu morminte\nraiul şi iadul\nsunt pentru voi\npaşi pe nisip şi urme-n cuvinte\nşi nimic altceva\nşi luați aminte\nsunteți umbre ale propriilor voastre fiiri gândite\n- spuse El\nîn seara fierbinte care plecă la culcare puțin înainte\nluminând tăcerea\ntăciunilor din vatră\nşi focul tăcu  fierbinte\nspusele"
+        },
+        {
+                "title": "- unul adică unicul",
+                "text": "adevăr vă grăiesc vouă\n-  zise El coborându-se-n acea zi de mai\nprecum cerul peste mare rostogolindu-se\nşi vi-l sădesc în seminția voastră\nsă-l beți de sete\n- spuse El pogorându-se în cuvinte\ncu înțelepciunea luminii\ncu adâncul cerului Lui săpat în lacrimele crinilor revărsați\nunu egal cu doi\nde-l scoți din morminte\nşi-l împarți eternului\ne unic\nşi n-are aduceri aminte\nde-aceea sunteți unici\nşi-atât de singuri\nprintre cuvinte\nunul e egal cu doi\nnimic înapoi nimic înainte\nluați aminte\nspuse el pogorându-se în cuvinte\nşi focul în vatră iubi tăcerea\nluminând înainte"
+        },
+        {
+                "title": "perpendicular pe secunde",
+                "text": "acolo unde sunt\ncresc sunetele perpendicular pe secunde\nşi se divid la fiecare lacrimă\nîn ochiuri de lumină\nconcentrice\nacolo unde sunt\nde sete sunt\nde setea luminii sunt\nde setea luminii care sună a clopot\nrostuindu-se\nrostuindu-mă\negal\nmonoton\nsimplu\nşi perfect rotund\nşi perfect sferic\nşi perfect atmos sferic\nnu mai ştiu dacă mai curg sau dacă am curs deja\nnu mai ştiu dacă mai eşti sau dacă\nmi-ai fost deja\ndoar o senzație de spațiu\nsoseşte cu fiecare sunet\numplând fiecare cuvânt cu adâncul clopotului\nrotunjind fiecare lacrimă\ntatuată cu parfum de crini\nperpendicular pe secundele care trec\npoemul meu se cuvântă\npe sine\nîn numele Tău"
+        },
+        {
+                "title": "adâncul cuvintelor",
+                "text": "ce adânc\nce adânc va cădea luna înspre zborul păsării\nmărturisind lacrima sărutului\nla adăpostul fântânii\nîn care susură\nînceputul şi sfârşitul\nsunetul şi tăcerea\ndurerea şi liniştea\nla adăpostul\nmăsurii\ncu care\nvindec cuvintele\nde atâta nerostire\nşi ce adânc\nmă rostesc\nrostuindu-mă Ție cu nesaț\ncu atâta sete de necuprindere\ncă mă simt strecurându-mă prin versuri\nîn grădina cu iasomie\nîn care cântă\natât de rotund\nclopotul veşniciei"
+        },
+        {
+                "title": "când timpul se întoarce în timp",
+                "text": "când timpul s-ar întoarce în timpul lui\nîn propriul său timp\nca și cum pasărea s-ar întoarce în propriul său zbor\nca și cum cuvântul s-ar întoarce în sunet\nca și cum universul ar fi înghițit de propriul său univers\ncând pendula ar mai înceta să bată\npentru că nu ar mai avea sens\nbătaia nu ar mai avea sens\nși clopotul ar rămâne suspendat orizontal\nîn necurgere\nîntr-o poziție nefirească de obiect neidentificat\ncând el e însuși clopotul\ncând el e însuși sunetul\ncând el e însăși vocea cu care timpul\nîmi este de-a dreptul rotund\nși ascuțit\nși neîmblânzit\nși nechibzuit\nși îmi împarte ziua\nîn ceea ce a fost și ceea ce va fi\nde-a stânga și de-a dreapta Tatălui\ncând eu însumi sunt lacrima în care curg dureros de adânc\nînlăuntrul luminii\nîn chipul clipei\ncare poartă sensul\npe zâmbetul feciorelnic\nal pruncului\nce va să fie\nEl\nÎnceputul"
+        },
+        {
+                "title": "clopotul",
+                "text": "el\nsingur\necoul\nîntorcându-şi privirea\ncu mirarea ochilor largi deschişi\nsprijinită de caldarâmul cerului\nşi\nprivirea aceea\ndureros de adâncă\nuşor întoarsă\ncătre înlăuntru\nnedumirindu-se pe sine\nca măsură\na lacrimei care se prelinge pe hotarul eternității"
+        },
+        {
+                "title": "cuvântul-clopot",
+                "text": "abia şoptit el\ncerului neîmblânzit\nars de lacrimă"
+        },
+        {
+                "title": "continuum",
+                "text": "descalec de pe ziua cea care abia trece\nla capătul zilei care îşi deschide poarta\ncurgând ca semn prin cuvinte\nlimpede şi rece\ncu puterea chipului ce vine\nsunt seninul\nde fiecare dată seninul\nde la capătul furtunii care se apropie\nsunt liniştea\nde fiecare dată liniştea\nde după ultima bătaie a clopotului\nîncă redundantă-n ecou\ne timpul să-ți ridici privirea\nde după lacrimi\nşi să mă pui la pieptul tău\ndintr-o dată curb\nşi să-ți simt respirația ta de crin\nîn continuumul de cuarț al țărmului\ncu care luminezi marea\nspintecând valurile\ndeja suntem la pagina următoare\ncu copacii plecați într-o perpetuă toamnă\nmirosind a gânguritul unui prunc\nîn rostirea deplină a\nCrezului\npe-o măsură a iubirii care va să vie\nîn acelaşi déjà vu\niubire. pur-şi simplu iubire\neu curg deplin către tine\nMaică\neu curg limpede ca râul\nca vântul\nca sunetul deplin şi unic\neu curg ca viața şi ca moartea laolaltă\nsemn\nflacără de lumânare aprinsă\nla capătul seninului\nsămânță cuvântului cu care leg pasărea de zbor\nizvorul de ulcior\nşi urma de cărare\nşi cât mă doare\no\nDoamne\ncât mă doare\nsămânța care-nfloare\nîntru atâta repaos al veşniciei\neu curg atâta de deplin către tine\nMaică\nîncât sunetul tatuat cu cuvintele mele\nplânge pe lumină cu aprinse curcubee\nîn miezul durerii\ncu care mă dori\nde atâta iubire\npână cuvintele țâşnesc din mine\natâta de limpezi\nca nişte clopote care aleargă depărtările\norizontându-le\ncurbându-le\nca pe nişte lacrimi adânci\nîntru renaşterea zborului\nca măsură a freamătului meu\nde Tine\nMaică\nsemnând în iubire\ncu tot\ncu mine\neu plâng în iubire\nMaică\nmăturând praful de pe cuvintele mele\ncare\nacum\nsună şi ele\nprecum un clopot\nîn fiecare lacrimă\ncare-şi croieşte drum către tine"
+        },
+        {
+                "title": "rugăciunea curată",
+                "text": "clopotul\naud din nou clopotul acela\ncăruia nu-i găsesc egal înlăuntrul meu\nşi de atâta nepricepere\narunc cu cuvinte în ecoul\ncare se desfăşoară ca o sferă lăuntric\nconcentric\nurcând pe fiecare venă\npe fiecare vocală respirând\nîntr-un timp şi el concentric\naşezat fin ca un praf\npe pleoapele mele curbe\nde atâta lumină\nclopotul\nde atâta vaier el\nclopotul"
+        },
+        {
+                "title": "de dor a jeli când dorul doare",
+                "text": "țărm de mare\nțărm de mare\npus-am cerul la picioare\nstorsei luna în pahare\nşi tăcerea în uitare\nşi durerea pe cărare\nțărm de mare\nțărm de mare\ncată-mă în zori cu soare\nşi de lumea cea mai mare\nferi-mă cum nu ştiu oare\nferi-mă de dor ce doare\nțărm de mare\nțărm de mare\nunde eşti de nu vii  oare\ntu fecioară din fecioare\nşi iubire-n neuitare\nunde eşti de nu sunt oare\nțărm la mare\nțărm la mare"
+        },
+        {
+                "title": "ca un flaut la izvorul dimineții",
+                "text": "unde se aşează marea la masa mea de scris\npe când sărut nisipul cu lacrimile mele cele adânce\nprecum izvoarele zăvorâte în înaltul cerului\nundeva între curb şi tangent\nmirosul de crin susură\nîntre paginile timpului\ncare se deschid blând peste respirația ta întretăiată\nde mirări\nşi profunda fervoare a florii care mă doare\nîntr-un fel aparte\naşa cum mă doare infinita căutare a luminii\npe neterminatele căutări ale zborului\nşi dinspre copac nimic\npasărea-fântână veghează semnele lunii\nla intrarea dinspre răsărit în setea universului\nşi noaptea miroase brusc şi simetric a iasomie\nca-ntr-un țipăt interior\nundeva între plex şi floarea-soarelui\nea singură\nîntr-un câmp de levănțică\nmăturat de gustul de femeie al cărării\naşezate la rădăcina copacului\nşi dinspre copac nimic\ndoar toamna dormind pe brațul meu\nca o desăvârşire a iubirii\ncu care vin către celesta iubire a liniştii\nsărutându-ți gustul feciorelnic\nde lacrimă"
+        },
+        {
+                "title": "viziunea desăvârșirii. definiții",
+                "text": "când în ecoul clopotului\nîngenunchează\nluna\nla hotarul de iasomie al lacrimei"
+        },
+        {
+                "title": "sunt începutul pruncului meu",
+                "text": "azi nu m-aud\nnu mă simt\nnu mă caut\nşi nu ridic privirea\nmă strecor doar într-o lacrimă\nîn chip de izvor cu apă vie\nfântânindu-ți aşteptarea\nşi-dreptându-ți zborul\nde pleoapele mele obosite\natârnă greu ultima ploaie\ncare-a-nnegrit lemnul timpului\naştept să mă ademeneşti\ncu zorii tăi desăvârşiți\nmurmurați luminii\ncu respirarea diafană a ultimului  vis\niar eu\neu răsar cu greu\nîn respirația rotundă a copilului\nîn forme curbe şi tandre\nlăsându-mă străbătut de chemarea lină\na luminii\nsunt începutul pruncului meu\nşi toamna-şi despleteşte tăcerea\nşi eu\nşi eu\neu încă nu mă aud\nşi mi-e greu\nsunt începutul pruncului meu"
+        },
+        {
+                "title": "apele. aquarelă",
+                "text": "Motto: \"Cel ce-şi cunoaşte puternicia bărbătească,\ndar rămâne în slăbiciune feminină,\nacela este albia lumii...\"\nLao Tse\nfântâna\nclopotul auzindu-se din fântână\ncu sunetul ud\nplutind concentric\nîn valuri din ce în ce mai mari şi mai înalte\ncare răzbat până la țărmul insulei pe care picură cerul patimi\nîn timp ce toamna urcă scările\nca o femeie înfiorător de frumoasă\ncu gleznele subțiri şi ezitante\ntemătoare\npurtând veştede rochii\nrisipind culori de-a lungul zilei\nși temătoare lacrimi de-a curmezișul nopții\nploaia\nploaia rătăcind rădăcinile cerului\ncu sunetul ud curgând vertical\ndiluvial măsurând înserarea\ncu setea aprigă a călătorului fără de întoarcere\nîntr-o pădure de semne crescute de-a valma\ntatuând liniștea cu sentimente prelungi\nscurgându-se pe ferestre aproape oarbe\nși-apoi\nlacrima\nlacrima rotunjindu-se în înaltul curat al visului\ncu care măsur zborul\npicurând eternitatea\nîn profunda respirare\na rugăciunii"
+        },
+        {
+                "title": "întru semne şi însemne şi pesemne doar",
+                "text": "eu nu scriu pentru acum\nşi nici pentru tine\nîn fapt eu nu scriu pentru nimeni şi nimic\nşi nici nu ştiu dacă scriu\npoate că nu\ndin când în când\naşez doar pietre pe umbre\ncolorând vântul cu ecoul sunetelor împlântate\nîn liniştea lacrimilor\ncu care hrănesc ochiul aprig al păsării-fântână\nîn timp ce clopotele\nîmi străpung respirarea\nadânc\nîntr-un orizont despre care deşi nu ştiu nimic\nîl simt curbându-se pe mişcarea efemeră a frunzei care închide toamna\nca pe o\nmă uit adânc înlăuntrul zborului\nsau înlăuntrul ultimei tăceri\nîn care curg\nvertical\nşi simt valurile spălându-mi țărmurile visului încheiat\nla nasturii orologiului mut\npe o mare deplină astupată de luna despletită\nîntr-o melancolie prelungă\naproape stacojie\nîntr-un univers duios fără forme\nîntins de la capătul mâinii mele drepte\npână la capătul zâmbetului tău fugar lăsat să plutească în umbra călare\na unui déja vu mistuitor trăgănat aievea\npână la infinita durere a firului de iarbă\nîmpins prin cristalinul alb al zăpezii în chip de prunc\nîn inima mea care încă nu a ajuns acasă\ncum spuneam\neu nu scriu nimic\ndoar plâng de dor\nîntr-o limbă care va să vie\nsă se-aştearnă la picioarele celestei iubiri"
+        },
+        {
+                "title": "sentimentul veşniciei pe malul apei",
+                "text": "auzi cum cad notele din pian\ntăiate în felii de lumină\nşi cum se-ntind sunetele printre clipe\nscurgându-se secvențial şi adânc\nîn timp ce rîul se deşiră mereu în acelaşi ritm\nauzi cum cade răsăritul pe\nşi cum curge lumina printre ramuri prelung\nudând infinitul cu lacrimi de crini\nîntre razele care culeg ultima răsuflare a nopții\nauzi\nauzi cum te port pe buze spre mare plăpândă\ndespletită şi prelungă precum o visare\nşi  lumea-i departe pierdută-n uitare\nşi râul te spală cu-argint pe picioare\nşi curg în cuvinte\ndesculț\nmă împlânt în rotundul pământ\nrespirând în ritmul zorilor\nşi muntele freamătă de-atâta povară\nşi veşnicia îşi ridică chipul către soarele ars\nşi e cam răcoare\nîn propriul cuvânt"
+        },
+        {
+                "title": "rugăciunea zilei a şaptea",
+                "text": "când rugăciunea mea scrisă de mine\nva ajunge să curgă\nrâuri\nlăuntrului meu cel de umbre pătat\nşi când deasupra mea\nse va deschide poarta misterului\nca un crin\nrăscolind cerul cu bătaia lui de clopot\niar în ecou vor curge cuvintele\nrupte din mine\nmărginind orizontul cu valuri aprinse\nşi păsările se vor ridica în fântâni în armonie perfectă cu zborul\ncurbând zarea în lacrimi infinite\niar moartea va rămâne doar un semn de circulație\nîntr-un sens giratoriu\nîn mijlocul pădurii de semne păzite de îngeri\nîn care curgerea însăşi e o apă vălurită de aripi\ndeschide-ți larg brațele\nMaică\nrădăcină a tuturor fiiilor\nsă adorm în câmpul de iasomie\nal liniştii din care am venit să te caut\ndeschide-ți larg privirea ta de lumină fiind\nsă mă odihnesc de-o veşnicie în a iubirii oglindă\nprimeşte-mă\nAmin!"
+        },
+        {
+                "title": "insula din lăuntricul meu cetire",
+                "text": "ea îmi sărută visul\ncare mă visează în adâncul fiecărei respirații\nîntr-o poveste pe care o deșir\nîn fiecare clipă altfel\nși totuși mereu aceeași\nsub o ploaie\nmocnită\nși\ntăcută\ncu gust de măsline verzi\nîntr-o înserare perpetuuă și fluidă\npeste lacrimile mele dospite\nse cerne cerului\nînsămânțându-mi zborul\ncu fântâni\natinse\nde\npatimi\no\nce\nînalt\nse cerne cerului\npeste lacrimile mele dospite\nîntr-o înserare perpetuuă și fluidă\ncu gust de măsline verzi\nea insula din lăuntricul meu cetire"
+        },
+        {
+                "title": "of Doamne",
+                "text": "câtă linişte intră într-o singură clipă\nşi câtă durere intră într-o singură lacrimă\nşi cât va mai izvorî fântâna asta din mine\ncând val sunt orizontal\ncând zbor sunt vertical\ncând strigăt şi țipăt sunt într-una\ndesțelenit dintr-un clopot uriaş\ndin care curg în cuvinte\ncrezând că aş putea spune ce sunt\ncând sunt mai mult decât aş fi putut fi vreodată\ncrezând că aş putea să spun ce eşti\ncând eşti mai mult decât ai fi putut deveni vreodată\ncrezând că aş putea să rostuiesc iubirea\nsăpând fântâna cu verbe flămânde de lumină\nşi nu e\nnu e aşa"
+        },
+        {
+                "title": "prin curgere în continuumul apei",
+                "text": "clopotele vin odată cu vântul\nvin cu caii lor albaştri după mine\nnori plutind în alergare\nîntr-o mişcare perpetuă şi polifonică\ndintr-o clipă nenăscută încă\nşi sunetul prelungeşte liniştea\nîntr-un adânc zbor de vultur pândind aşteptarea\nîn curbura unui orizont lateral\nmarea se acoperă de valuri hibride iluminate sentențios\nşi țărmurile murmură în continuumul energiei\ndisipate în cuarțul nedefinit al țărmurilor\noh femeie a insulei dinlăuntrul ființei locuite de mine\ncât de mare e marea cea mare vărsată peste marginile pământului\ncurgând otova prin fântânile risipite în spațiu\nflămânde de cuvintele cele bine împlântate în epavele zilelor\ncare nu vor mai veni niciodată\nadu-mi să beau parfumul tău de iasomie\nde pe sânii tăi curbați bătăilor inimii mele\nşi lasă-mă să ascult clopotele revărsate peste dealuri şi munți\npână la marea cea mare împlântate într-o himerică\nşi veşnică uitare de sine\nîn care veştedele clopote dau semnelor socoteală"
+        },
+        {
+                "title": "rugăciunea începutului de luni",
+                "text": "când rugăciunea mea scrisă de mine\nva ajunge să curgă râuri\nlăuntrului meu cel de lacrimi udat\ndespletindu-şi esența\nsub brațele întinse vântului\nşi cerul se va umple de mirosul crinilor albi\nşi timpul se va umple de clopote\nşi lumina se va umple de tine\nşi eu mă voi umple de privirea ta cea oarbă de mine\nşi mirul va mirosi a crini\nşi biserica a iasomie va tânji\natunci\nabia atunci\nvoi păşi\nvoi iubi\nşi voi fi\nde trei ori\npe trei zori de zi\nsemn pe semn\nde lemn\nsă ştii\ndă-mi putere să vin\nAmin!"
+        },
+        {
+                "title": "diafan surâsul frunzei",
+                "text": "zorii zilei\no deschidere în arpegiu\no tăcere de rouă\nşi totuşi reveria sărutului luminii\npe părul împletit cu vânt\nnici o distorsiune în semnul curgerii\nşi doar valea\nşi doar izvorul\nşi doar murmurul\nşi doar susurul\nşi niciodată acelaşi\nun zeu ridicându-şi privirea\nspre chemarea mai degrabă şoptită\na efemerului\nca semn"
+        },
+        {
+                "title": "penumbra luminii",
+                "text": "la răsărit de lacrimă\nluna îngroapă îngerii nopții\nîn ridurile adânci ale luminii căzute\nîn  tăcerii"
+        },
+        {
+                "title": "privind în ochi veşnicia",
+                "text": "am deschis ochii\npe ochii tăi deschişi\ncare au deschis ochii\npe ochii mei deschişi\nşi ne-am privit aşa\npreț de o veşnicie\nîntre timp am murit şi eu şi tu\nşi ochii mei au rămas tot acolo\nprivindu-te în ochii tăi\ncare se priveau în ochii mei\nşi cum în două oglinzi ne priveam pe noi înşine\nînlăuntrul nostru\nam descoperit curând\ncă suntem o infinitate de ochi privindu-se\nîn ochii celuilalt\ncu aceeaşi măsură\nmereu aceeaşi măsură\na fervorii\nşi eu deveneam tu în a doua oglindă\nşi tu deveneai eu în prima oglindă\ncare se tot oglindeau în oglinzile oglinzilor\npâna la deplina fervoare\na patimei\ndin când în când îți desenam o clipire clipind\ndin când în când îți storceam o lacrimă plângând\nşi tu erai eu\nşi eu eram tu\nde ce nu\nun clopot în ecou un déjà vu\nam deschis ochii\npe ochii tăi deschişi\ncare au deschis ochii\npe ochii mei deschişi\nşi ne tot privim aşa\npreț de o veşnicie"
+        },
+        {
+                "title": "înlăuntrul seminței din care vin",
+                "text": "îmi sap fântâna cu propriul meu zbor\nşi simt cum înlăuntru se deschid ferestrele întunericului\nînlăuntrul lacrimilor din care sădesc roua zorilor\ncad păsări în flăcări pârjolind aşteptarea\nveştedelor nopți aşternute pe caldarâmul singurătății\nşi rotund sunetul liniştii umple tăcerea\nca şi cum m-aş cufunda într-un val perfect sinusoidal\nîn care nici nu-i nevoie să înot ci doar să mă las curgerii\nca sămânță a râului din care vin înlăuntru\nîn curba mişcare a mângâierii în care\nduioşia preumple pacea dansului care nu se mai petrece\npentru că nu mai are de ce\nşi nici unde\nci doar înlăuntrul lăuntricului său\nacolo unde nu mai încape nimeni nicicum nicăieri\npentru că sunt deja acolo\npe măsura sferelor lor\nîntregindu-se pe sine în unu\nparalel cu unu\nparalel cu unu\nparalel\nlângă\număr lângă umăr\nmereu acelaşi şi totuşi altul\nca măsură a nemăsurii\nşi totuşi atât de simplu şi atât de puțin\nîntru liniştea iubirii din care mă întorc iubire ca semn"
+        },
+        {
+                "title": "descântec murmurat de rugă",
+                "text": "frământu-mă\nrotundu-mă\nadâncu-mă\ncăruntu-mă\nşi de n-are soare\nudă-mă devale\ncu valuri de mare\nşi de n-are umbră\nmuntele îl surpă\nrâului îl curbă\nşi plouând\nîngându-mă\nsecundă-mă\nfecundă-mă\ncăruntă-mă\nşi-n râuri zvântă-mă\nîntru cercuri frântu-mă\nde gânduri gându-mă\nde tine mândru-mă\nîntr-un leac\nîngându-mă\nfrământând\nfrământu-mă\nîn adânc\nadâncu-mă\nși împlântu-mă\nîn nori de lumină\nîn zbor de albină\nsă fiu doar cuvânt\nclopot de sub vânt\nurmă pe pământ\nrugă întru cânt\nde gânduri în gând\nde tine plângând\nAmin!"
+        },
+        {
+                "title": "Maică a singurei linişti",
+                "text": "alege-mă între aleşi\nculege-mă între culeşi\ntu\ndin noi\ncea care mirosind a crini desprinzi clipa dintre clipe\ntu din noi\ncea cu ochiul cel sferic cioplit din lacrime-aprinse\ntu dintre noi\ncea ochilor orbilor dându-le neîntinată privire\ntu\npură ca sunetul pur\ncare se revarsă peste malurile ochilor mei\ndin toate curburile ecoului\nşi eu planez peste această câmpie\na sunetelor care nu încep şi nici nu se termină\nci sunt\npur-şi-simplu sunt\ncăci fără de ele ar fi gol acolo unde nici nu sunt\nacolo unde nici nu eşti\ntu\ncea ochilor orbilor dându-le neîntinată privire\ntu dintre noi\ncea cu ochiul cel sferic cioplit din lacrime-aprinse\ntu din noi\ncea care mirosind a crini desprinzi clipa dintre clipe\ndin noi\ntu\nculege-mă între culeşi\nalege-mă între aleşi\nrotundu-le\nrotundu-mă\nrotundu-te\nîncepând începutul început\ndintr-o singură lacrimă\na unui singur sunet\ncules din liniştea\nunei singure linişti\ntu\nMaică a singurei linişti izvorâte din linişte"
+        },
+        {
+                "title": "semnul bărbatului către femeia sa în pârg",
+                "text": "întoarcerea\noh\nDoamne\nîntoarcerea\nspre izvor curgând\nlimpezind lacrimile\nînlăuntrul seminței ce va să plece\npe urma ecoului pe care cobor\nîn semnul meu de piatră\nsculptat pe stâlpul acasei\ncu fervoare sculptat\ncu putere şi har\ncu blândă durere\nîntr-o pierdută zi ploioasă\natârnată de poarta care-a rămas întredeschisă\nnu mă-ntreba cu ce scriu norii dacă din clopot rostesc secunde\nîntr-o limbă streină divizându-mă\nde-a stânga şi de-a dreapta\nde-a înainte şi înapoi\nca şi cum\nsângele mi-ar străbate trupul printr-un câmp de maci\ndin ochi privindu-mă sămânță\neteric şi ezoteric vindecându-mi trecerea\nmisterios şerpuind lumina prizmatic\nîn numele alb estompat al liniştii apăsându-mă pe piept\ncu-n cer adânc şi curb şi surd şi orb\nnu mă-ntreba dinlăuntru cum pătrunde sunetul pe vene\nîndurerându-mă şi limpezindu-mă totdeodată\nîntretăindu-mi respirația\nadăugându-mă durerii cu blândă duioşie\nci doar grăbeşte-te să te aşezi\npe pragul casei\nîn chip de cheie\na devenirii\nîn unul"
+        },
+        {
+                "title": "înlăuntrul clopotului",
+                "text": "mă cufund înlăuntrul clopotului\nîn apa adâncă a sunetului răsfrânt\ncristale de sunet lovindu-se de aripile mele rănite\nşi-ncerc să umplu rănile cu ecou\nzugrăvindu-mă din nou înlăuntrul dimensiunii\ncurb ca lacrima\nstrecurându-mă prin prismatica lumină a asfințitului\nîn chip de dor\npe chipul ei de pruncă uşor locuind\nca rădăcină\na Maicii ce se va rosti\nnemişcarea mea de mine în iubire cuvântându-se\nadică în tine\ndin nou curbiliniu\nla marginea misterului din ou\nsusurând printre pietrele pe care le aştern de secole\nîn mii de cuvinte răsfrânte în oglinda fântânii în care zbor\nclopotul respirându-se de-a lungul pereților cerului\nunduitor amețitor atrăgător\nchemare a chemărilor în care urc scări povârnite\nîn sentimentul meu de întreg al veşniciei\ndin care vin\nca să vii\nca să trec\nîntr-o sublimă cauzalitate a perfectei perenități"
+        },
+        {
+                "title": "rugăciunea de sarea cuvintelelor împletite",
+                "text": "despleteşte-mi cuvintele Maică\ndespleteşte-le din lacrimi să pot curge durerii\ncu dorul cel curb ca o mângâiere oarbă\ndespleteşte-le din lumina ochilor cea uitată în căldura zborului\nalinat de vânt la răsăritul iubirii\ndespleteşte-mă din mine\ncel împletit păcatului întru împlinirea menirii mele de semn\nşi lasă-mă curgerii\nlasă-mă plângerii\nlasă-mă val mării învelindu-mi paşii în sare pe țărmul tău\nMaică\nsă însemn marea cea mare cu cuvintele mele însămânțate de Tine\nluminii din lumină\najută-mă să-mi respir iubirea de Tine\nde care nici nu pot respira\nşi despleteşte-mi cuvintele să pot cuvânta iubirii Tale\ncu iubirea mea mai adâncă decât mine\nmai plină decât mine\nşi atât de curbă lacrimii cu care îmi miruieşti plecăciunea\nacum şi pururea\nşi în vecii vecilor\nAmin!"
+        },
+        {
+                "title": "esențiale. rugă",
+                "text": "ridică-mă Măicuță\npe un suspin de vânt\nla marginea luminii\nîn numele meu\nrăsare o lacrimă\nîn numele Tău\nlăcrimează nemărginirea"
+        },
+        {
+                "title": "esență prismatică a visului",
+                "text": "dintr-o pasăre rotundă măiastră în glas\nam cules zborul curb\nşi l-am aşezat cu grijă pe țărmul pleoapelor obosite\ncu care apun cuvintele în valurile semețe\nale aprinsei mări\ndincolo de ropotul valurilor care sfâşie țărmul\nîn liniştea nopții strigătul iubirii\nsapă fântâni până la capătul durerii\nîntr-o prismatică esență a visului\natinge-mă\nmă ard buzele de a ta sete de nesfârşire"
+        },
+        {
+                "title": "eternul el însuşi pe sine călcând",
+                "text": "vocile cele născătoare de voci\nşi neliniştea căii fără de chip\nşi fără de tăgada semnului\nşi fântâna în care se scufundă timpul\nşi ecoul singur glisând tangențial orizontului\nîn cercuri concentrice\nîntr-o mirare a visului cel fără de vis\nşi atenta percepție a sfâşierii de sine\nîn falii ale deplinului\ntulburătoare singurătăți\nşi muzica acestei îndepărtări circulând aproape dureros prin vene\nîntr-un perpetuum insinuat şi insinuant\nşi o lumină crestând norii ca un fagot liniştea corzilor viorilor\nşi zborul el singur planând deasupra şi dedesubt\ntotuna şi totdeodată\nîn aceeaşi logică a întregului care se ridică şi creşte mereu\nmărginit doar de acelaşi fagot\ncare rezolvă dilema nemărginirii\nprintr-o dantelă de lumină ascuțită\ncare răzbate din când în când printre crestele întunecate aplecate\naproape nimic\naş putea spune\ndacă nu ar fi ulciorul de pământ cu apa lui vie şi rece\naşezat pe ghizdurile fântânii\nîntru aşteptarea setei de tine\ncare va să vie nemijlocit\nsub o formă duioasă a purului cu gust uşor amărui\npe un covor de  galbene aşternut peste capetele toamnei\nfoşnind imaterial la lăsarea paşilor\npe o cărare ascunsă\ndincolo de mine"
+        },
+        {
+                "title": "căci m-am iubit şi cu văzduhul şi cu marea",
+                "text": "nu sunt decât o lacrimă pe o cruce de lemn\no pasăre\nca un clopot curbându-se semnului\nşi cerul curgând continuu\nîn fiecare fântână\nca măsură a timpului\nîn chip de punte a universului către etern\nşi apa rostuindu-se sensului\nîn semne cristaline\nca măsură a devenirii din deplin\nnu sunt decât o lacrimă pe o cruce de lemn"
+        },
+        {
+                "title": "elegie sub semn",
+                "text": "ce bucurie ai tu Streinule întru aplecarea pleoapelor\nşi ce lumină țâşneşte din cuvântul tău cel purtat\nde boarea răsăritului întru preamărirea soarelui\nla deschiderea porților zilei\nşi cum păşeşti tu pe ape\nînălțând la cer cercuri de lumină firavă\nca şi cum am respira zborul\nîntr-o linişte planetară\nşi nu e\nnu e aşa\nce inimă ai tu Streinule întru curba cădere a lacrimii\nîn chip de setea pământului\nşi ce fervoare se ridică din genunchi umplând sensul copacilor\nde a fi pădure\nşi al munților de a fi țărmul\nunei necuprinse mări care nu începe de niciunde\nşi care nu se termină nicicând\ncăci nu există nici spațiu şi nici timp să poată măsura înlăuntrul\nneființei\nşi nu e\nnu e aşa\nşi ce putere ai tu Streinule să împlii cuvântul de semne\nşi să însămânțezi femeia aceasta pe care îmi sprijin acoperişul\nşi în care îmi deschid fereastra spre atâta iubire\nîncât simt cum curg printre pietre izvor\nsărutând cu fiecare respirare a mea\nputerea ce-mi dai de a fi fiire\nşi nu e\nnu e aşa\nci doar ca jertfă sunt Doamne clipei\ncu care sădesc lumina înluntru\ndoar lacrimă  pasului\ndoar"
+        },
+        {
+                "title": "o iubire pe sens",
+                "text": "pe sensul opus\ncerul curba orizontul după colțurile zâmbetului tău\npe sensul meu\nieşirea era prea târziu dar mirosea a crini"
+        },
+        {
+                "title": "chemarea legii",
+                "text": "căci de unde e ea\nlegea legilor legată de ceruri în cercuri\nrăsplătind lumina pururea devenirii din sine fiind\nşi nu ființă ci zbor\ncăci nu poți fi decât ceea ce ești\nşi nu poți deveni decât ceea ce ai fost\npe poarta pe care ai intrat\nşi apa din care ai băut la curgerea ta către tine\nca semn când ești semn\nca lemn când ești lemn\ncuvânt când ești\ncitire să dai albiei în care curge râu râului din tine\npe pietre săpând\npe creste crestând\npasăre zborului\nşi dor dorului\nşi-n fântână apă vie zămislind\nslovelor sămânță de semn ca să ştie\nunde a rămas lumina\nsă fie omului\nşi pomului Pom\nşi cerului Domn\nşi mumă eternului semn acolo când va ca să vie\ncăci nu e ce este ci ce va fi\ncând ziua nu va şti de ferestre căci fereastră va fi\nîntr-un crin mirosind a iubire\ncu deplină fervoare\nzburătorului\nce vine\ncu aripile întinse spre împletire\nsensului\nlegiuind\ndăruire\nşti"
+        },
+        {
+                "title": "ochiul gol",
+                "text": "târziu răsună\nspaima razelor lunii\npe ferestrele oarbe"
+        },
+        {
+                "title": "(de)semnele",
+                "text": "străbătutu-m-ai tu\nîngere\ncu\npleoapele tale asfințind lumina pe crestele zilei\nprelingându-se pe şoaptele apei\nstrăbătutu-m-ai tu\ncu aripele tale prelungi îmbrăcând orizontul\nîn ramuri de clopote despletite\nîn ecouri concentrice ce izbesc munții cu valuri furioase\nstrăpunsu-m-ai tu\ncu lumina ta desculță şi vie desprinsă de-a pururi\ndin etern\nşi zborul meu s-a umplut de semne scrijelind bolta\nsufletului\nîntr-un vaier curb de vultur\nce-a crăpat vidul\nlăsând să curgă înlăuntru\nmăsura iubirii\nîntr-un gest de fervoare\na vieții"
+        },
+        {
+                "title": "elementara despărțire din care venim",
+                "text": "din sărutul tău\nun înger orb  şi rănit\nrevărsând răsăritul"
+        },
+        {
+                "title": "Ioan",
+                "text": "şi pasărea lasă un semn\nmărturisindu-se izvorului cu apă vie\nprin ochii larg deschişi înlăuntrul plutirii\nîn chip de alb curbându-se lacrimei\nîntr-o adâncă nemăsură\na întoarcerii\nîn lumină\nşi pasărea\nîn chipul ei de pasăre\nse dăruieşte circular zborului\naşa precum clopotul se dăruieşte ecoului\nîntr-un deplin ritual\nal fervorii"
+        },
+        {
+                "title": "bitter impromptù",
+                "text": "priveşte\ncum curg din bărbat tot bărbat\nşi din munte tot munte\ncum cad zorii cu ecou cristalin\npe semnul valurilor aruncate la țărm\nşi lumina se lasă pe partitura vieții\nîntr-un etern impromptù\npictat pe stâncile scufundate\nîn mare înlăuntrul portului\npierdut la capătul lumii\nacum e linişte pe nisipul umed\npe care se lasă paşii singuratici ai dimineții\nnimic niciunde nicicum ci doar un sunet continuu\nal unui prezent atât de singur şi atât departe\nîncât scrijelesc pereții timpului cu ghearele durerii de mine\npână la seva vie a iubirii de semne\ndin care nu există\nîntoarcere"
+        },
+        {
+                "title": "(de)semnele primăverii din lacrimile nemărginirii",
+                "text": "la miezul tăcerii\nm-am trezit cu cuvintele sărutate de îngeri\nprelung aşezate în formă de lacrimi\npe fecunda lumină a lunii pline\npe când luna plângea tulburând marea\nvuind de atâta linişte\napoi se auzi curgând pianul\natât de dureros curgând\nîncât venele mele resimțeau durerea înlăuntru\nîmpletindu-se cu ființa mea\ncea ca o salcie curgătoare unduindu-şi brațele\nduios şi misterios totdeodată\nîn toate direcțiile\nşi nici nu mai ştiu acum dacă sunt eu sau nu\nsau dacă mă dizolv în deplinul nopții\nlăsându-mă plutirii\nspre susurul veşniciei\nîntr-o frământare atât de cristalină\nîncât fiecare notă se transformă deîndată\nîn treaptă\ncătre zborul ce-şi întoarce privirea\ncea cu ochii înlăcrimați de atâta\ncurgere şlefuitoare de aripi\no, Mamă a toate cele veşnice\nşi a luminii din care țâşnesc atâtea lacrime\ncroite fervorii,\ntu alină-mi dorul de nemărginire\nhrănindu-mă cu deplinul tău\ndin necuprinderea ştiutului şi neştiutului\nşi lasă-mă,\nMaică,\nsă-mi aşez prea plinul iubirii în cristalul cuvintelor\npe măsura atâtora semne\nde la hotarul înțelegerii\nîn mare curg continuu mângâietoare note de pian\nîn chip de linişte\nşi-acum\ncurg în continuu\naşa că nici nu mai ştiu\nunde să închid  poemului\nde teamă să nu rămână vreo notă pe-afară"
+        },
+        {
+                "title": "a medita",
+                "text": "uneori\nTe văd cu ochii Tăi\nca un glas de clopot adânc vuind\nîn limba clopotelor\natunci timpul se deschide tandru\ncu brațele larg sprijinind orizontul\nnu e nici zi nici nezi\nnu e nici adânc nici atunci\nnici tandru nici tu\nnici eu\nci doar\nE\nîntinzând liniştea pe-o vibrație\ncurbă"
+        },
+        {
+                "title": "mărțişor",
+                "text": "copilul\nfemeia\nMăicuța\nsunt laturi curbe ale aceleiaşi lacrimi\ndin care curge măsura iubirii\nundeva\nînlăuntru\nele curg\nîn formă de  pasăre\nîn deplinul fântânii"
+        },
+        {
+                "title": "vorbind cu Dumnezeu",
+                "text": "voi vorbi - spuse\nvoi vorbi rostind lumina - spuse\nîn rostul ei cel adânc rostuindu-se şi fântânindu-se - zise\nhrănind apa cu peşti şi cu țărmuri şi cu munți\nşi cu toate cele făcute din pământ\nvoi vorbi - zise\nşi răsăritul se învălui în răsărit\nşi apusul se învălui în apus\nşi soarele se învălui în timp\ndin firele de nisip toarse\nale orizontului\ncăci\neu sunt\ngrăiră lacrimile cerului cele curgătoare\npurtătoare de ceriu\neu sunt\ncel văzut şi cel nevăzut\ncel cetit si cel necitit\ncel iubit şi cel neiubit\neu sunt\nseminția mărturiei acestui pământ\neu sunt\nmurirea şi nemurirea\nTată a toatele carele sunt şi nu sunt\nşi sunt mult mai mult de-atât\nşi se făcu zi din zi\nşi noapte din noapte\nşi poarta morții fu închisă\nvoi pleca - spuse apoi\ncăci unul ca mine nu are ce face aici - spuse\nîn semn de lumină luminându-se semnul\ncel venit\nde pe muntele lui Dumnezeu\nrotunjindu-se în lacrimile cerului cele curgătoare\ncăci vă-mplinesc cu credința mea - zise\nprecum voi mă veți plânge cu iubirea voastră - zise apoi\nîn semn de tăcere\nîn numele Tatălui\nşi al Fiului\nşi al Sfântului Duh\nAmin!"
+        },
+        {
+                "title": "semn de mantră cu linişte",
+                "text": "las râul să curgă prin venele mele clipocind\nla fiecare bătaie de inimă\nsau la fiecare bătaie de clopot\nsunetele îmblânzindu-se sau nu\nca o măsură a marginii\ndezvelindu-se şi dizolvându-se în ploaia\ncare răpune lumina zilei\nascult liniştea lăuntrului meu\nşi cred într-unul\nDumnezeu\nTatăl\na toate ştiutele şi neştiutele\ncare curge iubire\nlas\niubirea să-mi curgă prin vene\nşi-ascult liniştea\ncurbându-se\npesemne\nîn locul clipelor\nşi cerul îşi deschide aripile\nîntr-un văzduh de clopote nemărginit\nîn care urc trepte\ncătre săvârşire\nsemn în semn însemnând\nîn izvorul luminii\nla fiecare capăt de linişte\nculeg o lacrimă din ochii tăi\nşi-o las semn\npe tăcere\ncăci numai în iubire e linişte\ncăci numai în iubire"
+        },
+        {
+                "title": "cuvintele în semințele lor",
+                "text": "când va veni timpul\nîți vei deschide larg brațele\nși te vei lăsa pe vânt\ncuvintelor\npână la semn\nele vor pluti\nîntr-o lacrimă trecătoare\no vreme\nvor înflori\nîntr-o pasăre cântătoare\ndivin\nvor însemna\ndintr-o carte un suflet\npuțin"
+        },
+        {
+                "title": "eu şi cuvintele mele",
+                "text": "am descălecat cuvintele şi le-am lăsat la adăpat\ntremura sunetul pe ele\nşi erau ude de atâta transpirație\nnechezau şi fornăiau\nputernice şi nărăvaşe\nşi miroseau toate a fân proaspăt cosit\nşi a pădurea miilor de ani\ndin care-am sosit şi eu\ndesculț şi  flămând\nşi cu cămeşa udă\nde atâta drum\nm-am dezbrăcat şi m-am spălat până la brâu\ncu apa izvoarelor ce-mi împleteau copacii\nşi am simțit cum îmi curge prin vene\nseminția tuturor bărbaților din neamul meu de răzeşi\nm-am aşezat rotund\nla masa rotundă cu trei picioare\npe scaunul rotund cu trei picioare\nfemeia era şi ea rotundă\nşi mămăliga gemea rotundă de atâta istorie\na cuvintelor nespuse\nnărăvaşe şi puternice\ncare miroseau a fân proaspăt cosit\nşi dintr-o dată se făcu cruce\nşi dintr-o dată se lăsară îngerii la masă\nîn chip de pace a sufletelor\nnechezate în cuvinte flămânde\nfemeia puse mâncarea în străchinile de lut\nşi-şi plecă ochii\nşi-şi puse mâinile-n poală\no veşnicie rotundă\neram acasă\ncu îngerii cu femeia cu copiii cu moşii cu strămoşii\nşi cu cuvintele mele cele nărăvaşe\nînhămate la puterea rostirii mele\neram cuvântul meu\nîn fața Cuvântului Său"
+        },
+        {
+                "title": "doina dorului pierdut ca aripă",
+                "text": "O\ntu\nlume a lumilor\nuitată la capătul pustiu al pământului\nacolo unde nu mai este nimic\nşi lacrimile curg pe obrajii nisipului\nca măsură a nemăsuratei tristeți\ndeschide porțile larg să intre durerea mea întreagă\ncând răsare tăcerea peste lacrimile care-au scrijelit lumina zorilor\nla capătul valurilor care izbesc țărmurile cu profundă tristețe\nmângâind nisipul care se scurge printre degetele munților\nde atâta dor de dus\nde atâta plâns de plâns\nde jur împrejur doar umbra ta care strigă\nca un clopot îndoind murmurul singurătății\nşi eu ca un cocor alb pierdut în propriul meu zbor neterminat\nşi nezidit şi neîmplinit şi nesfârşit şi\nlumii de lume uitat\nşi timpului înclinat\nşi dorului împlântat\nîn cerul curbat profund\nde-a dreapta răsăritului\nde-a stânga infinitei tristeți\nîncriptat într-un ecou de cimpoi pierdut în capătul zării\nacolo unde se-opreşte întunericul în disperare ca un hohot\natârnat de coarnele orizontului\nde atâta dor de dus\nde atâta plâns de plâns\nO\ntu\nîntâmplare a întâmplărilor\npasăre verde a efemerelor pietre gonind clipele\ndeschide larg porțile cerului\nam de umplut un ocean întreg de cuvinte\ncând lumea cade ca o cortină peste o poveste deja bătrână şi ştirbă\nşi dincolo n-a mai rămas nimic sau poate nu\nsau poate tu în chip de lacrimă\npe buzele mele arse\nde atâta apus\nde atâta dor de dus\nde atâta plâns de plâns\ndorule\npierdut ca o aripă"
+        },
+        {
+                "title": "în săptămâna tristeții strălucitoare",
+                "text": "m-am născut din limba română\nîn formă de lacrimă a descântecului\nîn nearipile mele de mine\natât de rotund\nca o piatră care strigă\natât de lichid ca albastrul care urcă\nam săpat adânc și aprins în cuvintele rostite și nerostite\nîn zăvoare ruginite și fântâni astupate\nîn gânduri căscate în lumi pierdute\nașa cum aș fi săpat în morminte dezvelind năluci\nîn valuri deschise în orizonturi verticale\nhrănind păsări aprinse\nm-am uitat la mine cum înotam sau cum zburam\nîn vocale și consoane și-n durerile cuvintelor\ncuvintele s-au uitat și ele la mine\nchiar și tu te-ai uitat plângând\ncu strălucitoare tristeți\nîncă nu am aflat cine\ndar unul dintre noi sigur zbura\nși\nuite așa\nau răsărit diminețile\ns-au curbat zilele\ns-au crăpat nopțile\ncuvintele din cuvinte\niubindu-le din iubite\nhrănindu-le din absinte\nși dintr-o dată\nlumea s-a curbat toată\nîntristându-se de atâta întoarcere în sine\ndin nesinele său cătră mine\nși totul a devenit lumină\ncuvintele au devenit lumină\nsau liniște\nsau deplină\niubire\nhrănindu-se din curgerea secundei pe sine\ncu mine\ncu tine\ncu poeme\nde sine\nceleste\nși câtă durere de drum\nDoamne\ncâtă mai este...."
+        },
+        {
+                "title": "rugăciunea de după prima zi care a răsărit",
+                "text": "vin către mine din întuneric purtând lumină\nO\nMaică prea bună a toate cele văzute şi nevăzute\nroagă-te pentru fiul tău\nîn livada luminii neîncepute\nacolo unde timpul nu are putere\nşi mişcarea nu există\nacolo unde nimic nu începe şi nimic nu se termină\npentru că\nO\nMaică\nvin să-ți aduc cuvintele mele zidite cu mine\nînlăuntrul fiecărei lacrime care strigă\ndureros de lăuntric\nde atâta tăcere fierbinte\nîn hohote rostogolindu-se în cascade care fierb\nde atâta durere\ntrecând prin râuri de lumină\nvin\ncu atâta patimă\nîncât abia ating cuvintele\nprecum clapele pianului\nîntr-o unduire stranie de nefiire\nsubțire\nşi cuvintele se îndoaie substanțial\ncu mine înlăuntrul lor\ncu mine îngenunchind înlăuntrul lor lăuntric\nacolo unde nu-s consoane sau vocale\nci numai semne\nşi eu în genunchi mă curăț plângând cu necuvintele mele\nO\nMaică\nde ce lumina cântă aşa duios\nde-mi țâşnesc cuvintele ca lacrimile\ndin atâta linişte\ncurbându-mă întruna\nîn presărate cuvinte însemnate\nla țărmul acestei lumi din care am plecat demult\nîncă de dinainte de a fi\nîncă de dinainte de a deveni\ncăci din cuvinte vin necuvintele\nşi din prea puterea lor\ncurge prea puterea lacrimilor cele care sunt\nlacrime\nadică tăciuni\nşi semnele se arată flămânde din semne\nşi zilele se arată crescânde din atâtea lumine\nrotindu-se ca albinele\nprin spațiul curb\nal cuvintelor care clădesc în mine\nrugăciunea zilei de la început\nde la prima zi care a răsărit"
+        },
+        {
+                "title": "semnele tăcerii",
+                "text": "tac din tăcerea mea de-a fi piatră\nacolo unde zborul pune hotare\nsecundei\ntac în atât de multe chipuri\nîncât de atâta greutate tăcerea se curbă\nîn lentilele lacrimei\ncerul se îndoaie profund concav\npe orizontul prelung convex\nşi din clepsidră curg zboruri atinse de lumină\nîn formă de pasăre\nîn formă de pasărea păsării\ndincolo de lumină\nadică din semn\ncetire\npesemn plutire pe lemn\nîn formă prelungă\nde clopot\nadică tac\nsăpând cuvinte\nîn prag de mântuire"
+        },
+        {
+                "title": "sentimentul de frunză împins în strigătul unei lacrimi",
+                "text": "din lacrimă\nMaică\nvin\nși-n lacrimă plec\nîntregul devenind întreg\nabia divin\ndin pasăre\nMaică\nvin\nși-n zbor mă duc\nîntregul devenind întreg\nabia senin\ndin lumină\nMaică\nvin\nși-n roșu apus mă cufund\nîntregul devenind întreg\nși sfânt"
+        },
+        {
+                "title": "II",
+                "text": "motto: -Şi piatra dă muguri\ndacă o iei cu binişoru’.\n(proverb armenesc)\nm-am născut dintr-o dorință de a fi verb al nerostirii\nmiraculos înfăşat în limba română\nîmbrăcat în cuvinte şi semne\ncioplit din consoane\nşi crescut în vocale\npăşind stângaci în cuvintele mele\nînmugurind în tristețile fiecărui arbore\nfiecărei frunze care pleacă toamna târziu\nşi se întoarce primăvara devreme\nîn semn de mugure\nîn dor de sâmbure\nm-am născut mai întâi cumplit de bătrân\napoi târziu de mirat\nm-am uitat prelung la cerul crăpat de stele\nm-am întristat o veşnicie\nam plâns diluvial peste țâțele mamei\nam strâns în pumn ceea ce mai rămăsese din el\ndin cerul meu derbedeu\nşi l-am aruncat în apele mării\napoi am respirat corect gramatical vreo sută de ani\nîncurcând femeile cu zânele\nzânele cu prunele\nşi tot aşa până mi s-a decupat zborul şi aripile au bătut\nca nişte clopote mari de bronz\nmângâind vârfurile brazilor din pădurile amintirilor mele\napoi am înțeles muzica\naşa ca şi cum aş iubi până la sângerarea degetelor înfipte\nîn propria singurătate\nşi dintr-o dată\ncuvintele au țâşnit precum izvoarele din miezul pietrelor\nacum ascult tăcut\ncum pietrele vorbesc despre veşnicie\nşi încerc să-mi înțeleg propriul mugure\ncare\nuite\nstă să deie în floare\nsau în soare\nsau în mare\nsau în oare\ntu\nce mică şi măruntă mirare îmi eşti\nde viețuieşti în mine\naici la capătul lumii\ncând eu de fapt caut capătul tăcerii\ndin curbele preacuvintelor"
+        },
+        {
+                "title": "calea. iubirea. semnul",
+                "text": "de unde încep\nşi unde mă termin în cuvinte\nca un arbore cu nori\nca o pasăre cu zbor\nîn deşertul iubirii rătăcind semeț\ncu fiecare durere\nde unde mă-nalț\nşi unde cobor\nhotar zăbavnic şi iubitor\nca un copac împlântat semeț în suspine\nîn întinsa necuprindere a dorinței\nînflorind cât o tăcere\nîn fiecare gest de floare\nde unde vin\nşi unde mă voi duce\neu semn de zbor purtat pe cruce\nîn cuvinte sădit ca sămânță de prunc\nîn lumină topit curb în chip de lacrimă\ncăci nici durerea nu este ceea ce este\nşi nici iubirea nu este ce este\nci doar celestă linişte curge\nîn semnul meu\nîn chip de sânge\npe semnul tău"
+        },
+        {
+                "title": "preacuvintele. fluida linişte",
+                "text": "picură liniştea peste ultimele clipe ale poemului\nşi lumea a încetat să mai existe\nde-un ceas şi ceva\napa curge prin cratime şi vocale\ncărând argintul lunii\npe sub punțile de lemn melancolice\npicură dureros pianul\ncu imagini de sticlă\nşi urcă scările văzduhului care scârțâie\niar ulițele umede mocnesc de întuneric\no umbră păşește aproape nedefinit\npe lângă gardurile putrede\nşi se pierde într-o altă tăcere\ne linişte de-o tine\nfemeie\nrotundu-te de-atâta linişte\nşi-adormi pe brațul meu de argint\nca un şoim la vânătoare\npândind eternul\nte linişte pe mine te\ntu linişte\na neliniştii mele"
+        },
+        {
+                "title": "preacuvintele. lacrima",
+                "text": "am plecat ieri după cuvintele mele\nam plecat curbându-mă pietrelor\nîn semn de curgere\nieri s-a curbat şi ea\nziua\ndupă poalele nopții\ndupă prima eternitate\ndupă a doua\ndupă eternitatea perechii\ndupă eternitatea sărutului tău dureros de limpede şi adânc\npericulos de necuprins şi mirabil\napoi cineva a deschis poarta cuvintelor\nşi lumea toată s-a risipit ca un fum\npe colțurile cerului\nde pe liniştea porții s-a scurs o lacrimă\nşi eu doar pe aceea am şoptit-o"
+        },
+        {
+                "title": "preacuvintele. sâmburele",
+                "text": "dintr-o tăcere\nnu poți să tai decât felii de linişte\nşi un sâmbure de cuvânt\ndar cum e-atât de linişte\nsâmburele rămâne îngropat\nîntr-o rază de lună\nchezaş semnului"
+        },
+        {
+                "title": "desemnele purtătorului de semne",
+                "text": "Maică\nTu a semnului Maică\nrotundu-te împlântându-te în lacrima mea\nrugându-mă\nnu mai știu cum m-am născut eu tăcere\ncând nașterea e un țipăt\nși nu mai știu cum m-am născut eu durere\ndurându-mă senin pe mine\nînlăuntrul meu\nînlăuntrul suspinului meu lăcrimând a liniște\nca o pasăre\nca un zbor\ncuvântului dându-i un capăt de aripă\nși inimii celălalt\nîntr-un sentiment subtil de curgere\nlegând cerurile\ncrestând orizonturile\ndevenindu-mă vers\ninvers\ntăcând înlăuntrul măsurii\ncu liniște\ndevenindu-mă\npe mine aripa mă doare de tine\npe mine aripa mă doare de senin\npe mine zborul mă doare de bătaia clopotului care mă curbă\nde răsărit\nîmplântându-mă în vers\ncu propria mea tăcere\ndin nenașterea iubirii pentru mine născând\nmirându-mă\nîn nenașterea mea de mine hohotind\naspru și larg cu aripile larg împlântate înlăuntrul zborului\npasăre din înger mai întâi\ndescântec din zbor mai apoi\ncrăpându-se cerul\nmă lăsă orb\nsă văd iubirea\ncu ochii tăi negri\ndesemn roșu pe mâna ta stângă\nsărutând dreapta\nMăicuței\nși-apoi doar semn"
+        },
+        {
+                "title": "semn",
+                "text": "cuvântul preacuvântului din piatră curgând\nîmpletit ca o lacrimă\nel singurul\nîmpletit în măsura sinelui său\ncare de sine cade-n putere\nşi de sine ştie\nşi de tăcere tace\nşi de linişte vine\nşi de pace nedesluşind desluşeşte\nnemărginirea\ncăci acolo unde nu e nu poate duce\nnici aduce\npreacuvinte curgând pe pietre ca apa\nstrălucind ca aurul\ncăci fără apă ce sens aurul ar avea\nşi apa trecea şi ea\ncăci apa e trecerea\nnici nu ştiu de ce nu vedeți\ncă apa e trecerea\nca marea cea mare\ncare trece prin cer ca un val\nadică apa prin care vin\nvin să bea la masa aceea\ncând cuvântul s-a făcut cuvânt\nşi lumea s-a îndoit ca un semn de carte\nşi timpul s-a curbat în altă parte\ncuvântul preacuvântului\ndin piatră curgând\nAmin"
+        },
+        {
+                "title": "tăcerea cea care arde",
+                "text": "când orbul măsoară lumina\nmăsurând lacrima cerului\ncu durerea sa\nși când durerea devine atât de aprinsă\nîncât vertical se prăbușește în strigăt\nascuțit se prăbușește în strigăt\natât de adânc săpând fântânii în lacrimă\nhohotind depărtări în mine\nreverberând ecoului în clopot\natunci\nși numai atunci\npasărea se simte liberă să zboare înlăuntru\nîntors în toarcere\ndevenind senin și limpede\nca semnul\ndesemnul cel lăsat de Dumnezeu pe pământ\nîn chip de înger"
+        },
+        {
+                "title": "țipătul din iubirea mea",
+                "text": "încă plâng\nde atâta Tine\nrătăcite poeme\npesemne\nzborului crestându-i tăcerea"
+        },
+        {
+                "title": "II",
+                "text": "ascunde-te tu de mine\nsub o lacrimă\nca o albină primăvara\nîntr-o cupă de crin\nascunde-te\nşi-am să vin\nsă suspin\npuțin câte puțin\nla temelia cerului\nşi cerul s-o umple puțin câte puțin\npână la țărmul semnului\ncu-n ocean de crini"
+        },
+        {
+                "title": "celestă",
+                "text": "Măicuței\nte iubesc atât de adânc\nîncât ochiul meu stâng\ns-a împerecheat cu ochiul meu drept\npre liniştea din piept\npentru întâia dată\nîmpletindu-şi lacrimile\nsuspinele respirațiile tăcerile\ncele găsite şi cele negăsite\nsau negândite\nte iubesc până la semnul meu de zbor\nagățat de aripe cu mâinile mele crăpate de cuvinte\ncurgând invers\nvertical curgând\ncu gândul legat de fiecare gând\ndisipat în fiecare gest\nîn fiecare particulă\nîn fiecare fir de iarbă\nîn care mă trezesc în fiecare dimineață\nîn fiecare floare frunză cale\nşi-n fiecare clipocit de mare\nte iubesc până mă doare fiecare lacrimă\nfiecare gest de iubire\npână la fervoare\ncând te iubesc adânc şi albastru şi mai tare\nte iubesc cu pruncul meu\ncu femeia mea\ncu teama toamna şi iubirea mea de divin\nte iubesc cu deplinul din mine\npână la semnul de plin\nuite aşa te iubesc\ncu aripile mele deschise curb\ncătre cercul din mine\nAmin!"
+        },
+        {
+                "title": "despre durere",
+                "text": "şi am privit orb\nînlăuntrul lacrimei\nploua până la strigăt\ncu mâinile întinse\nca nişte rădăcini\nsăpând în lumină"
+        },
+        {
+                "title": "în căutarea ramurei de măslin",
+                "text": "o\nce adâncă şi curbă mişcare\nca o reverență a eternului ce nu doarme\nci lacrămă cu tipare\nde chipeşe vorbe\niubeşte-mă soare\nîn dreptul răsăritului\npe malul râului în care curg\ndin floare în floare\nşi curbă-te vântule\nnebunule\npână la marginile orizontale ale privirii\nde dinlăuntrul lacrimei\nce ostoieşte clipa de vlagă\nde-o lume întreagă\nşi cine să poată să înțeleagă\nce ne leagă\nrotundu-te gândule\nsingurule\nde jur împrejurule tău de tine\nrosteşte-te\nrostuieşte-te\npe fiecare răsuflare\npe fiecare mişcare\npe fiecare floare de floarelui soare\no\nce deplină şi adâncă fervoare\nmă-ncepe şi doare\nmă cruce şi are\nşi de lut\nşi de mare\nşi de tine\ncelestă şi firavă uitare"
+        },
+        {
+                "title": "cel despre îngere",
+                "text": "ştii tu îngere\nînceputu-mi-te-ai  începutu\nîn numele meu de mine\nascuns\nşi eu orb şi strâmb\nabia acum l-am găsitu\ncând zborul meu e mai degrabă ecoul unui clopot\nînceputu-mi-te-ai începutu\nîngere\nnici nu respirasem cu ochiul meu stâng\nca un copac singur\napunând bordo pe cerul aprins\natât de singur\nla miezul trecerii\nînceputu-mi-te-ai adormitu\nîngere\nnici nu iubisem cu brațele mele cele de vulture întinse\nmă roteam peste ceriu în tăcerea de curb\nşi încă nu iubisem\nînceputu-mi-te-ai  fântânitu\nîngere\ntu\ncel împletit în argintul cu care luna botează marea\nşi nici nu mă întorsesem în cuvintele mele\nşi nici în semne\nci doar tăceam ca o femeie curgătoare\ncu miez de izvor în țâțele umede\nde iubirea ei de mine\ncând eu\nnici nu mai respiram\nde atâta zare de jur împrejur\nşi lumina curgea atât de fierbinte\npe ea\nşi eu nu eram ce ea nu era\nşi eu nu tăceam ce ea nu iubea\nşi ea din mine era prin sine\nşi eu din tine curgeam prin zile\nSemn"
+        },
+        {
+                "title": "liniştea Lui de mine",
+                "text": "râdea Dumnezeu cu poftă de iubire\ncu poftă de mine râdea\ncu toată iubirea lui de atâta înflorire a zborului\nde atâta rod de culoare râdea\nşi marea îşi întindea valurile amorțite\nca o iapă tânără şi năvalnică\nşi totul desțelenit era\nşi țărmul se aşezase în țărm\nşi pasul în propria lui urmă\nşi totul era cum trebuia să fie\nşi-amestecase durerea şi lacrima cu atâta bucurie\nîncât viața şi moartea erau totuna\ntrăiam şi muream în acelaşi timp\ncu aceeaşi măsură\nşi nu era soare şi nu era lună\nci numai lumină\nea pură de sine\nfăptură\nrâdea Dumnezeu într-un hohot himeric\nşi eu mă strecurasem în lacrima Lui\nînfăşurându-mă în cuvinte\nşi curgeam curb\nşi fierbinte\nîn rugăciunea pe care o aşezasei cuminte\nla picioarele Maicii Duminici\nera sămânța rod şi rodul mai-'nainte\nnod\nşi era Bine"
+        },
+        {
+                "title": "cuvântul lui Melchior cătră mine",
+                "text": "ridică-te şi străluceşte\ncăci Lumina a sosit - zise -\nşi nu e nimeni dincolo de tine\nci doar iluzia lumii nu-ți dă pace\nşi trecut e ce va fi\nşi va fi ce a trecut\nmereu şi întocmai\nLumina este Calea şi Calea este Lumina - zise -\nluând urma magilor\nşi tu pe urma lor\nîn pulberea vremurilor\nîn pulberea clopotelor\nîn desfacerea şi nedesfacerea celor făcute şi nefăcute\ncăci trecutul e ce va fi\nşi va fi ce a trecut\natunci şi acum şi pe urmă\nşi ține-ți bine minte numele\nPurtătorule de Semne\n- zise -\ncăci acolo unde ajungi tu cu cuvintele\nnu ajunge vulturul cu aripile\nşi nici ecoul clopotelor\nşi nici marea care-ți curge prin vine\nîn chip de măsură\ncăci trecutul e ce va fi\nşi va fi ce a trecut\nde-atunci pân-acum şi pe urmă\ndesemnele în semne să pună"
+        },
+        {
+                "title": "față în față cu îngerul",
+                "text": "rodu-te din rodul pământului\ntu îngere\nrodu-te tu pe tine în mine\nşi eu pe mine în tine\nrodu-te cu măsura clipelor care trec\nşi-a drumurilor care vin\nşi-a bobocilor care plesnesc cu durerile facerii\nrodu-te cu aripile care crapă văzduhul\nîn cuvinte rodu-te pe tine\nasemenea mie\ncare-am rodit o mie de ani cu o mie de chipuri\nşi nici acum nu ştiu rodi lumină\nci doar plânge\nde mângâierea ei\nsărutându-i în cumințenie\ndreapta"
+        },
+        {
+                "title": "despre semnele trecerii",
+                "text": "de unde să vin\npasăre\ncând eu sunt însuşi zborul\nşi pretutindeni sunt albastru\nşi unde să zbor\npasăre\ncând eu sunt însuşi dorul\nzăbavnic mirosind a tei\natât de adânc\nîncât lacrimă curb\nca ochiul orbului lumina\nîncercănând\nşi unde să plec\npasăre\ncând eu sunt însăşi calea\npe care cuvintele\nse săvârşesc în pietre\ncum lumina se săvârşeşte în apă\nşi cerul rotund se-adapă\ncu zei\ndin roua cu miros de tei\nşi unde să curg\npasăre\ncând eu sunt însuşi râul ce plâng\npe  pietrele semănate\nîn pârg cuvântate\nsub ghizduri de fântâni curate\nsemn sunt\npasăre"
+        },
+        {
+                "title": "rugăciunea mea de duminică",
+                "text": "Pace Vouă\nPreauvintelor mele\ncele răsărite înaintea luminii\ncuvintelor curbe răsărite la țărmurile zilei\nzori ai necuprinselor treceri\nmă uit cum curge lumina tandră ca o femeie împlinită\nși cuvintele mele se încălzesc pe prispă umede de rouă\nsau de lacrimi sau de roua lacrimilor mele\nîncă nesădite\nși mă rostogolesc pe pietre\nca apa în lanuri de preacuvinte\nși apa mi-o ia mereu înainte crestându-mă cu valuri\nși valurile curg mereu în cuvinte\nși satul se lasă adânc în morminte\nîncet și deplin peste noi\nPace Vouă\nPreauvintelor mele\npe care le-așez temelie altarului acasei mele\ncelei ridicate la poalele fiecărei rugăciuni\nîn bătaia vântului\nsă-mi pot potoli zborul cu geamătul clopotelor\nridicat vertical deasupra orizontului\ncântare din cântarea cântărilor\nalunecând pe brațele femeii mele îngenuncheate\nla marginea zorilor\nși lumina se lasă peste ziuă fierbinte\nși cerul se-ndoaie mereu în cuvinte\ncuvânt în cuvânt și preaplin de cuvinte\nși\nDoamne\ncât de multe preacuvinte mai am de-acum\ns-așez la picioarele tale\nluminii ca drum\nAmin!"
+        },
+        {
+                "title": "despre creație aşa cum sunt",
+                "text": "motto:\"UBUNTU -\neu sunt pentru că tu eşti\n(cultura Xhosa)\"\nîn zborul meu\nsunt două aripe\no aripă eşti tu\ncealaltă este cuvântul\nîntre două bătăi de aripi\nse luminează curb\nde semn\nîntre două pietre calcă o apă curb\ncu-acelaşi semn\nîntre două necuprinse valuri\nsemnul se scrie pe lemn\nîn chip de țărm"
+        },
+        {
+                "title": "calea către care curg cuvintele",
+                "text": "dă-mi mâna îngere\nsă tac adânc cu cuvinte flămânde\nde tăceri curgânde\nîn cascade prelungi de lumină\nşi nu eşti tu de vină\ncă cerul profund se închină\ncu zboruri curbe\neternului\nci sămânța este\naceea care sapă\ncu izvoare\nfântâni curgătoare\nîn\nmarea cea mare\na clepsidrei\nce doare\ndă-mi mâna îngere\nşi cuvântă-mă\ndin ugerele liniştii\ndin întinsa nemişcare\nşi binecuvântă-mă\nlumină rotund dezlegată din soare\nîn albastra tăcere\na zborului\ncăci de ziuă e să cuvânt pământului\ncu flori albe de cireş\npe calea pe care ning cuvintele\na trecere\nîn forme de pietre grăitoare\ndă-mi mâna îngere\ncând mă doare\nde tine"
+        },
+        {
+                "title": "semnele. o rugăciune",
+                "text": "O,\nMaică,\ntu sâmbure omenesc al luminii\nlasă o clipă greutatea iubirii\npe umerii mei de apă\nsă pot plânge în voie\nde atâtă durere a dorului\nde atâta dorință de chemare\nde atâta sfârşit şi de atâta început\ntoate cele care stau să plece pentru ca să vie\ncele care trebuie să vie\nîntr-o înşiruire de aripi care acum curg de-a-ndoaselea\nMaică\niar mie mi-e dor de sunetul rotund\nal cuvântului rostit şi rostuit\nîn tăcere şi linişte\ne aproape târziu dacă ar mai fi târziul\ndar acum timpul e pustiu de secunde\nşi arde ca un deşert în amiază\nO,\nMaică,\ncântă vremurile arhetipal revărsând lumina\ncu clipele lor defuncte\nîmplântându-se în țărmurile duminicii\nşi nimic mai frumos\nşi nimic mai limpede\nca vocea de abis a liniştii care coboară circular\nîn anonime zboruri\nîmpletind cristalele lacrimilor\nşi ce dor se aşterne atent în cuvinte\npăşind cu teamă de sine\ncunoaşterii\niubind cu dragoste de tine\nO,\nMaică,\nzboară semnele vertical împletind lumina\ncu aripile lor rotunde\nîmplântându-se în pasărea duminicii\nşi mie îmi e profund de tine\nca tăcerii de linişte în miezul rugăciunii\ncare tocmai s-a aşezat pe-o umbră\nde clopot îngânat luminii\natinge-mă neatingerii\nşi adună-mă liniştii\nce drept şi dorință îi sunt\nAmin!"
+        },
+        {
+                "title": "rugându-mă pentru linişte",
+                "text": "O\nDoamne Dumnezeul meu\ncel fără de colb pe picioare\nTu\ncel vrednic de eternitate\ndă-mi sâmburele de viață cel de după ce ştiu\nsă trec peste pod mai departe desculț\nşi flămând de lumină şi linişte\nuneori sunt atât de mult\nîncât nu mai încap înlăuntrul meu\nşi mă văd revărsându-mă dincolo de mine\nşi mă văd cum mă rostogolesc ca setea sclipind argintiu în lumina vie\nalergând ba nu\nadăpând\nîmprejurul jurului\nca o  dimensiune plană mirosind a iarbă fragedă dimineața\ncând încă rouă sunt\npe pragul dimineții respirându-mă de atâta sete\nuneori\nfântâna este atât de adâncă\nşi apa vie este atât de rece\nîncăt mă înfior la prima atingere\nşi mă fac cerc de jur împrejurul atingerii\ncrestând apa cu sângele meu\ncăci devin ceea ce sunt şi sunt ceea ce devin\nniciodată mai mult şi niciodată mai puțin\nşi uneori muzica se aude\nşi copilul meu respiră în copilul meu\nadânc şi liniştit\nşi atunci ştiu că trebuie să-ți mulțumesc Doamne\niubindu-te pe Tine\ncum mă iubesc pe mine aşa cum nu sunt\nci cum mă văd venind\nde aceea Îți spun\nO\nDoamne-Dumnezeul meu\ncel fără de colb pe picioare\nTu\ncel vrednic de eternitate\ndă-mi sâmburele de viață cel de după ce ştiu\nsă trec peste pod mai departe desculț\nşi flămând de lumină şi linişte\nsă pot fi şi iubi\nsingur între atâția singuri\nplin între cei plini\npână ce lacrimă mă tulbur în femeia mea\nşi-n copilul meu respirând\nsuspinul zborului\nmă curăță de tină şi chin\nFii în  numele meu şi-n mine\nAmin!"
+        },
+        {
+                "title": "rugăciunea mea de miercuri noaptea",
+                "text": "Maică\ndacă aş ştii cuvintele\ncuvintele cu care să-ți vorbesc\ncuvintele cu care să-ți dăruiesc iubirea mea\nle-aş rosti la fiecare pas\nla fiecare urmă a pasului meu\ndar nu le ştiu\naşa că inventez cuvinte pentru Tine\naşa cum inventez respirarea\naşa cum inventez lacrimile\nle aud strigând încă dinlăuntru\nşi le rostogolesc sisific către lumină\nde fiecare dată mai pur\nde fiecare dată mai dur\ndar niciodată îndeajuns\nştiu crinii\ndar trebuie să-i inventez\nştiu lumina\ndar trebuie s-o scriu\nştiu clopotul\ndar trebuie să zbor\npentru a nimeri frecvența ecoului\nsimt cum urcă în mine sărutul tău\nşi nu găsesc cuvântul cu care să-l îmbrac\nsimt de jur împrejur privirea Ta cătră mine\ndar nici nu ştiu cine sunt şi cât sunt\nşi mă uit la mine şi Te văd de fapt pe Tine\ncăci Tu eşti lumina\nşi eu văd numai lumina\nO\nMaică\na toate celele capăt de lumină\nlasă-mă să suspin ca o apă limpede pe picioarele tale desculțe\nspălând cu linişte propria mea trecere\ndă-mi timp să mă fiu\nsă mă ştiu\nsă mă scriu\nsă Te scriu\nîn numele a toate celele văzute\nşi mai puțin văzute\nîn numele a toate celele ştiute\nşi mai puțin ştiute\nîn numele a toate celele care pot fi auzite\nşi care nu pot fi auzite\ncăci în numele Tău sunt eu\nMaică\nAmin!"
+        },
+        {
+                "title": "Crezul creației",
+                "text": "aşez rostirea în dreptul semnelor\nşi femeia în dreptul semințelor\nşi primăvara în dreptul primăverii\nşi sunetul în dreptul clopotelor\nşi cuvintele în dreptul pietrelor\nşi poemele curg susurând printre pietre\nşi pietrele curg printre cuvinte\nde douăzecişiunu de ori\nşi iar de douăzecişiunu de ori\nşi tot de douăzecişiunu de ori\nmereu în forme deschise\nmereu în orizonturi împinse\napele din ape spălându-se\ncu asupra de măsura lor\ntemeinic încolțind în geamătul privirii\ncurbându-se semnul înflorind\ntăcerea crestată în cuburi\ndin cuvinte însemnate rădăcinându-se\nse aşează poemele celestele în ferestrele deschise\nmirosind a iasomie până la prăsele\naproape străpungând aerul\ncu aripile lor împlântate în apus\npână la cernere\nşi  eternul se închină cu evlavie\nşi sensurile se înclină până la pământ\nîn sfere desprinse\nşi eu la poalele Măicuței aşez cuvintele\nîn formă de clopote\nşi sunetele curg închise în lacrimi\nincredibil de limpezi\nimposibil de adânci\ninimaginabil de imateriale\nşi când totul se aşează la locul lui\nşi când toate se leagă la semnele lor\nşi peana se lasă încet pe cuvinte\nsă respire puțin\nliniştea\nDoamne-ajută!"
+        },
+        {
+                "title": "vânătoarea de îngeri",
+                "text": "prin orice lacrimă ne privește\nDumnezeu\ncum ne cernem semnele\nprin orice gând ne măsoară\ncât am tăcut\ncât am trecut\ncât am zburat desculți până la prima iubire\nsemnalizată de vreun înger rătacit\n- ia-o la dreapta!\n- ia-o la dreapta!  zise îngerul\nce Dumnezeu nu vezi cât este de aproape?\n(ce-i drept nu prea vedeam mare lucru\nmi se aburiseră ochelarii cu o pereche de nori ceva mai supli)\nși oricum ieșisem la vânătoare\nși eu și Dumnezeu\nnu ne prea era aminte de femei\nci alergam prin fervoarea vânătorii\ncu nările larg deschise\namușinând\napusul\n- ia-o dom'ne la dreapta! insistă îngerul după colțul unei lumini nesăvârșite\nși eu\nde curiozitate\no luai la dreapta\nși el de curiozitate o luă după mine\nși eu după tine\nși tot așa până ne-am poticnit la marginea liniștii\nnemaiștiind încotro să alergăm\natât de dese erau semnele\nîncât puteai cu ușurință să te lovești de ele\nși să devii deodată însemnat\nnici nu mai știu de ce\nne-am strâns așa în brațe\nde teama sau de seama semnelor\nși semnele au curs peste noi\nși noi am curs peste semne\nși-acum nici nu mai știm ce mai suntem\nsau dacă mai suntem\nnoi tot sperăm că am plecat demult\npa-pa\nnumai așa\nîn liniște răsăritul este circular\nlumina vine brusc de peste tot\nziua se face dintr-o dată din toate colțurile cerului\njur-împrejur\nuneori chiar dinlăuntru\nsimți cum soarele se naște dinlăuntrul tău\ncum ziua ești chiar tu\nsau poate nu\nnici nu mai are nici o importanță\nimportant este că\nuite\nnu ne mai putem dezlipi\nnici nu prea mai vrem\nși nici nu am mai știi cum să ne dezlipim\npentru că între timp am devenit comuni\neu mă locuiesc pe tine și tu\nte locuiești pe mine\nmi-ar fi și frică\nsă nu cumva să iau din greșeală inima ta\nsau tu să iei respirarea mea de tine\nși uite așa\ntu mă respiri pe mine\nși eu nici măcar nu mai respir\nci doar fervoare sunt\nde atâta vânătoare a îngerului\nnici nu mai știu unde a dispărut Dunnezeu\nsau dacă nu cumva tocmai ne locuiește dumnezeirea\npentru că suntem însemnați\ncu iubire\npână la capătul liniștii"
+        },
+        {
+                "title": "cuvântul din cuvânt",
+                "text": "eu sunt cuvântul care-a rătăcit în durere\ncu ochii închişi a rătăcit\nca o pasăre cu zborul aproape frânt\nzburând speriată de propriul cuvânt\nca o piatră scrisă\ncu apă\neu sunt cuvântul de pământ pe pământ\nsunt semnul cel de clopot din cuvânt îndoit în lacrimă\ndin lacrimă curgând împletit cu lacrimă\nşi poate că sunt ce nu sunt\nci doar umbră\na preacuvintelor în care mă rog\ncând nu mă ştiu ruga\nsau iubi când mi-e teamă a iubi de atâta durere care vine\nca un curcubeu deplin\nla marginea furtunii\nsunt tu din tine\nsunt eu din tine\nce sens mai are să mă întreb care sunt marginile\ncând margini nu sunt\nşi nici timp nu prea mai este\nci doar povestea din poveste\neu sunt cuvântul\ndin cuvânt\nşi\nînainte\nmult mai este"
+        },
+        {
+                "title": "a de la începutul care va să vie",
+                "text": "în despicătura nopții\nrodul liniştii îşi depune ouăle\npe țărmurile topite\nale lunii cosite\nde furtună\nacum ceasul şi-a oprit orele\nla marginea sângerie a zorilor\nîn chip de pasăre\na lacrimii locuite de îngeri\nnimic\ndoar lumina care va să curgă\nca un țipăt de clopot\nla primul cuvânt\na\nspuse ecoul"
+        },
+        {
+                "title": "umbra purtătorului de semne",
+                "text": "pe partea cealaltă a lumii\npartea cealaltă a lunii\numbreşte tăcerea\ncu securea luminii\ndespicând strigătul\nîn umbre\nîn miezul cuvintelor mute\ncare curg\nconvexe\ndin zborul căzut al păsării\ndin seninul închis al nopții\npe partea cealaltă a întunericului"
+        },
+        {
+                "title": "solenoid",
+                "text": "1\nsemn\ntimpul e un semn\nrotund\npe o frunză curbă\nplutind pe un orizont care se întoarce\nsă tacă"
+        },
+        {
+                "title": "să uiți. să ierți. să iubeşti.",
+                "text": "când voi fi liber să privesc cerul ca zbor\nşi pasărea ca nor deşirată pe orizont\ncând voi fi lumină între lumini\nşi sămânță-ntre lumi sădită-n durere\ncând\nizvoarele  metamorfozate din semnele venelor\nvor purta gustul sângelui meu\npână la setea ta de prunc\npăstrând pe buze setea mea întreagă\nde țipăt\npriveşte-mă\nprivindu-te\npruncule\npiatră\npietruindu-te\ncu zborul meu\nrotunjindu-te\ndin tine ca prunc\necoul va răspunde\ncu-acelaşi țipăt\nîntors pe dos\ndar încă lacrimă\nîntre cele două țipete\nse va ridica un curcubeu limpede\ncât o iubire\ncurbându-te"
+        },
+        {
+                "title": "pictură sferică",
+                "text": "eternul\ne o dimineață cu o privighetoare\nşi o lacrimă\nprinsă între două triluri\nprin care curge curcubeul\ncare pictează liniştea\nla marginea liniştii\nvibrează un clopot\ndeşirând curb tăcerea"
+        },
+        {
+                "title": "solenoid",
+                "text": "- 2 –\nm-am oprit\nîn fața craterului interior\noh!\ncât de departe este totuși\nsufletul"
+        },
+        {
+                "title": "despre lăuntricul zbor în spații închise",
+                "text": "în inima mea\nlocuieşte un înger\ncu aripile frânte\nde ferestrele eternității\nîn inima ta\nlocuieşte un înger\ncu aripile curbe\ntânjind după zbor\nîntre noi spațiul\nlabirintic curge gol\nîn clepsidral\ncând înapoi când înainte când viral\nîn zadar mă zbat să ard prin fereastra închisă\ntrec ani după ani în aval\nîn inimă-mi se ciopleşte din geamăt\nun înger bătrân rătăcind un pean\npe-o filă închisă cu-n efect sideral\nşi zborul se zboară pe sine\nspre mal\nşi nici nu mai ştiu al cui este\nal meu al tău al lui al nostru alean\nşi până şi el\nzborul\npare banal\nzburăm paralel într-un strâmt clepsidral"
+        },
+        {
+                "title": "nedumeritoriul şi neîmpăcătoriul",
+                "text": "eronomodiahul tăcu îndelung pre timpul linear\nafară se curbau păsările spre răsărit şi se lumina de lume\nîşi ridică privirea lui de păcătos şi gândi cum că timpul trebuie că e de mai multe feluri\nşi aşa şi era\ntimpul este de mai multe feluri şi el\neronomodiahul trăia în cel mai simplu dintre timpuri\ndinspre lege căta un destin altfel\nun destin curb\nşi eronomodiahul simțise asta încă de acum trei răsărituri\ndar nu o putuse spune\npentru că încă nu găsise cuvintele\ncuvintele umblau nedumerite pe sub porțile încă închise ale semnului\nşi eronomodiahul ştia şi asta\nşi nu se putea împăca cu ideea că indiferent ce ar spune el cu noile cuvinte căpătate\ntot nu ar sluji la nimic\npentru simplul motiv că nu ar avea pe nimeni care să le înțeleagă\ndeci\nînainte de toate cele\ntrebuie să existe minimum două făpturi\npentru a exista minimum un cuvânt\nba mai mult\ncele două făpturi trebuie să aibă înțelesul cuvântului\naltfel degeaba îl aud\nde aceea\nlegea hotărî că este necesar un destin curb\ntocmai atunci\nuşa se izbi cu putere de perete\nşi în pragul dureros de luminos apăru\npurtătorul de semne\ncel neîmpăcătoriu\naşa fu la început\nşi fu prima zi\ncurbă\neronomodiahul ridică privirea încet\nşi lăsă primul cuvânt să curgă la răsărit\npurtătorul de semne prinse de veste şi se lumină la chip\nîn grădină înfloriseră crinii şi dimineața mirosea atât de puternic a crini\nîncât însăşi lumina devenea grea\nsemnul întâi a fost cuvântul"
+        },
+        {
+                "title": "fără - de - capătul semnului",
+                "text": "moartea\nca o cățea muşcând din chipul încă\nal bărbatului care călca prin flăcări\nea mirosind a câine ud\na trădare\na putred şi gângav\nmoartea\nnețărmul celor fără semn\ncei neînsemnați\ncei necuvântați\ncei neimaginați\ncei atât de singuri încât nici pe ei înşişi\nnu se ştiu a se căuta\nmoartea\nsemn criptat de neîntoarcere\ndar nici un val\ndar nici un mal\nnețărmurirea în neînțelegerea ei\nțipătul în ce are el mai absurd\ndurerea dusă până în străfundurile ființei\nacolo unde se rup valțurile inimii\nşi nu mai rămâne nimic\nşi nu mai rămâne nimeni\nşi nu mai e nici măcar vântul\nsec\ndoar sec\npustiu\ndoar pustiul\ngol\ndoar golul\npână la non-sensul golului\npână la non-sensul pustiului\nadică atât de puțin\nîncât a număra este o dimensiune\ncare încă îşi caută imaginea\nîntr-un contur care nu se poate defini\nmoartea\nun tunel strâmt şi umed\nla capătul căruia nu există capăt\nşi unde a muri nu mai este o opțiune\nşi unde a trăi nu mai este o opțiune\nşi unde a iubi a ars deja\nla prima măsură\na unei simfonii a tăcerii\nniciodată ştiute\nniciodată cântate\nfără de capătul semnului\nmoartea"
+        },
+        {
+                "title": "Iisus în semne heraldice",
+                "text": "potop de lumină voi fi  - zise -\npotop de lumină orbilor şi strâmbilor - zise -\ncăci a răspunde cu iubire urii\neste mai dureros şi mai letal decât a-i da palma înapoi\ntâlharului\npotop de lumină\nca semn al întoarcerii în divin\nşi moartea n-o ştii să se-nchine\nşi drumul n-o ştii dacă vin sau dacă plec\nde-o lume şi-un timp mă dor şi mă sec\nde lumină\no mare de semne în valuri se-nclină\ncu greu pleoapele mele cu odihnă se hrănesc\ncăci simt că-i târziu\nvoi fi potop de lumină\ndeplin rostuind jertfa către sublim\nşi cerul şi moartea aceeaşi tăcere rostesc\nîn semne depline\nmă adâncesc în lumină - zise\nuitându-se la mine atent -\nrătăcitorule - zise -\nmă adâncesc în lumină\nşi tu în cuvinte rostuieşti semne\naşează-le cu grijă pe lemne\npe pietre\npe urme\npe rune de clopot\necoul lumina pliind în păsări legendare\nîn chipul tău cel lumesc\nacum mă aşez pe un vis\nsă mă odihnesc de-atâta durere\nmă doare când respir altceva\ncând trăiți altceva\ncând urâți huliți vorbiți gândiți greşiți\nmă îmbrânciți\nmă doare\nşi-atunci şi lumina mea doare mai tare\nşi-atunci şi cuvântul tău sapă în carne\nsă dea de urma luminii\nşi de aceea vă spun vouă\npotop de lumină voi fi\npân' la luna cea nouă\nAmin!"
+        },
+        {
+                "title": "jertfa de ieri",
+                "text": "din durere\nzâmbi celest pasărea\nretrăgându-și curb aripa\ncu zborul rănit\nlacrima umezi cuiele\nsângerând\naprins\nlăsând  pleoapele"
+        },
+        {
+                "title": "jertfa de mâine",
+                "text": "din durere\nschiță celest pasărea un zâmbet\nretrăgându-și curb aripa\ncu zborul rănit\nlacrima umezi cuiele\nsângerând\naprins\nşi pleoapele se ofiliră curând\nrotund"
+        },
+        {
+                "title": "pictură cu semne de Paşti",
+                "text": "din liniște curgând măsura luminii\ncea tandru încălzitoare de aripi de pasăre\nși sufletul curbându-se de atâta liniște\nîntinzând aripile lui de înger\nși aerul limpede de primăvară\nși vocea femeii ce mângâia rugăciunea cu lacrimile ei cele roditoare\nși cărările însângerate ale cuielor lăsând dâre adânci în durere\nde mii de ani\nde nesfârșite și neregăsite zboruri\nși gestul crucii aprinzându-se seninului înroșit\nşi curgătoarele țipete ale păsărilor\nrupte din strigăte\nși bocetul teluric înflorind sânii femeilor\nși cântecul care rupe toartele lacrimilor\nşi carnea pe care o simt cum curge de pe mine\nși iarăși strigătul\nși iarăși ambulanțele năvalind\nși iarăși sirenele spărgând ziua în vaiete\nși sufletul care se rupe irespirabil în insuportabile disperări\nşi chipul meu suprapus peste chipul tău\nși nesfârșite râuri de lacrimi\nși-apoi dintr-o dată linistea\nîntinzându-se verde nesfârșit\no linişte circular rotindu-se în cercuri concentrice\ndeasupra lacului de priviri ațintite în sus\ncătre crupa cerului despărțit de ape\nîn pâine peşte şi vin\nşi respirația mea care nu se mai potoleşte urcând Golgota\nşi peste tot răsar soldați\nşi de peste tot apar zeloți\ndar deja sunt acolo unde nu mai este nimeni\ndar deja eşti acolo unde nu mai este nimeni\nîn paralele lujere de lumini înfipte orizontal în orizont\nla capătul legii dar nu la capătul legiuirii\nabia dacă mai am putere\nsă mă târăsc sub mirul tău\nMirabile Doamne Dumnezeule\nCel a toate Făuritoriu\nde Lumină\nrisipitor al Iubirii Eterne\nAmin!"
+        },
+        {
+                "title": "sensul iubirii lui Dumnezeu printre oameni",
+                "text": "ah\ncum aş plânge pe rănile Tale curgânde\ndacă aş şti nemăsura neplânsului\ndacă aş putea măsura hohotul durerii pietrei\ndacă aş putea pune în cuvinte toată durerea\ncare încape într-o singură lacrimă\nah\ncum aş mai striga şi cum m-aş mai căii\ndacă aş avea puterea vântului\nsau a mării\nsau a clopotului\nsau a tuturor stihiilor ştiute şi neştiute\naştern febril în desemne\npreacuvintele zilelor pătate de sângele Tău\nşi simt cum trece strigătul prin mine\nca o nețărmurită cale\nşi-atunci strig\ncât un semn de tare\npână când pe toate aripile\nse aştern răni sângerânde\nîn răsăritul privirii femeii mele\nîn răsăritul privirii pruncului meu\nîn răsăritul tăcerii cuvântului meu\nşi-atunci înțeleg că\nTe jelesc în iubire cu mine pe mine\nDoamne Dumnezeul meu\nAmin!"
+        },
+        {
+                "title": "măsura zilei ce ninge linişte",
+                "text": "hotărându-se lacrima să plângă\ndin adâncul zilei\nniciodată atât de blând albastră\nniciodată atât de rotund sămânță\nşi ziua crăpându-se de ziuă\nniciodată atât de limpede\nniciodată atât de rotund senină\nşi crucea limpezindu-se lumină pe cuvinte\nniciodată atât de în luntru semnată\nse făcu azi\nşi eu m-am făcut linişte\nşi tu te-ai făcut iubire\nşi noi ne-am făcut semn\nşi pruncii s-au făcut cale\nşi pe cruce a curs sânge\nşi pe lemn a plâns soare\nşi pe fiecare cuvânt înflorit a rodit la mal o mare\ndintr-o lacrimă de zori\nce cerne\nşi se făcu azi rodind linişte-n tăcere\ndin semnul Lui de semne"
+        },
+        {
+                "title": "sinelui şi şarpelui totdeodată. apel la decăderea din rai",
+                "text": "întristătoriu se târî şarpele în sufletul omului\nşi sufletul omului şerpui înspre spiritul şarpelui\nîn spirale surde şi insinuante\nca-ntr-un ritual țărmuritoriu\nel însuşi\ndeşirându-se ruginiu din valuri\nşi omul căpătă sămânță de şarpe\nşi şarpele căpătă sămânță de om\nşi lumea se trezi înşirată-ntr-un pom care ticăie bezmetic\nîntr-un labirint fără ieşire\nca o notă care nu a mai încăput pe claviatură\ncare nu-şi mai află sensul\nuşor atonică\naproape tristă\nîncovoiată de tăceri întortocheate\napăsătoriu\nacest clepsidral din care lunecă sămânța omului\nşerpuind atemporal\ndin labirintul murdar şi uşor crăpat\nîmpletindu-se trist cu sămânța şarpelui\npână când\nnu se mai poate face alegere\npână când\nnu se mai poate face culegere\nde semne\nci semnele semnelor se târăsc\nîn semne\npână la pătrundere\npână la strigăt\npână la strigătul strigătului crăpând cerul\npână la durerea  durerilor cea care\nla un capăt\nva străpunge clepsidralul\natunci când\nnu se va mai putea suporta\nnici măcar\npe sine"
+        },
+        {
+                "title": "strigăt",
+                "text": "floarea de cireş\npoartă urme de cuie\nsemn reverenței\npaskha פסחא\na nins liniștea\ncălăuzind luminii\nnecuprinderea\ncartea rugăciunilor din înSemne\natunci\nla marginea ta de împlinire\nacum\nla marginea mea de destin\ncând semnele\ncad peste noi\nîn deplinul lor de semne\nprelungi\nstraniu traversând profanul\nşi când cerul se apleacă să binecuvânteze\nîngenuncheata rugăciune din zori\ndin harul tău de femeie\nsupus împlinită bărbatului tău\nsimt cum te împleteşti duios în şoaptă\nfoşnindu-ți fin respirația ta de femeie a mea\nşi simt cum mă ridic drept în lacrimă\nîmplântându-mă drept în liniştea cuvântului tău\nlumină\nîn propriul meu semn de lumină\nsemn\nîn propria mea candelă\npur\nîn propria mea lăcrămare\nşi aripile se împlântă în zbor\nşi zorii se împlântă în noapte\nşi lacrimile se-mplântă în deplin\nşi e vremea cuvintelor coapte\nînSemne cerului curb\nde iubire\ncioplindu-se senin\nşi am să vii\nşi ai să vin\nzborului aripi\ncupă de crin"
+        },
+        {
+                "title": "eu şi femeia mea de mine",
+                "text": "mi-ai dat o carte\nți-am dat un fecior\nzălog din iubire\nca să te torn\nîn chip de izvor\nîn-crezu-te în mine\npământ de ulcior\nistovitor\nde rotund şi de plin de iubire\nrostuind primăvara\npe duioase lumine\nadânc şi deplin e\nde atâta dor\nsă arzi\nsă curgi\nsă plângi\nfrământatu-sa pâine\ncu miez de ulcior\ns-aşezi dinspre tandru\ndesemne suspine\nprecum lacrimile\ncurbe patimei\nde sinelui sine\nți-am dat un fecior\npământ de ulcior\nfemeie\nmai trece-mă carte\nzălog cătră tine\nde inorog\nsemn de iubire"
+        },
+        {
+                "title": "legenda aripilor frânte",
+                "text": "în inima mea\nlocuieşte un înger\ncu aripile frânte\nel este de piatră verde\nşi eu sunt de zbor cărunt\nîn inima mea\nlocuieşte o lacrimă\ncu aripile curbe\nea este de apă limpede\niar eu sunt țărmului de ferestre\nşi prag mă smulg eternității\nîn cuvânt\nîn inima mea\nlocuieşte un clopot\ncu glas de pământ\nel este de bronz rece\niar eu sunt din bronz de cuvânt\nlegendă aripilor frânte\npe pământ"
+        },
+        {
+                "title": "de trei ori închinat semnului",
+                "text": "uneori\nsunt atât de zeu\nîncât nu apuc să calc cuvintele\nele ies mototolite\nşi oarecum minunate\npentru că nu reuşesc\nele cuvintele\nsă fugă care încotro\nci rămân tatuate pe zbor\nca o patimă\nca o măsură a nemăsurii\nîn esența ei de izvor\ncăruia nu-i dai de capete\noricât de însetat de lumină\nai fi tu\nîngerule\ncela zugrăvit\ndupă chipul şi asemănarea mea\nde pasăre\ndin genunea priceperii de a pluti\nai fi\nci\nde trei ori închinat semnului\nplângerii de a iubi"
+        },
+        {
+                "title": "semnul de lacrimă",
+                "text": "uneori sunt înlăuntrul durerii\nprecum verdele înlăuntrul roşului\ne doar o chestiune de timp\npână să țâşnesc albastru înalt\npână la țipăt\nde aceea albul\neste atât de miraculos\nde negru\nca un boboc de floare țâşnind din pământul reavăn\nîn semn de lacrimă"
+        },
+        {
+                "title": "alb de semne",
+                "text": "lăcrima ziua\npe ecoul zborului\nîngerindu-mă"
+        },
+        {
+                "title": "cub curb",
+                "text": "argintăreasa îmi face cu ochiul din turla bisericii\nagățându-se de zgomotul deplin al clopotului\ncu care îmi curăț zborul de colbul tăcerii\nargintăreasa\ncu țâțele ei de alintat setea în lumina răsăritului curb\nmă cuprinde cu brațele ei fierbinți\ndupă semnele dorințelor mele\nde a muri\nîntr-un zbor perfect de lumină\nla apusul durerii\nargintăreasa nu este o femeie\nci un prilej de a femeiì\nal oului\nîn sferica lui încerare de a îngeriì\nca o floare\nîn măsura simfonică a curcubeului\ndin fecunda lacrimă\nnu este o femeie\nci un semn curb de iubire\nîntr-o sferă a răsăritului\ncrestată de clopot\nca un cub\ncurb"
+        },
+        {
+                "title": "Facerea",
+                "text": "preacuvântul\nstrigându-se abisal de pe cele o mie de buze ale eternului\nîn forma sa primordială de țipăt\ncăci el nu semăna nicicum cu un cuvânt\npentru că el se rostea pe sine însuşi\nşi nici nu putea fi despărțit în sunete sau silabe\npentru că era indivizibil\nchiar şi cu sine însuşi\nmai mult decât atât\npreacuvântul\nera irepetabil\ndeoarece încă nu sosise timpul\npreacuvântul țâşni abisal şi perfect curb\nîntr-o formă sferică greu de conceput\npentru că spațiul încă nu se formase\nşi preacuvântul\nse țâşni abisal şi curb pe sinele său\nînlăuntrul nesunetului său\nnefiind cuvânt\nşi neputând fi rostit\ndar odată cu el\nirepetabil eternul\nse îndoi de sine însuşi\nşi îşi deschise prima poartă\na luminii\ntotul fù atât de dureros şi de amplu\nîncât preacuvântul se rostui homeric pe sine\nadânc şi singur\nîn întunericul neluminii\ncel care este indescriptibil\nşi-atunci\nşi în acelaşi timp\n(oarecum în acelaşi timp pentru că timpul - cum spuneam - nu începuse)\ndin aceeaşi durere primordială\noarecum simultan\ndacă am putea defini simultanul în eternitate\na țâşnit Lumina\nca poartă\nPreacuvântul\nLumina\nşi Entitatea\nsunt\nîntr-o anume abordare\nchipuri ale aceleiaşi Porți în Etern\natunci când Eternul  s-a mirat de sine însuşi\ndevenindu-se mirare\ndeci oglindă\nşi deci poartă\ndeschizând Poarta şi aprinzând Lumina\nEternul se rosti pe sine\nşi aşa se văzu întâia dată universul\nca un strigăt care fuge de sine căutându-se\nmai târziu\nmult mai târziu\ninfinit de mult mai târziu\ncând târziul căpătă un sens\nmăsurându-se cu lumină\ncu propria sa lumină\nomul\nnepercepându-se pe sinele său\nnumi lumina\nDumnezeu\nşi-atunci\nochii săi se deschiseră înlăuntrul dimensiunii\npentru o mai uşoară percepție a reperelor\nşi se rosti şi primul cuvânt\ncare fù primul enunț\nşi deci primul înțeles\ndin lipsă de imaginație\nel a fost numit a\nşi deci primul enunț\na fost\na a\nniciodată - spun -\nnu s-a mai rostit atât adevăr într-o singură vocală\nşi de aceea a şi rămas singură şi greu de înțeles\npentru a-l înțelege\nar trebui să avem noțiunile complete\nde Preacuvânt\nLumină\nşi\nPoartă\ncum nu avem decât ceea ce percepem\nsă-i mulțumim lui Dumnezeu\ncă s-a strigat pe sinele său\nîn propria sa durere\naceasta a fost Facerea\ncea mai întâi de sine Făcută\nAmin."
+        },
+        {
+                "title": "definitio. fiul rătăcitor",
+                "text": "pe fiecare dintre rănile mele de înger\na curs câte o lacrimă de eternitate\npe dâra fiecărei lacrimi uscate de atâta durere\na sosit un alt înger cu umerii răniți\npe fiecare umăr al fiecărui înger sosit\nîși va fi croit drum o altă lacrimă ce se va fi uscat\nsub zborul unui alt înger cu umerii zdrobiți\nde jur-împrejurul meu\nîngeresc se rănesc cuvintele sub pașii mei șovăitori\noare câți îngeri vor mai veni\nși câte dureri?"
+        },
+        {
+                "title": "ploaie de mai",
+                "text": "lunec solar pe țărmul unei duminici\nspălate de ecoul mărilor care cosesc tăcerile arhetipale\nşi glisez fotonic pe străpunse dureri lăcrimânde duios\nînlăuntrul lanurilor de cuvinte care curg\nde-a dreapta închinării\nlumina îmi desenează conturul lacrimilor înlăuntrul curbelor curcubee\nşi aripile se deschid dintr-un capăt al altuia al orizontului\nîn semn deplin fervorii\nnorii croşetează ziua în filigranate creneluri\nşi vocea femeii se scurge înlăuntrul meu ca apa rece\na limpezimii de crin din cumpăna dimineții\nşed pe prag\ncu Dumnezeu la taclale şi cafeaua fierbinte\ndesenează contururi voluptoase\nde sărbătoare\nîn grădina cu poarta deschisă spre zbor\nşed pe prag culegând liniştea\nsărutând ploaia\nşi iubind tăcerea\nDumnezeu picură lumină\nîn clepsidral"
+        },
+        {
+                "title": "poem curb adică atingându-se pe sine uneori",
+                "text": "din liniște curgând măsura luminii\ncea tandru încălzitoare de aripi de îngeri\nca o nemăsură a prea suportabilului\nși sufletul curbându-se de atâta liniște\nîntinzând aripile lui de înger\nși aerul limpede de primăvară\nși vocea femeii ce mângâia rugăciunea cu lacrimile ei cele roditoare\nși cărările însângerate ale cuielor lăsând dâre adânci în durere\nde mii de ani\nde nesfârșite și neregăsite zboruri\nși gestul crucii aprinzându-se seninului înroșit\nși curgătoarele țipete ale păsărilor\nrupte din strigăte\nși bocetul teluric înflorind sânii femeilor\nși cântecul care rupe toartele lacrimilor\nşi carnea de pe mine cum curge simțind\nși iarăși strigătul\nși iarăși ambulanțele năvalind\nși iarăși sirenele spărgând ziua în disperări\nși sufletul care se rupe irespirabil în iremediabile strigăte\nși chipul meu suprapus peste chipul tău\nși nesfârșite râuri de lacrimi\nși-apoi dintr-o dată liniștea\nîntinzându-se verde nesfârșit\no liniște circular rotindu-se în cercuri concentrice\nca un sunet roditor de clopot\naşa se aşează în linişte\nmăsura nemăsurată a luminii ce curge însâgerată\npe urmele cuielor de care mă agăț\nsă mi te aştern în chip de icoană\ntu semnule de lumină plin"
+        },
+        {
+                "title": "innuendo",
+                "text": "(tatuaj cu primăvară )\nmă uit la copaci cum sprijină cerul cu disperarea lor prolifică\nşi văd câtă durere senină curge albastrului\nvălurind primăvara aceasta cu abisale accente\n- şi spun -\na fost odată ca niciodată - spun\nîn timp ce pruncuța se tatuează pe brațul meu\nîn pragul somnului\ncăutând ușa visului\ncăci dacă nu era cu siguranță că nu mă locuia\nașa că ea mă locuiește pe mine\neu o locuiesc pe ea sau pe tine sau și pe tine\ntu mă locuiești pe mine\nlocuiește-mă deplin -spun\nlocuieşte-mă cuvintelor şi preacuvintelor\nşi dă-mi cu gura ta vinul de împărtăşanie\nși iubește-mă într-una\neu locuiesc în primăvara asta târzie şi ciudată\nîn noaptea asta în care au înnebunit crinii\nşi cântă vechi cântece de petrecere\na iubirii ca hohot\na devenirii ca semn\na luminii ca flacără\na durerii din lemn\nmă uit la copacii care sprijină prolific\ncerul meu limpede ca lacrima pruncuței\nşi apusul tău cu seninul iubirii\nce picură-n flacără\ndivinul\nşi mă insinuez în propriile semne\nîn chip de crin"
+        },
+        {
+                "title": "Ghetsimani redivivus",
+                "text": "potopul acesta de cuvinte lichefiate\ncare curge contra firului apei\nurcând către mare\nurlând cătră munte\nascunzându-se devenirii\nîn propriile deznădejdi\nşi lumea asta care nu mai poate fi salvată\ncăci nu mai are unde\nşi nici de ce\nşi în curând icoanele care vor coborî din divin\ndin semne rotunjindu-se\nlacrime de lumină\nşi se vor împleti cuvintelor\nele însele\nele înselor\nîntr-un curcubeu clepsidral\nîntr-o nouă grădină de crini imperiali\ncurbată lacrimei\nînsângerată\napusului"
+        },
+        {
+                "title": "demiurgic. sunetul.",
+                "text": "nu am făcut tăcerea dintr-o liniște\nci dintr-un haos - spuse -\ncum nu am făcut cerul dintr-o pasăre\nci dintr-un zbor - spuse el -\ncum nu am făcut iubirea dintr-un om\nci din cuvânt am croit-o ca măsură a devenirii\nrosti el ușor surprins -\nomul s-a născut mult mai târziu\ncând clepsidral măsuram timpul\ncând lacrimile curgeau deja la vale\nîn chip de izvor\nși cuvintele se rostogoleau singure\nreci și năvalnice\ndar asta mult mai târziu\ndar asta mult mai târziu\n- spuse el\nîntorcându-se să apună\nîn preacuvintele mele\nîncă necoprinse de sunete"
+        },
+        {
+                "title": "despre iubire ea însăşi semn",
+                "text": "aşa plâng câteodată\ncând mă doare tăcerea care curge la vale\nprintre pietrele mângâiate de semne\naşa plâng\nca şi cum s-ar intinde lângă mine iubirea\nea însăşi\nşi nu femeie\nci lumină\nca şi cum m-aş aşeza la pieptul ei\nsă mă plâng pe mine\nsă mă pictez pe fiecare lacrimă\npână la tocire\nsă mă aşez pe genunchii mei\nşi să mă transform în cuvinte\nînaintea cuvintelor\nîn chip de sămânță\nşi de rod\naşa plâng ca şi cum\ntoată forța mea\ntoată puterea\ns-ar scurge în lacrime\nîn chip de strigăt\nîn chip de patimă a iubirii\npână la sângerarea clepsidrei\naşa plâng\npână când lacrima mea capătă aripe\nşi semnele se aud lovind clapele pianului\nîn semn de glorie\na Iubirii"
+        },
+        {
+                "title": "despre pasăre şi aripi şi alte semne",
+                "text": "pasărea\ns-a născut din pasăre\nîn pasul măsurat de întindere a zborului\nîn forma îngerului curgând\nalb pe alb\naripe\nnumai aripe zidind\nsemne din semne\nplângând\nea însăşi curgere\npasărea\n- spuneam-\naproape arămiu orizontul fremătând\nuşor tulbure\nlichefiind zările\ncare curgeau lateral\nca nişte draperii umede\nşi unicornul se culcase pe o aripă\nrotind verticala cu-n semn alcalin de lăcrămare\ndin belşugul lacrimilor\ncare tulburau adâncul mărilor\ncu ochii săi cei adânci şi plini de fântâne roditoare\nîn semn de apă vie viețuind\niar pasărea cea crestată de semne în zbor\nrodindu-se\nrotindu-se\ncu țipătul său cel adânc şi aspru ca un vârf de munte\nîncă necălcat de cuvinte\nîn căutarea liniştii înserării\natunci când zborul obosit se aşează în tihnă\npe semnul tăcerii\nîn lacrima unicornului cel clăditoriu\nde patimi"
+        },
+        {
+                "title": "despre alb dar nu până acolo",
+                "text": "alb\npe deplin alb\npe cerul deplinului cer\nalb pe rodul deplinului rod\ncurb\ndin zelul deplinului zeu\ncurb\ndin el cetire\nși zeul tot alb\npe rosturi de alb\npe semne cu alb\nmirosul de crini pretutindeni doar albi\nneîndurător\ncurg timpurile-n alb\nși valurile se sparg disperate\nde-atâta de alb purtate și ferecate\nși adânc e de alb\nalbastru de alb\nprelung de alb\npreacurb de alb\nși timpul măsoară\nclepsidre adânce de zboruri în alb\ncearcănă-mă tu\nîngere\ndezleagă-mă de alb\npână la liniște\ntu\nalb dinspre alb"
+        },
+        {
+                "title": "Oh, Maică,",
+                "text": "ce călătorie singură și ciudată fac ochii mei ridicându-se în lumină spre ceriu\nși cum se împletește lumina în năvoade prelungi de licoare aurie sângerându-i soarelui\nși ce liniște se lasă pe urma curgerii râului luminii\nca și cum m-aș arunca înlăuntru până la propria mea curgere\npână la curgerea sângelui meu ca semn\npână la tăierea capului ca semn\npână când ochii\nba nu\nprivirea întâlnește lumina împletită în odgoane de miere de-a latul orizontului\nde-a latul zborurilor\nde-a latul tuturor zborurilor\nadânc în fântână cufundându-se în cântec tatuat pe oglinda vie a fântânii\na fântânii din care îmi curg toate cuvintele cele știute și cele neștiute\ncele rostite și rostuite\ndar și cele încă rătăcitoare prin semnele încă neajunse la cuget\nși ce călătorie se termină în doi când noi suntem doar unul\nacelași trup\nacelași sânge\nacelași cuget\nacelași copac\ncu nenumărate frunze șoptind neîncetat frânturi de partituri unduitoare împletite invers în esența clepsidrală a vânatului\ncel laolaltă cu vânătorul cel singur de sine\ndănțuind în lumina lunii până la lacrimă\nce călătorie singură și ciudată fac ochii mei ridicându-se în lumină spre ceriu\nîn semn de cruce pe lemnul ceasornicului ce și-a pierdut clipele\nîntre bătăile de aripi ale păsării cufundate în fântână până la semn\noh, Maică, Tu,\nadâncu-mă!"
+        },
+        {
+                "title": "preacuvântul Cel de capătul făcutului",
+                "text": "iubeşte-mă\niubeşte-mă cu iubirea ta cea a sângelui\niubeşte-mă cu iubirea ta cea a luminii\nlimpezindu-se în chihlimbarul lacrimei nepătimite\ncăci de aceea ți-am aşezat stigmatul cuvintelor\nnecuvintelor negrăitelor necioplitelor\nele\ncele care vin\nele\ncele care devin\ncele care pleacă\ncele care seacă\ncele care adânc încalecă\ncele care adânc descalecă\ntoatele în Totului şi Rostului chip\nşi măsură\nție\nPurtătorule de Semne\n- îți zic -\ntrăieşte-mă ca Legea\nPrimului în numele Meu\nUnicului în Semn\nca Semn al Semnelor\nîn propria Lui curgere\ninfinită şi nedefinită\ncăci Eu sunt Trecerea\nşi vecinica Linişte\nDevenirea în Semn\nnesfârşită şi neîmpărtăşită\n- zise\ncurgere a apei într-una\nplângere\nla desfrângerea zorilor\ncuvânt rostindu-se\nşi rostuindu-se\nzise El\nridicându-se ca un Tunet\ncu asupra măsurii\ncare nu se mai poate măsura\nîncă Lumină -\nîn palmele tale roditoare\nPurtătorule\ntu\nRostule\nal patimei Mele pre zbor a mântui\nsă dărui a dărui\nsă iubeşti în iubirea de a iubi\ntu şi femeia ta\nflămând de zbor înlăuntru\nrotund de dor\nşi-apăsat de pământù\nîn pragul tăcerii\ntătânelui meu şi cu mine\npurtând acelaşi semn\nluminii\nde aripe sosindă lacrime\nadâncu-te cu lacrima lunii\npe pieptul de chihlimbar\nal ochilor ce curg cărbuni peste rai\nal buzelor ce ard tăciuni peste mai\npe crini crestați de zori şi de grai\ntu\nRostule\nce vanelor tăceri vei rosti ca să n-ai\nce lacrime să curgă-n fântâne-nsetate\niubeşte-te iubindu-mă\niubire ca să dai\ncăci\nsemne tu porți\nîn mâinile crăpate de semne\npreacuvântate\ncu nețărmurită pioşenie,\niartă-mă, Doamne, pentru îndrăzneală"
+        }
+];
+
+        // Generare carduri pentru fiecare poem
+        const poemsGrid = document.getElementById('poemsGrid');
+        
+        poems.forEach((poem, index) => {
+            const card = document.createElement('div');
+            card.className = 'poem-card';
+            
+            // Preview - primele 3-4 linii
+            const lines = poem.text.split('\n');
+            const preview = lines.slice(0, Math.min(4, lines.length)).join('\n');
+            const hasMore = lines.length > 4;
+            
+            card.innerHTML = `
+                <div class="poem-number">#${index + 1}</div>
+                <h3 class="poem-title">${poem.title}</h3>
+                <div class="poem-preview">${preview.replace(/\n/g, '<br>')}</div>
+                ${hasMore ? '<span class="read-more">Citește mai mult →</span>' : ''}
+            `;
+            
+            card.onclick = () => openModal(poem.title, poem.text);
+            poemsGrid.appendChild(card);
+        });
+
+        // Funcții pentru modal
+        function openModal(title, text) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalText').textContent = text;
+            document.getElementById('poemModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('poemModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Închide modal la click pe fundal
+        document.getElementById('poemModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Închide modal cu ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

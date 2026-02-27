@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volumele Mele - Adrian Constantin Burdușa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #eee;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .header h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #f0e68c;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin: 2rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #c9a0dc 0%, #7c3e93 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(201, 160, 220, 0.4);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .volumes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .volume-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .volume-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .volume-card.celestele {
+            border-color: #8b0000;
+        }
+
+        .volume-card.celestele:hover {
+            box-shadow: 0 20px 40px rgba(139,0,0,0.5);
+        }
+
+        .volume-card.constandinele {
+            border-color: #daa520;
+        }
+
+        .volume-card.constandinele:hover {
+            box-shadow: 0 20px 40px rgba(218,165,32,0.5);
+        }
+
+        .volume-card.preacuvintele {
+            border-color: #8b4789;
+        }
+
+        .volume-card.preacuvintele:hover {
+            box-shadow: 0 20px 40px rgba(139,71,137,0.5);
+        }
+
+        .volume-card.lacrime {
+            border-color: #4682b4;
+        }
+
+        .volume-card.lacrime:hover {
+            box-shadow: 0 20px 40px rgba(70,130,180,0.5);
+        }
+
+        .volume-card.clepsidral {
+            border-color: #7c3e93;
+        }
+
+        .volume-card.clepsidral:hover {
+            box-shadow: 0 20px 40px rgba(124,62,147,0.5);
+        }
+
+        .volume-card.esemniene {
+            border-color: #66bb6a;
+        }
+
+        .volume-card.esemniene:hover {
+            box-shadow: 0 20px 40px rgba(102,187,106,0.5);
+        }
+
+        .volume-card.pruncul {
+            border-color: #ba68c8;
+        }
+
+        .volume-card.pruncul:hover {
+            box-shadow: 0 20px 40px rgba(186,104,200,0.5);
+        }
+
+        .volume-card.lectiile {
+            border-color: #a1887f;
+        }
+
+        .volume-card.lectiile:hover {
+            box-shadow: 0 20px 40px rgba(141,110,99,0.5);
+        }
+
+        .volume-cover {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .volume-info {
+            padding: 2rem;
+        }
+
+        .volume-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #f0e68c;
+        }
+
+        .volume-subtitle {
+            font-size: 1.1rem;
+            font-style: italic;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .volume-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            padding: 0.5rem 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .volumes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Volumele Mele de Poezie</h1>
+        <p>O călătorie prin cuvânt și sentiment</p>
+    </div>
+
+    <a href="index_final_updated.html" class="back-link">← Înapoi Acasă</a>
+
+    <div class="container">
+        <div class="volumes-grid">
+            
+            <a href="volum-celestele.html" style="text-decoration: none;">
+                <div class="volume-card celestele">
+                    <img src="coperta_celestele.png" alt="Celestele" class="volume-cover">
+                    <div class="volume-info">
+                        <div class="volume-title">CELESTELE</div>
+                        <div class="volume-subtitle">Versuri de credință și contemplație</div>
+                        <div class="volume-stats">
+                            <div class="stat">📖 101 poeme</div>
+                            <div class="stat" style="background: linear-gradient(135deg, #8b0000 0%, #dc143c 100%); color: white;">Roșu liturgic</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="volum-constandinele.html" style="text-decoration: none;">
+                <div class="volume-card constandinele">
+                    <img src="coperta_constandinele.jpg" alt="Constandinele" class="volume-cover">
+                    <div class="volume-info">
+                        <div class="volume-title">CONSTANDINELE</div>
+                        <div class="volume-subtitle">Reflecții asupra timpului și existenței</div>
+                        <div class="volume-stats">
+                            <div class="stat">📖 141 poeme</div>
+                            <div class="stat" style="background: linear-gradient(135deg, #daa520 0%, #ffd700 100%); color: #1a1a2e;">Auriu regal</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="volum-preacuvintele.html" style="text-decoration: none;">
+                <div class="volume-card preacuvintele">
+                    <img src="coperta_preacuvintele.jpg" alt="Preacuvintele" class="volume-cover">
+                    <div class="volume-info">
+                        <div class="volume-title">PREACUVINTELE</div>
+                        <div class="volume-subtitle">Poeme de sorginte religioasă</div>
+                        <div class="volume-stats">
+                            <div class="stat">📖 139 poeme</div>
+                            <div class="stat" style="background: linear-gradient(135deg, #8b4789 0%, #ba68c8 100%); color: white;">Purpuriu sacru</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="volum-cartea-din-lacrime.html" style="text-decoration: none;">
+                <div class="volume-card lacrime">
+                    <img src="coperta_cartea_lacrime.jpg" alt="Cartea din Lacrime" class="volume-cover">
+                    <div class="volume-info">
+                        <div class="volume-title">CARTEA DIN LACRIME</div>
+                        <div class="volume-subtitle">Durere și vindecare prin cuvânt</div>
+                        <div class="volume-stats">
+                            <div class="stat">📖 106 poeme</div>
+                            <div class="stat" style="background: linear-gradient(135deg, #4682b4 0%, #87ceeb 100%); color: white;">Albastru ocean</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="volum-clepsidral.html" style="text-decoration: none;">
+                <div class="volume-card clepsidral">
+                    <img src="coperta_clepsidral.jpg" alt="Clepsidral" class="volume-cover">
+                    <div class="volume-info">
+                        <div class="volume-title">CLEPSIDRAL</div>
+                        <div class="volume-subtitle">Cartea din care curg cuvintele invers</div>
+                        <div class="volume-stats">
+                            <div class="stat">📖 136 poeme</div>
+                            <div class="stat" style="background: linear-gradient(135deg, #7c3e93 0%, #c9a0dc 100%); color: white;">Violet mistic</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="volum-poeme-esemniene.html" style="text-decoration: none;">
+                <div class="volume-card esemniene">
+                    <img src="coperta_esemniene.jpg" alt="Poeme Esemniene" class="volume-cover">
+                    <div class="volume-info">
+                        <div class="volume-title">POEME ESEMNIENE</div>
+                        <div class="volume-subtitle">dinspre esemniene</div>
+                        <div class="volume-stats">
+                            <div class="stat">📖 148 poeme</div>
+                            <div class="stat" style="background: linear-gradient(135deg, #2e7d32 0%, #66bb6a 100%); color: white;">Verde pădure</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="volum-pruncul-cuvintelor.html" style="text-decoration: none;">
+                <div class="volume-card pruncul">
+                    <img src="coperta_pruncul_cuvintelor.jpg" alt="Pruncul cuvintelor noastre" class="volume-cover">
+                    <div class="volume-info">
+                        <div class="volume-title">PRUNCUL CUVINTELOR NOASTRE</div>
+                        <div class="volume-subtitle">volum de doeme • Mirela Mareș & Adrian Constantin Burdușa</div>
+                        <div class="volume-stats">
+                            <div class="stat">✨ 46 doeme</div>
+                            <div class="stat" style="background: linear-gradient(135deg, #6a1b9a 0%, #ba68c8 100%); color: white;">Violet colaborativ</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="volum-lectiile.html" style="text-decoration: none;">
+                <div class="volume-card lectiile">
+                    <img src="coperta_lectiile.jpg" alt="Lecțiile" class="volume-cover">
+                    <div class="volume-info">
+                        <div class="volume-title">LECȚIILE</div>
+                        <div class="volume-subtitle">Cele o sută de lecții ale unei secunde în zborul său curb către lumină</div>
+                        <div class="volume-stats">
+                            <div class="stat">📖 98 lecții</div>
+                            <div class="stat" style="background: linear-gradient(135deg, #8d6e63 0%, #a1887f 100%); color: white;">Maro înțelepciune</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+</body>
+</html>

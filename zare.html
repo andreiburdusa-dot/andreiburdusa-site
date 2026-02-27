@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>zare - Adrian Constantin Burdușa</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    background: linear-gradient(135deg, #faf7f2 0%, #e8ddd0 100%);
+    color: #3b2f2f;
+    line-height: 1.8;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+  
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(59,47,47,0.1);
+  }
+  
+  .back-link {
+    display: inline-block;
+    color: #c9a96e;
+    text-decoration: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    transition: color 0.3s;
+  }
+  
+  .back-link:hover {
+    color: #8b4513;
+  }
+  
+  .poem-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e8ddd0;
+  }
+  
+  .poem-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #8b4513;
+    margin-bottom: 0.5rem;
+  }
+  
+  .poem-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 20px rgba(59,47,47,0.15);
+  }
+  
+  .poem-content {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.1rem;
+    line-height: 2.2;
+    color: #3b2f2f;
+    white-space: pre-line;
+    text-align: left;
+  }
+  
+  @media (max-width: 768px) {
+    body {
+      padding: 1rem;
+    }
+    
+    .container {
+      padding: 2rem 1.5rem;
+    }
+    
+    .poem-header h1 {
+      font-size: 1.8rem;
+    }
+    
+    .poem-content {
+      font-size: 1rem;
+      line-height: 2;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <a href="index_final_updated.html" class="back-link">← Înapoi la poeme</a>
+    
+    <div class="poem-header">
+      <h1>zare</h1>
+    </div>
+    
+    <img src="data:image/jpeg;base64,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" alt="zare" class="poem-image">
+    
+    <div class="poem-content">eu
+lângă tine
+sunt un fir de nisip
+tu
+lângă mine ești un fir de nisip
+noi
+lângă marea
+suntem un fir de nisip
+marea
+lângă noi
+este un fir de nisip
+
+după care vine un val
+și șterge totul</div>
+  </div>
+</body>
+</html>
