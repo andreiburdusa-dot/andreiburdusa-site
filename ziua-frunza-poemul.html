@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ziua, frunza și poemul — Andrei Constantin Burdușa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #1a1410;
+      --parchment:  #f5f0e8;
+      --cream:      #faf7f2;
+      --gold:       #c9a96e;
+      --gold-light: #e8d5a3;
+      --amber:      #d4956a;
+      --sand:       #d4c5a9;
+      --muted:      #7a6f62;
+      --dark-bg:    #1c1510;
+      --dark-card:  #251e17;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', serif;
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(28, 21, 16, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+      padding: 0 2rem;
+    }
+
+    nav .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    nav .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav ul li a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--sand);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover { color: var(--gold); }
+
+    /* ─── HEADER ─── */
+    .page-header {
+      background: var(--dark-bg);
+      padding: 8rem 2rem 5rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+    }
+
+    .page-header .eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .page-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--parchment);
+      margin-bottom: 1.5rem;
+    }
+
+    .page-header p {
+      font-size: 1.05rem;
+      color: rgba(245, 240, 232, 0.65);
+      font-style: italic;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ─── POEMS LIST ─── */
+    .poems-section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .poem-entry {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0 2rem;
+      align-items: start;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--sand);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s;
+    }
+
+    .poem-entry:first-child {
+      border-top: 1px solid var(--sand);
+    }
+
+    .poem-entry:hover .poem-title { color: var(--amber); }
+    .poem-entry:hover .poem-num { color: var(--gold); }
+
+    .poem-num {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--sand);
+      text-align: right;
+      padding-top: 0.3rem;
+      transition: color 0.3s;
+    }
+
+    .poem-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .poem-date {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+    }
+
+    .poem-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.2;
+      transition: color 0.3s;
+    }
+
+    .poem-incipit {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    .poem-arrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      margin-top: 1rem;
+    }
+
+    /* ─── ADD POEM NOTE ─── */
+    .add-poem-note {
+      background: var(--parchment);
+      border: 1px dashed var(--sand);
+      border-top: 3px solid var(--gold);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .add-poem-note p {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark-bg);
+      color: var(--muted);
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(201, 169, 110, 0.15);
+    }
+
+    footer .footer-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+
+    footer p { font-size: 0.8rem; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 600px) {
+      .poem-entry { grid-template-columns: 50px 1fr; gap: 0 1rem; }
+      .poem-num { font-size: 1.4rem; }
+      nav ul { gap: 1rem; }
+      nav ul li a { font-size: 0.62rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">← A · C · B</a>
+    <ul>
+      <li><a href="index.html#volume">Volume</a></li>
+      <li><a href="index.html#media">Audio · Video</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header class="page-header">
+  <span class="eyebrow">Creație recentă</span>
+  <h1>Ziua, frunza și poemul</h1>
+  <p>Cel mai recent poem — întotdeauna primul.</p>
+</header>
+
+<!-- POEMS -->
+<main class="poems-section">
+
+  <!-- MODEL DE ADĂUGARE: copiază un poem-entry și adaugă-l DEASUPRA celorlalte -->
+
+  <a href="zorilor.html" class="poem-entry">
+    <div class="poem-num">#7</div>
+    <div class="poem-meta">
+      <span class="poem-date">— zorilor —</span>
+      <div class="poem-title">zorilor</div>
+      <div class="poem-incipit">poem</div>
+      <div class="poem-arrow">CITEȘTE →</div>
+    </div>
+  </a>
+
+  <a href="zare.html" class="poem-entry">
+    <div class="poem-num">#6</div>
+    <div class="poem-meta">
+      <span class="poem-date">— zare —</span>
+      <div class="poem-title">zare</div>
+      <div class="poem-incipit">poem</div>
+      <div class="poem-arrow">CITEȘTE →</div>
+    </div>
+  </a>
+
+  <a href="ruga.html" class="poem-entry">
+    <div class="poem-num">#5</div>
+    <div class="poem-meta">
+      <span class="poem-date">— rugă —</span>
+      <div class="poem-title">rugă</div>
+      <div class="poem-incipit">poem</div>
+      <div class="poem-arrow">CITEȘTE →</div>
+    </div>
+  </a>
+
+  <a href="ricoseu.html" class="poem-entry">
+    <div class="poem-num">#4</div>
+    <div class="poem-meta">
+      <span class="poem-date">— ricoșeu —</span>
+      <div class="poem-title">ricoșeu</div>
+      <div class="poem-incipit">poem</div>
+      <div class="poem-arrow">CITEȘTE →</div>
+    </div>
+  </a>
+
+  <a href="nerespirarea.html" class="poem-entry">
+    <div class="poem-num">#3</div>
+    <div class="poem-meta">
+      <span class="poem-date">— nerespirarea —</span>
+      <div class="poem-title">nerespirarea</div>
+      <div class="poem-incipit">poem</div>
+      <div class="poem-arrow">CITEȘTE →</div>
+    </div>
+  </a>
+
+  <a href="luna-prin-nori.html" class="poem-entry">
+    <div class="poem-num">#2</div>
+    <div class="poem-meta">
+      <span class="poem-date">— luna prin nori —</span>
+      <div class="poem-title">luna prin nori</div>
+      <div class="poem-incipit">poem</div>
+      <div class="poem-arrow">CITEȘTE →</div>
+    </div>
+  </a>
+
+  <a href="fantana.html" class="poem-entry">
+    <div class="poem-num">#1</div>
+    <div class="poem-meta">
+      <span class="poem-date">— fântâna —</span>
+      <div class="poem-title">fântâna</div>
+      <div class="poem-incipit">poem</div>
+      <div class="poem-arrow">CITEȘTE →</div>
+    </div>
+  </a>
+
+  <!-- NOTĂ PENTRU ADĂUGARE POEME NOI:
+       1. Copiază un bloc <a href="..." class="poem-entry"> ... </a>
+       2. Lipește-l DEASUPRA tuturor celorlalte
+       3. Actualizează numărul (#8, #9, etc.)
+       4. Schimbă href cu noul fișier HTML al poemului
+       5. Actualizează titlul și incipitul
+  -->
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ANDREI CONSTANTIN BURDUȘA</div>
+  <p>Copyright © 2026 · All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
