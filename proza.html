@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proză — Andrei Constantin Burdușa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #1a1410;
+      --parchment:  #f5f0e8;
+      --cream:      #faf7f2;
+      --gold:       #c9a96e;
+      --gold-light: #e8d5a3;
+      --amber:      #d4956a;
+      --sand:       #d4c5a9;
+      --muted:      #7a6f62;
+      --dark-bg:    #1c1510;
+      --dark-card:  #251e17;
+    }
+
+    body {
+      font-family: 'EB Garamond', serif;
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(28, 21, 16, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+      padding: 0 2rem;
+    }
+
+    nav .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    nav .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul li a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--sand);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover { color: var(--gold); }
+
+    /* ─── HEADER ─── */
+    .page-header {
+      padding: 8rem 2rem 4rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .page-header .eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+
+    .page-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .page-header .subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--muted);
+    }
+
+    .divider-center {
+      width: 50px;
+      height: 1px;
+      background: var(--gold);
+      margin: 2rem auto 0;
+    }
+
+    /* ─── FOTO POET ─── */
+    .autor-foto {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .autor-foto img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 50%;
+      filter: grayscale(20%);
+      flex-shrink: 0;
+    }
+
+    .autor-foto .autor-bio {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ─── ROMAN CARD ─── */
+    .roman-card {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    .roman-card .card-inner {
+      background: var(--parchment);
+      border: 1px solid var(--sand);
+      padding: 3rem;
+      position: relative;
+    }
+
+    .roman-card .card-inner::before {
+      content: '';
+      position: absolute;
+      top: 8px; left: 8px;
+      right: -8px; bottom: -8px;
+      border: 1px solid var(--gold);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .roman-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .roman-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      font-style: italic;
+      margin-bottom: 0.3rem;
+      color: var(--ink);
+    }
+
+    .roman-subtitle {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      display: block;
+    }
+
+    .roman-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin-bottom: 2.5rem;
+    }
+
+    /* ─── TEXT PROZĂ ─── */
+    .proza-text {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: var(--ink);
+      position: relative;
+      z-index: 1;
+    }
+
+    .proza-text p {
+      margin-bottom: 1.4rem;
+      text-indent: 2em;
+    }
+
+    .proza-text p:first-child {
+      text-indent: 0;
+    }
+
+    .proza-text p:first-child::first-letter {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 600;
+      line-height: 0.7;
+      float: left;
+      margin-right: 0.1em;
+      margin-top: 0.1em;
+      color: var(--gold);
+    }
+
+    .proza-text .dialog {
+      font-style: italic;
+    }
+
+    /* ─── CONTINUARE ─── */
+    .continuare {
+      text-align: center;
+      padding: 3rem 2rem 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--muted);
+    }
+
+    .continuare::before {
+      content: '· · ·';
+      display: block;
+      font-size: 1.5rem;
+      letter-spacing: 0.5em;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      font-style: normal;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark-bg);
+      color: var(--muted);
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(201, 169, 110, 0.15);
+      margin-top: 5rem;
+    }
+
+    footer .footer-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    footer p { font-size: 0.8rem; }
+
+    @media (max-width: 600px) {
+      .autor-foto { flex-direction: column; text-align: center; }
+      .roman-card .card-inner { padding: 2rem 1.5rem; }
+      .roman-card .card-inner::before { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">← A · C · B</a>
+    <ul>
+      <li><a href="index.html#mai-mult">Mai mult</a></li>
+      <li><a href="index.html">Acasă</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <header class="page-header">
+    <span class="eyebrow">Andrei Constantin Burdușa</span>
+    <h1>Proză</h1>
+    <p class="subtitle">când cuvântul depășește versul</p>
+    <div class="divider-center"></div>
+  </header>
+
+  <div class="autor-foto">
+    <img src="images/foto-poet-natura.jpg" alt="Andrei Constantin Burdușa">
+    <p class="autor-bio">
+      Dincolo de poezie, Andrei Constantin Burdușa explorează și spațiul prozei —
+      un teritoriu în care aceeași sensibilitate lirică se desfășoară în timp și
+      în destinele unor personaje construite cu aceeași grijă a cuvântului.
+    </p>
+  </div>
+
+  <!-- ─── ROMAN ─── -->
+  <div class="roman-card">
+    <div class="card-inner">
+      <span class="roman-label">Roman · Fragment</span>
+      <h2 class="roman-title">Miruța</h2>
+      <span class="roman-subtitle">în lucru</span>
+      <div class="roman-divider"></div>
+
+      <div class="proza-text">
+
+        <p>Miruța s-a născut într-o zi de vineri, căutând dragostea — adică lumina. Căci dragostea este o formă de lumină. De iluminare. Și nu întâmplător era vinerea, ziua adormirii Sfintei Ana, mama preasfintei născătoare de Dumnezeu.</p>
+
+        <p>Miruța nu avea să fie o femeie frumoasă. Sau nu frumoasă în sensul comun. Nu și-a întemeiat niciodată devenirea pe această încercare de definire a ființei, atât de răspândită printre ceilalți. Conștientă de incapacitatea ei de a performa în estetica unei dive, conform standardelor sociale ale vremii, Miruța s-a orientat spre cuvânt. L-a abordat din două perspective: cuvântul cetit și cuvântul scris. Alegerea ei nu a fost pe placul părinților, care aveau o viziune mai plană, mai pragmatică asupra viitorului fetei. De aici s-au născut multe evenimente cu iz dramatic.</p>
+
+        <p>În mijlocul unui vis, Miruța descoperi pădurea. Era într-un luminiș de foioase, cu arbori foarte înalți, în răcoarea unei dimineți de vară timpurie. Erau desculți. El purta un costum de in crem, cu pantaloni largi și bluză lungă, simplă. Ea avea o rochie lungă, cu partea de sus ca o ie și partea de jos largă, învolburată. Pe cap — o coroniță din flori de câmp. În mâna dreaptă — un buchețel de crengi cu frunze colorate.</p>
+
+        <p>Priveau cerul și râdeau. Așteptau ceva. Apoi, a venit preotul — cu straie de culoarea cerului și chip de înger cunoscut. Le-a ținut o slujbă, legați de mâini cu un snop de grâu verde. A citit din Cartea Sfântă și au rostit împreună Tatăl Nostru — varianta scrisă de el. Le-a arătat o căsuță pe o culme. Le-a dat cartea și a dispărut. Au intrat în căsuță. Totul era simplu, rustic, drăguț. Ea a pus buchețelul în apă și a vrut să așeze cartea pe o poliță, dar cartea se transformase în icoană. Nu mai avea file. A agățat-o pe perete, de același cui cu coronița. S-au așezat la masă. În mijlocul mesei rotunde era o pâine mare, aburindă, și o cană de sticlă cu apă rece, cu broboane pe exterior și un șervet alb deasupra, brodat cu monogramele lor în ață roșie.</p>
+
+        <p>S-au închinat. El a rupt din pâine. I-a dat și ei o bucată. Mâncau cu poftă și râdeau în hohote. Ce i-a rămas în minte: fizionomiile lor inundate de o lumină absolută.</p>
+
+        <p>Se trezi brusc, de zgomotul telefonului.</p>
+
+        <p>Miruța se ridică cu greutate în capul oaselor. Parcă nici nu voia să se ridice. Și de ce să o facă, când lumea pe care și-o dorea era înlăuntrul visului, nu în afara lui?</p>
+
+        <p>Patruzeci și cinci de ani mai târziu, avea să moară Măicuța Celestina — cea care urma să îngrijească bărbatul ce avea să fie iubirea de-o viață a Miruței. Celestina îl născuse deja pe acest bărbat. Fusese și ea născută într-o zi de vineri. Fusese numită Ana.</p>
+
+        <p>Era vineri. O zi frumoasă de primăvară îi deschise pleoapele Anei, femeia micuță ghemuită pe patul alb de spital. Îi era frig. Își căută cu grijă pătura subțire, uzată, și o trase peste trupul firav și contorsionat. Simțea o durere ușoară în abdomen, dar se ferea să facă zgomot — nu voia să trezească celelalte femei. În mintea ei se amestecau gânduri și temeri, suprapuse peste durerile sarcinii care se apropia de capăt. Zorii curgeau pe ferestrele mari, goale, fără perdele. Se auzea ciripitul nestăvilit al vrăbiilor.</p>
+
+        <p class="dialog">„Viața ar fi putut fi chiar frumoasă", își spuse Ana. Numai oamenii din jur îi dădeau fiori.</p>
+
+        <p>Avea adesea impresia că nu știe cum să se poarte cu ei, dar nici ei nu păreau să aibă grijă în a se purta cu ea.</p>
+
+        <p>Își puse mâna pe burtă. Cine era acolo, înăuntru? Toți îi spuneau „pruncul tău", „copilul tău", ca și cum ar fi fost o prelungire a ei. Dar ea simțea altceva — simțea că acolo era cineva diferit, nu străin, dar venit din altă parte.</p>
+
+        <p>În capul ei se învârteau însă temeri mai prozaice: unde va merge după ce naște? Gazda le spusese că trebuie să se mute, iar ea nu fusese în stare să caute altă locuință. În ultimele săptămâni abia se mai putea deplasa.</p>
+
+        <p>Bărbatul ei tânăr stătea atârnat de gardul care abia se ținea de peretele casei, într-un cartier de la marginea orașului, unde trăiau amestecați muncitori și țărani. Un melanj specific orașelor aflate în plină dezvoltare industrială, care nu își selectează locuitorii, ci îi acumulează înlăuntrul fabricilor imense care miros a șpan, motorină și gaz de eșapament.</p>
+
+        <p>Era o dimineață frumoasă de mai. Se pregătea să plece la fabrică. Se uita în lungul drumului după Gheorghe, care urma să apară dintr-o clipă într-alta. Privirea îi aluneca pe trupurile fine ale femeilor grăbite spre autobuze. Le privea cu ochii prădătorului, cu simțurile aprinse ale vânătorului.</p>
+
+        <p>Ana nu se gândea la el. Ciudat, bărbatul care îi schimbase viața, cel care o trimisese într-o direcție neașteptată, nu mai era prezent în gândurile ei decât circumstanțial. Acum, cel mai important era să treacă cu bine peste evenimentul care îi marca existența: Nașterea.</p>
+
+        <p>Doctorul venise de vreo jumătate de oră. Era în cabinetul său, își bea cafeaua cu asistenta șefă, cu care avea o relație veche și comodă. Totul intra într-o curgere normală, fără nimic senzațional, dar și fără surprize.</p>
+
+        <p>Astăzi avea două cezariene. Una la o femeie tânără, mică și cocoșată.</p>
+
+        <p class="dialog">„Oare cine i-o fi tras-o și ăsteia?", se întrebă doctorul, amuzat.</p>
+
+        <p>Bărbatul șchiop îl văzu pe Gheorghe de departe — Gheorghe era cu un cap mai înalt decât toți ceilalți. Mergea legănat și crăcănat, ca un om de la țară. De fapt, asta și era. Plecase la oraș să-și facă un rost. Uneori, viața are așa de puține pretenții...</p>
+
+        <p>Orășul era un malaxor de destine. Nu avea nimic magic. Nimic metafizic. Semăna cu un furnicar.</p>
+
+        <p>Bărbatul și femeia abia sosiseră la oraș, direct de pe băncile școlii. Tineri, plini de energie și cu speranțe simple, dar mari. Singura deosebire față de ceilalți: erau infirmi amândoi. El avea piciorul drept tăiat din coapsă — doar un ciot care slujea de minune pentru fixarea protezei. Femeia nu-și explica această iubire. Sau mai bine spus, nu încercase s-o explice. Ce era de explicat? Se îndrăgostise de băiatul frumos, puternic și brunet încă de când îl cunoscuse.</p>
+
+        <p>Era puternic și svelt, brunet pe o piele perlată albă, cu ochii negri, foarte frumoși. Piciorul lipsă nici nu se sesiza când stătea pe loc, așa că ei îi păru perfect. Și se îndrăgosti de el brusc și iremediabil.</p>
+
+        <p>Și uite-așa, pe cât de ușor, pe atât de simplu și banal, tinerele femei se pregăteau voluntar să devină pradă bărbaților care plecaseră și ei, nu demult, la vânătoare.</p>
+
+        <p>Pădurea părea aprinsă de culori. Aveau senzația că era vie. De oriunde se năștea câte o mișcare de ram, și oricând putea să țâșnească un zgomot care le făcea inimile să sară din piept.</p>
+
+        <p>Restul fu ca un vis. De emoție și de teamă, nu înțeleseseră mare lucru. La un moment dat, totul fu dureros de dulce. Cursese și ceva sânge. Nu se știe nici de la cine, nici de ce. Dar fiecare fu convins că lui i se întâmplase.</p>
+
+        <p>Drumul de întoarcere fu mai greu, mai puțin frumos, și oarecum vinovat. În seara aceea nimeni nu dorise să vorbească prea mult. În genere, totul fusese prea mult. Și copleșitor.</p>
+
+      </div>
+
+      <div class="continuare">
+        roman în lucru
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-logo">ANDREI CONSTANTIN BURDUȘA</div>
+  <p>Copyright © 2026 · All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
