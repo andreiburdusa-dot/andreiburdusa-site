@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vineri 13 — Andrei Constantin Burdușa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #1a1410;
+      --parchment:  #f5f0e8;
+      --cream:      #faf7f2;
+      --gold:       #c9a96e;
+      --gold-light: #e8d5a3;
+      --amber:      #d4956a;
+      --sand:       #d4c5a9;
+      --muted:      #7a6f62;
+      --dark-bg:    #1c1510;
+    }
+
+    body {
+      font-family: 'EB Garamond', serif;
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(28, 21, 16, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+      padding: 0 2rem;
+    }
+
+    nav .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    nav .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul li a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--sand);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover { color: var(--gold); }
+
+    /* ─── POEM ─── */
+    .poem-page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 8rem 2rem 6rem;
+    }
+
+    .poem-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .poem-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+
+    .poem-date {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      display: block;
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin-bottom: 3rem;
+    }
+
+    .poem-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      line-height: 2;
+      color: var(--ink);
+    }
+
+    .poem-body .strofa {
+      margin-bottom: 2rem;
+    }
+
+    .poem-body .vers {
+      display: block;
+    }
+
+    /* ─── AUTOR ─── */
+    .poem-autor {
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--sand);
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .poem-autor img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(20%);
+    }
+
+    .poem-autor .autor-text h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    .poem-autor .autor-text span {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+
+    /* ─── NAV POEME ─── */
+    .poem-nav {
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .poem-nav a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 2px;
+      transition: color 0.3s;
+    }
+
+    .poem-nav a:hover { color: var(--amber); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark-bg);
+      color: var(--muted);
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(201, 169, 110, 0.15);
+      margin-top: 5rem;
+    }
+
+    footer .footer-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+
+    footer p { font-size: 0.8rem; }
+
+    @media (max-width: 600px) {
+      nav ul { gap: 1rem; }
+      nav ul li a { font-size: 0.62rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">← A · C · B</a>
+    <ul>
+      <li><a href="ziua-frunza-poemul.html">Toate poemele</a></li>
+      <li><a href="index.html#volume">Volume</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="poem-page">
+
+  <span class="poem-eyebrow">Ziua, frunza și poemul</span>
+  <h1 class="poem-title">Vineri 13</h1>
+  <span class="poem-date">1 martie 2026</span>
+  <div class="divider"></div>
+
+  <div class="poem-body">
+
+    <div class="strofa">
+      <span class="vers">cândva vom deveni copaci</span>
+      <span class="vers">va ninge vremea peste noi</span>
+      <span class="vers">vom fi doar reci</span>
+      <span class="vers">vom fi doar goi</span>
+      <span class="vers">vom fi doar cratime-ntre maci</span>
+    </div>
+
+    <div class="strofa">
+      <span class="vers">ne va spăla de patimi valuri</span>
+      <span class="vers">ne vor uita cu toții negreșit</span>
+      <span class="vers">vom fi doar umbre-n loc umbrit</span>
+      <span class="vers">nisip cernit pe goale maluri</span>
+    </div>
+
+    <div class="strofa">
+      <span class="vers">cândva nu vom mai fi nimic</span>
+      <span class="vers">în infinit doar o secundă</span>
+      <span class="vers">va știi iubirea să ne ascundă</span>
+      <span class="vers">în picături de borangic</span>
+    </div>
+
+    <div class="strofa">
+      <span class="vers">va răsări lumina fără noi</span>
+      <span class="vers">va trece ziua neștiind</span>
+      <span class="vers">c-am suferit</span>
+      <span class="vers">iubind</span>
+      <span class="vers">zâmbind</span>
+      <span class="vers">fără carismă de eroi</span>
+    </div>
+
+    <div class="strofa">
+      <span class="vers">am fost și unu-am fost și doi</span>
+      <span class="vers">prin vremi desculțe am rătăcit</span>
+      <span class="vers">am și urât</span>
+      <span class="vers">am și iubit</span>
+      <span class="vers">am fost și luni</span>
+      <span class="vers">am fost și joi</span>
+    </div>
+
+    <div class="strofa">
+      <span class="vers">cândva în noi a fost furtună</span>
+      <span class="vers">și undeva a fost un rai</span>
+      <span class="vers">dar totul trece</span>
+      <span class="vers">totul</span>
+      <span class="vers">vai</span>
+      <span class="vers">vom fi curând doar ștearsă urmă</span>
+    </div>
+
+    <div class="strofa">
+      <span class="vers">curând vom deveni țărână</span>
+    </div>
+
+  </div>
+
+  <div class="poem-autor">
+    <img src="images/foto-poet.jpg" alt="Andrei Constantin Burdușa">
+    <div class="autor-text">
+      <h4>Andrei Constantin Burdușa</h4>
+      <span>purtătorul de cuvinte</span>
+    </div>
+  </div>
+
+  <div class="poem-nav">
+    <a href="ziua-frunza-poemul.html">← înapoi la toate poemele</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-logo">ANDREI CONSTANTIN BURDUȘA</div>
+  <p>Copyright © 2026 · All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
