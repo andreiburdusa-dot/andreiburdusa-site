@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLEPSIDRAL - Adrian Constantin Burdușa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, #f5f0fa 0%, #e8dff5 100%);
+            color: #2d1f3d;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4a1c71 0%, #7c3e93 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(74, 28, 113, 0.3);
+        }
+
+        .header h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.4rem;
+            font-style: italic;
+            opacity: 0.95;
+            margin-bottom: 0.5rem;
+        }
+
+        .header .author {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 1rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin: 2rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #7c3e93 0%, #c9a0dc 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(124, 62, 147, 0.3);
+        }
+
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 62, 147, 0.4);
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            border: 2px solid #c9a0dc;
+            border-radius: 50px;
+            background: white;
+            color: #4a1c71;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #7c3e93;
+            box-shadow: 0 0 20px rgba(124, 62, 147, 0.2);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .poems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .poem-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 15px rgba(74, 28, 113, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .poem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4a1c71 0%, #c9a0dc 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .poem-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .poem-card:hover {
+            transform: translateY(-5px);
+            border-color: #c9a0dc;
+            box-shadow: 0 8px 30px rgba(124, 62, 147, 0.2);
+        }
+
+        .poem-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            color: #4a1c71;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .poem-preview {
+            color: #6b5b7c;
+            font-size: 1rem;
+            line-height: 1.8;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(74, 28, 113, 0.95);
+            z-index: 1000;
+            overflow-y: auto;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #ffffff 0%, #f5f0fa 100%);
+            margin: 2rem auto;
+            padding: 3rem;
+            max-width: 800px;
+            border-radius: 20px;
+            position: relative;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            font-size: 2.5rem;
+            color: #7c3e93;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-modal:hover {
+            background: #f5f0fa;
+            color: #4a1c71;
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            color: #4a1c71;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #c9a0dc;
+        }
+
+        .modal-body {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #2d1f3d;
+            white-space: pre-wrap;
+        }
+
+        .poem-number {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, #7c3e93 0%, #c9a0dc 100%);
+            color: white;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .poems-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                margin: 1rem;
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CLEPSIDRAL</h1>
+        <div class="subtitle">Cartea din care curg cuvintele invers</div>
+        <div class="author">Adrian Constantin Burdușa</div>
+    </div>
+
+    <a href="volumele-mele.html" class="back-link">← Înapoi la Volume</a>
+
+    <div class="search-container">
+        <input type="text" class="search-box" id="searchBox" placeholder="Caută în cele 136 de poeme...">
+    </div>
+
+    <div class="container">
+        <div class="poems-grid" id="poemsGrid">
+
+            <div class="poem-card" onclick='openModal("despre purtătorul de semne cel care e", `zise\nEl către mine\nzise\nde-a dreapta chipului meu\nsă aşezi\npre vise\ncuvântul pe care ți-l dau\nîn brațul tău de sabie\nîn cugetul tău de vultur\ntocmai\nzise\ncă nu sunt eu cine sunt\nşi nu eşti tu cine eşti\nci drumul cel să plece\nprin fântânii adânce\nîn trupul zborului\ncelui de prunci e\niar tu\nsă mă chemi când va plânge\ncerul cu sânge\nsă scobor\nnorului din nor\nşi când\nlumea atuncea s-a frânge\ndin trup\nîn adevăr\nse va scurge\nzise El\nCel\nal cerului Cer\nşi\nsemnele tale sădinte-n mister\ntu\nde semnele tale să grijeşti\nsă are\nsă semene\nsă curgă din cremene\nsă ningă din clipa\nce va să frigă\ncuvântă-te semne şi te ridică\ntimpului\nîn chipu-ți\nce cerne\narcuş de aripă\nşi te-nfiripă\npoeme\ntu\nomule\npurtătorule de semne\nce curg peste vreme\nzise\nEl\ncel care\npur şi singur\nE`, 2)'>
+                <div class="poem-title">despre purtătorul de semne cel care e</div>
+                <div class="poem-preview">zise
+El către mine
+zise
+de-a dreapta chipului meu
+să aşezi
+pre vise
+cuvântul pe care ți-l dau
+în brațul tău de sabie
+în cugetul tău de vultur
+tocmai
+z...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre visul cel lung al cocoanei", `modific în permanență trecutul\npunând căuş cerului curb\nal visului copilei mele\nîn chip de insulă\na devenirii mele\nîn tăcere\nsunt\ndurerea care\nverde amărui mă oare\nde-a lungul clipei care este\npână la liniile sale curbe de copilă\npură\npână la întrebarea care adună\ndevenind\ntrecere\nadică mai puțin\ndin ce în ce mai puțin\ndin ceea ce ar fi fost\ndacă nu ar fi trebuit să păşească\npe cioburi de cuvinte scrijelite pe bănci\nruginite pe chipuri\nîmplântate în suflete care nu sunt\npentru că nu au cum să fie\nîn timp ce\nla țărmul mării mele\nse va curba mereu\nvalul cel atât de verde amărui\nal devenirii copilei mele\nîn zbor\ncu fervoarea răsăritului cu care măsor cuvintele\nîn urme pe nisipul ud\nal trecerii ei prin mine\nşi al trecerii mele prin visul ei\nchiriaş iubirii mele\npână la credința la care\npun căuş cerul curb\nîn chip de\nochi\nveghetoriu\nvisului ce scrie trecutul\ndupă cum spuneam\nmurindu-mă`, 4)'>
+                <div class="poem-title">despre visul cel lung al cocoanei</div>
+                <div class="poem-preview">modific în permanență trecutul
+punând căuş cerului curb
+al visului copilei mele
+în chip de insulă
+a devenirii mele
+în tăcere
+sunt
+durerea care
+verde a...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre constructori...", `construiam alături un castel\nbeam bere şi construiam vise\ncastelul se ridica asemeni\ntuturor zilelor noastre trecute și dărâmate și precis imprecise\ndin când în când iubeam femeile\nfemeile vânau clipele iubirii cu setea naufragiatului\nși se-nfășurau în mirosul nostru de bărbați\npână la întunericul deplin\napoi şedeam osteniți pe trepte şi fumam țigări de foi\nși noi și voi și noi doi\nși-apoi\nera târziu în tăcere\nşi osteneala ne ascundea adânc în noapte\nși noaptea era plină de neșoapte\ninevitabil\nși intolerabil\na doua zi urma să construim alături un castel\ncu mine cu tine cu el`, 5)'>
+                <div class="poem-title">despre constructori...</div>
+                <div class="poem-preview">construiam alături un castel
+beam bere şi construiam vise
+castelul se ridica asemeni
+tuturor zilelor noastre trecute și dărâmate și precis imprecise
+d...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre sens oarecum", `m-am aşternut tăcut în tăcerea cuvintelor mele\ncuvios lipite de mine\nca-ntr-un ritual de purificare\nşi cuvintele s-au aşternut triste şi ude de lacrimi\npe gesturile mele ezoterice\nera adânc înlăuntru şi întunericul nu mai lăsa\npunți peste foşnetul cuvintelor\naşternute pe hârtia scumpă cu care învelisem seninul\nascultam sensul sunetelor distribuite egal\npunctelor cardinale\nşi nu era ieri\nşi nu era azi\nşi nu era nicăieri şi nici totdeauna\nera monoton şi liric\nca foşnetul stejarilor toamna\ncolorat ruginiu şi rebel\nca un vultur rănit de mânia furtunii\npornite de nicăieri spre niciunde\ndar până şi sunetul furtunii era trist şi desuet\nşi oarecum trecut în uitare\ncăci timpul îşi spălase urmele\nşi le pusese la uscat\nla umbra dulce a răsăritului de valuri\nprofund împlântate în maluri\nm-am aşternut tăcut -spuneam în tăcerea cuvintelor mele toarse zilelor\nca un caier de lână albă\ncu care îmi acopăr sentimentele\nuitate în zarurile\naruncate destinului în speranța unui\ngest căştigător de putere\ngestul se frânse însă brusc în durerea\ntrenului care n-a oprit niciunde\nşi care se pierde în propriul şuierat\nde dinaintea tunelului iertării depline\nîn rest - mărunțiş`, 6)'>
+                <div class="poem-title">despre sens oarecum</div>
+                <div class="poem-preview">m-am aşternut tăcut în tăcerea cuvintelor mele
+cuvios lipite de mine
+ca-ntr-un ritual de purificare
+şi cuvintele s-au aşternut triste şi ude de lacrim...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre trecere şi cerc", `a plecat un om\nnimic senzațional\npoate puțin trist dacă e cazul\nca o respirație adâncă de eliberare\nnumai că a plecat de tot\nde parcă nici nu ar fi fost\n(sau fost-a oare?)\nşi asta mă uimeşte precum zborul invers al păsărilor\nsau strigătul înfiorător al pescătuşilor\npentru că acela care era ieri\nazi nu mai e\npentru că nici n-a fost\nşi mă întreb derutat\nunde īncepe şi unde se termină ființarea\nşi de ce nu se termină\n(sau oare se termină?)\nînapoi în cercul cel de trei ori încercuit\nal botezului?\nunde începe şi unde se termină simetria\nadâncei treceri prin lumină\nunde începe şi pâna unde ține\ncântecul lebedei care piere la ceas de lună?\nmoartea şi naşterea\nsosite tiptil\nla prima suflare uşoară\nîn flacăra plăpândă\na trecerii\nîn formă de om`, 7)'>
+                <div class="poem-title">despre trecere şi cerc</div>
+                <div class="poem-preview">a plecat un om
+nimic senzațional
+poate puțin trist dacă e cazul
+ca o respirație adâncă de eliberare
+numai că a plecat de tot
+de parcă nici nu ar fi fo...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre somnul oraşului şi mirosul nopții", `oraşul respiră fin şi calm\nca somnul copilei mele atât de frumos odihnindu-se\naerul nopții răcoreşte şi odihneşte somnul\ncare se aşterne adânc peste încăperea\nafundată în liniştea care linişteşte\nnu e nicicum şi totuşi e\nde aceea copila îmi cere seara\nsă-i deschid fereastra\nmirosul nopții e ca mirosul iubirii\nun drog de care nu te mai saturi\nşi care te poartă\npe țărmuri care sunt numai acolo\ncând întunericul se împlineşte odihnitoriu\ntăcerea capătă sens\nşi se rostuieşte\nîn cuvântul rostit sau nerostit\ntotuna\nabia atunci pana capătă valoarea zborului\niar\noraşul respiră fin monoton\nca somnul copilei mele odihnindu-se\nîn povestea vieții ei`, 8)'>
+                <div class="poem-title">despre somnul oraşului şi mirosul nopții</div>
+                <div class="poem-preview">oraşul respiră fin şi calm
+ca somnul copilei mele atât de frumos odihnindu-se
+aerul nopții răcoreşte şi odihneşte somnul
+care se aşterne adânc peste î...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre timpul trecut", `timpul n-a lăsat nimic scris pentru mine\ntârziu sau devreme au acelaşi gust dureros\nsăgeți aprinse se înfig în trupul nopții adânce\nşi noaptea îşi oblojeşte rănile cu vaietele mele\nstelele încep să dea inapoi ca într-o înflorire ratată\nşi simt cum întunericul mă slăbeşte din strânsoare\npalid\nîn cătuşele înroşite ale zorilor goşi de pâclă\nobosit deja\nsfârşit deja\npână la solstițiu lupta continuă absurd\no luptă sângeroasă şi încrâncenată\nşi simt mai apoi\ncum noaptea mă slăbeşte din strânsoare\nşi pot să mă mişc\ncum pot să alerg cu ochii închişi\ncu ochii mei pot să alerg spre lumină\ncu o nesfârşită poftă de viață\ncare se va sfârşi numai odată cu mine\ntimpul trecut n-a lăsat nimic scris pentru mine\nnumai eu am scris pentru timpul ce va să vie`, 9)'>
+                <div class="poem-title">despre timpul trecut</div>
+                <div class="poem-preview">timpul n-a lăsat nimic scris pentru mine
+târziu sau devreme au acelaşi gust dureros
+săgeți aprinse se înfig în trupul nopții adânce
+şi noaptea îşi obl...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre diminețile cu tristeți anonime", `dimineața\nsecundele se grăbesc care încotro\nîmpingând cu putere viața înainte\ntăind timpului riduri prelungi\nşi cărări înnodate\npe când copila mea încă visează\nla lumea din care vine\ngândesc că\neste prea devreme ca să am\nceea ce plâng\nşi prea târziu ca să plâng\nceea ce nu am\nşi oricum până şi lacrimile fug risipite şi interzise\ncare încotro\ngrăbindu-se să respire suspinele\nîn viteză\nîntre două vitrine cu îngeri\nnu am idee:\na început sau s-a sfârşit\neternul\nla care copila mea visează cioplindu-şi freamătul?`, 10)'>
+                <div class="poem-title">despre diminețile cu tristeți anonime</div>
+                <div class="poem-preview">dimineața
+secundele se grăbesc care încotro
+împingând cu putere viața înainte
+tăind timpului riduri prelungi
+şi cărări înnodate
+pe când copila mea înc...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre înțelegerea drumului care curge invers", `(sau rugămintea care roagă)\ndrumul acesta curge invers\nde la stânga la dreapta\ncu fundul în sus\ncu tălpile în sus\nadică\npământul învelind cerul cu o privire de întuneric deplin\nşi noaptea păscând zborul fluturilor de care mi-e dor\naşa cum mi-este dor de ceea ce odată am fost\ndar nu mai ştiu dacă eram eu\nsau nu\nîncă nu mi-am deprins mintea\ncu înțelesuri spre care mă duc\nuneori cu o viteză mai mare decât viteza permisă\nde privirea mea\ncea atât de încercată de lumină\ndrumul acesta - spuneam curge pe înlăuntru\nca nişte semne de punctuație\npe calea care o străbat\nde la întuneric spre lumină\ndar întotdeauna altfel\nca-ntr-o respirație simfonică\nde titan plângând în roua universului\ncu glasul fetei mele\ncare mă visează pe mine\nvenind şi nu plecând\ncătre sine\nAMIN!`, 11)'>
+                <div class="poem-title">despre înțelegerea drumului care curge invers</div>
+                <div class="poem-preview">(sau rugămintea care roagă)
+drumul acesta curge invers
+de la stânga la dreapta
+cu fundul în sus
+cu tălpile în sus
+adică
+pământul învelind cerul cu o p...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre o noapte care nu tace dar nu singură", `acum totul e trist\nşi secundele se sparg în cuvinte\nla fiecare lovitură a ceasului nopții\ntulburate de liniştea care țiuie\ndisperată\nde atâta tăcere\nîntunericul nu e întuneric\nşi lumina răneşte pupilele\nîn timp ce noaptea nu e noapte\ndoar vaier\ndoar țipăt\nunul singur\nca o chemare de vultur\nîn neliniştea însingurării sale\npictând disperarea în fiecare celulă a ecoului\no dâră de lumină se târăşte\nrănind infinit sentimentul de pur\ncare plezneşte pur-şi-simplu\nlăsând să curgă infinitul\npe când simt căderea în genunchi\na celui care a cutezat\nsă muşte din dragostea de absolut\nfără să bănuie că\nniciodată\ndar\nabsolut niciodată\nalbul nu va fi alb`, 12)'>
+                <div class="poem-title">despre o noapte care nu tace dar nu singură</div>
+                <div class="poem-preview">acum totul e trist
+şi secundele se sparg în cuvinte
+la fiecare lovitură a ceasului nopții
+tulburate de liniştea care țiuie
+disperată
+de atâta tăcere
+î...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre rodul cuvintelor", `scormonind lacrima\ndin cearcănele adânci săpate\nîn durerea zilelor scurse pe zidurile scorojite\nşi frământând-o cu lutul\ntoamnei de pe glezna ta\nmă întorc la tine\npatrie a cuvintelor mele pierdute\nîntru nemărginită dorință de drămuire\na senzației de cădere\nimaginile gândurile sentimentele\ntoate cad înlăuntrului meu şi rodesc\nprimăverii pe încheietura mâinii\npe când salcâmii-şi smulg florile\ncele prelung mirositoare\ncele prelung roditoare\nşi norii curg pe înlăuntru\nînflorind cuvintele\ndepunând ouălele\nși rodind\npoemului\nîn ovalul cuvintelor deschise\ncuvintele deschise se coc dau în pârg\nși cad în versuri pe apusul roșu\nal măsurii mele de dor\nși a omului copt în rodul devenirii`, 13)'>
+                <div class="poem-title">despre rodul cuvintelor</div>
+                <div class="poem-preview">scormonind lacrima
+din cearcănele adânci săpate
+în durerea zilelor scurse pe zidurile scorojite
+şi frământând-o cu lutul
+toamnei de pe glezna ta
+mă în...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre nopțile cu miros verde", `au crescut copacii tineri sufletului meu\nverde dăruit\nverde mirosind a vatră\nverde mirosind a tăciune\na timp desprins de paşi\ndevenind esență\nşi hrănind semnele\ncu semințele cuvintelor ridicate drept spre lumină\ndin nevoia mea de întoarce a drumului\ncătre obârşiile neamului meu pământesc\nde răzeşi cu trup de munte\nşi privire de răşină de brad\nnumai eu simt nevoia să cad clipei\nca într-un tunel umbrit de lumină\nsă cad ca o frunză legănându-mă în spiralele devenirii\nîn timp ce zilele cad unele după altele\nşi de la fiecare capăt cade o noapte\nşi la capătul fiecărui capăt al nopții\nveghează o zi\no zi vegheată din colțuri de şindrilă înegrită de ploile\ncare cad întruna măcinând clipele care mi-au mai rămas\nsă curg\nprin văile acestea cu miros de pămănt reavăn\ntrăind de-a dreptul această neobosire\ncu mirosul casei mele de pămănt\namestecat cu mirosul cojocului de lână\ncare se odihneşte pe prispă\npentru o nouă zi de trudă rezemată de gardurile\nnopții care stă să se încline uliței strâmte\nîntorc privirea peste umăr şi întreb mărul din fundul curții câte zile se sparg în\nnoapte şi el\nîmi răspunde cărând\npăsărilor cerului\n&quot;- tot atâtea căte mai ai!&quot;`, 15)'>
+                <div class="poem-title">despre nopțile cu miros verde</div>
+                <div class="poem-preview">au crescut copacii tineri sufletului meu
+verde dăruit
+verde mirosind a vatră
+verde mirosind a tăciune
+a timp desprins de paşi
+devenind esență
+şi hrăni...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre trecerea liniştii de Rusalii", `îmi aud propria linişte\nşi numai gândurile ce mai tropăie prin urechile mele\nasurzindu-mă\nşi cerul e curat şi limpede de parcă Dumnezeu ar fi dat cu mătura\ncurățând bine ograda\nşi întunericul e şi el curat şi strânge\nşi numai trecerea\nah\nda\ntrecerea\nizbeşte cu viteză maximă\ntrecătorul neatent\ncare nu-şi bagă bine de seamă zilele rămase\nşi\nielele râd\nrâd înfiorând suprafața rece a râului\ncare urcă muntele\nîntr-o noapte în care\nchiar trebuie să fii atent la trecere\nşi la râurile care ne trec\npână la malul uitării`, 16)'>
+                <div class="poem-title">despre trecerea liniştii de Rusalii</div>
+                <div class="poem-preview">îmi aud propria linişte
+şi numai gândurile ce mai tropăie prin urechile mele
+asurzindu-mă
+şi cerul e curat şi limpede de parcă Dumnezeu ar fi dat cu m...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre durerea jertfei", `durerea\nca o măsură a singurătății\ninseparabilă\nimuabilă\ncontinuă\no stare prelungă de vaiet\no depreciere continuă a percepției mediului înconjurător\nun refugiu necesar înapoi în codul primar instinctual\ntotul se limitează la valori binare\nda şi nu 0 şi 1\nîn care\nîn mod necesar zero este antagonic lui unu\no veghe permanentă a durerii\nea mă pândeşte pe mine\nși eu o pândesc pe ea\nîntr--o săptămână a patimilor\nîn care esența\neste lupta pentru a exista au ba\nîmi mut durerea din stânga în dreapta\nîn speranța deşartă să scap de ea\ndar nu pleacă\nnu uită\nși mai ales\nnu trece\ntrupul devine un câmp aprig de bătălie\nrăvăşit de atâta zbucium\nși îmi aduc aminte\nde această incomensurabilă durere\npe care o traversez de mii de ani\nși cu care nu pot spune că mă obişnuiesc\nchiar dacă ea\ndurerea\nnu s-a schimbat deloc\naceastă povară sisifică\na fiecărui an\nca o măsură elementară a păcatului\ndurerea\no întoarcere bruscă şi fatidică\nla jertfă`, 17)'>
+                <div class="poem-title">despre durerea jertfei</div>
+                <div class="poem-preview">durerea
+ca o măsură a singurătății
+inseparabilă
+imuabilă
+continuă
+o stare prelungă de vaiet
+o depreciere continuă a percepției mediului înconjurător
+u...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre primăvară", `într-o primăvară\nlocuind în gri\nam deschis fereastra\nşi zgomotele tuturor mugurilor albi şi roz\ncrăpându-se\nmi-au inundat plămânii\nca-ntr-o simfonie de Mahler\ncurgeau adânc sentimentele năvalnice\nşi se cuibăreau armonice\npe crengile\nmişcărilor mele nesigure\nîn căutarea mugurelui perfect\nperfect roz\nperfect alb\nperfect parfumat\nperfect plasat\nperfect înflorit\ntârziu către seară\ncând primăvara bătea ea însăşi în roz şi alb\nşi însumat în verde\ntârziu\nspuneam\ncând simfonia deja se vărsa în mare\ncu grandoarea soarelui la apus\nam înțeles\ncă nu perfecțiunea era căutarea mea\nci căutarea mea era perfecțiunea\nera o seară violet de primăvară`, 18)'>
+                <div class="poem-title">despre primăvară</div>
+                <div class="poem-preview">într-o primăvară
+locuind în gri
+am deschis fereastra
+şi zgomotele tuturor mugurilor albi şi roz
+crăpându-se
+mi-au inundat plămânii
+ca-ntr-o simfonie d...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre pustiul in care ninge mereu apusul....", `se întoarce neliniştea la vadul scăzut al zilei\ncare prăjeşte oraşul izbind nările\nhidos şi perfid şi brutal\nfără urmă de gesturi filtrate\nde acea senzația de muşuroi de larve băloase\ndevine acidă şi avidă şi crudă\niar comunicarea devine un şir de bale prelinse\npe decorațiile de tinichea\nmiroase a zăbală roasă de disperare\nşi gesturile se frâng crispate\nîntr-o deplină căutare de sine\nneizbândită\nşi mânioasă\nşi\ngata să fie uitată\nîn ruinele unei călătorii către centrul\npustiului în care veşnic ninge apusul\na semne râncede`, 19)'>
+                <div class="poem-title">despre pustiul in care ninge mereu apusul....</div>
+                <div class="poem-preview">se întoarce neliniştea la vadul scăzut al zilei
+care prăjeşte oraşul izbind nările
+hidos şi perfid şi brutal
+fără urmă de gesturi filtrate
+de acea sen...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre relativitatea adverbelor", `niciodată\ndar absolut niciodată\nnu vom ştii de unde a început\nşi unde sfârşeşte începutul\ncare se sprijină pe umerii sfârşitului\nniciodată\ndar absolut niciodată\nnu vom şti care a fost mai întăi\nnoaptea căreia i s-a părut grea ziua\nsau ziua căreia i se va sfârşi noaptea\nniciodată\ndar absolut niciodată\nsămânța nu a crescut în adâncul copacului\ndar nici copacul nu a putut creşte în adâncul seminței\nniciodată\ndar absolut niciodată\ngândul meu nu va obosi\nsă poarte poemul de unde vin şi până unde mă duc\nfără să aflu dacă el a fost mai întâi\nsau eu\nniciodată\ndar absolut niciodată\nnu va fi niciodată\nci doar\ncândva\nundeva\ncumva\ntoate trecute de niciodată\nprintr-o poartă care s-a închis subit\nsă ningă ochilor durerea facerii\nprin țipătul fără de trecut\nal celui care începe\nsă curgă`, 20)'>
+                <div class="poem-title">despre relativitatea adverbelor</div>
+                <div class="poem-preview">niciodată
+dar absolut niciodată
+nu vom ştii de unde a început
+şi unde sfârşeşte începutul
+care se sprijină pe umerii sfârşitului
+niciodată
+dar absolut...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre reqwiem-ul care apasă pleoapele până la déja-vù", `nimic\nsau totul\nsau altfel\nsau tăcerea aceasta care nu se aude\nde niciunde\nşi deci nu poate fi scrisă\nşi nici învățată\nnicicum\nşi covorul cuvintelor căzute\nşi sparte în mii de cioburi\nîntr-un reqwiem pentru o noapte curgătoare\nsărutând aşteptarea\npână la\nsingurătatea celui ce pleacă să viseze ceea ce a fost să fie\ncând va fi`, 21)'>
+                <div class="poem-title">despre reqwiem-ul care apasă pleoapele până la déja-vù</div>
+                <div class="poem-preview">nimic
+sau totul
+sau altfel
+sau tăcerea aceasta care nu se aude
+de niciunde
+şi deci nu poate fi scrisă
+şi nici învățată
+nicicum
+şi covorul cuvintelor c...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre inconsecvența conjugărilor", `pun pasul pe piatră\nşi\npe piatră rămâne urma nisipului pietrei\nrisipit în prezentul care tocmai trecea\nating cu respirația întetăiată obrazul tău\nşi gura ta răspunde într-o clipită\nuitând măsura timpului\ncare nici măcar nu mai bătea\nîn retragere\naştern cuvintele pe hârtie în şiruri excentrice\nşi cuvintele se transformă în poeme\nrevenind în imperfectul care tocmai plângea\nîn interiorul verbelor\ncare amestecă conjugările\npână la sensul întors\nîn forma sa\ncu-adevărat veninoasă`, 22)'>
+                <div class="poem-title">despre inconsecvența conjugărilor</div>
+                <div class="poem-preview">pun pasul pe piatră
+şi
+pe piatră rămâne urma nisipului pietrei
+risipit în prezentul care tocmai trecea
+ating cu respirația întetăiată obrazul tău
+şi g...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre neputințele mele", `cum aş putea risipi cerul târându-mă\nşi cum aş putea măsura ziua în întuneric\ncum aş putea când\nnu există tăiş care să taie\nîntotdeauna în niciodată\nşi nici acum în atunci\nşi nici\nnicicum în nicicând\nşi cum aş putea transforma\nzicând în tăcând\ntu în mine\nmine în tine\ncând peste tot înnod\nîn semne\nzborul\nprecum tu dorul\naltfel decât rotund?`, 23)'>
+                <div class="poem-title">despre neputințele mele</div>
+                <div class="poem-preview">cum aş putea risipi cerul târându-mă
+şi cum aş putea măsura ziua în întuneric
+cum aş putea când
+nu există tăiş care să taie
+întotdeauna în niciodată
+ş...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre agonie şi vaier", `m-am uitat la cel ce moare când moare\nca o umbră veştedă\nşi n-am zărit decât agonia uşor amară\nşi deosebit de tristă\nşi respirația precipitată\nde parcă ar fi vrut să ia cu el\ncât mai mult din cerul cărunt\nşi din pădurea înghețată\nşi\nam văzut opintirea\nincredibila încercare de întoarcere\nînspre devenire\nultima disperare a ființării\ndar nu mi-am dat seama cine încearcă\nsă se întoarcă\nşi de ce\nam văzut mai apoi paşii celorlalți\npăşind peste\ncu seninătatea cursului apei\nneînduplecatului râu care nu are cum opri\nîn nici o gară\nmai târziu s-a pornit văntul peste muntele înghețat\nşi un freamăt terbil s-a stârnit\ntăcut amar şi cinic\nîn depărtare plângea un clopot\nîn semn de trecere\nşi trecu tăcut\nşi lumina se stinse tăcută\nşi noaptea se opri tăcută\nnimic\nnimic\nnimic\nşi de-odată bocetul năvăli spre luna care urca spre zori\ncrăpând ziua\ncu-atâta putere a durerii şi disperării\natât de singur\nîncât\nagoniei îi căzu o lacrimă\nînghețată\nşi-atât`, 25)'>
+                <div class="poem-title">despre agonie şi vaier</div>
+                <div class="poem-preview">m-am uitat la cel ce moare când moare
+ca o umbră veştedă
+şi n-am zărit decât agonia uşor amară
+şi deosebit de tristă
+şi respirația precipitată
+de parc...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre apa care izvorăşte iubitoare", `(secțiunea întăi)\nmai duce-mă\nmai curge-mă\nmai udă-mă\nmai spală-mă\nmai frânge-mă\nîncrâncenă-mă\nînvârte-mă\nadâncă-mă\nadună-mă\nalungă-mă\nsărută-mă\ndeplin`, 26)'>
+                <div class="poem-title">despre apa care izvorăşte iubitoare</div>
+                <div class="poem-preview">(secțiunea întăi)
+mai duce-mă
+mai curge-mă
+mai udă-mă
+mai spală-mă
+mai frânge-mă
+încrâncenă-mă
+învârte-mă
+adâncă-mă
+adună-mă
+alungă-mă
+sărută-mă
+depli...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre aşteptare şi rodul meu", `șuieră cumplit vântul prin toate crăpăturile\nnăscând un sentiment prelung de singurătate\naşteptarea se aşează pe ghizdurile săptămânii\ncu mâinile făcute căuş în poală\nmiezul zilei polemizează pe marginea\nultimelor veşti sosite ora trecută\nfoamea devine nerăbdătoare şi dă semne că\nşi-a pierdut răbdarea\ndurerea e tot acolo şi sapă răbdătoare în lumina acestei zile\nnici măcar gri\npaşii prelungi se duc şi se întorc într-una\nîntr-o aşteptare profundă\nşi înfoiată şi capricioasă\nse întoarse brusc pe călcâie şi se apropie de fereastra\nde care se izbea o primăvară sinucigaşă\nînchide ochii - zise\nînchide ochii şi deschide inima - zise aşteptarea dincolo de primăvara asta cam imberbă - zise te aşteaptă o turmă întreagă de cuvinte\ncare ard de dorința de-a le scoate la păscut\nai răbdare\npe poartă va ieşi o mare\nşi tu\nîi vei dărui cu viața ta\no altă zare\nai, drumule, răbdare\nşi fii tare\n- zise aşteptarea întinzându-mi insinuant o aripă de soare`, 27)'>
+                <div class="poem-title">despre aşteptare şi rodul meu</div>
+                <div class="poem-preview">șuieră cumplit vântul prin toate crăpăturile
+născând un sentiment prelung de singurătate
+aşteptarea se aşează pe ghizdurile săptămânii
+cu mâinile făcu...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre boarea unei secunde și nu numai", `ce-mi rămâne mie\nîntre noapte şi noapte\nşi nu se-mplântă în răsărit\nși nu irupe în amurg\nîn numele tău\nşi nu seamănă\na fervoare circular disipată\nîn împreunarea nopții\nîntre pleoapă şi pleoapă\nce-mi rămâne mie\nîn răsăritul epuizant al privirii mele\ncătre adâncul privirii tale întoarse\nîn umbrele săpate în buzele copacilor\nîntre mine – spuneam - şi șoaptă\neste zefirul unduirii trecerii prin vadul ascuns\nal ființării în formă fixă\nde cădere a visului\nînlăuntrul lacrimei fierbinți\ndoar atât:\no secundă`, 28)'>
+                <div class="poem-title">despre boarea unei secunde și nu numai</div>
+                <div class="poem-preview">ce-mi rămâne mie
+între noapte şi noapte
+şi nu se-mplântă în răsărit
+și nu irupe în amurg
+în numele tău
+şi nu seamănă
+a fervoare circular disipată
+în î...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre căderea cuvintelor", `cad peste marginile cuvintelor mele\nşi mă scufund în sensurile concentrice\nale sunetelor care curg\nîn\nfiligranurile unei ploi antediluviene\nce udă versurile\npână la streaşinile putrede ale tăcerii\nnu sunt decât eu\ncu mine\nìntr-un repaos total\nnu gândesc\nnu vorbesc\nnu trăiesc\ndecât matriceal\nîntr-o lume paralelă cu sine\nşi cu noțiunea de sine\ne târziu\nca un pendul rebel care judecă timpul\nîntr-un bronz\nlipsit de căderea de sine\nrătăcit pe\nplaja care foşneşte rochiile mării răpuse întunericului\ndeplin\nşi nimeni n-adună verbele coapte de pe nisipul\nîncrustat în țărmuri\neste atât de târziu\nîncât frazele se înclină brusc\ncurbându-se apocaliptic\nîn murmur\niar ecoul răspunde stins\nîn vis`, 29)'>
+                <div class="poem-title">despre căderea cuvintelor</div>
+                <div class="poem-preview">cad peste marginile cuvintelor mele
+şi mă scufund în sensurile concentrice
+ale sunetelor care curg
+în
+filigranurile unei ploi antediluviene
+ce udă ver...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre chemarea mea cea care mă cheamă", `chemarea mea cea care mă cheamă din neam\nsă mă apese altfel\nsă mă spele altfel\nsă mă respire altfel\nîn aşternutul serii învelit\nîn sentimentul dospit al oboselii\nînvelind\npe nesimțite\numbrele prelungi ale venelor\nşi adâncurile urmelor încrestate devenirii\nşi pământul aşternându-şi tăcerea\nobosit de povara rodirii\nochilor mei\nneobosiților mei ochi\ncăutîndu-te în întuneric\npână când întunericul orbeşte\nşi ochii mei întunecați\nte clădesc din cuvinte încolțite\nchemarea mea care cheamă în numele chemării\nşi în numele verde şi puternic\nal devenirii de sine\npe când pământul crapă de semne\ntrufaş înrâurindu-se tumultuos\nîn văile ascunse ale neamului meu\nproscris şi nescris\ntrecătoarei secunde\ncare bate tăcerea în contratimp\nchemării tale mirosind\na tei\npână la căderea în sine`, 30)'>
+                <div class="poem-title">despre chemarea mea cea care mă cheamă</div>
+                <div class="poem-preview">chemarea mea cea care mă cheamă din neam
+să mă apese altfel
+să mă spele altfel
+să mă respire altfel
+în aşternutul serii învelit
+în sentimentul dospit ...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre cireșe și rouă în trupul unei zile de liniște", `desculțam cerul de floare și roua de lacrimile nopții\nși leneveam întru liniștea pământului încă umed\nflorile se rupeau din ramuri și zburau ca niște fluturi parfumați\nzădărnicind infinitul\ncopacii ciripeau și foșneau neîncetat\nca într-o curgere vinovată de viu\nși pașii nu pășeau ci pluteau către amiază\nîntr-o lume a cireșelor pietroase\ntinere și strălucitoare precum zâmbetul pruncilor\nabia legănați de lumină\ncireșele curgeau rânduri – rânduri\npână ce lumina zilei devenea cireșie\nși gândurile se pătau de sfere mirosind a primăvară\nși brațele se întindeau precum cozile fructelor\nombilical\nsărutând efemerul împlinirii\nîntr-un ritual ispititor\nde dulce\nși tandru\nprecum buzele tale cu gust de cireașă amară`, 31)'>
+                <div class="poem-title">despre cireșe și rouă în trupul unei zile de liniște</div>
+                <div class="poem-preview">desculțam cerul de floare și roua de lacrimile nopții
+și leneveam întru liniștea pământului încă umed
+florile se rupeau din ramuri și zburau ca niște ...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre clipele care cad încet urmând tăcerea", `poate voi mai fi când mă va căuta fericirea - zise\npoate paşii mei mă vor urma - zise ea\nsărutului deschizăndu-i poarta în miez de întuneric\ncu trupul său fierbinte\natât de fierbinte încât se aud fluturii\nzburând orbeşte\npeste râul care curge cu o viteză amețitoare\nprin venele ei\ndesprinzând ecoul de pe pereții care curg şi ei\nlăsând\nclipa să cadă încetul cu încetul\ndar foarte încet\npeste buzele mele\nsorbind însetate iubirea\nfără de care viața nu ar putea păşi în urma ei`, 32)'>
+                <div class="poem-title">despre clipele care cad încet urmând tăcerea</div>
+                <div class="poem-preview">poate voi mai fi când mă va căuta fericirea - zise
+poate paşii mei mă vor urma - zise ea
+sărutului deschizăndu-i poarta în miez de întuneric
+cu trupul...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre cuvântul ferecat în cuvânt", `nimic nu mi-e mai aproape decât tăcerea\nde-aceea îmi tac cuvintele în laptele nopții\nşi le moi cu sârg în adâncul meu\nca să curgă în sens\npure\nca mulse de la țâța fătătoarei\nnumai aşa\nse simte miezul laptelui cuvântat\nbeut cald\ncu spuma albă şi fecundă\na graiului dinlăuntru\ntăcut\ncăci a cuvânta\na învăța tăcerea e\nde vrei să rosteşti\nrefugiul sensului`, 33)'>
+                <div class="poem-title">despre cuvântul ferecat în cuvânt</div>
+                <div class="poem-preview">nimic nu mi-e mai aproape decât tăcerea
+de-aceea îmi tac cuvintele în laptele nopții
+şi le moi cu sârg în adâncul meu
+ca să curgă în sens
+pure
+ca muls...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre cuvinte risipite la prag de zori şi nu încă", `citesc până se crapă cartea din mine\nşi curg cuvintele de prin noapte\naproape de privighetoarea care străbate întunericul\ncolorându-l simfonic\nîn vocale aşezate pe ramurile care încă picotesc\nîn jurul vetrelor în care\njarul pare că încă nu s-a stins\nsau cenuşa e caldă\nmirosind patriarhal a bărbat care vine\nsă doarmă la sânul femeii care\ne numai întrupare a femeii care`, null)'>
+                <div class="poem-title">despre cuvinte risipite la prag de zori şi nu încă</div>
+                <div class="poem-preview">citesc până se crapă cartea din mine
+şi curg cuvintele de prin noapte
+aproape de privighetoarea care străbate întunericul
+colorându-l simfonic
+în voca...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre pietre vorbesc", `şi despre runele mele\nvărsate prin semne\npe ziua din care voi hrăni o secundă cu privirea devenirii mele\nde mine\nîn iubirea mea de tine\nfemeie\nde bine`, 34)'>
+                <div class="poem-title">despre pietre vorbesc</div>
+                <div class="poem-preview">şi despre runele mele
+vărsate prin semne
+pe ziua din care voi hrăni o secundă cu privirea devenirii mele
+de mine
+în iubirea mea de tine
+femeie
+de bine</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre cuvintele astea care se rostesc pe sine", ``, null)'>
+                <div class="poem-title">despre cuvintele astea care se rostesc pe sine</div>
+                <div class="poem-preview"></div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre devenire cumva", `schițează-mă\ndesenează-mă în tuşe simple\nsau lasă-mă aşa în alb şi negru\nrotundă\nsuflă cu suflarea ta de bărbat al meu\npeste mine\nşi eu voi deveni a ta\nşi suflarea ta va fi cuvântul meu\nşi suflarea mea va răsări în poem\nşi lacrimile mele vor curge pe obrajii tăi\ncând te sărut\nşi sărutul nostru va încolți\nîntr-o umbră de primăvară\nşi va rodi\nîn fine\nîntr-un final de lume\nca un strigăt de lebădă nespus\nde\ntăcut`, 36)'>
+                <div class="poem-title">despre devenire cumva</div>
+                <div class="poem-preview">schițează-mă
+desenează-mă în tuşe simple
+sau lasă-mă aşa în alb şi negru
+rotundă
+suflă cu suflarea ta de bărbat al meu
+peste mine
+şi eu voi deveni a t...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre dimineața în care ne-am trezit împreună", `- o schiță din memorie -\naud cum se crapă de ziuă\nşi cum năvălesc peste noi zorii\niertându-ne tăcerea\nstrigătul dimineții ne-adulmecă intens lasciva îmbrățişare\nmirosim puternic a rut\npe când ne deschidem siguri de noi către\no nouă poartă\npe fereastră plouă\nîn graiul\nzilei care tocmai a coborât\npe treptele senine\nde lumină\ne azi`, 37)'>
+                <div class="poem-title">despre dimineața în care ne-am trezit împreună</div>
+                <div class="poem-preview">- o schiță din memorie -
+aud cum se crapă de ziuă
+şi cum năvălesc peste noi zorii
+iertându-ne tăcerea
+strigătul dimineții ne-adulmecă intens lasciva î...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre înflorirea sânilor în miez de lună plină", `îmi place când lumina lunii\nîți dezveleşte sânii pe jumătate\naşa văd numai unduirea temătoare\ncare freamătă întretăiat\nîngânănd pendulul\nde-a lungul nopții\nşi când te văd pe tine mă tem\nc-ai putea să nu fii zână\naşa că\nte privesc pe furiş\npe sub colțul unei raze\ndoar doar aş putea gusta din parfumul tău\nînfiorând\nsânul care devine florar\nşi-mbujorează argintiu\nmişcarea curbă şi uşor ezitantă\na dorinței care urcă\npoate de aceea noaptea\nmi-e mai aproape mie de curgere\nmi-e mai dragă de sens\naşa plină şi grea\nde lumina răsfrântă\npe respirația ta\nadusă în pragul în care\nviața şi neviața\nprivesc în oglinda lunii\nla fel`, 38)'>
+                <div class="poem-title">despre înflorirea sânilor în miez de lună plină</div>
+                <div class="poem-preview">îmi place când lumina lunii
+îți dezveleşte sânii pe jumătate
+aşa văd numai unduirea temătoare
+care freamătă întretăiat
+îngânănd pendulul
+de-a lungul n...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre esențe fine", `esențial\ntribut venelor\ncare se-mpletesc încrâncenat\nîn ramurile mele întinse disperării\necoul\ncăzu ca un trăznet\npeste cerul curbat de durere\nera\no lacrimă care s-a spart\npe caldarâmul fierbinte al ultimei mele imagini\ncu tine întinsă pe pragul iubirii mele`, 41)'>
+                <div class="poem-title">despre esențe fine</div>
+                <div class="poem-preview">esențial
+tribut venelor
+care se-mpletesc încrâncenat
+în ramurile mele întinse disperării
+ecoul
+căzu ca un trăznet
+peste cerul curbat de durere
+era
+o l...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre eterna tăcere a graiului devenit", `gândesc despre trecere\nca despre un salt uriaş peste golul neînțeles\nal lumii de asfalt\no zbatere\no temere\no încruntare\nnimic din lumea de dincolo de frunzele\nabia începute\nşi înțeleg brusc\nrenaşterea pădurii\nîntr-un ciclu ritualic\naşa cum înțeleg\nneputința acestei lumi de oțel\ncare nu trăieşte\npentru că nu ştie să moară\naşa precum nu moare\npentru că nu ştie a trăi\nsensul adânc al vieții e împlântat\npână la durere în moartea\ndevenită acerb\nun înger cu ochi de demon\nde aceea caut frunzele\nşi gustul pădurii\nsupt de pe rădăcinile zorilor\nîncă necuprinşi de flăcări\nde aceea nasc şi mor\ncu fiecare floare\ncu fiecare petală\ncu fiecare rouă\ncu fiecare pas\nde aceea durerea mea\npoartă numele zilei de azi\niar trecerea devine dureroasă\nca o rană perpetuă\nîn poemul unei morți eterne\ndintr-o curbă\ncurge primăvara\ncu miros de prunc\nşi aripi de rădăcini de smalț\npictate\nde-o linişte desenată de trilul stăncuțelor\nîn paşii umezi şi reci\nai dimineții care se scurge\nde pe umerii umbrelor copacilor\nîncă\nînfipți în întunericul nopții care va să plece\ngăndesc despre trecere\ncu eterna tăcere a graiului devenit piatră\npe tărâmul cuvintelor curbate\nde luna care pleacă\nsă-şi depună ouăle\nîn nisipul mărunt şi fierbinte\nal ferestrei abia deschise\nîn sufletul meu`, 43)'>
+                <div class="poem-title">despre eterna tăcere a graiului devenit</div>
+                <div class="poem-preview">gândesc despre trecere
+ca despre un salt uriaş peste golul neînțeles
+al lumii de asfalt
+o zbatere
+o temere
+o încruntare
+nimic din lumea de dincolo de ...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre îmblănzirea ființării prin sacrificiu", `niciodată inima mea nu mi-a aparținut mie\ncum ți-a aparținut ție\nniciodată cuvântul meu nu mi-a aparținut mie\ncum ți-a aparținut ție\nniciodată lacrima mea ...\nba nu...\nlacrima mea ți s-a dăruit cu drumul ei\nşi atunci\ndacă tu ai devenit lacrima mea\nşi eu am devenit drumul tău\nşi dacă lacrima mea\ns-a înfipt adânc în piatră\nce oare mi-a mai rămas\nîn afara\npietrelor din care încalec sărutul tău?`, 44)'>
+                <div class="poem-title">despre îmblănzirea ființării prin sacrificiu</div>
+                <div class="poem-preview">niciodată inima mea nu mi-a aparținut mie
+cum ți-a aparținut ție
+niciodată cuvântul meu nu mi-a aparținut mie
+cum ți-a aparținut ție
+niciodată lacrima...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre inefabilul trecerii", `nu ştiu de ce pendulul s-a oprit în mijlocul străzii\nstau împlântat în amiază şi mă uit siderat\noarecum descumpănit\ndacă dă vreun autobuz peste el\nşi-mi sfarmă ziua asta\nde care nu aveam nevoie?\noare cum îmi mai leg trecutul de viitor?\nautobuz nu trecu\nînsă trecu o eclipsă\na unui prezent perplex\nam făcut nod\nîncepând aşa de pe la noiembrie\npână spre mai\nau ieşit niste anotimpuri ciudate\nşi moş Crăciun umbla să vândă ghiocei\nla intersectia primăverii\ncu toamna\nîncepuseră să cadă florile de măr\nşi copiii ridicau oameni de petale\naşezând unii peste alții\nbulgării de flori moarte\nvexând dramatic durerea\nşi tot oraşul era tulburat peste măsură\ncăci trebuia învățată din nou\nrespirația\ndespicării eternului\ncu o privire de opal\nîntr-o noapte muiată în gestul vrăjit\nal deplinei fervori\niar eu?\neu caut derutat\ncapitolul următor\nal romanului pe care tocmai îl scriu\ncu sângele meu\nîntr-o limbă despre care\npasărea-fântână spune\ncă a țâşnit dintr-o piatră\ntăiată cu sabia inefabilă\na unui destin\ndespicat de un pendul\nucis de-o pasăre\npe trecerea de pietoni`, 46)'>
+                <div class="poem-title">despre inefabilul trecerii</div>
+                <div class="poem-preview">nu ştiu de ce pendulul s-a oprit în mijlocul străzii
+stau împlântat în amiază şi mă uit siderat
+oarecum descumpănit
+dacă dă vreun autobuz peste el
+şi-...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre iubire -", `urcat din sens în trenul vieții mele\nmi-e-adânc, mi-e sete și mi-e frig de tine,\nmi-e noapte, mi-e amurg și răsăritu-mi ține\ntăcerea-n loc și greu tăcerea geme\nalbastru se îndoaie ceru-n zare\nse curbă luna dusă la culcare\nse scurge ziua-n forme lungi de soare\nse-ntoarnă zarea întru nemișcare\nte văd sau nu te văd îmi pare\naș vrea să cred că vei veni spre mine\ndar de dorință podul geme și-abia ține\natâta dor și freamătul mă doare\ne-o lungă căutare și-un prelung ecou\no viață dusă ca un sens de ou\no-ntoarcere eternă la ce-am fost din nou\nperpetuă iubire înscrisă-n indigou`, 48)'>
+                <div class="poem-title">despre iubire -</div>
+                <div class="poem-preview">urcat din sens în trenul vieții mele
+mi-e-adânc, mi-e sete și mi-e frig de tine,
+mi-e noapte, mi-e amurg și răsăritu-mi ține
+tăcerea-n loc și greu tăc...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre iubiri şi piatră", `să te sfâşii între două iubiri\nca şi cum ai arde\nnesfârşindu-te în durere\nprăbuşindu-te într-o luptă în care\nnu poți decât muri\nnu poți nicicum izbândi\ncăci fiecare lovitură a ta\nîți crează o altă rană mortală\nsă te rupi în fiecare zi\nîn fiecare clipă\nîn fiecare mişcare\nîn fiecare dintre ei\ncu-n geamăt profund\nde neîmplinire\npănă la deplina sângerare\nsă te sfâşii între două iubiri\nzidindu-ți durerea în chip de jertfă\nînflorind în jarul unui poem amar\no,\nce desingurare a însingurării\nmă zideşte\nîn piatră`, 49)'>
+                <div class="poem-title">despre iubiri şi piatră</div>
+                <div class="poem-preview">să te sfâşii între două iubiri
+ca şi cum ai arde
+nesfârşindu-te în durere
+prăbuşindu-te într-o luptă în care
+nu poți decât muri
+nu poți nicicum izbând...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre lumina lunii cea clăditoare de semne", `îmi sărut din poartă luna\ncare îmi sărută mâna\ncare îmi mângâie fata\ncare îmi mângâie viața\ncare trece peste mine\nlăsând ridurile fine\nîn care citeşti ce vine\npresărat în colb de mâine\ncare tocmai-şi scaldă fața\nîntr-o bună dimineața\ncare-a coborât din munte\nsă mai pună înc-o punte\nîntre ieri şi ziua care\na sosit să plece-n grabă\ncătre-un sens care îmi scapă\nîntr-o ciutură cu apă\neu în ciutură -mi spăl chipul\ncare îmi citeşte timpul\ncare trece peste toate\nlăsând porțile crăpate\ncât să poți vedea în urmă\ndacă ai lăsat vreo urmă\ncare merită să şadă\ncând coboară luna-n poartă\npe care-o deschid cu mâna\npe care se-aşează luna`, 50)'>
+                <div class="poem-title">despre lumina lunii cea clăditoare de semne</div>
+                <div class="poem-preview">îmi sărut din poartă luna
+care îmi sărută mâna
+care îmi mângâie fata
+care îmi mângâie viața
+care trece peste mine
+lăsând ridurile fine
+în care citeşti...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre zilele triste ale omului trist în urmă", `astăzi sunt trist\nlipseşte ceva din apusul avid care absoarbe\nîn lumină pădurea coborând întunericul\nca o pleoapă cercuită\nprin care\nfulguiesc fecund de tine\nîn cuvinte risipite dintr-un puzzle ce nu se leagă\naş vrea să mă topesc în sens\nca o pasăre în cuibul ei rotund\nca o potecă în adâncul muntelui\nca un gând într-o prelingere lăcrimândă\nşi totuşi astăzi sunt trist\nmă cuibăresc la umbra tâmplei tale\nşi sorb fiecare respirație să-mi astâmpăr setea de tine\nşi buzele-mi împietresc într-un sărut\ncare încă nu a sosit\nîntr-o mângâiere\ncare nu se lasă purtată de goliciunea nopții\ntotul în jurul meu grăieşte\nîntr-un univers al sensului pe care eu nu-l capăt\npe drumul acesta spulberat de căderile\nde pietre ştiute şi neştiute\naflate şi neaflate\nspulberate sau ocolite sau îngropate\npur-şi-simplu\nîn miile de ani cu care îmi încarc poverile\ncu care urc treptele tăcerii care cuvântă\nîn limbi pe care le vorbesc fără să le cunosc\ncopilul meu lângă mine îşi țese cu meticulozitate\npropria poveste într-o altă pădure\npe alte cărări întru alte zboruri\ncântate de păsările umbrite copacilor\npăsările acestea simple care trăiesc atât de simplu\nîncât nu poartă pecetea păcatului\npentru că pentru ele\nesența păcatului nu există\nşi totuşi astăzi sunt atât de trist\npurtându-mi poverile\npe drumurile de munte uitate de urme\nşi negăsite de femeia mea care va fi să vie\ndintr-o altă poveste în care nu este\nşi\nstau aici\nla marginea sensului pădurii care cade în râu\nca o poveste pe care râul o poartă lichidă\nspre marea cea mare\ncare îmbătrâneşte numărând\nmiliardele de plecăciuni ale frunzelor\ncătre devenirile\nnenumăratelor clipe care se scurg\ndntr-o legendă iruptă din jertfa neostenită\na devenirii care mereu devine\nastăzi sunt trist\nîntr-o zi care se lasă tristă\npe umerii mei\nla chemarea înserării\nîn forme numai gândite\nîntr-un gând amar\ncare plânge\nîn timp ce tălpile mele se scurg în țărână\ndin ce în ce mai adânc\nafundându-se\nînclinat\nîn zilele înălțării depline`, 52)'>
+                <div class="poem-title">despre zilele triste ale omului trist în urmă</div>
+                <div class="poem-preview">astăzi sunt trist
+lipseşte ceva din apusul avid care absoarbe
+în lumină pădurea coborând întunericul
+ca o pleoapă cercuită
+prin care
+fulguiesc fecund ...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre măsura aproape picturală a incertitudinii", `desenează-mi un fluture trist\ncu zborul împletit văzduhului incert de mâine\ncu zâmbetul tău curb\nde pasăre prețioasă\narar văzută în înalt şi niciodată\npe pământul pe care\nse întoarce neliniştea la vadul scăzut al zilei\ncare prăjeşte oraşul izbind nările\nhidos şi perfid şi brutal\nfără urmă de gesturi mirate\nşi blânde şi naive\nca-ntr-un hohot dement de sinucigaş plătit\naşezat la marginea lanului de maci ascult\nzgomotele mecanice ale oraşului care curg\ncătre sine cu viteză constantă\nîn altă măsură a mea simfonică\nde om aproape liber\nşi tânjesc după respirația ta de noapte\naproape ghicită şi după brațele care mă încolăcesc\ndesenându-mi constant iubirea\nca pe un zid\nde jur împrejurul liniştii care creşte zborului\ntăcut\nde fluture cu ochii aproape trişti\nsărutând nisipul din deşertul de cuarț al grădinii de stele\nîn care cresc fecund cuvintele aproape nerostite ale\nîmpreunelui de sine`, 53)'>
+                <div class="poem-title">despre măsura aproape picturală a incertitudinii</div>
+                <div class="poem-preview">desenează-mi un fluture trist
+cu zborul împletit văzduhului incert de mâine
+cu zâmbetul tău curb
+de pasăre prețioasă
+arar văzută în înalt şi niciodată...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre oboseală când drumul se stinge", `deprimant\ndar\nnu există o vârstă la care să înceapă prezentul\ncum nu există o vârstă la care\nsă înceapă trecutul\nci doar izvoare care seacă\nşi fântâni care devin amare\ndn lipsă de portaluri\ncătre sinele lui doi\ncăci este posibil\nca atunci când nu mai ai de unde să începi\nsă nu mai ştii unde să continui\nşi\natunci\ndintr-o dată\ndrumul se stinge şi fumegă aproape frânt\na târziu`, 56)'>
+                <div class="poem-title">despre oboseală când drumul se stinge</div>
+                <div class="poem-preview">deprimant
+dar
+nu există o vârstă la care să înceapă prezentul
+cum nu există o vârstă la care
+să înceapă trecutul
+ci doar izvoare care seacă
+şi fântâni...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre parfumul dimineților de mai sprijinindu-mă cu tâmpla de", `sânul tău\nîmpletesc din cuvinte\nziua care se deschide\ncătre mâine\nmirosind a flori de tei până în adâncul\nprivirii care curge pe cer\ndesenând norii\ncare călătoresc către tristețea care-şi întorce chipul\nplouând dimineții\npe cuarțul cuvintelor\ndin care îți croiesc tăcerea\ncu care îți mângâi visul`, null)'>
+                <div class="poem-title">despre parfumul dimineților de mai sprijinindu-mă cu tâmpla de</div>
+                <div class="poem-preview">sânul tău
+împletesc din cuvinte
+ziua care se deschide
+către mâine
+mirosind a flori de tei până în adâncul
+privirii care curge pe cer
+desenând norii
+ca...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre care îmi vei spune", `când îți vei rezema respirația\nde pieptul meu\ncare miroase şi el\nla rândul lui\na flori de tei\npână la ultima călătorie\na îmbrățişării care va veni să-ți odihnească noaptea\nprintre florile ude\nguguştiucul împrunceşte cu propria sa fire\nverbul a deveni\npe care tocmai îl scrijelesc în sens\nca dar cronicăresei care ninge cu dăruire\npetale fine de cuvinte miosind\nevident\na flori de tei\netern\nse crapă de dimineață\nîntr-o lacustră dorință din care se desfac clipele\ncăzând în cuvinte strivite pe buzele tale\nîntretăiate de respirația\npropriei tăceri`, 57)'>
+                <div class="poem-title">despre care îmi vei spune</div>
+                <div class="poem-preview">când îți vei rezema respirația
+de pieptul meu
+care miroase şi el
+la rândul lui
+a flori de tei
+până la ultima călătorie
+a îmbrățişării care va veni să-...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre porţi şi despre stări de fapt", `Motto: „poarta aceasta era hărăzită numai ţie”\nFranz Kafka\ndis-de-dimineaţă ţi-aş fi dat toată inima mea\ndar poarta era dată larg de perete şi-nlăntru durea de vaiet vântul\nla prânz am trecut să-ţi aduc trupul meu şi zilele mele împachetate în ziarul local\ndar poarta scârţâia egoist cu glas de femeie rănită\npe seară am coborât din maşină să-ţi ofer tot ceea ce am înţeles eu din viaţa asta\ndar poarta era pe jumătate închisă şi lacătul atârna cu gura deschisă\nşi uşor într-o parte amar\nmi-am dus mâna la ochi şi mi-am şters sensul picăturilor tuturor ploilor din\nsufletul meu\napoi am tras poarta cu putere şi-am închis lacătul\nse-ntuneca devreme....\n...era iarnă`, 58)'>
+                <div class="poem-title">despre porţi şi despre stări de fapt</div>
+                <div class="poem-preview">Motto: „poarta aceasta era hărăzită numai ţie”
+Franz Kafka
+dis-de-dimineaţă ţi-aş fi dat toată inima mea
+dar poarta era dată larg de perete şi-nlăntru...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre prevestiri şi semne*", `ochiul meu stâng a luat-o razna\nastăzi\nşi a devenit tu devenirii\ndevenind tu\nşi vrînd să mă atingi\nmă vei găsi în chip de adiere pe umărul tău drept\nmâine\npoate mă voi face cuvântul pe care îl respiri întretăiat\nîntre două poeme\nsau poate floarea de salcâm\namestecată în propriul tău parfum\nde arbore al sunetului sculptat ìn vorbe\nal cărei miros îl mesteci\nsau poate\nindiferent\ndar indiferent de metamorfoză\neu voi deveni\nesențial\nsentimental\nşi efemer\nun fluture\npe coperta\ncare-ți va înveli\nființa ta\n*pe o idee a Miruței`, 59)'>
+                <div class="poem-title">despre prevestiri şi semne*</div>
+                <div class="poem-preview">ochiul meu stâng a luat-o razna
+astăzi
+şi a devenit tu devenirii
+devenind tu
+şi vrînd să mă atingi
+mă vei găsi în chip de adiere pe umărul tău drept
+m...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre ridurile cuvintelor din palma dreaptă*", `priveşte-ți mâna și palma\nși ridurile care curg prin palma ta bătrână\nși cuvintele care curg prin ridurile palmei tale\natât de bătrâne și atât de ridate\nși privește cum\ntrebuie să fi înflorit în vers sărutul\ndin cuvintele bătrâne și ridate care curg prin ridurile palmei tale\natât de ajunse de vers\nși sărută sărutul\npe care ți-am dat să îl păstrezi în palma ta\ncea încercată de versul bătrîn și ridat\nprecum ochiul meu\ncel plâns\nde\natâta\nrostuire\na rostirii de sine\n*pe o idee a Miruței`, 64)'>
+                <div class="poem-title">despre ridurile cuvintelor din palma dreaptă*</div>
+                <div class="poem-preview">priveşte-ți mâna și palma
+și ridurile care curg prin palma ta bătrână
+și cuvintele care curg prin ridurile palmei tale
+atât de bătrâne și atât de rida...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre ritualul de împerechere când curge", `când este de iubit femeia\natunci când răsăritul se varsă în Dunăre\nşi sensurile se împletesc mirosind vânătoarea\nluna îşi pierde puterea şi se spală în vatra zorilor\ncu timpanele zvâcninde de dorințe flămânde\nsângele pulsează nebun alergând venele\nşi muierea simte\ncă vânătorul e aproape şi freamătă\nşi freamătul ei\nse zbate în stomac ca un stol de fluturi\nşi vânătorul aude zborul fluturilor\nşi arcul său stă întins gata să plesnească\nşi dansul vânătorului devine hipnotic\nşi prada nu mai află calea să iasă din joc\nşi nici nu mai vrea\nşi nici nu mai poate\ncăci dezbrăcată e pe jumătate\nşi lumea dispare\nşi timpul dispare\nşi clipa se lungeşte şi se lățeşte atât de tare\nîncât devine eternă\nşi săgeata vânătorului străbate eternitatea\nde-a-ndoaselea\ncătre naştere\ncu viteza cu care femeia se lasă pradă\nvânătorii\npână nu mai există nimic şi nimeni\ndoar ritualul\nîmperecherii\ndefinitiv\nprecum\ncreația\ncând este de iubit femeia\natunci când noaptea apasă asupra apusului înroşindu-l\nşi sensurile se împletesc lascive la poarta întunericului\nchemat de lună să-nvelească trupul blând\nfremătând al femeii goale şi lipsite de apărare şi\ndoritoare foarte de împreunare\ndin vânător se desprinde o floare mirositoare\nşi mirosul ei plăcut doare\npână ce noapte pune stăpânire deplină pe mare\nşi femeia adorme vânătorului aripă obosită\nde-a dreapta arcului\natunci zburătorul merge la culcare\n- despre rod într-o anume măsură -\nte-aş săruta şi înflori\ndin miez de noapte-n zori de zi\npetale-n lacrimi ți-aş zidi\nmiros de măr ți-aş nărui\nîn şoapte lungi înşirui\ncu nemăsură birui\namărăciunea lumii\nte-aş săruta prelung şi-adânc\nsă-ți curgă noaptea ca un gând\nsă-ți râdă ziua ca un prunc\nsă-ți plângă ramurile-n vânt\nsă-ți ude talpa cu pământ\nspre temelia lumii\nte-aş săruta de-a dreapta mea\nsă dăm răgaz nopții să stea\nsă dăm luminii crez să ia\ndin dăruire să ne bea\nsuflarea caldă din ulcea\nsă fiu al tău să fii a mea\ncât e suflarea lumii`, 67)'>
+                <div class="poem-title">despre ritualul de împerechere când curge</div>
+                <div class="poem-preview">când este de iubit femeia
+atunci când răsăritul se varsă în Dunăre
+şi sensurile se împletesc mirosind vânătoarea
+luna îşi pierde puterea şi se spală î...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre seducția târzie a lui Paler", `stau\nîntr-o gară pustie şi chioară\ndin noapte îmi cade o şoaptă\nafară\neste o oră când moartea se zbate\ne 3 şi 13\nîn miez de noapte\nun ceas se fărâmă undeva într-un zid\nşi este tăcere\ne trist şi e vid\nadică nimicul uitat de nimic\nadică nimicul şi-atât\ndoar nimic\ntrecutul s-a dus\nnu-i bun de nimic\ndin viitor nu ştim mai nimic\nşi nici în prezent nu-i ceva de nimic\ne moartea pe-aproape\nşi nu simt nimic\nnici frică, nici ură\ndezgust parc-un pic\ne-aproape departele\nnu trece nimic\nprin gara pustie şi rece şi chioară\ne 3 dimineața şi-i rece afară\nmă doare absența şi las\' să mă doară\ne-o noapte de mai infirmă şi goală\nnu-s paşi nu-s tăceri nu-s iubiri\ndoar o gară\nîn care pendulul bătrân stă să moară\nperonul e gol lumina e chioară\nşi trenul plecat s-a-mpuşcat într-o seară\npe când disperarea se-aştepta să mă doară\nşi singurătatea se trata ca o boală\nstau - cum spuneam - e târziu şi-s aici\ndoar Paler mai trece să vadă ce zici\nNichita se zbate să crească un pic\nşi luna se plânge iar mie mi-e frig\nnu-i urmă de tine nu-s bun de nimic\ne ora când moartea mai moare un pic`, 70)'>
+                <div class="poem-title">despre seducția târzie a lui Paler</div>
+                <div class="poem-preview">stau
+într-o gară pustie şi chioară
+din noapte îmi cade o şoaptă
+afară
+este o oră când moartea se zbate
+e 3 şi 13
+în miez de noapte
+un ceas se fărâmă u...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre sensul căutării*", `te caut\nîntr-o primăvară infinită te caut\nsimt urmele tale risipite în toate florile pământului\ncu toate simțurile mele\nca un parfum primar\nnefinisat\naproape barbar\nfără să sper că te-aş putea găsi\nfără să sper că te-aş putea atinge\ninsinuată cumva\nîn apa care-ți remodelează chipul\nla deschiderea nopții către zi\nascunsă cumva în lumina\ncare se-mplântă în pieptul tău de bărbat fără leac\nca într-un joc neterminat de-a v-ați ascunselea\nîn care când îmi acopăr ochii\nte ascunzi\nşi jocul se termină\nfără să primesc şansa de a te căuta măcar\ndar eu te caut în fiecare joc\nla marginea jocului\nşi dincolo de joc\npână cât\npână unde\npână când\npesemne tu\nmă cauți\n* pe o idee a Miruței`, 72)'>
+                <div class="poem-title">despre sensul căutării*</div>
+                <div class="poem-preview">te caut
+într-o primăvară infinită te caut
+simt urmele tale risipite în toate florile pământului
+cu toate simțurile mele
+ca un parfum primar
+nefinisat
+...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre suflet atunci când nu trebuie să vorbești despre el", `sufletul meu umblă desculț printre cuvintele tale\nprintre cuvintele mele\nprintre toate cuvintele care ajung rătăcite\npe calea ușor prăfuită\na zădărnicitelor priviri\nși\nnu numai\nse rănește ușor\nse scrijelește adânc\nși se-mpietrește devreme\ndacă nu mă grijesc\nsă-i sădesc\nsă-i plivesc\nsă-i grijesc\nadânc și profund\niubirea mea pentru tine\ndin când în când chiar\nsimt nevoia să-mi scot pălăria și să mă salut respectuos\ncând trec prin mine\nîn drum spre tăcere`, 74)'>
+                <div class="poem-title">despre suflet atunci când nu trebuie să vorbești despre el</div>
+                <div class="poem-preview">sufletul meu umblă desculț printre cuvintele tale
+printre cuvintele mele
+printre toate cuvintele care ajung rătăcite
+pe calea ușor prăfuită
+a zădărnic...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre râul care curge în spirală", `curg cu râul ăsta care-mi curge devale\nîn vine\nşi spală adânc pietrele\nşi spală adânc semnele mele\nînrădăcinându-mă\nîn urmă\ndevenind ceea ce am fost când nu eram\nşi credeam\nîn puterea semnelor mele\nşi devenirii mele\nşi puterea puterilor mele\nce sapă în mine\nrune\nîntru credința rădăcinilor\ncăpătate încă\nde la capătul pămăntului\nca sens\nal semnelor\ncare nasc tăceri\nîntru naştere lumii\nce va să fie\ncând nu am fost`, 75)'>
+                <div class="poem-title">despre râul care curge în spirală</div>
+                <div class="poem-preview">curg cu râul ăsta care-mi curge devale
+în vine
+şi spală adânc pietrele
+şi spală adânc semnele mele
+înrădăcinându-mă
+în urmă
+devenind ceea ce am fost c...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre timp între două clipe", `Motto:\n“Dumnezeu este intervalul dintre două bătăi ale inimii.”\nEmil Cioran\nîntre două bătăi ale inimii\nam urcat un etaj mai sus\nsă-l întreb pe Dumnezeu cât e ceasul\nera târziu tare și lumea începuse\nsă miroasă a întuneric\nCreatorul își ridică privirea din etern\nși spuse cu degetul dus la buze:\nbătrâne,\ne Timpul!`, 76)'>
+                <div class="poem-title">despre timp între două clipe</div>
+                <div class="poem-preview">Motto:
+“Dumnezeu este intervalul dintre două bătăi ale inimii.”
+Emil Cioran
+între două bătăi ale inimii
+am urcat un etaj mai sus
+să-l întreb pe Dumnez...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre treptele prispei pe care şed", `trepte`, null)'>
+                <div class="poem-title">despre treptele prispei pe care şed</div>
+                <div class="poem-preview">trepte</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre trepte vorbeam", `ca despre treptele dimineților care\nse trezesc precum florile\nridicând zorile şi ițindu-se peste culmile munților\ncu larma păsărilor\ncu gălăgia curților\ncu zgomotul satului care forfoteşte\nde-a dreapta de-a stânga\nde jur împrejur\nîntr-o pulsație trainică şi demult clăditoare`, null)'>
+                <div class="poem-title">despre trepte vorbeam</div>
+                <div class="poem-preview">ca despre treptele dimineților care
+se trezesc precum florile
+ridicând zorile şi ițindu-se peste culmile munților
+cu larma păsărilor
+cu gălăgia curțil...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre trepte grăiesc florile", `care împodobesc diminețile cu miliarde de culori\npictând lumina grăitoriu\nîn tuşe care zugrăvesc frumusețea\niubirilor care vin şi trec cu aceeaşi sete\nde milioane de ani\ndând cărturarului timp să caute trăinicia efemerului\nşi peste toate\ntreptele glasurilor clopotelor\ndesenând\nmăsura vieților noastre clădite\npe măsura ecoului care întrupă\nspărgând în trepte ceasurile care trec\naici\nîn vârfurile picioarelor\nca să nu tulbure\neternitatea`, 80)'>
+                <div class="poem-title">despre trepte grăiesc florile</div>
+                <div class="poem-preview">care împodobesc diminețile cu miliarde de culori
+pictând lumina grăitoriu
+în tuşe care zugrăvesc frumusețea
+iubirilor care vin şi trec cu aceeaşi sete...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre tristețe atunci când am de ce să mă sprijin", `învelit în cuvintele mele\ntrec deşetul nopții\nmirosind atât de puternic a tine\nîncât aerul devine curb\nşi cuvintele vaier\nurcând spre tăcere\nîn chip de urme sculptate în nisipul trecerii\nîntunericul devine din ce în ce mai dens\nşi nisipul devine piatră\nşi cuvântul rostire\nşi tu lumina de care mă reazăm să plâng\nîn forme ciudate\nnumai de tine sădite\nîn petale purtate de vânt\nşi atinse din când în când\nde zborului unei aripi\nde înger`, 81)'>
+                <div class="poem-title">despre tristețe atunci când am de ce să mă sprijin</div>
+                <div class="poem-preview">învelit în cuvintele mele
+trec deşetul nopții
+mirosind atât de puternic a tine
+încât aerul devine curb
+şi cuvintele vaier
+urcând spre tăcere
+în chip d...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre tristețea așteptării", `mă uitam pe fereastră\ndupă gîndurile mele albe\nși afară ningea alb\nmă uitam pe fereastră\ndupă umbra ta prelungă și albă\nși afară ningea alb\nmă uitam pe fereastră\ncum ninge alb și tandru\nși afară plângea alb`, 82)'>
+                <div class="poem-title">despre tristețea așteptării</div>
+                <div class="poem-preview">mă uitam pe fereastră
+după gîndurile mele albe
+și afară ningea alb
+mă uitam pe fereastră
+după umbra ta prelungă și albă
+și afară ningea alb
+mă uitam p...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre viața care curge în giratoriu", `asemeni gândului\nasemeni umbrei\nasemeni oglinzii\nflux\ncăci\nm-am îndrăgostit de tine\nelementar\nrâule\ncare curgi în sânul venelor mele\nîn chip de roată\nnu vei fi nicicum mai aproape\nclepsidrei\nstrecurându-te sub paşii secundelor\nca atunci când râzi\nvisului`, 83)'>
+                <div class="poem-title">despre viața care curge în giratoriu</div>
+                <div class="poem-preview">asemeni gândului
+asemeni umbrei
+asemeni oglinzii
+flux
+căci
+m-am îndrăgostit de tine
+elementar
+râule
+care curgi în sânul venelor mele
+în chip de roată
+...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre zborul neîmplinit al micului vrăjitor", `micul vrăjitor credea\ncă ochii lui au învățat să zboare\ncredea că or să-şi întindă aripile\nîncărcate de toată floarea răpită primăverii\nşi se vor înălța şfichiuind dorul de albastru\ndar ochii săi au fâlfâit stângaci din aripi\nşi s-au prăbuşit de atâta greutate furată privirii\ni-a luat în palma încă fierbinte\ni-a mângâiat golindu-i de lacrimi\nşi i-a aşezat orbi în dorul seninului\ndegeaba\nochii s-au prăbuşit în iarbă\nşi-au răsărit în durere\nînfrunzind aşteptării\ncu chipul vrăjitei iubiri răpite`, 84)'>
+                <div class="poem-title">despre zborul neîmplinit al micului vrăjitor</div>
+                <div class="poem-preview">micul vrăjitor credea
+că ochii lui au învățat să zboare
+credea că or să-şi întindă aripile
+încărcate de toată floarea răpită primăverii
+şi se vor înăl...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre", `am vrut să-ți vorbesc despre durere\ncu fervoarea celui care slujeşte\nîn numele iubirii\ncăci numai în iubire\ndurerea capătă boboci și înflorește\nam vrut să-ți vorbesc despre iubire\ncu fervoarea celui care slujește\nîn numele durerii\ncăci numai în durere\niubirea plânge cu lacrimi de înger\nam vrut să-ți vorbesc despre doi\ncu fervoarea celui care slujește\nîn numele celui care este singur\ncăci numai în singurătate\nperechea își înțelege cuibul rotunjindu-se în soare\ncum nu erai aici am întins mâna\nși ți-am atins dorul\ncu pleoapa stinsă de–o lacrimă`, 85)'>
+                <div class="poem-title">despre</div>
+                <div class="poem-preview">am vrut să-ți vorbesc despre durere
+cu fervoarea celui care slujeşte
+în numele iubirii
+căci numai în iubire
+durerea capătă boboci și înflorește
+am vru...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre apus mai întâi", `eşti simfonia tăcerii induse\nîntre două note muzicale uitate pe pian\nprăfuindu-se-n lumina strecurată perdelelor\nşi-n zare se vede apusul\neşti linia curbată indigo ce adună orizontul\nîntr-o lume de siluete impresioniste\ncontorsionându-se în roşu prelung\nşi-n zare se vede apusul\neşti zăpada tremurândă de pe tâmpla muntelui\naplecat către sine\nîntr-un gest bătrân de înțelegere a drumului\nşi-n zare se vede apusul\neşti sfera profund şi păgân modelată de vânt\nîn chip de privire\nși tânjesc cu tăcerea rotund după semnul\nîn care-o fi plecat din zare apusul`, 86)'>
+                <div class="poem-title">despre apus mai întâi</div>
+                <div class="poem-preview">eşti simfonia tăcerii induse
+între două note muzicale uitate pe pian
+prăfuindu-se-n lumina strecurată perdelelor
+şi-n zare se vede apusul
+eşti linia c...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre ce n-aş vrea să spun şi nu numai", `ce-mi rămâne mie\nîntre noapte şi noapte\nşi nu seamănă a zi\nrăsărită\nîn numele tău\nşi nu seamănă\na fervoare circular împlântată\nîn genunea nopții\nîntre pleoapă şi pleoapă\nîmi răsare anume grăirea\nîntre mine şi umbră\nînvăț să păşesc\nşi\nnu ştiu ce-mi rămâne\nmie\nîntre mine şi mine\npentru că de-atâta tu\nnu-l recunosc pe eu`, 87)'>
+                <div class="poem-title">despre ce n-aş vrea să spun şi nu numai</div>
+                <div class="poem-preview">ce-mi rămâne mie
+între noapte şi noapte
+şi nu seamănă a zi
+răsărită
+în numele tău
+şi nu seamănă
+a fervoare circular împlântată
+în genunea nopții
+între...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre datoriile mele către dorință", `plătesc tributul absenței tale\nnoapte de noapte\npe când până şi limbile ceasornicului din perete\nse îmbrățişează insinuant\nplătesc tributul absenței tale\nşi trupul meu se zvârcoleşte biciuit\nde lumina difuză a lunii\nce vrea să-i înghețe orice fărâmă de dorință\nplătesc tributul absenței tale\nîntr-o succesiune ireală de mii de minute goale\nşi plătesc cu conştiinciozitate acest tribut\ncu teama în suflet de a nu rămâne datoare\nplătesc tributul absenței tale\ncu zgomotul metalic al lacrimii\nce se usucă pe obraz\nşi\nînspăimântător de brutal e\ncă plătesc acest tribut\nfără să ştiu cât de datoare mai sunt`, 88)'>
+                <div class="poem-title">despre datoriile mele către dorință</div>
+                <div class="poem-preview">plătesc tributul absenței tale
+noapte de noapte
+pe când până şi limbile ceasornicului din perete
+se îmbrățişează insinuant
+plătesc tributul absenței t...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre deplin dar nu până acolo", `astăzi aş vrea să fiu a ta\naşa cum n-am fost niciodată\naş vrea să fiu a ta\ncu toate nerostirile tăcerilor mele\nrespinse ecoului meu timid\ncu toată neliniştea liniştii mele lascive\ncu toată umbra zorilor de zi nedespachetați\ncu toata neființa deființării mele\na fi să fiu fire deplin de tine\nastăzi aş vrea\niubire`, 89)'>
+                <div class="poem-title">despre deplin dar nu până acolo</div>
+                <div class="poem-preview">astăzi aş vrea să fiu a ta
+aşa cum n-am fost niciodată
+aş vrea să fiu a ta
+cu toate nerostirile tăcerilor mele
+respinse ecoului meu timid
+cu toată nel...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre drama absenței când ea doare", `neputincios\nazi noapte nu am fost în stare\nsă îți desenez absența\nmă uitam la tine şi ochii îmi erau orbi de cuvinte\nşi absența rămânea în mod absurd\nun gol\nam plâns-o doar\nîmbrăcând-o în gesturile mele\ncrispate\nviolate\nde noaptea care-mi zădărnicea durerea\nmi-e frică de noaptea nopții\nmi-e teamă când taci tăcerea\nîngerii tristeții mele amare\nîmi cântă apoteotic\npe clape dezacordate de pian neputința\nde a-ți desena măcar\nabsența`, 90)'>
+                <div class="poem-title">despre drama absenței când ea doare</div>
+                <div class="poem-preview">neputincios
+azi noapte nu am fost în stare
+să îți desenez absența
+mă uitam la tine şi ochii îmi erau orbi de cuvinte
+şi absența rămânea în mod absurd
+...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre jumătatea întreagă a măsurii", `mă uit la ziua de linişte ce-mi intră pe jumăate\npe fereastra deschisă mie\nrostesc jumătatea din cuvântul meu\naud jumătate din melodia ta\nsimt că plouă pe jumătate\nşi mă bucur doar de jumătate de anotimp\nşi te-aş strânge în brațele mele însetate\ndar cum aş putea să te cuprind\ncu doar o jumatate de îmbrățişare?\nrotesc privirea prin jumătate de încăpere\nşi scotocesc curios prin jumătatea mea\ndin ungherele inimii tale\nte aflu în jumătate din timpul meu\nla jumătatea timpului tău\ncănd te port în mine ca jumătate\nşi nu înțeleg cum poate fi\njumătatea de tine\ndeplin de mine\npe deplin`, 91)'>
+                <div class="poem-title">despre jumătatea întreagă a măsurii</div>
+                <div class="poem-preview">mă uit la ziua de linişte ce-mi intră pe jumăate
+pe fereastra deschisă mie
+rostesc jumătatea din cuvântul meu
+aud jumătate din melodia ta
+simt că plou...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre portul popular al cuvintelor de dor în joc", `te port între pleoape\nvedere a vederii\ncăprui durerii\nte port în surâs\nrăsărită sărutului\nfragmentând răsăritului\nte port în fiecare încăpere a sufletului\nizvorând necontenit de mine\npoverii de tine\nm-ai învățat să te port în cuvânte\nşi uite\nacum\nte scriu\niubite\ncând încă nu te iubesc\ncu trupul meu\nde minte`, 92)'>
+                <div class="poem-title">despre portul popular al cuvintelor de dor în joc</div>
+                <div class="poem-preview">te port între pleoape
+vedere a vederii
+căprui durerii
+te port în surâs
+răsărită sărutului
+fragmentând răsăritului
+te port în fiecare încăpere a suflet...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre rost atunci", `mi-e grea rostirea - am spus simt că rostul meu nu mai e în rostire\n- am spus uşor confuză îmi e străin cuvântul şi vreau să tac!\nO,\ncât de mult îmi doresc să tac!\naşa de la un capăt la altul vreau să tac\npentru că rostul meu nu mai e în rostire!\n- am spus încă difuz\nneştiindu-mă pe mine înlăuntrul tău și-atunci\ndintr-o dată\nfără să mă prevină\nrostirea se întoarse spre mine\ncu-n zâmbet pe chip în loc de cuvânt\nchip pe care-l credeam demult pierdut\nşi dintr-o dată am devenit\nrostul meu\ndevenindu-te rostind pe tine\nîn chip de icoana\nlacrimei mele\nprinse\nîn dor`, 93)'>
+                <div class="poem-title">despre rost atunci</div>
+                <div class="poem-preview">mi-e grea rostirea - am spus simt că rostul meu nu mai e în rostire
+- am spus uşor confuză îmi e străin cuvântul şi vreau să tac!
+O,
+cât de mult îmi d...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre duminică în aşteptare cu semne de carte", `uită-te la mine cu ochii mei\npune-ți\nochelarii mei şi cercetează atent cum mă rodesc pe mine\nție şi vei înțelege\nde ce florile pe care ți le împletesc în păr\nmiros a tei\nși-a duminică\nși-a trifoi\ncu patru foi și-a atâta linişte\nscufundată în pieptul secundei încât\nrămâi fără aer şi simți nevoia să păşeşti\npe sufletul meu împletind cuvinte\nîn semne de carte încet\ndorul se aşează la loc răbdător\nsă-şi soarbă porția de dorință\ndintr-o cafea cu gust de mai răsărit devreme\nîn culorea buzelor atinse de rod dezbracă-te uşor\nsă nu trezeşti drumul şi aşează-te lângă mine\nprecum o zi neatinsă soarele îți va înfiora sânii\nşi-ți va atinge pielea ca o dorință fierbinte acoperită puțin\nde un voal insinuant şi inutil\nmă voi uita la tine cu ochii dorinței mele de tine şi\ntu vei deveni eu şi\neu voi deveni tu pune doar semnul de carte\nsă ştim unde-am rămas`, 94)'>
+                <div class="poem-title">despre duminică în aşteptare cu semne de carte</div>
+                <div class="poem-preview">uită-te la mine cu ochii mei
+pune-ți
+ochelarii mei şi cercetează atent cum mă rodesc pe mine
+ție şi vei înțelege
+de ce florile pe care ți le împletesc...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre durerea marginii de tine în formă continuă", `în fiecare noapte\ndar în fiecare noapte ce trage la mal\nînainte de a adormi la marginea amară a sensului\naş vrea să îți cuprind fața între palmele mele\nca şi cum palmele mele ți-ar fi obraji\nşi tâmplele ți-ar zvâcni a mine\nşi să privesc cu ochii mei ochii tăi\npână când toată culoarea durerii lor\ns-ar cufunda in verdele verdelui ei de împrimăvărare\nşi gura mea şi mintea mea ți-ar pune o întrebare\nce ai de gând măi bărbate al meu cu femeia femeii din mine\nnăscută să îți fie ție măsură?\ncâte nopți vor mai fi\neu minus tine\ntu minus mine?\nîntrebarea asta a mea care mă doare\nîntr-o noapte care mă doare\ndar in fiecare noapte care mă doare\npână la marginea durerii mele\ntot doare`, 95)'>
+                <div class="poem-title">despre durerea marginii de tine în formă continuă</div>
+                <div class="poem-preview">în fiecare noapte
+dar în fiecare noapte ce trage la mal
+înainte de a adormi la marginea amară a sensului
+aş vrea să îți cuprind fața între palmele mel...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre rănile provocate aşteptării cu disperarea ploii inverse", `desenez paşii care bezmetic adună aşteptarea\nîn cărări prelungi înnodate în sensurile durerii\nurmei tale încă rămase contur blând pe irişii mei\ncare acum rostesc numai lacrimi desprinse de patimile\nsecundei care nu a mai trecut pragul rătăcindu-se\nmi-este atât de tine încât crăpăturile zilei\nlasă vederii disperarea cu care îmi car sentimentele\ntârându-le muşcăndu-le prăfuindu-le\nînghesuindu-le în ungherele urletelor mele interioare\ncare se învârt amețite în sensurile giratorii\nale imaginarelor mele îmbrățişări nepetrecute\nale nefăptuitelor noastre sărutări rămase doar ecoului\numbre prelungi suspinând rafaelic pe garduri pustii\ndesprinse de porțile ruginite ale ploilor care curg\ninvers de atâta neputincioasă şi ibovnică durere\nscurgându-se în plânsul găndului lacustru care\nnu se mai termină`, 96)'>
+                <div class="poem-title">despre rănile provocate aşteptării cu disperarea ploii inverse</div>
+                <div class="poem-preview">desenez paşii care bezmetic adună aşteptarea
+în cărări prelungi înnodate în sensurile durerii
+urmei tale încă rămase contur blând pe irişii mei
+care a...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre elementara prețuire neprețuită a femeii ca să fie a ta", `şi n-am să-ți spun\ncât de mult mă doare\ncă nu ai răbdare\nsă te nasc o floare\nsă te ud din mare\nsă te cresc răsare\nsă te am din doare\nsă te culc răcoare\nsă te rup din soare\nşi să te prind în părul vieții mele\npreț de veşnicia mea`, 97)'>
+                <div class="poem-title">despre elementara prețuire neprețuită a femeii ca să fie a ta</div>
+                <div class="poem-preview">şi n-am să-ți spun
+cât de mult mă doare
+că nu ai răbdare
+să te nasc o floare
+să te ud din mare
+să te cresc răsare
+să te am din doare
+să te culc răcoar...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre cum se pregăteşte o femeie devenirii sale", `se ia din fereastră o femeie\ndar nu una oarecare\nla-ntâmplare\nci acea femeie care\nîți aduce toată lumina dimineții pe pragul pleoapelor tale\nşi o filtrează printre gene cu surâsul sărutului\nse ia această femeie goală\ndupă ce s-a zidit în cuvinte\nşi s-a clădit în poeme\nşi se strânge puternic în brațe în încleştarea dimineții\npână când se fărâmă\nşi se transformă în praf de femeie\npraful de femeie se amestecă bine bine\npână la dizolvare cu apă neîncepută de izvor\nşi cenuşa albă a nopții împărtăşite\nse ia aceasta femeie măsurată cu măsura ta nemăsurată\n- singura măsură a ta şi se bagă în cuptorul inimii tale\npână creşte la țărmul nedesluşit\nal devenirii\nla final se presară puțină fericire\npentru culoare`, 98)'>
+                <div class="poem-title">despre cum se pregăteşte o femeie devenirii sale</div>
+                <div class="poem-preview">se ia din fereastră o femeie
+dar nu una oarecare
+la-ntâmplare
+ci acea femeie care
+îți aduce toată lumina dimineții pe pragul pleoapelor tale
+şi o filt...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre devenirea din visul de devreme", `dimineața devreme\ncând lumina deschide cărarea către o nouă zi\nîmi vine să mă ascund\ndupă colțul ultimei tăceri\nîn visul copilului meu\nîn care zborul meu gravează\nochiului\noul cristalin al copilăriei\npe care\npruncul desenează cu sârguință\nnumele meu cu primele litere ale purității\nsufletului său de cocon\nîi sărut fruntea şi surâsul visului său\nşi mă închin la el\ncu devenirea zborului meu\npecetluit iubirii lui\naşteptând să treacă primul său cuvânt\nîn care urc cu desăvârşirea fervorii mele\nşi-n loc de mine\ntrec toți bărbații neamului meu\ncare şi-au ridicat zborurile\nîntru mărirea pruncilor lor de mine\naşa mă asigur că e o nouă zi\nşi-mi fac curaj să păşesc din nou\nîn lumina care trece\nmult prea devreme\nsau mult prea târziu`, 99)'>
+                <div class="poem-title">despre devenirea din visul de devreme</div>
+                <div class="poem-preview">dimineața devreme
+când lumina deschide cărarea către o nouă zi
+îmi vine să mă ascund
+după colțul ultimei tăceri
+în visul copilului meu
+în care zborul ...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre Cronicăreasă", `ce bine te prinde numele acesta pe tine,\nCronicăreaso, uite,\nam ajuns la al nu-ştiu-câte-miilea sărut\ntrimis în fiecare vis matinal\nşi tu le ții minte pe toate,\nle aduni pe toate\ncum ai aduna zorii prin dimineață\nşi i-ai mâna la lumină,\nuite, ia şi zămbetul ăsta obosit,\nştiu că ai altele şi mai bune,\nşi mai vii\nşi mai adănci,\ndar ce să-i faci,\nnu poți să fii întotdeauna la fel,\nce bine te prinde numele acesta pe tine,\nCronicăreaso,\nnimeni nu ar putea să adune iubirea\nmai bine şi mai profund\ndecât o faci tu,\nuite, ia şi cioburile acestea de suflet,\npoate vei reuşi să mai faci ceva din ele\ncă eu nu mai reuşesc\nsă mă recompun pe mine\nîn sinele meu\nfără tine!`, 100)'>
+                <div class="poem-title">despre Cronicăreasă</div>
+                <div class="poem-preview">ce bine te prinde numele acesta pe tine,
+Cronicăreaso, uite,
+am ajuns la al nu-ştiu-câte-miilea sărut
+trimis în fiecare vis matinal
+şi tu le ții minte...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre furul care încă nu mă fură", `fură-mă atât cât mai poți\ndin nopțile sfâşiate de inimi doldora de durere\nîn care sticleşte amorf\ndisperarea ce se aşterne temeinic\nîn glastrele putrede ale ferestrelor\nfură-mă din sângele florilor ofilite\ncare îşi răsfiră inconştient petalele deja triste\nşi fură-mă din mirosul reavăn\nverde de grâu astupat depărtării\nşi fură-mă din jarul vetrei plămădită cu palmele tale\nşi din mine\nfură-mă mie cu meşteşugul tău ascuțit\nşi-apoi ascunde-mă\nşi fă-mă măsura timpului tău\nfă-mă măsura\nniciodată măsurată a versului\ncu care te legi de țărmul dintre cuvinte\ntribut poemului de iubire\nce creşte\nîn visul devenirii mele înlăuntrului meu\nde tine`, 101)'>
+                <div class="poem-title">despre furul care încă nu mă fură</div>
+                <div class="poem-preview">fură-mă atât cât mai poți
+din nopțile sfâşiate de inimi doldora de durere
+în care sticleşte amorf
+disperarea ce se aşterne temeinic
+în glastrele putre...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre pasărea-fântână sărutând fervoarea", `din ochii păsării-fântână curg\ncriptate durerile mele toate\ncu asupra de măsură\npe când pleoapele ustură privirii\nde atâta veghe\na drumului care şerpuieşte devenirii\nîntrupând şovăelnic tăcerea care se scrie pe sine\nîntr-o neterminată deziluzie\nşchipătând disperării\nîn formă de dor\neste atât de întuneric încât\ndurerile sclipesc de atâta zbucium\npe bolta necunoscutului meu destin\ndepus la picioarele tale\nîn formă de nălucă a zborului\ncuvintelor asuprite poemelor tatuate\nsufletelor noastre\ndeschizând uşile dorințelor neîmplinite\ndin zborul păsării-fântână curg pieziş\nclipele curbate ale iubirii\ncare va să vină\nîntr-o gară bătrănă şi obosită\nîn chipul adulatoriu\nal\nfervorii\ndin când în când\npasărea-fântână\nse-adapă din inima de piatră a fervorii\npână la patimă`, 102)'>
+                <div class="poem-title">despre pasărea-fântână sărutând fervoarea</div>
+                <div class="poem-preview">din ochii păsării-fântână curg
+criptate durerile mele toate
+cu asupra de măsură
+pe când pleoapele ustură privirii
+de atâta veghe
+a drumului care şerpu...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre visul meu de mine", `nu mai pot dormi demult în visul meu\nîngrozitor de străin mie\ntocmai pentru că îl ştiu atât de bine\nîncât cu greu aş putea spune\ndacă sunt eu sau sunt visul meu\natât de mine ieşit dinlăuntrul meu sunt\nîncât adesea\nnici nu-mi vine să mă mai întorc\nsau să mai întorc chipul\ncătre ceea ce nu mai sunt\nde ceva vreme\nde când întoarcerea nu mai e o opțiune\nnu mai pot dormi nicicum nici în visul copilei mele\npeste care ninge cu flori de tei\npeste care ninge amestecat cu zile şi dureri\ncu renunțări dar şi cu speranțe deja trăite\natăt de mine ieşit dinlăuntrul meu sunt\nîncât adesea\nnici nu-mi vine să mă mai întorc\nsau să mai întorc chipul\ncătre ceea ce nu mai sunt\nde ceva vreme\nde când întoarcerea nu îşi mai află semnele\nîntoarse firii\nşi nici măcar în visul tău nu mai pot dormi\nde atăta nerăbdare strânsă apusului\ncătre care nu mă duc\npentru că am apus demult\nîn formă de om\nşi nu mai mi-au rămas\ndecât cuvinte\nîncât nici nu-mi vine să mă mai întorc\nsau să mai întorc chipul\ncătre ceea ce nu mai sunt\nde ceva vreme\nde când întoarcerea\nnu a mai rămas decăt o pagină\nîn calea nemărginirii`, 103)'>
+                <div class="poem-title">despre visul meu de mine</div>
+                <div class="poem-preview">nu mai pot dormi demult în visul meu
+îngrozitor de străin mie
+tocmai pentru că îl ştiu atât de bine
+încât cu greu aş putea spune
+dacă sunt eu sau sunt...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre ritualul intoarcerii in sine", `mă-ntorc în calea mea spre mine\nsecundându-mă onoarei\nde a tăia secunda în două\nîn sensul cubic\nderulând lumina lunii prin gaura cheii întoarcerii\ncătre niciunde\ncătre nicicând\nşi\nmai ales către nicicum\nîntr-o pauză muzicală\ndintre două note desenate elementar\nincantantoriu\nîn măsura divinului\ncare tocmai a ars\npână la tăcerea profundului\nabis în care îmi doarme\nsemnul plus\nîn amintirea erorii din care vin\ndeasupra\ndintr-un văzduh alternativ\ncurg note de pian în chip de frunze\ndintr-o toamnă aleatorie\na unui pas\nde crin`, 104)'>
+                <div class="poem-title">despre ritualul intoarcerii in sine</div>
+                <div class="poem-preview">mă-ntorc în calea mea spre mine
+secundându-mă onoarei
+de a tăia secunda în două
+în sensul cubic
+derulând lumina lunii prin gaura cheii întoarcerii
+căt...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre fervoare, tăcere şi trecere, ca devenire", `târziu\nîn preajma adâncului nopții\npe când tocmai treceam la dreapta visului\npruncului meu\nînvelindu-mă protector în tăcere\nde atâta fervoare a dăruirii niciodată secate\npe când răcoarea îşi luxase glezna\nşi întârzia să se aşeze\nasupra de oraş\ntârziu - spuneam el se aplecă peste mine\nca elf nu ca zeu\nca elf încă neasemuit de frumos\ndar fără nimic din durerea mea\nfără nimic din ura mea\nfără nimic din dragostea mea\nde tot şi de toate\nşi îmi şopti aproape ireal\naproape de urechea mea acum desfăcută\nprecum un evantai\nîmi şopti - spuneam din primele clipe\ncum că nu mai pot trezi cu nici o aripă\nlumina care se-ngroapă în ziua ce vine\nlăsând ochilor mei\neternitatea clipei care nu va mai opri\nîn nici o gară\nsecundele pleznesc isteric de secetă\nşi se împrăştie pe caldarâmul fierbinte\nîn care se-afundă şi umbrele\nşi gândurile\nşi\npofta ta de femeie prefăcută în\nfântână\nnemeritat de trecătoare\nnetrecător de iubitoare\nneiubitoare de depărtările\ncare se întorc\nîn uitare\ntârziu\nîncerc să scriu pe fiecare răsărit\nnumele deplinei tale înțelegeri cu copacul\ncare învață să înțeleagă şi ziua şi noaptea\nşi trunchiul său\nîncă netăiat\nde lumina care încă nu sunt eu pe mine însumi\nculoare cu care să-mi semnez amurgul\ncare să-mi înțeleagă noaptea care-mi întoarce\nochii înspre lăuntricul vers al visului\ndispre patimă\ndoar sensul pluteşte\nîn zgomotul asurzitor al\nsecundelor care-şi întorc\nsemnele\ncătre intrarea care intră\npieziş în etern`, 106)'>
+                <div class="poem-title">despre fervoare, tăcere şi trecere, ca devenire</div>
+                <div class="poem-preview">târziu
+în preajma adâncului nopții
+pe când tocmai treceam la dreapta visului
+pruncului meu
+învelindu-mă protector în tăcere
+de atâta fervoare a dăruir...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre tristețea desculță", `obosesc\ntrecând peste atâtea pagini desculțe\nîn metrica sufletului meu stingher în mine\nînghesuit\nîn sensuri prea înguste\nîntre maluri de piatră zidite de-a-ndoaselea\namintirii\nlas urme de nisip\nuneori umede\nalteori triste\nuneori șovăitoare\nalteori adânci\nforme de lăcrimare\ndar întotdeauna verticale\nși filele\nse embosează\nîn forme tăcute de clipe\nîndoite\nrăsucite\npriponite\ncuvintelor\ncare cheamă așteptarea\nmesteacănului\naproape prăbușit\npeste cerul\ncare este cer\nnițel`, 107)'>
+                <div class="poem-title">despre tristețea desculță</div>
+                <div class="poem-preview">obosesc
+trecând peste atâtea pagini desculțe
+în metrica sufletului meu stingher în mine
+înghesuit
+în sensuri prea înguste
+între maluri de piatră zidit...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre bătrânețe oriunde", `îmbătrânesc zilele într-un senin curb\ncare curge ridat către mine\niar anotimpurile îmbătrânesc şi ele\nprecum oamenii\nchiar mai spectaculos\nşi deci mai tragic\nde exemplu primăvara abia-nflorită\nplăteşte tributul fiorului ei pretutindeni\nşi florile\nnenumăratele flori se sparg violent\nîn infinite petale\npe asfaltul îmbâcsit de gri\nsau se presară neplânse de nimeni printre firele de iarbă abia răsărite\ncopacii îmbătrânesc resemnați\nsub dansul aritmic al florilor în aer\nşi rodesc dureros\niar florile se topesc în ferestrele zilelor încinse\ninert către vară\nîntr-o măsură a devenirii`, null)'>
+                <div class="poem-title">despre bătrânețe oriunde</div>
+                <div class="poem-preview">îmbătrânesc zilele într-un senin curb
+care curge ridat către mine
+iar anotimpurile îmbătrânesc şi ele
+precum oamenii
+chiar mai spectaculos
+şi deci mai...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre care nu se știe", `până unde\npână când\nși mai ales\nde ce`, 108)'>
+                <div class="poem-title">despre care nu se știe</div>
+                <div class="poem-preview">până unde
+până când
+și mai ales
+de ce</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre lumea care apune cu mine", `ciobanii care au coborât din inima mea\ndrept pe trecerea de pietoni\ns-au ofilit de atâta tristețe\nce s-a revărsat în jur contra cronometru\nau tras de trei ori aer în piept\nşi aerul parcă dispăruse\nîn văluri confuze de ceață\nşi nu pricepeau\nunde goneşte atâta amar de popor\nde vreme ce\nniciunde zarea nu se vedea\nîndreptăndu-se către sens\nciobanii inimii mele\ncare au zidit munții cu trupurile lor\nmirosind puternic a seu\naveau timpul lor\nce se amesteca cu timpul stejarilor\nce străjuia muntele\ncu sentimentul său de vecie\nşi oamenii care culegeau roua desculți\numblau mai aproape de veşnicie\naşa cum călcăm noi acum pe trecerea de pietoni\noraşul mirosea puternic a decepție\nşi a disperare\nşi ciobanii nu ştiau nici de una\nnici de alta\npentru că timpul lor s-a împletit din totdeauna\ncu timpul turmelor\ncu timpul copacilor şi cu a râului curgere\npănă când ceasurile s-au adunat\nîntr-o măsură unică\ntranshumantă anotimpurilor\nşi niciodată\na fiecăruia\nmai târziu\ncineva\na împărțit timpul în bucățele mici\nşi l-a dat spre stăpânire\ncelor care trec prea des şi prea iute\ndin semințele timpului îngropate de ei\nau răsărit oraşele\ntristețile copiate şi disperările zadarnice\nîntr-o grabă sordidă\nşi-o credință simulată\ne drept\nnimeni nu mai miroase a seu\nnimeni nu mai umblă desculț\nşi nimeni nu mai îndoaie timpul zilei\nîn gesturi tăcute patriarhale\ntoată lumea aşteaptă metroul şi ştirile de la şapte\ngrăbindu-se spre o viață\ncare atârnă la etajul 23\npentru o clipă`, 111)'>
+                <div class="poem-title">despre lumea care apune cu mine</div>
+                <div class="poem-preview">ciobanii care au coborât din inima mea
+drept pe trecerea de pietoni
+s-au ofilit de atâta tristețe
+ce s-a revărsat în jur contra cronometru
+au tras de ...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre tristeți nereuşite în nopți lacustre", `mă grăbesc în mine să mă întălnesc cu tristețe mea\nîn punctul terminus al unei disperări garantate\nnu plouă\ndar mie îmi plouă\nnu e furtună dar mie îmi tună neîncetat\na durere\npoate e doar răcoare\nnumai că mie îmi tremură cuvintele în gură\npână la sânge\ne aproape târziu\nşi-i aproape degeaba\nultimul tren a trecut pe lăngă gara gata decedată\niar ultimul paradis s-a închis ieri\nafară\nrătăciții trec unii pe lângă alții\nrătăcindu-se\nîntr-o noapte uitată deja\nînainte de a începe\nse aud zgomotele seci ale unor zămbete sparte\nde pereții coşcoviți\nai unei zile care tocmai a scăpat\nobloanele asurzitor\npeste tramvaiele dorințelor neîmplinite\ndin când în când\nstrigătele disperate ale ambulanțelor\nridează însingurarea\npănă la lacrimile\ncumpărate de la second hand\npe măsura unei tăceri\nde împrumut\nmă grăbesc - spuneam - să mă-ntâlnesc înlăuntrul meu\ncu amintirea unei iubiri\npăzite absurd de pescăruşi unui oraş care-a putrezit\nîntr-o noapte lacustră`, 113)'>
+                <div class="poem-title">despre tristeți nereuşite în nopți lacustre</div>
+                <div class="poem-preview">mă grăbesc în mine să mă întălnesc cu tristețe mea
+în punctul terminus al unei disperări garantate
+nu plouă
+dar mie îmi plouă
+nu e furtună dar mie îmi...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre filele mele întoarse în cartea de istorie", `sunt paznicul singurătății tatălui meu cel singur plecat\nla porțile tăcerii păşind şchiopătând uşor aplecat\npe griul umed al iernii\nsunt paznicul liniştii strămoşilor mei risipiți în cartea de istorie\ncei singuri plecați dincolo de apele negre ale râului\nînvolburat\nşi scriu cu cuvintele tatălui meu\ndesenând din memorie necuvintele lui\nşi scriu cu cuvintele bunicului meu\ndesenând din memorie tăcerile lui\namintirea fiecăruia dintre ei\nmirosind altfel a fân şi a urme ude în iarba desculță\npentru fiecare anotimp în parte\npână aud cum păşesc norii prin otava luminii\npână sângeră ziua\nîn strigătele pescăruşilor care aprind\nfiecare dimineață\na\ndramei\npe care o desenăm cu propria trecere\npână la\npropria tăcere`, 114)'>
+                <div class="poem-title">despre filele mele întoarse în cartea de istorie</div>
+                <div class="poem-preview">sunt paznicul singurătății tatălui meu cel singur plecat
+la porțile tăcerii păşind şchiopătând uşor aplecat
+pe griul umed al iernii
+sunt paznicul lini...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre calea cuvintelor la răsăritul drumului", `la țărmul fiecărei dimineți\nsărut marea cu cuvintele mele lichide\nşi marea se umple de sensuri\ncare şerpuiesc îndoind lumina\npână la necuprindere\nmângâi văzduhul cu bietele mele vorbe\npurtătoare de zbor\nşi cerul se curbează înlăuntrul cuvintelor mele\nprecum din versul meu naşte țipătul înaltul\nsădesc vorbele mele purtătoare de semne\nla rădăcina fiecărei vieți\nşi viața se întoarce în carte\nşi cartea se întoarce în fiecare urmă\nşi Cel Ce Defineşte Eternul\nîmi întoarce poemul să îl port\npână când sorocul poemului să se nască\ndevine sens\nîn fiecare clipă când mor\nmă transform într-un semn\ncare desenează timpului o măsură a sensului\ncăci eu sunt Purtătorul de Semne\ncuvânt din lumină\nşi pas din urmă\ntăcut şi umil coborât în sunet\nspre preamărirea\nEternului\ncare va veni să odihnească drumul\nîmplinind căutarea\nca iubire`, 115)'>
+                <div class="poem-title">despre calea cuvintelor la răsăritul drumului</div>
+                <div class="poem-preview">la țărmul fiecărei dimineți
+sărut marea cu cuvintele mele lichide
+şi marea se umple de sensuri
+care şerpuiesc îndoind lumina
+până la necuprindere
+mâng...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre cartea care se scrie", `plouă de-a dreapta tatălui\ncu toate valurile durerii mele deodată\nde parcă cerul însuşi ar muşca din piept\ncu toate tăcerile zilei şi nopții\nde parcă seninul s-ar curba trecător în albastrul mării\nşi apoi s-ar ascunde în toamnă să se odihnească\nde parcă toată durerea mea\nar fi semănată cerului\nşi cerul s-ar crăpa fulgerat de durere\nşi peste trupul meu ar pica deodată şi tăcere şi mare\nşi peste tot pământul din mine ar cădea şi apă şi foc\npentru că plouă cu toți stropii durerii mele deodată\nsă curețe tot pământul din mine\npână la desăvârşirea\nsensului\niubirii ca devenire a trecerii\nprin clipa cu care te-am sărutat a val\nde dimineața dimineților sosite pe înserat\nîn formă de pasăre-fântână\nla rădăcina trecutului care tocmai vine\nsă-mi şadă alături\nîn cartea care se citeşte melancolic pe sine`, 116)'>
+                <div class="poem-title">despre cartea care se scrie</div>
+                <div class="poem-preview">plouă de-a dreapta tatălui
+cu toate valurile durerii mele deodată
+de parcă cerul însuşi ar muşca din piept
+cu toate tăcerile zilei şi nopții
+de parcă ...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre căderea în sens", `când din mers o iei spre ieri\nși nu spre mâine\nte doare umărul de rotundul pietrei\ndar când din mersul de ieri\no iei spre mâine\ndevenindu-te\nîntr-o petală care să ningă peste măsură\noricum\ndar numai spre mâine\nte va durea iremediabil piciorul tău lăsat în urmă\nvor plânge infinit toate urmele tale\nrămase prizoniere drumului\nvor muri\ntoate apusurile care vor trebui să moară\ndar când zbori spre unde\ncine să mai poată să cum\nși de ce\nși ea nu este\ntu\nși nici eu\nși nici oricine altcineva\nci sensuală este numai căderea`, 117)'>
+                <div class="poem-title">despre căderea în sens</div>
+                <div class="poem-preview">când din mers o iei spre ieri
+și nu spre mâine
+te doare umărul de rotundul pietrei
+dar când din mersul de ieri
+o iei spre mâine
+devenindu-te
+într-o pe...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre ceea ce ești când nu eşti", `nu-mi prieşte dorul ca acum\nci ca trecere\npe trecere\npână la mine\ncolorând cu tine\nuniversul cunoscut\nîn petale\npănă la sare\ncristale oblice\nde oare\npână mă doare\npână te doare\npână la mare\nlocuindu-mă cu icoane\nîn chip de soare\nscris cu respiația ta cea avidă\nde petale\nîn cale`, 118)'>
+                <div class="poem-title">despre ceea ce ești când nu eşti</div>
+                <div class="poem-preview">nu-mi prieşte dorul ca acum
+ci ca trecere
+pe trecere
+până la mine
+colorând cu tine
+universul cunoscut
+în petale
+pănă la sare
+cristale oblice
+de oare
+p...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre creație ca iubire", `când voi simți că mi se vor frânge coastele\nsub povara sufletului meu încărcat de dorul tău\nte voi chema să sapi cu dalta în coasta ta\npână când bucăți o vei face\nsă poți cârpi pe ici pe colo\ncoastele mele firave\ncând voi simți\ncă vocea mea ar putea să devină tăcere\nte voi chema să rupi o bucată din cuvântul tău\nsă mai cârpeşti pe ici pe colo\ncă eu din tine am fost făcută femeie\nşi cuvânt mi-ai suflat peste însuflețire\ndin tine\nmărturisind iubire\nprin mine`, 119)'>
+                <div class="poem-title">despre creație ca iubire</div>
+                <div class="poem-preview">când voi simți că mi se vor frânge coastele
+sub povara sufletului meu încărcat de dorul tău
+te voi chema să sapi cu dalta în coasta ta
+până când bucăț...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre cronica filelor zilelor mele", `cartea aceasta\ne o cronică aparte\npentru că ziua o scriu cu lumină\ncu lumina ochilor mei\niar noaptea o scriu cu sângele meu\nce miroase pregnant a cerneală\ncronica mea\ne o cronică aparte trăită şi plânsă în dor nesfârşit\nde la un capat al zilei\npână la alt capăt al nopții\ncronica mea e o cronică aparte\npentru că se scrie şi se rosteşte pe sine însăşi\npe mine însămi\npe tine însuți\npână la ultima mea filă\ncronica mea nu e cronică\nci e măsura ființei mele\nmăsurată de simțurile tale de vânător\ncare se va scrie pe sine\npe mine\npe tine\ncu toate literele\ndar absolut cu toate literele\npe care le pot culege şi impregna\ncu prezența ta\nce-mi hrăneşte respirarea\ncu senzația de bine\npână la sânge`, 120)'>
+                <div class="poem-title">despre cronica filelor zilelor mele</div>
+                <div class="poem-preview">cartea aceasta
+e o cronică aparte
+pentru că ziua o scriu cu lumină
+cu lumina ochilor mei
+iar noaptea o scriu cu sângele meu
+ce miroase pregnant a cern...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre cum se desenează dorința", `mâna mea e briza mării ce alunecă fin pe gâtul tău\nmâna mea e lumina ce-mi desenează perechea\nîn colțul gurii tale\nmâna mea e o rugăciune ce se şopteşte\npentru a-ți împlini aura\nmâna mea te sărută în nopțile\nîn care visul îmi colindă\npe nebănuite cărări\npână când te întâlneşte\napoi brusc se întoarce la mine\npurtând pe buze gustul sărutului\nşi în palmă versul tău pereche\nîn palma mâinii mele`, 121)'>
+                <div class="poem-title">despre cum se desenează dorința</div>
+                <div class="poem-preview">mâna mea e briza mării ce alunecă fin pe gâtul tău
+mâna mea e lumina ce-mi desenează perechea
+în colțul gurii tale
+mâna mea e o rugăciune ce se şopteş...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre curgerea timpului esențial", `din când în când mă apropii de\npieptul tău\nsă-ți ascult inima cum ticăie\naşteptând să aud melodia pe\ncare o cântă\nla fiecare oră exactă\nşi mă aştept\ndin clipă în clipă să bată invers\nca şi cum\ndintr-o dată orele ar curge pe dos\nşi înapoi\nîntorcându-te în firea ta\nînlăuntrul tău pe tine\npână la mine\nca iubire uşor stranie şi obosită\ncântată mereu la oră exactă\nde-un mecanism necunoscut\nascuns lăuntric în mine`, 122)'>
+                <div class="poem-title">despre curgerea timpului esențial</div>
+                <div class="poem-preview">din când în când mă apropii de
+pieptul tău
+să-ți ascult inima cum ticăie
+aşteptând să aud melodia pe
+care o cântă
+la fiecare oră exactă
+şi mă aştept
+d...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre devenire prin împletire", `te-am zidit cu cuvintele mele rotunde în poem\nîncă de când mugurii nu se rosteau muguri\nşi până la jertfa ultimei frunze ruginii\ncăzute într-o tăcută durere pe covorul celorlalte dureri\nde la răsăritul răsăritului când culoarea încă nu se vărsa în întuneric\nşi până la apusul apusului când cerul fierbea albastru\nam privit copacul în care fiecare floare era perechea unei flori şi te-am înflorit\nam privit cerul în care fiecare pasăre\nera perechea unei păsări\nşi te-am aşezat de-a dreapta zborului\nam călcat pământul în care încolțise\nfiecare fir de iarbă a pereche\nşi fiecare spic a pereche a perechii\nşi jarul mocnea in ideea de foc\nşi secunda murea in ideea de ev\nşi te-am aşezat în urma mea ca pe mine\nmăsură a mea de tine`, 123)'>
+                <div class="poem-title">despre devenire prin împletire</div>
+                <div class="poem-preview">te-am zidit cu cuvintele mele rotunde în poem
+încă de când mugurii nu se rosteau muguri
+şi până la jertfa ultimei frunze ruginii
+căzute într-o tăcută ...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre disperare și ecoul ei ciobit de joi", `dintr-o clipă într-alta\ntăcerea se va opri brusc\nși aerul se va împlânta înspăimântător de aprins\nși rarefiat se va scrijeli\nîn strigăt\nîn disperare\ndeplin\nca trăirea\nca dragostea\ndar și ca moartea\natunci când înțelegerea devenirii nu are pe cine împlini\nunghiile se închid cambrat în carne\nși tot trupul devine\naceeași durere\npe care nu o cunoști\ndecât dacă te cufunzi adânc\npână la sânge\nîn taina fiirii tale de tine\nsau nu\necoul însă\npoate fi atât de puternic încât\nviața să se spargă brusc\nîn pumnale subțiri de cioburi\noglindind miile de chipuri\npe care nu ți le-ai cunoscut\nnicicum nicicând niciodată\ndegeaba însă\nparfumul teilor nu alungă disperarea\nci doar o face mai dulce`, 124)'>
+                <div class="poem-title">despre disperare și ecoul ei ciobit de joi</div>
+                <div class="poem-preview">dintr-o clipă într-alta
+tăcerea se va opri brusc
+și aerul se va împlânta înspăimântător de aprins
+și rarefiat se va scrijeli
+în strigăt
+în disperare
+d...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre dorul care mă arde în chip de senin", `uneori\npândită de secundele goale\ncred că\nspălându-mi ochiul cu apă multă\nlimpede de izvor\naş putea să te şterg din privirea mea\nca pe un vis deja plecat\nîn noapte\nalteori\ncred că\nspălându-mi fața\ncu zorii fragezi ai zilelor rămase târzii\naş putea să te alung din privirea mea\nşi tot aşa\ndescoperindu-mă pe tine însuți\najung la inimă şi cred că\ndacă mi-aş răsuci dorul din piept\nşi l-aş spăla de atâta rană\nai putea să dispari din inima mea\ndar tu deja\nnu mai eşti\ndecât\nseninul care te cerni în sângele meu\nce te priveşte\nzâmbeşte\ntrăieşte\niubeşte`, 125)'>
+                <div class="poem-title">despre dorul care mă arde în chip de senin</div>
+                <div class="poem-preview">uneori
+pândită de secundele goale
+cred că
+spălându-mi ochiul cu apă multă
+limpede de izvor
+aş putea să te şterg din privirea mea
+ca pe un vis deja ple...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre durere ea singură a singurătății", `se purifică liniştea în distileria nopții\nşi din când în când fulguiesc fecund de tine\nîn cuvinte scrijelite pe parfumul umbrelor\ntopite amarnic pe când mă cuibăresc\npe urma tâmplei tale\nşi sorb fiecare sunet nechemat\nsă-mi astămpăr setea de tine\nascult pentru a mia oară în acest secol\ncum crapă secundele strivite de întunericul\ndistilat de tăcerea aproape întreagă\nşi\nelementar îmi sorb singurătatea\ncare doare până la capătul durerii\ndiluvial şi înspăimântător\nprecum\ntăcerea pustiului nefrământat\nde treceri şi trecători\npână la limita înghețului\nîntru nemişcare\nşi asta doare şi mai tare\npână la\nmarginile de porțelan ale lacrimilor înfipte\nîn amintirile care ard\nîn fraze sacadate gândite să adune\nceea ce-a mai rămas\ndin dârele parfumului tău\nmângâind retina mea\npână la\nînflorirea întoarcerii care\nva să fie\npoem\npână la tine`, 126)'>
+                <div class="poem-title">despre durere ea singură a singurătății</div>
+                <div class="poem-preview">se purifică liniştea în distileria nopții
+şi din când în când fulguiesc fecund de tine
+în cuvinte scrijelite pe parfumul umbrelor
+topite amarnic pe câ...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre femeia tânără care curge înlăuntrul pietrei în care zbor", `mă uit la tine\nînlăuntrul sevei tale de femeie tânără\nşi mă mir câtă forță\nare râul luminii ochilor tăi\nce curge\nca zborul unui vultur\npeste pietrele care mă-nplinesc în nemişcarea mea\nde munte care coboară ziua\nmă uit înlăuntrul tău\ncu înlăuntrul meu\nca şi cum nu aş fi ca şi cum nu ai fi\nci numai iubire în chipul lui doi\nci numai fervoare în chipul lui\nUnicul\ndar unde ar pleca muntele daca nu ar fi de piatra\nşi unde ar pleca piatra dacă nu ar fi de piatră\nşi unde ar pleca râul neurcat de vultur\ncând înlăuntrul meu nu este\nîncă atâta linişte\ncât să aud iubirea cum creşte\nde-a dreapta\ngândului\npână la deplina țărmurire\na devotamentului trupului față de durerea sa\nde a iubi până la trecere\ncăci dacă iubire nu e\nnici sens nu e\nîn\ncăderea\nrotundă şi sisifică\na trecerii care alunecă în lacrimă....`, 127)'>
+                <div class="poem-title">despre femeia tânără care curge înlăuntrul pietrei în care zbor</div>
+                <div class="poem-preview">mă uit la tine
+înlăuntrul sevei tale de femeie tânără
+şi mă mir câtă forță
+are râul luminii ochilor tăi
+ce curge
+ca zborul unui vultur
+peste pietrele ...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre fervoarea zilei care cuvântă însetată", `cobor din tăcerile mele cu toate frunzele verzi\nmustind de cuvinte\nşi când mă simt înlăuntrul lor\ncobor iarăşi treptele înțelesurilor\npână la piatră\npână la secundă\npână la fiecare picătură care îmi cară viața\ntropăind prin venele mele\nîn ritmul cuvintelor care se foiesc care încotro\nîntr-o metaforă pătimaşă a solitudinii\ncare arde mocnit\nlăsând în urmă cenuşa versurilor care curg\npe ferestrele deschise\ncătre\nlumina zilei ce abia a ajuns\nla mine\ndesenându-mă\ncuvântându-mă\ntăcându-mă\npe buzele mele\nînsetate\nde zbor`, 128)'>
+                <div class="poem-title">despre fervoarea zilei care cuvântă însetată</div>
+                <div class="poem-preview">cobor din tăcerile mele cu toate frunzele verzi
+mustind de cuvinte
+şi când mă simt înlăuntrul lor
+cobor iarăşi treptele înțelesurilor
+până la piatră
+p...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre frica de nimic", `mă rup pe mine de mine\nşi alerg să mă-ntrupez în cuvânt\nîncătușat de teama\nde-a nu uita nimic din totul care\nnu trebuie uitat\nşi mă întorc din nou\nîn contururile mele\ndescătușâdu-te de tine\nși chiar pierzându-te\npentru a te afla din nou în mine\ndoar acolo unde te vei găsi\npe tine\nte vei afla în mine\nfără nici o frică de\nnimic`, 129)'>
+                <div class="poem-title">despre frica de nimic</div>
+                <div class="poem-preview">mă rup pe mine de mine
+şi alerg să mă-ntrupez în cuvânt
+încătușat de teama
+de-a nu uita nimic din totul care
+nu trebuie uitat
+şi mă întorc din nou
+în ...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre ielele din semne", `sânziene\ncosânzene\nurme palide prin gene\nprinse-n trupuri de muiere\nprinse-n jocuri\nde iubire\nprinse-n noapte\nsă inspire\nlumea lumilor cetire\ndragostei\nîmbătrânire\nvisului etern grăbire\ndănțuind prin lune pline\nsânziene\ncosânzene\nlumpene tăceri prin gene\nvise tandre printre ele\nzburătorii trec prin vene\ninima să mi-o deşele\nlacrime să îmi înşele\ncu iubirea care teme\nsânziene buruiene\nde pus visele sub gene\nnu mă cerne\nnu mă geme\nci aşează-mă pe perne\nîn chip de\nfloare de semne\nsânziene\ncosânzene\nlumilor de între gene\nzănele din danț\neterne\nnopțile să îmi însemne\ncu inelele din lemne\nde dorințe nu te teme\nde iubire nu te geme\nde trăire doar te-nsemne`, 130)'>
+                <div class="poem-title">despre ielele din semne</div>
+                <div class="poem-preview">sânziene
+cosânzene
+urme palide prin gene
+prinse-n trupuri de muiere
+prinse-n jocuri
+de iubire
+prinse-n noapte
+să inspire
+lumea lumilor cetire
+dragoste...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre încercuirea dorinței ca fruct", `m-am lăsat dorinței\nîn chip de dor\naşternut pe sens\nluminând la umbra lunii\nîn măsură de descântec\nlocuind într-o gară pustie\nîn formă de pântec\nera ca o durere care bate\nîn chip de inimă\nla fiecare început de anotimp\ncăzând precum frunzele toamna\nîn culoare\npână la deplina desingurare\npe piatră\nse sculpta\nliniştea\nîn formă de umbră a trecerii\ncare trecea spre cale\nprin boare\nlăsându-mă din nou dorinței\nîn formă de ou`, 131)'>
+                <div class="poem-title">despre încercuirea dorinței ca fruct</div>
+                <div class="poem-preview">m-am lăsat dorinței
+în chip de dor
+aşternut pe sens
+luminând la umbra lunii
+în măsură de descântec
+locuind într-o gară pustie
+în formă de pântec
+era c...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre iubirea cea care devine", `iubirea nu eşti tu şi nu sunt eu\nşi nu suntem noi\niubirea este devenirea ta în chip de floare\nşi curgerea mea cea în trup de izvor\neste parfumul florilor care trec spre răsărit în roşu aprins\neste nucul semeț şi rătăcit pe mal mirosind a sare\neste\ntăcerea mea\ncompusă din neasemuite dureri\nşi necuprins zbucium\nîmplinită rotund\nîn dinamica visului tău solar\npe când\nnicicând gustul sărat al lacrimei\nn-a fost mai aproape\nde gustul sărat al zborului\npe când\nnicicând pasărea nu s-a rupt din cer\nmai adâncă\niubirea este valul mării care sărută picioarele muntelui\nîntr-un gest de uitare de sine\neste tăcerea prea plină a răsăritului\ncel care\nînalță timpului o rugăciune\na dimineții care aşterne liniştea\npe nisipul etern al mărilor\ncare trec pentru a veni\niubirea este o vânătoare a eternității\ncăzute în capcana timpului\nfăcut măsură\na devenirii\nlăcrimând\nmării\nîn semn de trecere`, 132)'>
+                <div class="poem-title">despre iubirea cea care devine</div>
+                <div class="poem-preview">iubirea nu eşti tu şi nu sunt eu
+şi nu suntem noi
+iubirea este devenirea ta în chip de floare
+şi curgerea mea cea în trup de izvor
+este parfumul flori...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre începutul tăcerii", `pesemne\nlumină de semne secunda va fi\ncând nu voi mai fi\neternul căderii se va opri\navida tăcere se va rosti\npe sine\na fi`, 133)'>
+                <div class="poem-title">despre începutul tăcerii</div>
+                <div class="poem-preview">pesemne
+lumină de semne secunda va fi
+când nu voi mai fi
+eternul căderii se va opri
+avida tăcere se va rosti
+pe sine
+a fi</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre înfrunzirea jertfei în cuvânt", `din totului tot\nce aş fi putut să fac pentru tine\nîn fiecare dospire a dimineții\nam ales să dospesc în căuşul palmelor mele roua\nabia frământată\na ochilor mei\ncea vinovată de împlinire a împletirii\nsă-ți astâmpăr cu ea setea de sârg\ndin totului tot\nce aş fi putut să fac pentru tine\nîn lenea fiecărei amiezi toropite\nde liniştea parfumului firii\nam ales să îți litografiez respirația mea pe umăr\ncea dăruitoare de zefir\npentru a-ți odihni esența cuvintelor\ndin totului tot ce aş fi putut să fac pentru tine\nintrând pe uşa înserării cu brațele pline\nam ales să îți bandajez\nrănile verzi ale trunchiurilor versurilor încă nescrise\ncu lianele înfrunzite ale brațelor mele\ncu parfum de femeie împlântată în trecerea\nfecundă a timpului prezent\ndin totului tot ce aş fi putut să fac\nîn fiecare anotimp\npentru tine\nam ales să măsur aşteptarea\nmăsurându-mi cu nemăsura dăruirii\npaşii\nversul\nvisul\npână când toate au început\nsă îmbătrânească rotund înflorind ridurile\nde la ora la care îmi eşti\npână la ora la care îmi vei fi\nînfruntând\ndisperarea\ntimpului care nu curge\ncănd păşeşti dincolo de urma\nochilor mei\njertfiți\ncelui ce se cuvine`, 135)'>
+                <div class="poem-title">despre înfrunzirea jertfei în cuvânt</div>
+                <div class="poem-preview">din totului tot
+ce aş fi putut să fac pentru tine
+în fiecare dospire a dimineții
+am ales să dospesc în căuşul palmelor mele roua
+abia frământată
+a och...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre limba purtătoriului de semne", `scriu într-o limbă vindecătoare\nmai veche decât graiul pământului\nîntr-un sens de semne vorbitoriu\naproape rotund\nuneori sunt înlăuntrul ei\nalteori nu prea\nuneori sunt doar tăcerea de după\nşi durerea de când\nscriu în tăceri care ard şi-n dureri care curg\nîn semne pierdute\nînsemne ale regatului de verde\nşi nu scriu pentru nimeni\nşi nu scriu pentru ce\nşi nu-s de la-nceput\nşi nu-s de la sfârşit\nşi-s doar trecerea prin semn\npurtătorul de semne\ncel chemat să scrie\nîntr-o limbă vindecătoare\nmai veche decât graiurile pictate\npe-un sânge curgând\natât de puțin roditoriu\nscriu într-un grai neauzit de păsări\nşi necitit de sămburi\nîntr-o limbă străpunsă de valuri\naproape hibrid\nfără să ştiu\nde unde începe şi unde se termină\nurma din mine pe care te-ndrum\ncu-atâta fervoare\nde sens\nîn fiecare urmă`, 136)'>
+                <div class="poem-title">despre limba purtătoriului de semne</div>
+                <div class="poem-preview">scriu într-o limbă vindecătoare
+mai veche decât graiul pământului
+într-un sens de semne vorbitoriu
+aproape rotund
+uneori sunt înlăuntrul ei
+alteori nu...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre sensul roșu al cireșelor trupului tău legănat", `din trupul meu de cireșe care roagă\ncerul roșu să facă la dreapta\nse lasă pe vârfurile copacilor un parfum profund de tei\nși pictura devine atât de limpede precum zborul\nși întoarcerea ta cu fusta cea roșie legănându-se drumului\nunduie pădurea într-o pace care vine de dincolo de noi\nși trece către ușa care se deschide pe celălalt mal al râului\nnu e nici devreme nici târziu\ne amiază și aerul stă să cadă în colb de căldură\nși frunzele se învelesc cu propria lor umbră\nși pădurea se strecoară pe rând în pădure\nsă se răcorească\nși să germineze simfonic în miros de soc\npe când eu asudat de atâta așteptare în vara cea mare\nmușc aprig din sărutul tău de apă rece\ncare susură\nîntr-o desfacere și-o prefacere a devenirii\nîn arta atât de ciudată\na împlinirii de sensuri\npe fond de cireșe roșii plesnind de atâta dorință`, 137)'>
+                <div class="poem-title">despre sensul roșu al cireșelor trupului tău legănat</div>
+                <div class="poem-preview">din trupul meu de cireșe care roagă
+cerul roșu să facă la dreapta
+se lasă pe vârfurile copacilor un parfum profund de tei
+și pictura devine atât de li...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre măsura pașilor care cuvântă", `din pas în pas timpul măsor\ncu clipele care mă dor\npășesc rotund\npășesc în gol\npășesc adînc\npășesc domol\npășesc cărunt\npășesc șoptit\npășesc plăpând\npășesc înfrânt\npășesc cu pașii de pământ\npășesc murind câte-un cuvânt\nși mor în pașii care sunt\ncuvînt pășit peste cuvânt`, 138)'>
+                <div class="poem-title">despre măsura pașilor care cuvântă</div>
+                <div class="poem-preview">din pas în pas timpul măsor
+cu clipele care mă dor
+pășesc rotund
+pășesc în gol
+pășesc adînc
+pășesc domol
+pășesc cărunt
+pășesc șoptit
+pășesc plăpând
+pă...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre noi la prezent compus", `sub fiecare pas şovăit al tău\nse închină un fir de iarbă în chip de înger\nsub fiecare pas desprins din mine\nse plămădeşte o floare\ncu trup de sânziană\nglezna ta se încleştează în gustul ierbii\ncu disperarea femeii care iubeşte până la patimă\nîn timp ce glezna mea despică parfumul pas cu pas\nînflorind apusul cu coloane de fum\npână la trupul acasei\nşoldul meu poartă în el circularitatea roții\nîn timp ce şoldul tău carafă de apă vie e\nîntru plăsmuirea lutului cu palmele tale\npentru că palmei tale drepte\ni se supune cuvântul\niar palmei tale stângi\numărul meu înflorit fragil de rotund\nbrațelor tale li se cuvine îmbrățişarea\nfie ea a mea\nfie a absenței mele\nînsă doar palmele mele ştiu\nîntăi palma a dreaptă\napoi palma stângă să fie rănite\nsă sângereze în piroanele clipelor pe răsuflarea ta\ncurgând cuvintelor făptură\nîn miez de haos\nînflorind paginile zilei care se-ngălbenesc\nîn lumina acestui apus care va să scrie\ntrecutul\nîn lutul prezentului\ndin care picură viitorul\nsub forme prelungi\nde dejà-vù\ndespicând sensul\npână la sărutul pasului\ncăzut în propria sa urmă\nde zbor frânt`, 140)'>
+                <div class="poem-title">despre noi la prezent compus</div>
+                <div class="poem-preview">sub fiecare pas şovăit al tău
+se închină un fir de iarbă în chip de înger
+sub fiecare pas desprins din mine
+se plămădeşte o floare
+cu trup de sânziană...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre ofrande", `când cerul plutește fierbinte-n albastru\nrezemându-se pe acoperișurile caselor\nîmplântând făptura fierbinte în toartele halbelor de bere\nvănătorul aduce drept ofrandă\nmiezul zilei\ncând ploaia își rostogolește perdelele fumurii de lacrimi\npeste podurile singuratice lunecând peste maluri\ninsinuându-se imuabil în trupul drumurilor\nvânătorul aduce drept ofrandă\nînserarea\nea cade pretutindeni\nși inundă curțile caselor\ncând vântul mână aspru cârdurile de nori\nrăzbâtând furibund de la un capăt la altul al pământului\naducând și ducând\nzilele una după alta\nîntr-un șir lung de tăceri și dureri\nvănătorul aduce drept ofrandă\ntoamna\ncând vin eu\nvin cu totul\nși mă aduc pe mine toată\nde la mine până la tine\npe mine mă aduc de la sinele meu\nși atunci vânătorul se aduce pe sine ofrandă\ntimpului care a căzut peste noi`, 141)'>
+                <div class="poem-title">despre ofrande</div>
+                <div class="poem-preview">când cerul plutește fierbinte-n albastru
+rezemându-se pe acoperișurile caselor
+împlântând făptura fierbinte în toartele halbelor de bere
+vănătorul adu...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre orice aş vorbi dar întotdeauna", ``, null)'>
+                <div class="poem-title">despre orice aş vorbi dar întotdeauna</div>
+                <div class="poem-preview"></div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre orice aş vorbi sau aş scrie", `cu mai multă sau mai puțină disperare a trecerii\nfie prin lumină\nfie prin întuneric\nşi oricum mi-ar fi timpul\nalături sau pieziş\nîntotdeauna\ndar întotdeauna\ncopilul meu mă salvează de mine\ndându-mi mânuța\nşi zidindu-mi tristețile cu zâmbetul\ncu care pictează parfumul\nflorilor\ncu care adorm noaptea\ncotrobăind prin vise\ndupă\ncalea pe care să calc desenându-i paşii\nca rădăcinile care şerpuiesc prin pădure de mii de ani\nnescrise de nimeni\nmustind a deplin\nîn sine\nca o artă a timpului care trece ridând\nveşnicia\n- despre pereche -\no femeie se desenează cu ochiul\nse frământă cu toate gândurile\nse modelează cu toate cuvintele\nse ascute cu ridurile frunții\nse şlefuieşte cu cutele dintre sprâncene\npână când capătă forme perfecte\nscriind poem după poem\nbărbatul construieşte cu migală\nfemeia care va să fie\nşi care nu va fi nicicând\nun bărbat se frământă cu mult\ncu foarte mult\nrăsărit\nse modelează cu ochiul şi brațele albe\nse ciopleşte cu seninul luminii şi cu gura fierbinte\nse şlefuieşte cu zâmbetul zorilor pe pieptul indecent de frumos\nse ascute cu tonuri şi semne\nchemări şi dorințe\napoi se iubeşte până la ultima suflare\no femeie care iubeşte\ncare iubeşte zori după zori\ncrează iminent un bărbat care va să fie\nşi care nu va fi nici când\ndoar basmul care povesteşte perechea\nva fi să dăinuie\ncu parfumul unei iubiri\ncare tocmai s-a scris\nîntr-o noapte de sticlă mirosind a primăvară`, 143)'>
+                <div class="poem-title">despre orice aş vorbi sau aş scrie</div>
+                <div class="poem-preview">cu mai multă sau mai puțină disperare a trecerii
+fie prin lumină
+fie prin întuneric
+şi oricum mi-ar fi timpul
+alături sau pieziş
+întotdeauna
+dar întot...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre perfectul în sinea sa imperfectă", `eu mă uit cu ochii mei în privirea ta\nşi bat cu inima mea tactul sufletului tău\napoi mă desenez perfect\nlegănându-mi şoldurile pe drumul tău\nca şi cum\nîn plină vară ar ninge brusc\nca şi cum în plină noapte\nar răsări soarele\nca şi cum\nar mai fi timp pentru\no singură îmbrățişare a îmbrățişării\ncu brațele mele peste brațele tale\ncu durerile mele\ncuprinzându-te ca pe durere\nca şi cum\nar mai fi timp să-ți sărut un singur sărut\nîn care\ntăcerea se tace\niubirea se iubeşte pe sine\nşi moartea se moare\nîn întrebarea din întrebare\nmamă\nde ce oare?`, 144)'>
+                <div class="poem-title">despre perfectul în sinea sa imperfectă</div>
+                <div class="poem-preview">eu mă uit cu ochii mei în privirea ta
+şi bat cu inima mea tactul sufletului tău
+apoi mă desenez perfect
+legănându-mi şoldurile pe drumul tău
+ca şi cum...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre piciorul meu când șchiopătă ridând căutarea", `elementar\npiciorul meu stâng șchioapătă\ncălcând peste calea ferată\nîn sensul macilor neculeși de mâinile tale încă fine\nde încă gesturile tale\nîncă tremurânde\nde setea secundelor încă mucegăind în roșu\nelementar\npalma mea dreaptă\nghicește în miezul zilei citind\nridurile deschise ale crengilor aruncate în aer\nde copacii bolnavi de verde\nși\nprivirile se reazămă inevitabil\nîn frunzele care crapă pădurea în dureri trecătoare\npeste calea ferată trec obosite gărille\nașezându-se pieziș trecerii\nîn speranța de rămânere\ndar uitând\nesențialmente\nde călătorul care cheamă luna\nla albastru\ntrecând Styx-ul vorbind de unul singur\natât de măiastru\nîncât\nvremea se sparge\nîn\necouri tandre\nde\nșoapte moarte`, 145)'>
+                <div class="poem-title">despre piciorul meu când șchiopătă ridând căutarea</div>
+                <div class="poem-preview">elementar
+piciorul meu stâng șchioapătă
+călcând peste calea ferată
+în sensul macilor neculeși de mâinile tale încă fine
+de încă gesturile tale
+încă tr...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre rostire de semne", ``, null)'>
+                <div class="poem-title">despre rostire de semne</div>
+                <div class="poem-preview"></div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre ce rostire să-mi fac privire", `şi despre ce devreme\nsă-ntârzii-nrotire\nca tine de mine\nîn spini de suspine\nşi despre ce moarte\nsă-mi fac parte\nde carte\nîn gesturi de arte\nsparte\ncrăpate de vreme\ndesparte\npe tine de tine\npe mine de mine\npe mare de mare\npe soare de soare\npe oare de oare\npână mă doare ce nu mai doare\ndin sensuri de boare\nîntru răcoare\nde semne\npesemne`, 146)'>
+                <div class="poem-title">despre ce rostire să-mi fac privire</div>
+                <div class="poem-preview">şi despre ce devreme
+să-ntârzii-nrotire
+ca tine de mine
+în spini de suspine
+şi despre ce moarte
+să-mi fac parte
+de carte
+în gesturi de arte
+sparte
+cră...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre sufletul meu azi. Portret imprecis", `sufletul meu\nca o nemăsură a măsurii\nca o fântână în cer\nca vârful unui aisberg pe umărul unui val rece\nadică eu singur\nacolo unde\nsingurătatea se măsoară\nîn\nsfere împletite\nîn părul ei\ncea care\nva veni când nu mai am de unde veni\npentru că voi fi fost deja\ntăcere respirată de îngeri\nîntr-o măsură simfonică\nce-ți taie respirația\ncântată invers\nde\no secundă\ndintr-un cub\nde\nfotoni\nîn nici o culoare\nci doar\ngest\nal trecerii\nspre\nunde\ndinspre când\ndar cum\nacum?`, 147)'>
+                <div class="poem-title">despre sufletul meu azi. Portret imprecis</div>
+                <div class="poem-preview">sufletul meu
+ca o nemăsură a măsurii
+ca o fântână în cer
+ca vârful unui aisberg pe umărul unui val rece
+adică eu singur
+acolo unde
+singurătatea se măs...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre tăcere", `ce deplină tăcere simt\ncând iubirea devine cerc\nsimțind că plec din prima privire\nşi mă înfăşor īn chipul meu rotund\nîncercuindu-mă până la ultima mea privire\nşi această iubire circulară\ndefineşte tăcerea perfectă\ndintre două poeme\nce urmează a se scrie\nîntre două săruturi\nşi o carte deschisă\nla o cană de răsărit\ntâmplele cetății\nde acasă`, 148)'>
+                <div class="poem-title">despre tăcere</div>
+                <div class="poem-preview">ce deplină tăcere simt
+când iubirea devine cerc
+simțind că plec din prima privire
+şi mă înfăşor īn chipul meu rotund
+încercuindu-mă până la ultima mea...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre teama de a citi şi marginile ei rotunde întru mai mult decât", `poem\ncitesc ceea ce scrii\ndevenindu-te\ncitesc şi recitesc într-una\ndevenindu-mă\neu însumi\nnăpădindu-mă de cuvinte\nrostuindu-mă\nşi rostindu-mă\nşi rostindu-te\nrostogolindu-te\nînclinând trecerea curb\ncătre cub\nîntre noi\npluteşte doar aerul din cub\nşi brațele devin doar lungimea laturii\nînsă nici aerul care arde\nnici distanța care mă pătrunde prin oase\nnu pot fi diminuate până la ne-fiirea\npătratelor ardentelor păcate\nfără să strici cubul\nşi-atunci\nte citesc într-una\npănă la sunet\npână la vaier\npână la patimă\npănă orbesc pătruns de sens\npână se ofilesc ochi mei siluiți de durerea\nde a fi dincolo de tine\npururi dincolo de tine\nla o aruncătură de latură\nla o aruncătură de lacrimă\nla o aruncătură de vaier\nşi din acel moment îmi pare\ncă nu mai cunosc literele\ncă nu mai cunosc sunetele\nsunt încolțit de neputiința citirii\nde nefirescul rostirii\nşi mă rog\nCelui care mă întâmplă\nsă nu se întâmple ceva ochiului meu\nmai grav decât orbirea\nsau rostirea\nşi\nsă pot din când în când să rostuiesc\nla sensul\ncredinței mele\nîn dimensiunea sferică\na cubului\nîn care locuim\nla o aruncătură de braț\nla o aruncătură de sărut\nla o aruncătură de dor\ndar nicidecum\nîmperechiați\npână la genunea care curge invers\nfără de sunet\nfără de cuvânt\nfără de margine\nşi\ndeci\nfără sens\nmirându-mă\nşi\ndeci fără de sens\nmirându-te\nConstantine`, 150)'>
+                <div class="poem-title">despre teama de a citi şi marginile ei rotunde întru mai mult decât</div>
+                <div class="poem-preview">poem
+citesc ceea ce scrii
+devenindu-te
+citesc şi recitesc într-una
+devenindu-mă
+eu însumi
+năpădindu-mă de cuvinte
+rostuindu-mă
+şi rostindu-mă
+şi rosti...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre topografia rarefiată a respirației", `măsor marea\ncu respirația mea întretăiată\nde vântul care-mi spulberă pânzele cu care spintec clipa\nşi ea îmi ghiceşte în palma crăpată de sensuri\nplânsul care sapă\ncrevasele adânci ale lumilor care pleacă\npe creştetul cuvântului meu vălurit de maluri\nse odihneşte un pescăruş\nobosit\nîntr-o rază sângerie apusă\nadânc\nîn orizontul fictiv al regretelor pierdute`, 151)'>
+                <div class="poem-title">despre topografia rarefiată a respirației</div>
+                <div class="poem-preview">măsor marea
+cu respirația mea întretăiată
+de vântul care-mi spulberă pânzele cu care spintec clipa
+şi ea îmi ghiceşte în palma crăpată de sensuri
+plân...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre tragedia căutătorului de cristal", `călător zdrențuit de ani\ncu picioarele rupte de colțuri de lume\nmi-am purtat zilele\nîn infinitele călătorii ale simțurilor\nşi m-am mutat de colo-colo\nîn căutarea căutării călătoriei\npână la dreapta apusului\ncel care străjuieste privirea\nce plănge în prelungirea\nrăsăritului întors\nam dus cu mine pretutindeni şi nicăieri\nînghesuite în simțurile cioplite\nflorile\nde tei de cireş de zâmbet de cuvânt\nde tot felul şi de toate înțelesurile\npământului\nam ajuns târziu când\nîn gara mică prăfuită întunecată\nzăceau frumos împachetate\nnopți de disperare\ngemete veştejite de durere\nneputință şi teamă în aceeaşi valiză\npărăsită\nîn stânga lăngă peronul pierdut\ncălătoria mea s-a sfârşit\nla colțul pădurii circulare\nunde ți-am întâlnit privirea de cristal\nvaliza se uită nedumerită la mine\ncălătoria se uită nedumerită la mine\ncălătorul care nu sunt se uită şi el uşor confuz\nla mine\nîn timp ce eu călătoresc acum\npe drumul aşternut numai de urma pasului tău\ninsistent de cristalin\ncel care nu păstrează nici un parfum\nnici o urmă\nnici un drum\ndoar un deşert de lacrimi pe dos\nscrijelind trecutul\ncu semne demult uitate\nera vineri\nşi era mult în spate\nîncolo nu mai venea decât trecutul`, 153)'>
+                <div class="poem-title">despre tragedia căutătorului de cristal</div>
+                <div class="poem-preview">călător zdrențuit de ani
+cu picioarele rupte de colțuri de lume
+mi-am purtat zilele
+în infinitele călătorii ale simțurilor
+şi m-am mutat de colo-colo
+...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre trecerea peste zi a sărutului", `dimineața\nți-aş ridica greutatea pleoapei cu geana mea\nşi aş veghea să ți se reveleze\ndoar o fantă de răsărit căprui\nla prânz\nmi-aş strivi dureros buzele de buzele tale\npână la esența cuvântului de dincolo de cuvânt\nnoaptea\nți-aş apune în durerea iubirii\ncu patima mea de femeie lăsată de Dumnezeu\nfemeie să-ți fie\nși-apoi din nou\nsă croim sărutul zorilor\ncu patima zilei ce va să vie`, 154)'>
+                <div class="poem-title">despre trecerea peste zi a sărutului</div>
+                <div class="poem-preview">dimineața
+ți-aş ridica greutatea pleoapei cu geana mea
+şi aş veghea să ți se reveleze
+doar o fantă de răsărit căprui
+la prânz
+mi-aş strivi dureros buz...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre zbor când aripile cântă", `dintr-o dată zborul mi se făcu greu\nde parcă nu eram eu\ndin lumina mea\nde zeu\nm-am plâns aripei mele drepte\nîntr-un vaier de erete\nşi ea mi-a răspuns cu flacăra zorilor tăi de zi\nşi-atunci am înțeles ce poate fi\ncăci între aripile mele\neram deja pereche\neram doi\nprecum anotimpurile\nşi punctele cardinale\nprecum ploaie\nşi vânt\neram dimineață la fiecare cuvânt\nşi val de mare la fiecare privire\nşi nu mai eram numai de mine\ndin când în când hrăneam orizontul\ncu visele noastre nestinse\nşi\nuneori zborul era greu\ncăci nu eram numai eu\neram măsura lui doi\nîn pereche dintr-un unu\nîntors către măsura lui eu\npasul şi umbra\ntăcerea şi liniştea\ndorul şi lacrima\nde aceea era greu\nsă fii în dor\nmăsură de zeu`, 157)'>
+                <div class="poem-title">despre zbor când aripile cântă</div>
+                <div class="poem-preview">dintr-o dată zborul mi se făcu greu
+de parcă nu eram eu
+din lumina mea
+de zeu
+m-am plâns aripei mele drepte
+într-un vaier de erete
+şi ea mi-a răspuns ...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre măsura zborului bine cuvântată", `îmi fac nod la privire\nsă știu de mine\npe unde să zbor\nrătăcindu-mă în sinele meu\nși poate\nde dor\nasumat întors în gol\nîn rostire\nde sine\npesemne să dor\ncând trupului rădăcinile îi mor\nplictisite\nrisipite\nașa în amurg potrivite\nîn formă de nor\niar eu să calc pe cuvinte\nîn peștera rădăcinilor mele zidite\nîn gol\nîmi fac nod în rostire\nsă-mi aşez spre cetire\ncuvintele care mă dor\npicurând peste plaiul naşterii de unde vin\ndin demultul cel plin\nde puțin\nsă-l stropesc cu lacrimele mele de vin\ndesculț\nşi crescut spre uimire\nsă citesc cuvintele din mine\nsă le fac rostire\nzborului\ns-adorm în plutire\nîn măsura poemelor înscrise pe sine\npe zilele mele de mine\npe nopțile mele de tine\npe strigătele care se-ntorc scrise\nimprecis de precise\npe rodul tăcerii\ndin plânsele vise`, 158)'>
+                <div class="poem-title">despre măsura zborului bine cuvântată</div>
+                <div class="poem-preview">îmi fac nod la privire
+să știu de mine
+pe unde să zbor
+rătăcindu-mă în sinele meu
+și poate
+de dor
+asumat întors în gol
+în rostire
+de sine
+pesemne să d...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre toamnă când mi-e doamnă", `căci înseamnă\ncă tu ții toamna în palme\nşi când nu mai poți de atâta dor\no răsfiri din nori\nîn părul meu de alge senin\npână când părul îmi miroase arămiu a val aprins\nşi iubirea se-ngălbeneşte pe la colțuri\nde ferestre\nşi capătă striații ruginii de atâta sângerare\nşi\nîmi mângâi cu ea lacrima\ncăt e patima\npână când ochii te privesc rotund\ncurgând ca mierea arsă\nce îmi striveşte sărutul\npână ce simți gustul meu de copt\nîmpletit în opt\napoi cobori către glezne încet\naproape decent\nşi aşezi drumul pustiu sub pasul meu\ncel griu\nşi uite aşa\naflu eu\ncă doamna toamna\nte caută mereu fierbinte-n privire\nîntoarsă profund către tine\ngustând din mine\npână la valul tocit în plutire\namar\npărăsind în zadar\ntăcerea din mine`, 159)'>
+                <div class="poem-title">despre toamnă când mi-e doamnă</div>
+                <div class="poem-preview">căci înseamnă
+că tu ții toamna în palme
+şi când nu mai poți de atâta dor
+o răsfiri din nori
+în părul meu de alge senin
+până când părul îmi miroase ară...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre sensuri ascunse în culori pătrunse de alb", `alb\ncuvântu-i alb\naproape de plutire\npăşind şi gândind aproape alb\nîn al gurii tale miros de nectar de crini\nplămădindu-ți trupul transformat în floare\na iertare\nschițându-te\ndesenându-te\nîntrupându-te a mirare\ncând il compun în febrila îmbrățişare\nce doare\nlăcrimând până la lumina ce n-are\nsemn\nîn ochii care nu văd dar care\nîntr-o vara trecută\nşi atât de fierbinte tăcută\nîn lumina ce se coace în părul tău\nau soare\nşi-l îmbrățişez cu mâinile mele\nmâinile ce-şi astâmpără setea\ndin căuşul sufletului purtător de lacrimă\npe când adie uşor a dis-de-toamnă\nsă-mi fi doamnă\nce înseamnă\napoi buzele tale îmi strâng la piept\ncuvintele ce îmi poartă menirea\nîmi poartă în fiecare dimineață împlinirea\ncând cunoaşterea începe întotdeauna\nalb cu iubirea`, 162)'>
+                <div class="poem-title">despre sensuri ascunse în culori pătrunse de alb</div>
+                <div class="poem-preview">alb
+cuvântu-i alb
+aproape de plutire
+păşind şi gândind aproape alb
+în al gurii tale miros de nectar de crini
+plămădindu-ți trupul transformat în floar...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre care nu ştim nimic", `dar pe care o împăturim\nîn miros de crini\npână la sentimentul\ndeplin\nal căderii în păcat\nsub treptele cuvintelor care nasc\nmetamorfoze`, 164)'>
+                <div class="poem-title">despre care nu ştim nimic</div>
+                <div class="poem-preview">dar pe care o împăturim
+în miros de crini
+până la sentimentul
+deplin
+al căderii în păcat
+sub treptele cuvintelor care nasc
+metamorfoze</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre cuvintele plânse spre cuminecare", `plâng\nplâng altfel\nplâng alungit\nuşor deformat şi amărui\ncu o lacrimă care nu a mai trecut pe la mine\nnicicând\nplâng\natât de adânc\nîn lumina gălbuie a unei zile eterne\ncu fruntea sprijinită de poemele mele\nîncât un fior mă învăluie precum un mister\nîn miros de iasomie\nplâng de dorul cuvintelor mele rotunde\ncu toate lacrimile mele de-a valma\niar plânsul meu orb se presară în fiecare seară\nîn chip de rugăciune pe crinii albi\nşi mulțumesc plângând bunului Dumnezeu\ncă pot să plâng de dorul tău\nmăsurând timpul\ncu lacrimile cu care\nsting ultima lumânare din încăperea\ncare pluteşte cu mine\npe-o mângâiere`, null)'>
+                <div class="poem-title">despre cuvintele plânse spre cuminecare</div>
+                <div class="poem-preview">plâng
+plâng altfel
+plâng alungit
+uşor deformat şi amărui
+cu o lacrimă care nu a mai trecut pe la mine
+nicicând
+plâng
+atât de adânc
+în lumina gălbuie a...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre care", `nu mai am aripi\nsă-mi respir cuvintele\nde atâta fior\nAmin!`, 165)'>
+                <div class="poem-title">despre care</div>
+                <div class="poem-preview">nu mai am aripi
+să-mi respir cuvintele
+de atâta fior
+Amin!</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre tăcerea cuvintelor", `aseară\nmi-au venit cuvintele acasă\nobosite şi prăfuite\neu nici nu eram sau încă nu venisem\nşi casa înflorea de-a lumina\nşi gândul săpa în mine după apă\ncu un fâlfâit de aripă limpede\nca o rugăciune\nîn lacrimi de miere\ncelesta putere\na florii de crin\nle-am pus la masă\nşi le-am dat\npâine şi vin\nşi le-am aşezat în tăcere\npuțin\nera noapte deplin\nsau nu`, 166)'>
+                <div class="poem-title">despre tăcerea cuvintelor</div>
+                <div class="poem-preview">aseară
+mi-au venit cuvintele acasă
+obosite şi prăfuite
+eu nici nu eram sau încă nu venisem
+şi casa înflorea de-a lumina
+şi gândul săpa în mine după ap...</div>
+            </div>
+
+            <div class="poem-card" onclick='openModal("despre felul de a fi al oglinzii", `pasărea\npasărea - zise\nuită-te cum trece pasărea asta\npeste trecutul meu - zise ca un zbor peste o umbră\nluminând\nluminându-mă şi cuvânt\ncuvântându-mă în lumina\nnumele lui\ncare\neste zbor - zise\ncare este al zborului zbor\nmăsură\nce\ncoboară\ndin cer o fântână zise în zbor\no pasăre pictată din cuvinte ce mor\nși pasărea pasăre cuvântă ușor\nun zbor`, 167)'>
+                <div class="poem-title">despre felul de a fi al oglinzii</div>
+                <div class="poem-preview">pasărea
+pasărea - zise
+uită-te cum trece pasărea asta
+peste trecutul meu - zise ca un zbor peste o umbră
+luminând
+luminându-mă şi cuvânt
+cuvântându-mă...</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="poemModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <div class="modal-body" id="modalBody"></div>
+            <div id="modalNumber"></div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(title, content, number) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalBody').textContent = content;
+            
+            if (number) {
+                document.getElementById('modalNumber').innerHTML = `<span class="poem-number">${number}</span>`;
+            } else {
+                document.getElementById('modalNumber').innerHTML = '';
+            }
+            
+            document.getElementById('poemModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            if (!event || event.target.id === 'poemModal' || event.target.classList.contains('close-modal')) {
+                document.getElementById('poemModal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Search functionality
+        const searchBox = document.getElementById('searchBox');
+        const poemsGrid = document.getElementById('poemsGrid');
+        const allCards = poemsGrid.getElementsByClassName('poem-card');
+
+        searchBox.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            Array.from(allCards).forEach(card => {
+                const title = card.querySelector('.poem-title').textContent.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
