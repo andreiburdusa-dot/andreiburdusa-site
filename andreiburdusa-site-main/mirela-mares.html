@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mirela Mareș — Poetă</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #1a1410;
+      --parchment:  #f5f0e8;
+      --cream:      #faf7f2;
+      --gold:       #c9a96e;
+      --gold-light: #e8d5a3;
+      --amber:      #d4956a;
+      --sand:       #d4c5a9;
+      --muted:      #7a6f62;
+      --dark-bg:    #1c1510;
+    }
+
+    body {
+      font-family: 'EB Garamond', serif;
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(28, 21, 16, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+      padding: 0 2rem;
+    }
+
+    nav .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    nav .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul li a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--sand);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover { color: var(--gold); }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 9rem 2rem 5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .hero-photo {
+      position: relative;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(15%);
+    }
+
+    .hero-photo::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      right: -12px;
+      width: 100%;
+      max-width: 380px;
+      height: 100%;
+      border: 1px solid var(--gold);
+      pointer-events: none;
+    }
+
+    .hero-text .eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .hero-text h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-text .subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      display: block;
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    /* ─── PREZENTARE PLACEHOLDER ─── */
+    .prezentare {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--ink);
+    }
+
+    .prezentare .placeholder {
+      font-style: italic;
+      color: var(--muted);
+      border-left: 2px solid var(--gold);
+      padding-left: 1.2rem;
+    }
+
+    /* ─── POEM ─── */
+    .poem-section {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 5rem 2rem 6rem;
+    }
+
+    .poem-section .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .poem-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--sand);
+      margin: 0 auto 3rem;
+    }
+
+    .poem-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 300;
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--ink);
+    }
+
+    .poem-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      line-height: 2;
+      color: var(--ink);
+    }
+
+    .poem-body .strofa {
+      margin-bottom: 2rem;
+    }
+
+    .poem-body .vers {
+      display: block;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark-bg);
+      color: var(--muted);
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(201, 169, 110, 0.15);
+      margin-top: 4rem;
+    }
+
+    footer .footer-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    footer p { font-size: 0.8rem; }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .hero-photo::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">← A · C · B</a>
+    <ul>
+      <li><a href="index.html#mai-mult">Mai mult</a></li>
+      <li><a href="index.html">Acasă</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <div class="hero-photo">
+      <img src="images/foto-mirela-mares.jpg" alt="Mirela Mareș">
+    </div>
+    <div class="hero-text">
+      <span class="eyebrow">Poetă contemporană română</span>
+      <h1>Mirela Mareș</h1>
+      <span class="subtitle">vocea tăcerii</span>
+      <div class="divider"></div>
+      <div class="prezentare">
+        <p class="placeholder">
+          Prezentarea poetei va fi adăugată în curând.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── POEM ─── -->
+  <section class="poem-section">
+    <span class="section-label">Poem</span>
+    <div class="poem-divider"></div>
+
+    <h2 class="poem-title">Tac.</h2>
+
+    <div class="poem-body">
+
+      <div class="strofa">
+        <span class="vers">Tac.</span>
+        <span class="vers">Și genele mele înghețate</span>
+        <span class="vers">înmuiate ast-noapte în călimara cu lacrimi</span>
+        <span class="vers">îți zgârie vers cu vers,</span>
+        <span class="vers">poemul pe pleoape.</span>
+      </div>
+
+      <div class="strofa">
+        <span class="vers">Clipirea are atâta lumină</span>
+        <span class="vers">încât aud cum se cambrează curcubeul</span>
+        <span class="vers">sub fruntea ta</span>
+        <span class="vers">în arcadele suspinului meu.</span>
+      </div>
+
+      <div class="strofa">
+        <span class="vers">Tac.</span>
+        <span class="vers">amintirea parfumului meu ți se țese pe chip</span>
+        <span class="vers">preț de-o fărâmă dintr-o eternitate.</span>
+      </div>
+
+      <div class="strofa">
+        <span class="vers">E așa,</span>
+        <span class="vers">ca și cum,</span>
+        <span class="vers">iarna</span>
+        <span class="vers">ar pune pecetea sărutului meu tăcut</span>
+        <span class="vers">în palmele tale.</span>
+      </div>
+
+      <div class="strofa">
+        <span class="vers">Tac.</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── AL DOILEA POEM ─── -->
+  <section class="poem-section" style="padding-top: 0;">
+
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <img src="images/foto-mirela-andrei.jpg" alt="Mirela Mareș și Andrei Constantin Burdușa" style="max-width: 420px; width: 100%; filter: grayscale(15%);">
+    </div>
+
+    <h2 class="poem-title">Tu ai aerul plin de cuvinte</h2>
+
+    <div class="poem-body">
+
+      <div class="strofa">
+        <span class="vers">Tu ai aerul plin de cuvinte</span>
+        <span class="vers">și respiri sacadat printre ele aproape monosilabic,</span>
+        <span class="vers">de aceea,</span>
+        <span class="vers">când privesc cerul umed</span>
+        <span class="vers">îmi miroase a aripi de înger plouate vocalic în tonurile vocii tale.</span>
+      </div>
+
+      <div class="strofa">
+        <span class="vers">Mă reped să te ating dedulcindu-mă de tine,</span>
+        <span class="vers">apă vie dezghețată din steaua mea (niciodată căzătoare).</span>
+      </div>
+
+      <div class="strofa">
+        <span class="vers">Așa,</span>
+        <span class="vers">să putem nemuri împreună înflorindu-ne unul pe altul,</span>
+        <span class="vers">până la unu, rând pe rând,</span>
+        <span class="vers">până ce eu doar clinchet de gleznă rămân,</span>
+        <span class="vers">la pasul tău de zeu.</span>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-logo">ANDREI CONSTANTIN BURDUȘA</div>
+  <p>Copyright © 2026 · All Rights Reserved</p>
+</footer>
+
+</body>
+</html>

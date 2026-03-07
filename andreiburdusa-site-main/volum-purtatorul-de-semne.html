@@ -1,0 +1,2212 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PURTĂTORUL DE SEMNE - Volum complet | Adrian Constantin Burdușa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Palatino', serif;
+            line-height: 1.8;
+            color: #2c2c2c;
+            background: linear-gradient(135deg, #f5e6d3 0%, #d4a574 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #8b4513 0%, #654321 100%);
+            color: white;
+            padding: 3rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .volume-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .volume-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .poems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .poem-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 4px solid #8b4513;
+            position: relative;
+        }
+
+        .poem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-left-width: 8px;
+        }
+
+        .poem-number {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #8b4513;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .poem-title {
+            font-size: 1.4rem;
+            color: #654321;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            font-style: italic;
+            padding-right: 80px;
+        }
+
+        .poem-preview {
+            color: #555;
+            line-height: 1.8;
+            font-size: 0.95rem;
+            max-height: 120px;
+            overflow: hidden;
+        }
+
+        .read-more {
+            color: #8b4513;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 800px;
+            width: 100%;
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            color: #999;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .modal-title {
+            font-size: 2.2rem;
+            color: #8b4513;
+            margin-bottom: 2rem;
+            font-weight: bold;
+            font-style: italic;
+            padding-right: 50px;
+        }
+
+        .modal-text {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #333;
+            white-space: pre-wrap;
+        }
+
+        @media (max-width: 768px) {
+            .volume-title {
+                font-size: 2rem;
+            }
+            .poems-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-content {
+                padding: 2rem;
+            }
+            .modal-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1 class="volume-title">✨ PURTĂTORUL DE SEMNE</h1>
+            <p class="volume-subtitle">Poeme filosofice și metafizice</p>
+            <p style="margin-top: 1rem; opacity: 0.8;">📅 Editura Mirton Timișoara, 2015 | 📖 96 poeme</p>
+        </div>
+    </header>
+
+    <main>
+        <h2 style="text-align: center; font-size: 2rem; color: #8b4513; margin-bottom: 2rem; font-style: italic;">📚 Volumul complet</h2>
+
+        <div class="poems-grid" id="poemsGrid"></div>
+    </main>
+
+    <div class="modal" id="poemModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <div class="modal-text" id="modalText"></div>
+        </div>
+    </div>
+
+    <script>
+        const poems = [
+            {
+                title: "botezul cuvintelor mele",
+                text: `în biserica aceasta a sufletului şi numelui meu
+am intrat cu trupul muiat de ploaia rece a unei primăveri târzii
+şi mi-am botezat mumă lumina cea pătrunsă de duh şi har
+şi părinte acest preot ridicându-şi braţele întru rugăciune
+şi
+chipurile au devenit dintr-o dată arămii
+şi copacii şi-au ridicat şi ei
+braţele înflorite spre norii roditori
+de sămânţa apelor
+şi lumea a devenit mai adâncă
+şi florile copacilor au zâmbit ploii cu o îmbrăţişare de rod
+închinată muntelui
+în biserica aceasta a sufletului meu
+m-am găsit pe mine
+păzindu-mi calea şi menirea
+pe când pruncul botezat ridica pentru întâia dată
+mânuţele spre cer
+în semn de tăcută evlavie
+începusem din nou
+fără de mine
+să calc pe calea eternei deveniri
+în biserica aceasta a sufletului meu
+am intrat om
+şi-am ieşit în genunchi înger de cuvinte`
+            },
+            {
+                title: "imagini de încă iarnă",
+                text: `am sosit în lumina amurgului rece
+la poarta pădurii închise într-o iarnă nesfârşită
+şi-am muşcat cu sete din aerul rece şi rar
+mirosind a pradă
+focul măsoară tăcerea
+ cu trosnetul lemnelor
+înghiţite de flăcări
+şi fricilor
+şi temerilor
+înghiţite de flăcări
+şi îngerilor de oţel
+înghiţiţi de flăcări
+şi muşc din nou însetat din amurgul scurs
+ pe umbrele copacilor încorsetaţi
+ în gerul încă nedezlipit de scoarţa împietrită în neiertare
+am sosit la marginea apusului
+căzut într-o miercuri
+scârţâind sub tălpi
+senin
+bărbat deplin
+întrumat de vin
+şi-am muşcat împins de sete
+din pieptul tău de iarnă deplină
+din aripile tale albe întinse obsesiv pe vârfurile munţilor
+şi-am gustat din gura ta înfiorător de rece
+cu măsura prelungă a anotimpurilor ude
+mirosind a pradă
+ca orişice femeie
+în căutarea fecundă a versurilor
+unui dor nescris`
+            },
+            {
+                title: "poem rotund",
+                text: `de sensuri se desface cerul
+în lumpene sunete prelungite-n ecouri
+şi valea răsună
+ancestral
+rodind nocturn
+şi turmele curgând către sat
+în paşi rari şi bătrâni
+de cântece demult începute
+şi nicicând terminate
+femeile îmblânzesc focurile caselor
+şi focurile bărbaţilor lor
+împlinind destinul lor fecund
+cu lacrimile coconilor lor
+gângurind din nou
+sensurile`
+            },
+            {
+                title: "consideraţiuni mărunte despre fericire",
+                text: `m-am întrebat ce-o să fac dimineaţă
+când voi fi fericit
+de parcă fericirea ar sta la colţ să-mi pândească dimineţile
+fireşte mă simţeam nedemn
+sau abandonat
+imperfect
+şi sărac
+lăsasem un bilet
+în care-mi explicasem neputinţa
+mai întâi mie
+şi mai apoi tot mie
+şi mai la urmă numai mie
+pentru că
+evident
+nimeni nu mai avea importanţă în nefericirea mea
+eram singur
+de-a-ndoaselea fericirii
+şi ce să fac cu ea?
+unde să o pun?
+cui să o arăt?
+în deplinătatea fiinţei mele care nu e
+rămân numai orele
+numărate până la fericire`
+            },
+            {
+                title: "orele",
+                text: `am crezut că e mâine
+aşa cum deunăzi am crezut că e ieri
+trecerea orelor a devenit calpă şi insipidă
+în fond nimic nu trece nicăieri nicicând
+mă uitam parcă încotro
+într-un sărut perfect femeiesc
+într-un dor perfect
+de parcă glăsuise un ceas
+inutil
+dorinţei de prea plin
+mă sprijineam în ideile mele de trecere
+şi ochii oboseau de atâtea cuvinte petrecute
+prin ceasuri prelungi
+afară era ieri şi urma să vii tu
+se lumina de-a binelea
+şi întoarcerea plecă spre ceasul care va să vie
+mi se păru normal să trec şi eu
+spre copila mea
+care devenea azi
+cu ochii calzi şi umezi
+într-un dor perfect
+de-o clipă`
+            },
+            {
+                title: "privind eternul primăvara",
+                text: `gând pentru pruncuţă
+când din drum s-ar opri inima să bată
+şi gândul să răzbată
+ce linişte defunctă s-ar aşterne
+peste zborul păsării mele
+şi zbaterea aripilor ar cădea ca arsă
+într-o lume întoarsă
+şi neînţeleasă
+şi rădăcinile n-ar mai ţese seva
+însoritelor clipe şi ineluctabilelor maluri
+ale râurilor de sentimente
+cu care îţi sărut apăsat
+profunda mirare
+a iubirii tale
+încă neîmbânzită
+de aceea
+copilă
+îţi mângâi părul bălai
+cu speranţa eternei împliniri
+în lacrima limpede
+a zilei de azi
+şi-a necuprinderii de mâine
+cu dorul deplin
+al curcubeului
+pe care ţi-l las moştenire
+în fiecare cuvânt`
+            },
+            {
+                title: "destin",
+                text: `din adâncul de adânc
+creşte trupul meu de prunc
+nu mă lasă să mă duc
+nici iubire să arunc
+dar nici rău să nu aduc
+
+pe cerul profund albastru
+creşte sufletul de astru
+naşte sunetul măiastru
+din pietre de alabastru
+zi de zi şi zori de zor
+dă-mi sărutul să mă-nsor
+dă-mi iubirea ca să mor
+înflorindu-mă-n cocon
+din adâncul de adânc
+crească trupul meu de prunc
+nu mă lasă să mă duc
+nici iubirea să arunc
+nici tăcerea să alung
+doar din prunc să trec în prunc`
+            },
+            {
+                title: "ţâpurituri",
+                text: `să nu treci cu vinul bun
+pe lângă omul nebun
+că îi lumea cam beşleagă
+vărăveşte zâua-ntreagă
+să nu treci cu luna plină
+pe la mine prin grădină
+că-i rămâne fără umbră
+pân-o creşte frunza-n dungă
+să nu treci ulcior cu apă
+peste nume fără groapă
+nu te-ndoaie, nu te şede
+nici în lume nu te-ncrede
+să nu treci fără de tine
+peste sufletul din mine
+peste umbra mea domoală
+peste ceru tău de vară
+fii înaltă, fii subţire
+fii tăcută, fii de tine
+şi nu trece peste viaţă
+ca lumina peste ceaţă
+nici pe cale nu te duce
+nici pe buze nu te dulce
+fără umbra mea povară
+pavăză de rău şi boală`
+            },
+            {
+                title: "tablou trist",
+                text: `străbat clipele astea dureros de lipite de cadranul ceasornicului singurătăţii
+pesemne vor înflori salcâmii pe ramuri de sticlă
+scrijelind îngrozitor aerul
+cu dureri fecunde
+e o nouă zi ascunsă iremediabil într-una zdrenţuită
+ascunsă la rândul ei într-una chinuită
+şi tot aşa
+de abia îmi mai văd măsura
+şi mă agăţ cu disperare
+de-o lume nouă
+care va să vie
+diluvial`
+            },
+            {
+                title: "Constandine, Constandine",
+                text: `(de jocului joc)
+Constandine, Constandine
+nu te desprinde
+de mine
+de tine
+de unde
+depline
+curg râurile pline
+de unde vii
+şi unde pleci
+fără de mine să nu treci
+unde-ai putea doar tu să pleci
+când inima mea încercănată de semne
+dă semne pesemne
+de lemne
+ de tine refuză să-ndemne
+fără de amintiri
+nu exista drum înapoi
+ci doar un plai fecund al regretelor
+o lume-a egretelor deja dispărută
+abruptă
+abrupt
+ai luat cu tine prezentul
+ tăcut
+dar l-am prins cu nefire de mine
+şi l-am ţintuit spre sine
+şi în trupul lui de leu
+ clădesc viitorul meu
+în trupul lui
+cu trupul întrupat
+pătrat
+pătat
+de tine gustat
+de tine al trupului meu
+destine,
+Constandine, Constandine!`
+            },
+            {
+                title: "duminică",
+                text: `secundele, unele într-altele, zevzecele,
+într-o mohorâtă zi de duminică
+ce nu odihneşte
+secvenţe muzicale tulburi,
+frânturi de stări confuze şi anacronice,
+imposibilitatea înnodării prezentului
+la nici un alt timp
+o inconfortabilă stare de bine
+racordată la o deja prea lungă stare de încordare
+o caricaturală existenţă modernă
+chipurile
+progresistă
+în realitate măcinată de incertitudini
+şi din nou
+secundele, unele într-altele, zevzecele,
+în aceeaşi zi de duminică
+de care nu va mai auzi nimeni niciodată
+pentru că nu are sens
+şi nici logică şi nici valoare
+decât dacă o transformi
+în poem
+în rest e numai larma unei lumi care nu va rămâne`
+            },
+            {
+                title: "castelul. femeile. ţigările de foi",
+                text: `construiam alături un castel
+beam bere şi construiam
+din când în când priveam femeile
+şi fumam ţigări de foi
+beam bere şi priveam
+câteodată ne îmbătam şi ele şi noi
+şi nopţile păreau un mister cântate în doi
+şi zilele treceau mai toate la fel
+castelul creştea niţel câte niţel
+şi femeile
+femeile urcau prin el să ne-ntâlnească
+miroseau mereu a proaspăt
+şi luau foc ca o iască
+cu sufletul lor blând
+înhămându-se-ndelung
+la un dor cântat prelung
+de mâinile aspre
+de constructor peren
+eram constructori de clipe şi idei precise
+construim castele uriaşe de vise
+prin priviri ocolite sau de-a dreptul piezişe
+şi-apoi înnădeam ideile
+din când în când iubeam femeile
+ne-mbătam profund şi-alungam năbădăile
+şi-apoi ne puneam iarăşi pe treabă
+urma să înălţăm o treaptă
+era târziu şi curgea eternul din cer
+şi în somnul fecund ne grăbeam puţintel
+urma peste noi - cum spuneam – să împlinim
+un castel`
+            },
+            {
+                title: "joc secund",
+                text: `stau desigur
+într-un singur
+şi parcă adorm de friguri
+şi parcă mă crap în riduri
+şi parcă mă zid în ziduri
+doare luna-n zori bătrâna
+şi mă mângâie într-una
+mă ogoaie săptămâna
+mă îndoaie mătrăguna
+îmi lipseşte nemăsură
+viaţa-mi stă fără trăsură
+gura-mi arde fără gură
+lumea se transfigură
+vino
+ia-mă
+du-mă vamă
+la secunda cea din ramă
+la fecunda stea să doarmă
+viaţa lumii ca o doamnă
+vino
+treci peste poveste
+că-nainte mult mai este
+jocul lumii face feste
+veşnicia e un cleşte
+stau
+spusesem
+într-un singur
+lumea trece printr-un picur
+jocul vine să m-asigur
+că trăiesc
+iubesc
+şi
+licur`
+            },
+            {
+                title: "bacoviană",
+                text: `(scrisoare de tristeţă)
+amar şi cald
+cald şi amar
+o viaţă pierdută într-o noapte de bar
+ce rece
+ce gheaţă
+ce tulbure har
+nimic de-mplinit, doar o viaţă de bal
+putrede guri şi gheaţă la mal
+amar şi cald
+cald şi amar
+un stâlp inutil într-un câmp hibernal
+fad nechezat de tremur de cal
+ce trist
+ce adânc
+ce fior de metal
+pas presărat într-o teamă de jar
+de-aproape departe, din mal doar un val
+dă-mi, Doamne, la moarte un gest feudal
+amar şi cald
+cald şi amar`
+            },
+            {
+                title: "o toamnă nesfârşită",
+                text: `galben
+ruginiu
+stacojiu
+iar galben
+dau să mă sprijin de galben
+şi mă rănesc în ruginiu
+şi mă strânge stracojiul până la lacrimi
+şi vocea ta
+şi mă sprijin de copacul vieţii mele
+şi el se cutremură din toate frunzele
+cu braţele aruncate-n aer a disperare
+galben
+ruginiu
+stacojiu
+iar galben
+zdrenţe de culoare
+şi pata asta de pe sufletul meu care nu mai iese
+nici măcar cu suflul cel rece al iernii ce se simte din ce în ce mai înlăuntru
+ca o monedă de nichel îmbătrânită şi boţită
+ruginiu
+stacojiu
+galben bacovian
+iar galben
+ca un semn de circulaţie căzut în dizgraţie
+galben
+o toamnă nesfârşită-n galben trist
+iar galben`
+            },
+            {
+                title: "tablou de final de toamnă",
+                text: `picură noaptea adâncă şi udă şi gri şi friguroasă
+pe paşii mei călcând pe cioburile imensului repaus
+o respiraţie inutilă îngheţată în formele unei zile de toamnă mânjită de ghearele
+iernii
+adâncul este întunecat şi îngheţat pe alocuri
+frigul se insinuează în oase inefabil, ineluctabil, inevitabil
+esenţa este respingătoare, înfricoşătoare, urâtă
+până şi lumina ferestrei mucegăieşte galben
+se aude un câine urlând aproape apocaliptic
+nimic nu e înainte, nimic nu a rămas în urmă
+doar un ţipăt crispat şi mut de atâta durere
+desenez cu trupul meu, cu mişcarea lui o viaţă aproape de ţărm
+dar nu văd şi nu ştiu ţărmul
+aud propria respiraţie sacadată şi obosită de atâta zbatere
+nici nu mai ştiu dacă ai fost sau nu
+nici nu mai ştiu de ce am rămas`
+            },
+            {
+                title: "tablou târziu....",
+                text: `aud cum bate toamna-n gând
+cu degete amorţite-n vânt
+mi-s greu de suflet pe pământ
+şi nu-s nici vaiet, nu-s nici cânt,
+nici moarte nu-s, nici vis răsfrânt,
+aud cum bate toamna-n gând
+aud cum cade iarna-n pârg
+şi liniştea-ngheaţă-n târg
+şi gestul pică fără sârg
+şi noaptea vine în amurg
+nici nu mai e loc de durere
+de-atâta vaşnică tăcere
+nici de bărbat, nici de muiere,
+doar paşi de noapte să mă spele
+ca să mă apere de rele
+nici nu mai e loc de durere`
+            },
+            {
+                title: "................ ",
+                text: `în
+sufletul meu
+e-o toamnă târzie şi singuratecă
+e-o toamnă lacustră şi tristă
+o noapte udă şi
+întinsă pe un drum nevropat şi sentimental
+
+în sufletul meu
+e o legendă
+a unei mari chemări către sine niciodată împlinită
+cu măsură deplină
+
+în trupul meu
+trăiesc silit
+hălăduind pe drumul toamnei
+în speranţa că la capătul lui
+mă va ierta singurătatea ta
+mă va împlini singurătatea mea`
+            },
+            {
+                title: "trădată de patimă",
+                text: `respir cu sufletul îngălbenit
+aerul rece al unei ierni care va să vie
+sorb însetat sărutul amar
+din ciutura care coboară lin în fântâna lacrimilor vii
+înghit nesăţios clipa născută ca să fii
+şi să pieri odată cu mine
+în tainele vântului meu de miazănoapte
+ca într-un dans rebel de iepe neîncălecate
+neînceputa vrajă
+nestrunita inimă năpădită de iedera teamei
+de-a fi fiinţă
+de-a fi dor
+ca şi cum devenirea ar durea
+cu puterea fiecărui sărut
+cu pasiunea fiecărei îmbrăţişări
+cu nesfârşirea fiecărei prăbuşiri
+în neantul unei clipe
+clipă de clipă
+pleoapă de pleoapă
+ca o aripă de pasăre înjunghiată de zbor
+trădată de patimă`
+            },
+            {
+                title: "A din a",
+                text: `e noaptea rece
+prima şi niciuna
+e noapte-atât de-adâncă
+încât nici nu ştiu cine sunt
+nici nu ştiu unde sunt
+şi nici nu ştiu de ce
+şi nici nu vreau
+prea mult şi prea adânc a nins în coastele mele
+cu şuierul vaietelor dureros de albe şi singure
+prea mult şi prea adânc m-am zbătut cu unghiile în carne
+sângerând până la plânsul deplin
+diluvial
+oh, ce durere a durerilor
+coboară în fiinţa mea
+desculţă pe cioburile tuturor iubirilor neţărmurite
+strivindu-mi sufletul
+stors
+de propriul sens
+căci ceea ce trebuie reţinut
+este că nimic nu doare mai tare
+ ca floarea de cireş pătată de rugina trădării
+cu un gest murdar
+de 30 de arginţi
+nici nu sunt cuvinte de-ajuns
+nici nu sunt gesturi de-ajuns
+şi nici respiraţia nu-mi mai e de-ajuns
+şi tăcerea şi liniştea şi calmul
+sunt totuna cu viforul
+care ţâşneşte pe uşa rămasă deschisă
+la plecarea ei
+şi totuşi sub ochii mei
+miroase încă a parfum de femeia mea
+ca o deplină povară
+a iernii ce va să fie`
+            },
+            {
+                title: "A a",
+                text: `(o teorie)
+întuneric deplin
+haos şi naos deopotrivă
+viaţă şi moarte
+în aceeaşi măsură
+stelele plutesc
+în unduiri de lumină difuză
+sau cad în hăul nefiinţei lor
+nu aud dacă orologiul universului mai bate
+sau s-a oprit să se adape
+din căuşul ireversibilului
+şi pentru că totul amorţise
+şi-a întins picioarele să se dezmorţească
+şi-atunci s-a rupt cerul definitiv
+şi s-a croit pentru întâia oară
+mişcarea
+lumina îşi căuta formele
+şi culorile
+sensurile îşi căutau malurile
+nu sosise încă
+prima secundă călătoare
+nu se încălzise încă eternul
+mişcarea mişcându-se s-a mişcat pe sine
+şi a rămas mută de admiraţie
+fiecare mişcare năştea alte mişcări
+şi dintr-o dată se auzi
+măsura timpului
+sosise clipa`
+            },
+            {
+                title: "plumb",
+                text: `soldatul de plumb
+tăindu-şi venele plumburii
+cu petalele schimonosite ale zorilor trandafirii
+şchiopătând sec
+metalic
+pe trupurile muribunde
+ale ultimelor zile
+înmuiate
+în bătrâna toamnă
+nimic
+ca un desen obtuz şi obez
+pe obrazul crestat
+al zilei de marţi
+orice
+oricând
+oriunde
+egal
+obtuz
+uscat
+inert
+un ultim oftat
+lăsat în paragină
+pe ghizdurile zilei de ieri
+ca o bancnotă murdară
+pe un gest sinucigaş de plumb`
+            },
+            {
+                title: "intermezzo",
+                text: `mijlocul zilei ca un cârd de cocori risipit de ploaie
+o zi mohorâtă şi apăsătoare
+nimic împrejur care să miroasă a levănţică
+şi a viaţa mea de acasă
+zgomote comune se împrăştie în cele patru zări
+ca o cascadă de monede uzate risipite pe podea
+deranjant, absorbant
+întind o mână cât un gând disperat de singurătate
+şi palpez aerul în forma lacrimilor tale
+resemnat şi năuc timpul bate sec
+cu bătăi de topor pătrunzând înfundat în trunchiul putred
+al stejarului doborât de propria sa devenire
+şi niciunde şi nicicând
+nu se întoarce nici o cărare, ci doar picură
+vântul sunete îngheţate
+cu meşteşugul celui care totdeauna va fi pretutindeni
+dar nimic tandru
+dar nimic uman
+doar un sens fără de sfârşit
+intermezzo
+poate etern
+poate pur
+dar întotdeauna singur şi trist
+ca miezul acestei zile de final de an`
+            },
+            {
+                title: "strigătul rugăciunii mele în noapte",
+                text: `(de citit pe nerespirate suflete desprinse)
+unde mi-aş putea usca lacrima născută din tânjire
+unduinda durere a sufletului meu rebel
+călărind aiurea printre iubirile neîmplinite
+unde mi-aş putea odihni neodihna
+ca pe o aripă
+ca pe o zbatere
+ca pe o nepătrundere
+ca pe o neîmplinită de-a pururi mişcare
+drum
+cascadă
+muzică
+deplină împerechere în vis şi-n cuget
+unde mi-aş putea odihni strigătul
+ca pe un stâlp al casei mele de acasă
+al femeii mele din femeie
+din copilă
+din pruncul pruncilor tuturor vremurilor
+atunci şi acum
+Amin`
+            },
+            {
+                title: "murmur",
+                text: `pasăre-fântână, pasăre-fântână
+iz de primăvară sărutată-n gură
+să beau apă vie cuminecătură
+pasăre-fântână, pasăre-fântână
+zborul mi-l întoarce într-o picătură
+lumea mi-o îndoaie într-o făcătură
+fereastra mi-o-nchide într-o nemăsură
+pasăre-fântână, pasăre-fântână
+dă-mi iubirea ţie să îi dau măsură
+în oglindă timpul stă să curgă-n lună
+moartea se apleacă mirosind a mură
+pasăre-fântână, pasăre-fântână
+trece-mi drumu-n joacă printr-o bătătură
+să curm viaţa iernii cu-o împletitură
+de covor de stele curăţate-n şură
+sărutând tăcerea înflorită-n brumă
+pasăre-fântână, pasăre-fântână`
+            },
+            {
+                title: "incantaţie",
+                text: `pasăre-fântână, pasăre-fântână,
+ruptă din poemul înjunghiat de lună,
+oglindindu-şi zborul într-o văgăună,
+adormindu-şi pruncii-n cuib de mătrăgună,
+pasăre-fântână, pasăre-fântână,
+nopţile adânci curg de-o săptămână
+hrănindă durerea luminii păgână
+cu jertfa tăcerii zăcând în ţărână,
+pasăre-fântână, pasăre-fântână,
+dă-mi de pază dorul pogorât din mumă
+şi zidit femeii care să-mi rămână
+strună primăverii mirosind a zână,
+pasăre-fântână, pasăre-fântână`
+            },
+            {
+                title: "din curcubeu",
+                text: `pasărea-fântână frântă din lacrima cerului
+de înlăuntrul zborului chip
+întru rugăciune
+despicându-se
+întru rugăciune
+de înlăuntrul zborului chip
+pasărea-fântână frântă din lacrima cerului
+din curcubeu`
+            },
+            {
+                title: "povestea păsării-fântână",
+                text: `nici
+n-am respirat
+de teamă să nu răstorn visul
+topit în mişcările tale
+circulare
+dormi liniştită
+îţi păzesc cu trupul meu
+liniştea sărutului tău încins
+de foamea mileniilor care ne despart
+înlăuntru
+dintr-o singură
+febrilă
+îndoială
+doborât de vers
+EL
+supremul
+adormi la pieptul adânc
+al eternei mame
+cu dorul sângerând deschis
+al unei vieţi
+care va să vie
+să cheme iubirea cea dintâi
+şi pe urmă
+hazarduos
+să fie iubit
+de-a-ntrupulea
+hărăzit să fie iubit
+EL
+neîntorsul din drum
+întoarse privirea spre ea
+şi din trupul ei ţâşni
+nemăsura iubirilor lui
+ca un izvor fierbinte
+tămăduitor
+la care să se adape
+toate gândurile bune
+ale acestei lumi
+ca la rădăcina soarelui
+lumina
+sfâşiind singurătatea
+cu chemarea ei
+precum
+durerea scursă din vaietul unei trompete
+învăluind
+ piaţeta tăcută şi încă somnoroasă
+a zorilor venirii ei
+fecunda`
+            },
+            {
+                title: "pe urma basmului",
+                text: `nicicând
+niciunde
+nicidecum
+trecut-am pragul tău de scrum
+cu viaţa scursă ca un fum
+într-o legendă dintr-un drum
+era târziu era devreme
+erau nici verzi şi nici perene
+era-n modul trăiam în semne
+doar ele vieţuiau eterne
+era devreme de târziu
+eram şi nu vroiam să fiu
+eram un suflet în pustiu
+într-un apus cărămiziu
+nicicând
+niciunde
+niciodată
+nu am gândit să rup din roată
+iubirea ta neîntinată
+privirea ta nevinovată
+dar ai venit şi nu ştiu care
+fu clipa care te-a adus din zare
+nici timpul când te-ai scurs din mare
+nici noaptea care plânse-n boare
+şi de atunci mă zbat într-una
+să redevin din mare una
+să las doar nopţii-n prag arvuna
+să fiu doar eu şi tu doar una
+nicicând
+niciunde
+nicidecum
+nu vom mai fi parfum de fum
+şi nici legende de pe drum
+şi nici doar praguri pentru scrum
+vom fi doar noi sens de tăcere
+tăcerea urmă de durere
+durerea praful din plăcere
+plăcerea urma unei gene
+şi geana pavăz-a privirii
+privirea pavăz-a iubirii
+iubirea întâmplare-a firii
+şi firea rodului iubirii
+nicicând
+niciunde
+nicidecum
+povestea asta zace-n drum
+nici urmă de fântâni pe drum
+şi drumurile toate-s scrum`
+            },
+            {
+                title: "sămânţa descântecului sădită fântânii în trup de basm",
+                text: `miez de noapte când pe semne
+genele cad peste gene
+şi-n căruţă adorm lemne
+şi pădurea frunza-şi cerne
+ielele cântă devreme
+şi din basme curg eterne
+rituri, cânturi şi blesteme
+vine albastrul să-se-ntreme
+visele se scurg în vene
+lupii se întorc alene
+bufniţele cântă-n pene
+ielele cântă devreme
+şi din basme curg eterne
+rituri, cânturi şi blesteme
+pasărea-fântână geme
+izvorând cauş de semne
+întru chipuri să însemne
+şi la dor să le îndemne
+şi cu zâne să se-ntreme
+ielele cântând devreme
+când din basme curg eterne
+rituri, cânturi şi blesteme
+şi din neant lumini solemne
+cern din ceruri mii de teme
+sufletul să ţi-l întreme
+c-o iubire din extreme
+ielele cântând devreme
+când din basme curg eterne
+rituri, cânturi şi blesteme
+vieţi mărunte să consemne
+iubiri mari tăiate-n vene
+zbateri şi dureri pesemne
+ielele cântând devreme
+jarul basmelor eterne
+rituri, cânturi şi blesteme`
+            },
+            {
+                title: "întoarcerea păsării-fântână",
+                text: `s-a întors în mine pasărea-fântână
+ca o adormire întru nemăsură
+ca un sens deplin sărutat pe gură
+ ca o noapte vie îndoită-n lună
+ pasărea-fântână e-o femeie pură
+născută din dorul de-a iubi o zână
+cremene de stele şi nu o făptură
+încă nerodire, de suflet hapsână
+pasăre-fântână, măiastră şi pură
+munţilor din lună dă-le căpăţână
+vulturii să soarbă vraja mea păgână
+sens deplin de noapte, parfum de răsură,
+dă-le un trup de rege şi cerul armură,
+dă-le înţelepciunea rămasă pe urmă
+fă-le din iubire pavăză şi mână
+fă-le întru tine, pasăre şi zgură,
+nesfârşită apă adâncă şi bună...`
+            },
+            {
+                title: "chiriaşa",
+                text: `locuieşte-mă-n cuvinte
+vino-n măr ţine-mă minte
+trece-o notă fii cuminte
+treci din moarte spre fierbinte
+locuieşte-mă-n cuvinte
+nici mai bine dinainte
+fir de noapte-n bob de linte
+dă-mi un dinte pentru-n dinte
+locuieşte-mă-n cuvinte
+cum fosta-i tu înainte
+alba-ducere-aminte
+nici născută nici cuminte,
+nici la poartă nici părinte,
+locuieşte-mă-n cuvinte`
+            },
+            {
+                title: "studiu (A)geometric a(l) zăpezii",
+                text: `- sau A=a întotdeauna -
+"Aşa că, dacă lumina care este în tine întunerec, cât de mare trebuie să fie întunericul acesta!"
+Matei 6 – 23
+ce negru e totul
+şi pământul cu căi paralele
+şi destinul
+ce trist e totul
+drapat în această fiinţă amorfă
+a netrăirii
+a neauzirii
+turnuri reci de zăpadă împlântate în cer
+sângele alb
+retinele îngheţate
+sărutând degetele crispate ale rănii
+spărgându-se
+în umbre ale nemaifiinţelor pâmântului
+ce alb e totul
+şi pământul
+ce căi paralele
+şi destinul
+înspăimântată pasăre fântâna împlântându-se adânc în mişcarea
+luminii împletite de degetele şi buzele mele
+cu ciocul împlântându-se adânc
+şi murind acolo
+putrezind acolo
+preschimbată fotonic
+într-o durere mai pătrunzătoare decât durerea
+într-o ninsoare mai rece decât ninsoarea
+într-o învolburare mai învolburată decât cea a cuvintelor mele hrănite din haos
+dincolo de toate acestea
+netrăindă şi nemurindă
+ca şi cum nu ar fi
+dar
+ea
+ESTE
+pasărea-fântână este
+împlântată adânc între mişcările cele mai fine
+senzor al gratuităţii existenţei
+senzor al netemeiniciei
+un negativ al poemului imposibil
+o vegetală limbă a blestemului
+ce negru şi ce alb e totul
+ce paralel e totul
+sunt paralel încă şi cu mine
+în permanenţă paralel
+şi frânghiile laturi sunt
+şi duhnesc
+şi sferic duhnesc
+a oarbă căutare
+a hlamină de sânge
+ce negru şi ce alb e totul
+cenuşiu împovărat de naştere
+o paralelă imposibilă la o paralelă care nu există
+un sens precis
+înspăimântată
+pasărea-fântână
+împlantându-se adânc în mişcarea buzelor
+şi a degetelor mele cambrate
+ca o crupă de cal
+într-o cochilie sfărâmată
+a unei false teorii a relativităţii
+ (se dedică celui ce citeşte acest poem)`
+            },
+            {
+                title: "colecţionara de nopţi",
+                text: `strâng nopţi de toamnă târzie foşnind gălbui a singurătate
+fac colecţie de gesturi disperate şi disparate
+strâng nopţi de iarnă friguroasă cu miez de dor
+ce nu dă voie zilei să se iţească de atâta durere
+fac colecţie de lacrimi curgând
+îngheţate pe pervazul zăpezii
+adun nopţi de vară ce trec ca o zbatere a trupului clipei
+şi îmi răzvrătesc trupul indecent de lipit
+ de pământul fierbinte
+fac colecţie de descântece de dragoste niciodată îngânate
+şi de primăvara adulmecată fac colecţie
+ de nopţi dorite şi niciodată avute
+de nopţi ale tuturor nopţilor
+ în care mă afund cu speranţa să te ating în vis
+şi nopţile trec goale şi reci
+şi aşternutul meu poartă tot mai greu
+ conturul trupului tău şters de lacrimile mele
+toamna foşneşte galben ofilind aşteptarea`
+            },
+            {
+                title: "duet",
+                text: `într-un apus de primăvară
+haotic pipăim visele
+sub vraja mirosului de nerostire
+răsucim deznodământul
+într-o beţie de săruturi
+pe lespedea unui vers
+prefăcuţi în pulberea unui apus de primăvară
+lăsăm inimile să respire
+în culcuşul palmelor
+îngerind zilele
+rămase ascunse în cumpăna nopţii
+doar taine cuminţi ale gândurilor noastre
+neştiute adâncuri
+ce vor coace poamele târzii
+ale unui nou început`
+            },
+            {
+                title: "trecerea",
+                text: `din taină înflorita lumină scursă vieţii în petale firave
+aprindea felinarele copacilor în flori multicolore
+care ardeau în lumina soarelui abia împlinit
+în eternul efemer al primăverii
+sosite în gara prăfuită într-o joi
+clădirile intraseră în vrie
+şi se împopoţonaseră aproape tragic
+în duminică
+în cele trei zile nescurse
+lumea muri şi învie a treia zi
+pecetluind istoria cu sânge
+în timp ce primăvara
+ca o femeie deja trecută
+îşi ofilise petalele
+care răposaseră brusc şi melodramatic
+în drame personale stridente şi epigonice
+fără nici o legătură cu devenirea
+miliarde de drame
+albeau trotuarele şi plângeau clipele
+asurzitor de efemer
+primăvara
+împovărată de dorinţe erotice
+dădea semne de oboseală şi de indiferenţă
+şi copacii
+îşi crispau crengile a substantiv
+era
+deşirată şi negricioasă
+uşor absconsă
+trecerea
+care abia trecea la dreapta mea`
+            },
+            {
+                title: "echinocţiu",
+                text: `aburii echinocţiului durerii
+fărâmaţi mov
+în bucăţi de noapte şi zi
+în timp ce
+peste mâine se apleacă azi
+cu gust de ieri
+în timp ce soarele rămâne inegal
+şi orele curg lichefiate întru adânc
+într-un echinocţiu absent
+de semne
+şi plin de tăceri
+împinse la maluri`
+            },
+            {
+                title: "...pesemne...",
+                text: `pesemne că
+tăcerile mele îşi caută cu fervoare cuvintele
+prin deşerturile fierbinţi
+ale zilelor neîmplinite
+tălpile mele fierb
+de febra ascunselor tâlcuri
+şi marea îşi reazeamă valurile
+de-un apus văitat de pescăruşi
+pesemne că
+ancora timpului a ruginit pe urmele
+paşilor mei
+şi ruginiul a dat izvoarelor culoarea sângelui
+şi-acum sângerez continuu
+lepădându-mi durere după durere
+cu abnegaţia condamnatului la sublim
+într-o lume a apocrifelor dorinţe
+vreme de-o posibilă iubire
+pesemne că
+într-o bună zi
+deşertul va înflori
+în cuvinte care vor clădi margini
+eternului
+doar noi ne vom înveli mai departe cu îmbrăţişări
+mirosind a frunză de nuc`
+            },
+            {
+                title: "sonet de toamnă",
+                text: `cu gesturi ruginii şi tandre
+şoptit păşit-am peste umbre
+şi trec tiptil trei ceasuri sumbre
+şi mor în zbor speranţe fade
+vechi amintiri zac risipite
+pe umeri goi, pe braţe reci,
+cad ploi târzii cu lacrimi seci
+şi plâng durerile –adormite
+te-am înrămat în gânduri oarbe
+şi trupul meu a-mbătrânit
+şi veştede regrete soarbe
+şi veşnice dureri se-ntind
+în hohote ca nişte hoarde
+şi port un suflet răstignit`
+            },
+            {
+                title: "dezlegarea la faptă",
+                text: `de-atâta timp mă nasc vertical
+într-o lume întoarsă
+pe care nu mi-am dorit-o niciodată
+nicicum
+nicicând
+înalţ cuvintele spre sufletul cerului
+întorcându-mi durerea
+şi ridicând zidurile cetăţii
+croiesc de-a-ndoaselea răbdarea
+până la prăselele atingerii
+fără să fiu nici eu
+nici tu
+e poate trecerea
+în graba facerii
+cu sensul devenirii
+nimic mai mult
+nimic mai apoi
+doar jertfa ca mărturie a păcatului`
+            },
+            {
+                title: "- credinţa mea -",
+                text: `credinţa mea este iubire înainte de toate
+şi lumină întru întuneric
+este cerul purpuriu şi fierbinte
+înainte de a fi întunecos şi cumplit de rece
+destinul şi credinţa mea
+sunt asemenea unui pom înflorit
+copacul nu poate fi fără a fi floare
+şi floarea nu poate zâmbi dacă nu ar fi copacul
+şi nu trebuie s-o văd spre a şti că este
+creaţia, destinul şi credinţa mea
+sunt asemenea munţilor din care vin
+încă neînvinşi, încă misterioşi
+şi încă liberi
+precum poemul
+pentru că poemul nu poate fi decât liber
+precum vântul mânând norii
+la păscut raze de soare
+şi razele de soare la alinat umbrele valurilor
+creaţia, destinul şi credinţa mea
+legate în poem alungă umbra răului încă nefăcut
+şi sădeşte raza iubirii încă neîmplinite
+ca-ntr-o eternă primăvară`
+            },
+            {
+                title: "- rugă -",
+                text: `poem
+să fac din trup de scrum
+zbor
+să fac din poem drum
+şi niciunde
+şi nicicând
+întunericul să nu-l poată umbri
+moartea să nu-l poată rătăci
+răul înrobi nicicum
+dă-mi
+Doamne
+puterea să frământ norii
+să rup
+din pâinea puterii cu puterea ta
+cu înţelepciunea ta
+cu iertarea neiertării tale
+să fiu mai presus de tăcere
+mai presus de durere
+mai presus de cădere
+poem
+să fac din trup
+zbor
+să fac din poem
+şi nicicând
+niciunde
+nicidecum
+scrum
+doar cale să ramân bătrân`
+            },
+            {
+                title: "ţipa pe struna timpului tăcerea",
+                text: `am coborât secundele de piatră cioplită ale nemuririi
+ca pe-o aripă de stâncă deasupra paradisului pierdut
+curgând ca un râu senzual ascuns luminii
+de-o clipă ruptă
+din rai
+ca o zbatere nedisimulată în cuvinte
+care ard
+ca o pasiune deplină de zbor
+m-am îmbătat de parfumul serilor ploioase de-avril
+ca de sensurile diluviale ale apocalipsei
+înfrigurat şi plictisit până la lacrimi
+neştiind unde duce sensul
+dacă cerul rămâne fără orizont
+am tocmit călăii să îmi tulbure drumul spre eşafodul
+luptei celei de pe urmă
+şi să o curme brusc graţie ghilotinei căzute în dizgraţie
+dar nu a fost să fie aşa
+curgea luna mai dintr-un sâmbure de fiară
+cioplită în cuiburi de vulture
+nemăsurat de alb
+ca dintr-un dor de tăcere
+prelins pe umerii
+fagurelui crescut întru fiecare
+început de oră
+era să fie atât de mult
+şi atât de puţin
+ încât moartea îşi va fi pierdut sensul
+şi se va fi închis ca o uşă
+în urma graiului
+demult uitat
+nicicând rostit
+ţipa pe struna timpului tăcerea`
+            },
+            {
+                title: "- 21 -",
+                text: `o mie de păsări negre pe un cer albastru adânc
+muribundul care va muri curând
+hoţul care nu se căieşte
+credinţa că nu merită să furi
+din nou muribundul care îşi aşteaptă moartea
+cartierul gri de rataţi
+mai vedem
+celula sordidă şi întunecată
+Iisus izvorul care-mi potoleşte setea
+muribundul care-şi priveşte picioarele suferinde
+excesul sau calea spre moarte
+femeia disperată
+din nou omul care vrea să moară
+apoi din nou credinciosul
+apoi femeia
+apoi muribundul privindu-şi inima ca pe un trofeu
+mai apoi prima privire a călăului
+disperarea cu toate faţetele ei
+dragostea cu toate feţele ei
+nebunia de a fi părinte pentru o viaţă
+nebunia de a iubi o viaţă
+băiatul care curăţă frunzele uscate
+şi-apoi femeile care locuiesc în poveste
+dependente de fiinţa basmului
+şi-apoi groaznicul accident
+viciul ca traumatism
+şi-apoi groaznica veste care nu sosise
+şi credinciosul care ucisese fără să vrea
+prea mult sânge nevinovat
+şi din nou el urcând Gorgota
+şi moartea lovind crunt totul
+dărâmând totul
+distrugand totul
+de parcă viaţa ar fi înnebunit de durere
+recăpătându-şi imposibila raţiune
+şi mai apoi
+credinţa că într-o zi
+totul o să fie bine
+somnul care mi se scurge în trup
+şi toată această nebunie care începe să dispară
+cine să mai bage în seamă
+cele 21 de grame
+lipsă?`
+            },
+            {
+                title: "poem de vinerea mare",
+                text: `sunt cel ce e
+sunt cel ce sunt
+eternul vis îmi e rotund
+lumina ţărmului din gând
+sunt cel ce e pământ şi vânt
+tăcerea nopţii şi cuvânt
+sunt cel ce e când nu mai sunt
+niciunde nicăieri nicicând
+sunt cel ce e
+când nu mai sunt
+nici urme vii peste pământ
+clădire peste moarte sunt
+trăire fără trup şi grund
+esenţă într-un strop de lut
+o devenire fără fund
+niciunde nicăieri nicicând
+sunt cel ce e
+eşti cel ce-am fost
+şi ai rămas vremelnic rost
+sunt cel ce e
+pentru c-ai fost
+şi eşti doar vieţii adăpost
+să faci iubirii tale post
+durerii casă drum şi cost
+sunt cel ce e
+pentru c-ai fost
+niciunde nicăieri nicicând
+sunt cel ce e când nu mai sunt
+sunt veşnicia pe pământ
+sunt cel ce e
+pentru că sunt`
+            },
+            {
+                title: "tablou sec",
+                text: `durerea ca un solo de vioară
+ca o vrajă a împăcării cu depărtarea
+literele curg de-ndoaselea
+într-un ceas aproape oprit
+dintr-o gară pustie
+nu aştept nimic
+nu vine nimic
+nu trece nimic
+o pânză de păianjen creşte anapoda
+şi-o buturugă putredă
+îşi plânge de milă
+într-o poiană care-a luat-o la vale
+şi-apoi nimic în faţă
+şi-apoi nimic în sine
+sensuri disparate şi estompate
+precum catargele în zare
+catargele nu mai vin demult
+sensurile nici atât
+în loc de zile caste
+o stare de nemulţumire care mocneşte non-stop
+ca un nod în gât
+o elementară lipsă de spaţiu propriu
+o elementară lipsă zidită cu ciment
+brutal şi mânjit
+undeva trece un tramvai gol
+mă uit în jur dezorientat
+literele curg în continuare fără sens
+cuvintele pier înainte de a se naşte
+oraşul se duce la culcare
+cu sentimentul inutilităţii totale
+prin întuneric plutesc catarge fantomă
+şi-n gară soseşte un marfar cu buturugi putrede
+care nu opeşte ci doar şuieră înfiorător de puternic
+în gară începe să plouă bacovian
+şi noaptea udă trotuarele
+într-un bocet mocnit
+de durere
+nu aştept nimic
+nu vine nimic
+nu trece nimic
+nu este nimic`
+            },
+            {
+                title: "un gând",
+                text: `DESTUL să fii pentru a fi destul
+DESTUL să ştii pentru a iubi destul
+DESTUL să scrii pentru a da destul
+DESTUL să dai ca să primeşti destul
+DESTUL să pierzi pentru a avea destul
+DESTUL să ai pentru a fi mai bun
+căci nici prea mult, nici prea puţin nu-i bun
+DESTUL e totuşi măsurat DESTUL.
+De-aceea vouă, celor de pe drum
+eu vă doresc mereu DESTUL.`
+            },
+            {
+                title: "durerea care s-a prelins nopţii înspre zori",
+                text: `oraşul gri scuipat de ploi şi patimi
+adoarme în sfârşit în noaptea udă
+mai trec din când în când beţivi care asudă
+mai luminează o fereastră printre lacrimi
+e prea târziu ca să mai vin sau prea devreme
+au adormit şi paznicii prin colţuri
+clădirile adorm şi ele printre semne
+şi hoţi jegoşi muncesc să frângă bolţuri
+e prea târziu - spuneam - şi liftul putred doarme
+şi uşa e-ncuiată şi luna zace-n geamuri
+ai adormit demult şi noaptea curge-n ramuri
+şi valuri de durere se zbat ca să mă sfarme
+îmi eşti aşa departe şi totuşi nu te-apropii
+îmi eşti aşa aproape şi totuşi nu te-ating
+eternu'-nsingurării îmi înfioară plopii
+şi-adorm cu tine-n-rânduri şi parcă îmi e frig`
+            },
+            {
+                title: "imagini cuantice",
+                text: `invers
+imaginea mea pusă invers
+cu trecutul înainte
+şi cu ce va veni
+în urmă
+de parcă lumea s-ar sfârşi cu ce a început deja
+într-un ciclu ciudat răsturnat
+dar încă ciclu
+de parcă viaţa ar începe cu moartea
+dar oare cu ce începe
+de parcă iubirea ar începe cu durerea
+dar oare cum se ajunge
+la sentimentul acesta atât de rar
+dacă nu chiar păşind prin durere
+caut să pun capăt trecutului cu lumină
+şi întunericului cu mâine
+şi
+iminent
+traversez experienţe inverse
+spectaculos de incerte
+la poarta vieţii şi a morţii
+stă singurătatea
+ca măsură a sinelui
+dar cine poate spune
+cu ce începem şi ce ne rămâne
+încă din ciclu
+într-un ciclu ciudat răsturnat
+de parcă lumea s-ar sfârşi cu ce a început deja
+în urmă
+şi cu ce va veni
+cu trecutul înainte
+imaginea mea pusă invers
+ca şi cum m-aş privi din oglindă
+oglindindu-mă
+invers`
+            },
+            {
+                title: "floarea mea de iulia",
+                text: `"mă dol picioalele"
+mi-aduc aminte de iulia
+sînt obosită
+mi-aduc aminte de iulia
+mi-aduc aminte de iulia
+de ce mi-aduc atît de aminte de iulia
+că mă dor ochii până la lacrimi
+că mă doare sufletul până la sânul mamei
+că mă dor eu până la iulia
+până la sângele închegat pe buze
+într-un surâs`
+            },
+            {
+                title: "variantă intrinsecă parodiată la o poezie pentru copii anteşcolari",
+                text: `ce de ochi
+ce de ochi
+ce de deochi
+împletind cununi de ochi
+lasă ploaia-n mine-un ochi
+ca-n găvan de aspră stâncă
+mă mănâncă
+mă mănâncă
+surpă-n mine-un văl de urcă
+o mireasă se cufundă
+pe o stradă rea curgândă
+ce de ochi
+ce de deochi
+sar din lacrămele mele stropi
+mai sărate
+mai acide
+mai adânce
+mai omide
+nu mă condamnaţi – le-am zis
+- sunt o gură dintr-un vis
+- ba nu vis,
+- ba telegar!
+- hai cu el la trebunal!`
+            },
+            {
+                title: "grădina japoneză",
+                text: `poemele sunt ca o grădină japoneză
+ele curg povestind izvorului
+cântecul mierlei
+poemele sunt ca pietrele
+ele tac
+pentru ca ceasurile târzii să vorbească
+nedesluşit
+şi misteros
+precum o dimineaţă ceţoasă de octombrie
+poemele sunt adevăratele roade
+ale grădinii:
+ele se culeg la fiecare o sută de zile de dor
+când dau în rod
+lăcrimând etern pe o carte`
+            },
+            {
+                title: "haiku",
+                text: `în zori de ziuă
+poemul rouă curbă
+în lacrima ta`
+            },
+            {
+                title: "în palma mea",
+                text: `în palma mea
+am stat rănit ca un fluture muribund
+frumos şi tragic
+roşu şi negru
+apoi în palma mea mi-am aşezat inima
+ca la o lecţie de anatomie
+pulsând
+târziu
+în noapte
+nimic interesant aş spune
+apoi mi se strecură sufletul printre gene
+şi-l prinsei în palme
+cu degetele simfonic crispate
+era
+cum n-ar fi fost să fie
+mai fin şi mai adânc şi mai rotund
+şi mai greu
+neînceput de aproape
+neîntrecut de departe
+în palma mea
+a înflorit adânc
+răsăritul
+şi rănile s-au ofilit tăcute
+pe când eu am trecut cu sufletul în palme
+spre ziua de mâine`
+            },
+            {
+                title: "în palma mea dreaptă",
+                text: `sap cu durerea mea cea grea
+ răspunzătoare de mine
+în sensul palmelor mele
+şi citesc în cea dreaptă
+cu neînfrânată ardoare
+mugurii timpului împlinirii
+de când exist pentru tine
+ liniile din palma mea
+au luat forma liniilor tălpilor tale
+ ca şi cum aş ţine în palme
+drumul nostru
+şi eu sap
+şi sap
+şi sap
+şi-mi crestez în palme alte linii
+liniile palmelor tale
+ce ar fi sa mi se ghicească în palmă
+linia vieţii
+ linia sufletului
+linia ultimei zile fără sens
+linia ultimei rătăciri
+căutându-te
+sau linille adânci şi grave
+ale drumului tău concav
+către
+liniştea doamnei celei de toamnă prea plină`
+            },
+            {
+                title: "întoarcerea",
+                text: `mă întorc în zborul călător
+spuneam
+mă întorc sub formă de pasăre
+cândva
+cu privirile verzi de muguri
+cu privirile cu gust de fântână
+mă întorc spuneam
+la forma cuibului primordial
+dureros de gol`
+            },
+            {
+                title: "măsurând o lacrimă",
+                text: `divinul este măsura
+nemăsuratei clipe înlăcrimate
+care mi-a sărutat palma
+poemului meu
+mocnit în călcâiul iubirii
+neîmplinite
+precum un râu
+susurând
+surprinzător de viu
+prin rădăcinile pământului
+neînceput de oameni`
+            },
+            {
+                title: "dacă sunt întrebat când copila mea ridică privirea",
+                text: `încerc să înţeleg totul
+şi pricep din ce în ce mai limpede
+că totul este doar unul
+şi unul este totul
+şi esenţa este bună
+pentru că
+fără frumos
+n-ar mai fi nici lumina
+care nu este lumină
+ci doar întunericul care devine
+doar unu
+pe când luna cade
+de-a dreptul peste sufletul meu
+rotunjind aşteptarea
+prin sensul iubirii
+care se ridică
+să zboare invers
+cu aripile deschise invers
+adică înlăuntrul lui unu
+perfect
+adică
+nu
+doar privirea care întreabă`
+            },
+            {
+                title: "ostenit",
+                text: `sunt obosit întins pe plaja pleoapelor mele
+cernit sunt
+rupt sunt între două lacrimi la fel
+şi răsărit şi apus – deopotrivă
+ce zi poate fi nicicând şi niciunde la fel
+ca şi cum visul meu cel alb
+ochii mei verzi şi adânci
+şi mâinile pruncuţei le-ar putea împerechea
+într-un fertil deşert de lacrimi`
+            },
+            {
+                title: "poem de noapte",
+                text: `nu ştiu de ce noaptea asta curge oblic
+ca un râu imperfect de purpură
+lăsându-mă învelit într-o stare de ţipăt
+ca şi cum
+lichefiată
+muzica singurătăţii mele
+s-ar coagula din neîmplinite iubiri confiate
+la uşă bate un aer rece şi nepăsător de iarnă
+şi străinul acela puternic şi viguros şi tăcut
+îşi lasă umbra prelungă
+să lunece pe praguri cu un şuier sâsâit prelung şi ascuţit şi sfâşietor de viscol
+şi nici de ce şi nici cum şi nici unde
+doar aici insinuant de tare şi prezent
+dorul de propria linişte
+alunecă în visul unei ierni abisale
+cu un ecou de durere
+cu un parfum de tăcere`
+            },
+            {
+                title: "pulsul zilei de va să vie",
+                text: `atâta forţă are
+că mă doare
+sămânţa lui de floare`
+            },
+            {
+                title: "rondel",
+                text: `mi-mpleteşte-n suflet toamna ca pe-o aripă de lacrimi
+şi acordurile frânte mi le-aşează peste patimi
+mă-nveleşte-n ruginiul încă ceasurilor calde
+şi m-adoarme leganândă încă în speranţe moarte
+şi-nseamnă-mi uşa zilei cu-al nemărginirii frig
+să rămână o lucarnă doar pe unde eu să strig
+mi-mpleteşte-n suflet toamna ca pe-o aripă de lacrimi
+şi acordurile frânte mi le-aşează peste patimi
+fă-mi din trupul tău tăcere, fă-mi din trupul meu un rug
+să am unde pune vălul timpului pe care-l curg
+dă-mi de ştire când tăcerea se îmbracă-n văl pe margini
+să-mi adun toată puterea să-ţi sărut a tale pagini
+mi-mpleteşte-n suflet toamna ca pe-o aripă de lacrimi`
+            },
+            {
+                title: "tablou de sacru",
+                text: `o linişte diluviană se lăsa peste copacii
+înfloriţi tăcuţi într-o miercuri scursă pe zidurile gri
+era încet şi devreme
+şi lumea amorţise brusc
+cu braţele desprinse de trup
+ca-ntr-o imagine epică
+a nerostirii
+se simţea în aer
+mirosul veşniciei
+care trecea pe lângă noi
+aşa cum treceau zborurile
+păsărilor întoarse din
+călătoriile lor sisifice
+florile se înghesuiau să înmoaie frigul
+căţărat pe înserările prelungi şi triste
+undeva eram şi noi
+desenaţi de timp
+într-o nerăbdare fecundă şi dureroasă
+surprinşi într-o dorinţă
+care îmbătrânise în frământare
+altundeva se născuse istoria
+de-a dreapta abisului
+jertfind veşnicia`
+            },
+            {
+                title: "sens",
+                text: `nu-mi răspunde
+nu rupe liniştea asta
+înfiripată în lutul nopţii
+umedă şi adâncă
+rece şi nefirească
+crudă şi prelungă
+ca o mantie ponosită şi misterioasă
+nu veni
+dansez pe marginea acestei singurătăţi
+împlinite în cuvinte
+ca într-un scrabble uriaş
+în care inventez şi descopăr
+în fiecare zi
+o altă dimensiune a disperării
+nu fă nici un fel de mişcări bruşte
+nu înflori
+nu te ofili
+nu ridica privirea
+căci nimic nu e
+şi nimic nu va trece peste noi
+mai înfometată decât iubirea`
+            },
+            {
+                title: "nostalghia",
+                text: `şi n-am de ce să trec cu vederea
+moartea care cade ca o chiciură
+în colţul străzii umede şi îngheţate
+şi visurile care se insinuează leneşe cu mişcări indecise
+este atât de toamnă şi atât de adânc mă doare
+că noaptea se înmoaie în zorii cristalini atârnând de streaşini
+ca nişte ţurţuri infailibili
+trece o umbră un sunet o mişcare
+şi ceaţa se adună în urmă-i şi mai adâncă şi mai compactă
+din nou câinele mârâie ameninţător şi agonizant
+într-un sunet ciudat şi prelung monoton
+o altă dimineaţă se naşte în prag de nesomn
+şi simt cum oboseala mă copleşeşte dulce
+ca un călău
+pe eşafodul unei aşteptări care nu se mai termină`
+            },
+            {
+                title: "urma zborului în jar",
+                text: `de vei reveni
+- zise
+de vei întoarce privirea şi aripile
+- zise
+de te vei apropia de mine
+- zise
+AŞA
+ca şi cum din cub ai desprinde măsura sferei
+AŞA
+ca şi cum din nisip ai desprinde măsura mării
+şi dacă eu te voi aştepta
+dezgolită de sens
+împietrită
+într-o disperare piramidală
+învirginată de căutare
+înmiresmată de ploaia târzie de toamnă
+premonitică
+şi dacă nimeni nu se va naşte
+vom aprinde lumânările
+şi vom sorbi tăria flăcărilor
+şi
+- zise
+şi
+până la deplina
+desingurare`
+            },
+            {
+                title: "nimic",
+                text: `am vrut să-ţi spun să păzeşti iubirea
+atunci când mai era ceva de păzit
+acum este deja prea târziu
+iubirea a căzut în derizoriu
+şi se vinde la colţ de stradă
+şi nu mai înseamnă nimic
+nici măcar iubire
+am vrut să-ţi spun cum să opreşti timpul
+atunci cand mai era ceva de oprit
+acum oricum nu mai este nevoie
+timpul a căzut din clepsidră
+şi s-a risipit pe o plajă
+nemaioprind nimic
+nici măcar timp
+am vrut să-ţi spun cum să te păstrezi pe tine
+atunci când mai era ceva de păstrat
+acum oricum nu mai este nevoie
+tu te-ai vândut demult pe tine
+pe iluziile de-o clipă ale trecerii
+la un moment dat cineva a apăsat telecomanda
+şi totul s-a stins
+şi din iluzia iluziei tale
+n-a mai rămas
+nimic
+să-ţi zic`
+            },
+            {
+                title: "poem pierdut demult şi de departe",
+                text: `eşti prea demult şi prea departe
+sunt prea aici şi prea bătrân
+tăcerea asta muşcă-n şoapte
+şi trage visul peste drum
+sunt prea târziu şi prea tăcere
+şi ţărmul s-a ascuns în lacrimi
+se umple marea de durere
+şi noaptea s-a spuzit de patimi
+am spart în valuri crude cerul
+şi am ascuns în ape luna
+singurătatea urlă-n ţărmuri
+şi noaptea supură într-una
+eşti prea demult şi prea departe
+sunt prea târziu şi prea tăcere
+pe valuri curg speranţe moarte
+şi timpul crapă în cădere
+eşti tot ce-ai fost, sunt tot ce sunt
+din cartea vieţii am mai rupt o filă
+se face brusc tăcere pe pămănt
+şi-n cimitir se-aprinde o lumină`
+            },
+            {
+                title: "în loc de testament",
+                text: `copiilor mei
+să te întorci când tremură o frunză
+să şchiopătezi când a murit o floare
+să-ngenunchezi când un copac se frânge
+să simţi durerea norului ce doare
+să te apleci când plânge o secundă
+să plângi când zborul cade în uitare
+să urli când trăirea e imundă
+să te cutremuri când tăcerea moare
+să fii doar tu cînd alţii sunt doar alţii
+să pleci doar tu când alţii au venit
+să fii mereu acelaşi între fraţii
+aceluiaşi pământ de jefuit
+fii ochiul verii care boare lasă
+fii cerul nopţii ce-nveleşte seara
+fii pruncul cel senin ce a-nflorit acasă
+fii mâna care-aşează între ţărmuri marea
+să te întorci când tremură o frunză
+să şchiopătezi când a murit o floare
+să-ngenunchezi când un copac se frânge
+să fii doar tu acelasi oarecare
+ce face dimineaţa să surâdă
+pe prag de rugăciune la culcare`
+            },
+            {
+                title: "despre calea cuvintelor la răsăritul drumului",
+                text: `la ţărmul fiecărei dimineţi
+sărut marea cu cuvintele mele lichide
+şi marea se umple de sensuri
+care şerpuiesc îndoind lumina
+până la necuprindere
+mângâi văzduhul cu bietele mele vorbe
+purtătoare de zbor
+şi cerul se curbează înlăuntrul cuvintelor mele
+precum din versul meu naşte ţipătul înaltul
+sădesc vorbele mele purtătoare de semne
+la rădăcina fiecărei vieţi
+şi viaţa se întoarce în carte
+şi cartea se întoarce în fiecare urmă
+şi Cel Ce Defineşte Eternul
+îmi întoarce poemul să îl port
+până când sorocul poemului să se nască
+devine sens
+în fiecare clipă când mor
+mă transform într-un semn
+care desenează timpului o măsură a sensului
+căci eu sunt Purtătorul de Semne
+cuvânt din lumină
+şi pas din urmă
+tăcut şi umil coborât în sunet
+spre preamărirea
+Eternului
+care va veni să odihnească drumul
+împlinind căutarea
+ca iubire`
+            },
+            {
+                title: "căderea din prezent în semn",
+                text: `stau la o masă de lemn sub un palmier uriaş
+cu Cel Ce Defineşte Eternul
+el de partea lui eu de partea mea
+el de partea mării
+eu de partea muntelui
+şi între noi Timpul şi o veşnicie
+pe masă arde o candelă mirosind a levănţică
+sau poate a dor
+zilele cad în cioburi fecunde
+iar nopţile se scurg printre valuri în dureri absurde
+eu întorc privirea către el cu uimire
+el întoarce universul către mine cu îngăduinţă
+din când în când iubim trecerile
+nu vorbim nu gândim nu dorim
+doar suntem
+aşa cum am fi fost dacă nu vom fi fost
+Semne`
+            },
+            {
+                title: "înălţarea spre semn",
+                text: `poemele mele toate
+se cuibăresc adesea la pieptul începutului
+pe dinlăuntru
+alăptate de sânul mării fremătândă de cuvinte
+şi după ce le strâng în braţe
+şi le mângâi pe aripi
+le dăruiesc zborului
+poemele mele toate
+nu pleacă nicăieri fără mine
+până ce
+nu le pecetluiesc cu esenţa ta de femeie care doare
+până la iubire
+până la sămânţa palmierului care acoperă casa
+ca o măsură
+a fiinţării depline
+până la difuzul sărut al lunii
+care coboară peste ochiul meu ca semn
+de trecere
+spre adâncul zbor al pătimirii
+din trupul lacrimei tale cu gustul pur
+al devenirii din mine`
+            },
+            {
+                title: "la capăt de ţărm",
+                text: `n-am măsurat cu trupul meu decât o viaţă
+şi n-am sădit cu gândul meu decât un vis
+n-am locuit decât o rece dimineaţă
+şi-am fost doar un cuvânt. şi ăla scris.
+n-am fost nimic din ce-aş fi vrut să fiu
+n-am fost niciunde unde n-am ajuns
+n-am fost nici noapte nici măcar pustiu
+n-am fost nici zâmbet şi n-am fost nici plâns
+un pic anost un pic cam şters la colţuri
+un pic cam trist şi-un pic cam rătăcit
+n-am fost lăsat pe lume prins în bolţuri
+expus la un panou în chip de ghid
+n-am măsurat cu timpul meu decât o lume
+şi am pătimit aiurea în iubiri deşarte
+n-am adunat averi şi n-am gândit in sume
+şi n-am ucis decât tăcerea dintr-o carte
+n-am fost nimic din ce-aş fi vrut să fiu
+n-am măsurat cu trupul meu decât o viaţă
+am fost şi sunt doar un cosaş prin ceaţă
+când dimineaţa cântă moartea în pustiu
+eu doar cosesc la capăt de cuvinte
+leg sensurile-n snopi de sentimente
+nu sunt exemplu de ţinut în minte
+ci doar rebelul vântului din plete
+n-am măsurat cu trupul meu decât o viaţă
+şi n-am sădit cu gândul meu decât un vis
+n-am locuit decât o rece dimineaţă
+şi-am fost doar un cuvânt. şi ăla scris.`
+            },
+            {
+                title: "timpul ultimei iubiri",
+                text: `timpul n-a lăsat nimic scris cu majuscule pentru mine
+târziu sau devreme au acelaşi gust dureros de frunză ruginită
+săgeţi otrăvite se aprind şi se înfig în trupul nopţii adânce
+şi noaptea îşi oblojeşte rănile cu vaierele mele
+şi stelele încep să dea înapoi ca într-o înflorire ratată
+şi simt cum întunericul mă cuprinde într-o strânsoare
+elementară
+ferecându-mă în cătuşele înroşite ale zorilor groşi de pâclă
+solstiţul vuieşte de o luptă ciudată şi surdă
+o luptă sângeroasă şi pătimaşă
+şi simt deodată cum teama mă slăbeşte din strânsoare
+şi pot să mă mişc
+pot să alerg cu ochii închişi
+cu ochii mei pot să alerg spre lumină
+cu o nesfârşită poftă de viaţă
+care se va sfârşi numai odată cu mine
+timpul n-a lăsat nimic scris pentru mine
+şi-atunci am învăţat să mă scriu
+cu sângele meu
+în propria mea carte
+în care mi-am lăsat semn
+la ultima iubire`
+            },
+            {
+                title: "omul obosit măsurându-şi fiinţarea",
+                text: `ca orice om care a obosit
+ mă voi opri o clipă să-mi trag sufletul
+şi-apoi voi porni din nou la drum
+ca un fum
+ca un zumzet de soare răsărit pe răcoare
+ca iubirea care doare
+ca lumina care soare
+ca nisipul care mare
+ca albastrul ce dispare
+într-o neştiută zare
+ca orice om care a obosit
+mă voi opri o clipă să-mi măsur nerăbdarea fiinţării
+şi-apoi voi porni din nou la vale
+peste-o lume ce nu-i oare
+peste-o zare ce n-apare
+peste-o-cale ce nu-i boare
+peste-o mare şi-nc-o mare
+până umbra va dispare
+până sumbrul nu-i valoare
+nici durerea nu mai doare
+ca orice om obosit
+mă voi opri într-o zi să-mi măsur măsura propriei treceri
+şi-atât`
+            },
+            {
+                title: "Tatăl nostru",
+                text: `(aşa cum îl percep eu)
+Tatăl meu din Ceruri,
+ A toatelor Tată pretutindeni Devenitor,
+Sfinţească-se numele Tău
+Purifică-se gândul meu
+Precum în Cer aşa şi pre pământ
+Pâinea mea cea de toate zilele şi nopţile
+Dă-mi-o mie astăzi în toate cuvintele mele
+Şi mă-ntoarnă pe mine de la ispită
+Dar dă-mi calea pe care să merg către tine
+Liber, demn şi înţelept,
+Puternic şi bun clăditor,
+Aşa precum ar trebui să fie toţi părinţii pentru copiii lor
+Şi ne fereşte, Doamne, de cel rău,
+atunci când nu mai avem puterea s-o facem singuri,
+Şi ne iartă nouă greşelile noastre,
+Chiar de nu le putem noi ierta greşiţilor noştri,
+Căci a Ta este puterea şi slava şi mărirea,
+În numele Tatălui
+Şi al Fiului
+Şi al Sfăntului Duh,
+Amin!`
+            }
+        ];
+
+        // Render poems
+        const grid = document.getElementById('poemsGrid');
+        poems.forEach((poem, index) => {
+            const card = document.createElement('div');
+            card.className = 'poem-card';
+            card.onclick = () => openModal(poem.title, poem.text);
+            
+            const preview = poem.text.split('\n').slice(0, 3).join('\n');
+            
+            card.innerHTML = `
+                <div class="poem-number">#${index + 1}</div>
+                <h3 class="poem-title">${poem.title}</h3>
+                <div class="poem-preview">${preview}...</div>
+                <span class="read-more">Citește integral →</span>
+            `;
+            
+            grid.appendChild(card);
+        });
+
+        function openModal(title, text) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalText').textContent = text;
+            document.getElementById('poemModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('poemModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('poemModal').addEventListener('click', (e) => {
+            if (e.target.id === 'poemModal') {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
