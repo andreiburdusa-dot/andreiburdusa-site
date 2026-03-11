@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>De dor și tremur — Andrei Constantin Burdușa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #1a1410;
+      --parchment:  #f5f0e8;
+      --cream:      #faf7f2;
+      --gold:       #c9a96e;
+      --gold-light: #e8d5a3;
+      --amber:      #d4956a;
+      --sand:       #d4c5a9;
+      --muted:      #7a6f62;
+      --dark-bg:    #1c1510;
+      --dark-card:  #251e17;
+    }
+
+    body {
+      font-family: 'EB Garamond', serif;
+      background: var(--cream);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(28, 21, 16, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+      padding: 0 2rem;
+    }
+
+    nav .nav-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    nav .nav-back {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav .nav-back:hover { color: var(--amber); }
+
+    nav .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--sand);
+    }
+
+    /* ─── POEM WRAPPER ─── */
+    .poem-wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 8rem 2rem 6rem;
+    }
+
+    /* ─── META ─── */
+    .poem-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .poem-num {
+      font-family: 'Cinzel', serif;
+      font-size: 2.8rem;
+      font-weight: 400;
+      color: var(--sand);
+      line-height: 1;
+    }
+
+    .poem-info { display: flex; flex-direction: column; gap: 0.3rem; }
+
+    .poem-section {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .poem-date {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+
+    /* ─── TITLE ─── */
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.1;
+      margin-bottom: 3rem;
+      letter-spacing: -0.01em;
+    }
+
+    /* ─── PHOTO ─── */
+    .poem-photo {
+      width: 100%;
+      max-height: 460px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 4px;
+      margin-bottom: 3.5rem;
+      box-shadow: 0 8px 40px rgba(26, 20, 16, 0.18);
+    }
+
+    /* ─── POEM TEXT ─── */
+    .poem-body {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.25rem;
+      line-height: 2.1;
+      color: var(--ink);
+      margin-bottom: 4rem;
+    }
+
+    .poem-body p {
+      margin-bottom: 0.15em;
+    }
+
+    /* ─── SIGNATURE ─── */
+    .poem-signature {
+      border-top: 1px solid var(--sand);
+      padding-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .sig-bar {
+      width: 32px;
+      height: 2px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .sig-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── NAV POEM ─── */
+    .poem-nav {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--sand);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .poem-nav a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .poem-nav a:hover { color: var(--amber); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark-bg);
+      color: var(--muted);
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(201, 169, 110, 0.15);
+    }
+
+    footer .footer-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+
+    footer p { font-size: 0.8rem; }
+
+    @media (max-width: 600px) {
+      .poem-body { font-size: 1.1rem; line-height: 2; }
+      h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="ziua-frunza-poemul.html" class="nav-back">← Ziua, frunza și poemul</a>
+    <span class="nav-logo">A · C · B</span>
+  </div>
+</nav>
+
+<div class="poem-wrapper">
+
+  <div class="poem-meta">
+    <div class="poem-num">#13</div>
+    <div class="poem-info">
+      <span class="poem-section">Ziua, frunza și poemul</span>
+      <span class="poem-date">11 MARTIE 2026</span>
+    </div>
+  </div>
+
+  <h1>de dor și tremur</h1>
+
+  <img src="images/foto-andrei-filip.jpg" alt="Andrei Constantin Burdușa" class="poem-photo">
+
+  <div class="poem-body">
+    <p>rotundă-mă rebel în zbor</p>
+    <p>respiră-mă pe nări ușor</p>
+    <p>și cerul s-o opri mai gol</p>
+    <p>din tremur</p>
+    <p>&nbsp;</p>
+    <p>și norii s-or ascunde-n flori</p>
+    <p>corole îmblânzind-ă zori</p>
+    <p>și tu rotundă și eu gol</p>
+    <p>și tremur</p>
+    <p>&nbsp;</p>
+    <p>și curgă viața peste zbor</p>
+    <p>și verde răsădit amor</p>
+    <p>și lacrimi care curg domol</p>
+    <p>în tremur</p>
+    <p>&nbsp;</p>
+    <p>rotundă-mă să nu mai mor</p>
+    <p>rotundă-mă în albul zbor</p>
+    <p>respiră-mă cu dor domol</p>
+    <p>căci tremur</p>
+  </div>
+
+  <div class="poem-signature">
+    <div class="sig-bar"></div>
+    <span class="sig-text">andrei constantin burdușa</span>
+  </div>
+
+  <div class="poem-nav">
+    <a href="insomnii-de-primavara.html">← #12 · insomnii de primăvară</a>
+    <a href="ziua-frunza-poemul.html">toate poemele →</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">ANDREI CONSTANTIN BURDUȘA</div>
+  <p>Copyright © 2026 · All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
