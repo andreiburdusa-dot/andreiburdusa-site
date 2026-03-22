@@ -14,38 +14,34 @@
       --parchment:  #f5f0e8;
       --cream:      #faf7f2;
       --gold:       #c9a96e;
+      --gold-light: #e8d5a3;
       --amber:      #d4956a;
       --sand:       #d4c5a9;
       --muted:      #7a6f62;
+      --dark-bg:    #1c1510;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'EB Garamond', serif;
+      background: var(--cream);
       color: var(--ink);
-      min-height: 100vh;
-      background: #1c1510;
     }
 
-    .bg-photo {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background: url('images/foto-bacoviana-toamna.jpg') center center / cover no-repeat;
-      filter: brightness(0.55) saturate(0.85);
-    }
-
+    /* NAV */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(28, 21, 16, 0.85);
+      background: rgba(28, 21, 16, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(201, 169, 110, 0.2);
       padding: 0 2rem;
     }
 
     nav .nav-inner {
-      max-width: 860px;
+      max-width: 1100px;
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -53,191 +49,268 @@
       height: 64px;
     }
 
-    nav .nav-back {
+    nav .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav ul li a {
       font-family: 'Cinzel', serif;
       font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--sand);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover { color: var(--gold); }
+
+    /* HERO */
+    .poem-hero {
+      position: relative;
+      height: 520px;
+      overflow: hidden;
+      margin-top: 64px;
+    }
+
+    .poem-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 60%;
+      filter: brightness(0.55) saturate(0.85);
+    }
+
+    .poem-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(28, 21, 16, 0.2) 0%,
+        rgba(28, 21, 16, 0.5) 60%,
+        rgba(28, 21, 16, 0.85) 100%
+      );
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .poem-hero .eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .poem-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--parchment);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .poem-hero .poem-date-hero {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      color: rgba(245, 240, 232, 0.55);
+    }
+
+    /* CONȚINUT */
+    .poem-content {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 5rem 2rem 3rem;
+    }
+
+    .poem-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 2;
+      color: var(--ink);
+      white-space: pre-line;
+    }
+
+    .poem-separator {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 3rem auto;
+      opacity: 0.5;
+    }
+
+    /* SEMNĂTURĂ */
+    .poem-signature {
+      text-align: center;
+      padding: 0 2rem 2rem;
+    }
+
+    .poem-signature .location {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .poem-signature .author {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    /* SURSĂ BLOG */
+    .poem-source {
+      text-align: center;
+      padding: 0 2rem 3rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+
+    .poem-source a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .poem-source a:hover { color: var(--amber); }
+
+    /* NAV POEME */
+    .poem-nav {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 2rem 2rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--sand);
+    }
+
+    .poem-nav a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
       letter-spacing: 0.15em;
       color: var(--gold);
       text-decoration: none;
       transition: color 0.3s;
     }
-    nav .nav-back:hover { color: var(--amber); }
-
-    nav .nav-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      color: var(--sand);
-    }
-
-    .poem-wrapper {
-      position: relative;
-      z-index: 10;
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 8rem 2rem 6rem;
-    }
-
-    .poem-panel {
-      background: rgba(250, 247, 242, 0.90);
-      backdrop-filter: blur(6px);
-      border-radius: 2px;
-      padding: 3.5rem 3rem;
-    }
-
-    .poem-meta {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
-
-    .poem-num {
-      font-family: 'Cinzel', serif;
-      font-size: 2.8rem;
-      font-weight: 400;
-      color: var(--sand);
-      line-height: 1;
-    }
-
-    .poem-info { display: flex; flex-direction: column; gap: 0.3rem; }
-
-    .poem-section {
-      font-family: 'Cinzel', serif;
-      font-size: 0.62rem;
-      letter-spacing: 0.3em;
-      color: var(--gold);
-      text-transform: uppercase;
-    }
-
-    .poem-date {
-      font-family: 'Cinzel', serif;
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
-      color: var(--muted);
-    }
-
-    h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-weight: 300;
-      font-size: 2.6rem;
-      color: var(--ink);
-      margin-bottom: 2.5rem;
-      line-height: 1.2;
-    }
-
-    .poem-body {
-      font-size: 1.25rem;
-      line-height: 2.1;
-      margin-bottom: 3rem;
-    }
-
-    .poem-body p { margin-bottom: 0.2rem; }
-
-    .poem-signature {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .sig-bar { width: 40px; height: 1px; background: var(--gold); }
-
-    .sig-text {
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      color: var(--muted);
-    }
-
-    .poem-source {
-      font-family: 'Cinzel', serif;
-      font-size: 0.58rem;
-      letter-spacing: 0.15em;
-      color: var(--muted);
-      margin-bottom: 3rem;
-    }
-
-    .poem-source a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
-    .poem-source a:hover { color: var(--amber); }
-
-    .poem-nav {
-      display: flex;
-      justify-content: space-between;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(201,169,110,0.3);
-      font-family: 'Cinzel', serif;
-      font-size: 0.62rem;
-      letter-spacing: 0.12em;
-    }
-
-    .poem-nav a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
     .poem-nav a:hover { color: var(--amber); }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark-bg);
+      color: var(--muted);
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(201, 169, 110, 0.15);
+    }
+
+    footer .footer-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+
+    footer p { font-size: 0.8rem; }
+
+    @media (max-width: 600px) {
+      .poem-hero { height: 380px; }
+      .poem-text { font-size: 1.15rem; }
+    }
   </style>
 </head>
 <body>
 
-<div class="bg-photo"></div>
-
+<!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="ziua-frunza-poemul.html" class="nav-back">← Ziua, frunza și poemul</a>
-    <span class="nav-logo">A · C · B</span>
+    <a href="index.html" class="nav-logo">← A · C · B</a>
+    <ul>
+      <li><a href="ziua-frunza-poemul.html">Poeme recente</a></li>
+      <li><a href="index.html#volume">Volume</a></li>
+    </ul>
   </div>
 </nav>
 
-<div class="poem-wrapper">
-  <div class="poem-panel">
-
-    <div class="poem-meta">
-      <div class="poem-num">#16</div>
-      <div class="poem-info">
-        <span class="poem-section">Ziua, frunza și poemul</span>
-        <span class="poem-date">1 SEPTEMBRIE 2022</span>
-      </div>
-    </div>
-
+<!-- HERO CU FOTOGRAFIE -->
+<section class="poem-hero">
+  <img src="images/foto-bacoviana-toamna.jpg" alt="crocus violet — bacoviană de început de toamnă">
+  <div class="poem-hero-overlay">
+    <span class="eyebrow">Poem · 1 septembrie 2022</span>
     <h1>bacoviană de început de toamnă</h1>
-
-    <div class="poem-body">
-      <p>pe tarabe murdare anii curg despletiți</p>
-      <p>trec femei violet sau femei de amor</p>
-      <p>iarmaroc de plăceri printre pași decrepiți</p>
-      <p>și tăceri se-ofilesc și stejarii mă dor</p>
-      <p>&nbsp;</p>
-      <p>se ascund oameni triști printre oamenii goi</p>
-      <p>risipiți printre răni ei tot plâng în pustiu</p>
-      <p>este toamnă din nou este veșted în noi</p>
-      <p>și un tren infinit taie noaptea în viu</p>
-      <p>&nbsp;</p>
-      <p>din orașul amar curg bețivi rătăciți</p>
-      <p>gem tramvaie-n rugini despicând doar dureri</p>
-      <p>emigranți dorm pe trepte doar în vânt înveliți</p>
-      <p>și mi-e sete de tine și mi-e foame de ieri</p>
-      <p>&nbsp;</p>
-      <p>curg din putrede nopți clipe reci clipe gri</p>
-      <p>răsfoind amintiri doar un vag deja-vu</p>
-      <p>îmi străbate prin visuri o iubire sau nu</p>
-      <p>ești departe sau poate doar o toamnă de-o zi</p>
-    </div>
-
-    <div class="poem-signature">
-      <div class="sig-bar"></div>
-      <span class="sig-text">andrei constantin burdușa</span>
-    </div>
-
-    <div class="poem-source">
-      publicat inițial pe <a href="https://burdusa.blogspot.com" target="_blank">burdusa.blogspot.com</a> · 1 septembrie 2022
-    </div>
-
-    <div class="poem-nav">
-      <a href="bacoviana-de-capat-de-drum.html">← #15 · bacoviană de capăt de drum</a>
-      <a href="ziua-frunza-poemul.html">toate poemele →</a>
-    </div>
-
+    <span class="poem-date-hero">Ghiroda · 1 septembrie 2022</span>
   </div>
+</section>
+
+<!-- TEXTUL POEMULUI -->
+<article class="poem-content">
+  <div class="poem-text">pe tarabe murdare anii curg despletiți
+trec femei violet sau femei de amor
+iarmaroc de plăceri printre pași decrepiți
+și tăceri se-ofilesc și stejarii mă dor
+
+se ascund oameni triști printre oamenii goi
+risipiți printre răni ei tot plâng în pustiu
+este toamnă din nou este veșted în noi
+și un tren infinit taie noaptea în viu
+
+din orașul amar curg bețivi rătăciți
+gem tramvaie-n rugini despicând doar dureri
+emigranți dorm pe trepte doar în vânt înveliți
+și mi-e sete de tine și mi-e foame de ieri
+
+curg din putrede nopți clipe reci clipe gri
+răsfoind amintiri doar un vag deja-vu
+îmi străbate prin visuri o iubire sau nu
+ești departe sau poate doar o toamnă de-o zi</div>
+</article>
+
+<div class="poem-separator"></div>
+
+<!-- SEMNĂTURĂ -->
+<div class="poem-signature">
+  <div class="location">Ghiroda · 1 septembrie 2022</div>
+  <div class="author">@ndrei ©onstantin bu®duș@ · Copyright © All Rights Reserved</div>
 </div>
+
+<!-- SURSĂ -->
+<div class="poem-source">
+  publicat inițial pe <a href="https://burdusa.blogspot.com" target="_blank">burdusa.blogspot.com</a> · 1 septembrie 2022
+</div>
+
+<!-- NAV ÎNTRE POEME -->
+<div class="poem-nav">
+  <a href="ziua-frunza-poemul.html">← Toate poemele</a>
+  <a href="bacoviana-de-capat-de-drum.html">← #15 · bacoviană de capăt de drum</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ANDREI CONSTANTIN BURDUȘA</div>
+  <p>Copyright © 2022 · All Rights Reserved</p>
+</footer>
 
 </body>
 </html>
