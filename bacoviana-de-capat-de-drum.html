@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bacoviană de capăt de drum — Andrei Constantin Burdușa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #1a1410;
+      --parchment:  #f5f0e8;
+      --cream:      #faf7f2;
+      --gold:       #c9a96e;
+      --gold-light: #e8d5a3;
+      --amber:      #d4956a;
+      --sand:       #d4c5a9;
+      --muted:      #7a6f62;
+      --dark-bg:    #1c1510;
+      --dark-card:  #251e17;
+    }
+
+    body {
+      font-family: 'EB Garamond', serif;
+      background: var(--cream);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(28, 21, 16, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+      padding: 0 2rem;
+    }
+
+    nav .nav-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    nav .nav-back {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav .nav-back:hover { color: var(--amber); }
+
+    nav .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--sand);
+    }
+
+    .poem-wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 8rem 2rem 6rem;
+    }
+
+    .poem-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .poem-num {
+      font-family: 'Cinzel', serif;
+      font-size: 2.8rem;
+      font-weight: 400;
+      color: var(--sand);
+      line-height: 1;
+    }
+
+    .poem-info { display: flex; flex-direction: column; gap: 0.3rem; }
+
+    .poem-section {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .poem-date {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 2.6rem;
+      color: var(--ink);
+      margin-bottom: 2.5rem;
+      line-height: 1.2;
+    }
+
+    .poem-photo {
+      width: 100%;
+      max-height: 480px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      margin-bottom: 3rem;
+      filter: sepia(8%) saturate(95%);
+    }
+
+    .poem-body {
+      font-size: 1.25rem;
+      line-height: 2.1;
+      margin-bottom: 3rem;
+    }
+
+    .poem-body p { margin-bottom: 0.2rem; }
+
+    .poem-signature {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .sig-bar {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .sig-text {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+    }
+
+    .poem-source {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-bottom: 3rem;
+    }
+
+    .poem-source a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .poem-source a:hover { color: var(--amber); }
+
+    .poem-nav {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(201,169,110,0.2);
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+    }
+
+    .poem-nav a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .poem-nav a:hover { color: var(--amber); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="ziua-frunza-poemul.html" class="nav-back">← Ziua, frunza și poemul</a>
+    <span class="nav-logo">A · C · B</span>
+  </div>
+</nav>
+
+<div class="poem-wrapper">
+
+  <div class="poem-meta">
+    <div class="poem-num">#15</div>
+    <div class="poem-info">
+      <span class="poem-section">Ziua, frunza și poemul</span>
+      <span class="poem-date">11 IUNIE 2023</span>
+    </div>
+  </div>
+
+  <h1>bacoviană de capăt de drum</h1>
+
+  <img src="images/foto-bacoviana.jpg" alt="Andrei Constantin Burdușa" class="poem-photo">
+
+  <div class="poem-body">
+    <p>e-atâta iarnă-n mine</p>
+    <p>și mă doare</p>
+    <p>din paseri curg tăceri pe cer de plumb</p>
+    <p>și clipă după clipă un orologiu moare</p>
+    <p>și noapte după noapte mă trezesc mai strâmb</p>
+    <p>&nbsp;</p>
+    <p>au ruginit și zorii și scârțâie lumina</p>
+    <p>nefericit trecutul se vinde tot mai scump</p>
+    <p>din putrede orașe se scurge hâd doar vina</p>
+    <p>de a trăi măcelul în trupul tot mai strâmt</p>
+    <p>&nbsp;</p>
+    <p>nici moartea nu e gratis</p>
+    <p>se vinde pe sub mână</p>
+    <p>e-un trafic disperat pe sensul interzis</p>
+    <p>eu aș muri și astăzi</p>
+    <p>dar nu am bani de lună</p>
+    <p>să mi-o aprind la capăt în chip de ultim vis</p>
+    <p>&nbsp;</p>
+    <p>e-atâta ceață-n patemi</p>
+    <p>și-atâta frig în oase</p>
+    <p>cuvintele se crapă și cad intre dureri</p>
+    <p>m-aș duce către casă între aprinse coase</p>
+    <p>și-aș trage peste mine poemul către ieri</p>
+    <p>&nbsp;</p>
+    <p>e-atât sfârșit în toate</p>
+    <p>și nici un început</p>
+    <p>e ultimul sezon din ultimul tramvai</p>
+    <p>e-un ger cumplit în inimi și-am înghețat în rai</p>
+    <p>și vreau să mă acopăr cu un amurg de lut</p>
+  </div>
+
+  <div class="poem-signature">
+    <div class="sig-bar"></div>
+    <span class="sig-text">andrei constantin burdușa</span>
+  </div>
+
+  <div class="poem-source">
+    publicat inițial pe <a href="https://burdusa.blogspot.com" target="_blank">burdusa.blogspot.com</a> · 11 iunie 2023
+  </div>
+
+  <div class="poem-nav">
+    <a href="relativitatea-relativitatii.html">← #14 · relativitatea relativității</a>
+    <a href="ziua-frunza-poemul.html">toate poemele →</a>
+  </div>
+
+</div>
+
+</body>
+</html>
