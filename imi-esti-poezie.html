@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Îmi ești poezie până la fior — poem de Andrei Constantin Burdușa, dedicat Miruței. πεπρωμένο (destin).">
+  <meta name="author" content="Andrei Constantin Burdușa">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://andreiburdusa.site/imi-esti-poezie.html">
+  <meta property="og:title" content="Îmi ești poezie până la fior — Andrei Constantin Burdușa">
+  <meta property="og:description" content="πεπρωμένο (destin) — poem dedicat Miruței.">
+  <meta property="og:image" content="https://andreiburdusa.site/images/coperta_lectiile.jpg">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CECF81NBPF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CECF81NBPF');
+  </script>
+  <title>Îmi ești poezie până la fior — Andrei Constantin Burdușa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #1a1410;
+      --parchment:  #f5f0e8;
+      --cream:      #faf7f2;
+      --gold:       #c9a96e;
+      --gold-light: #e8d5a3;
+      --amber:      #d4956a;
+      --sand:       #d4c5a9;
+      --muted:      #7a6f62;
+      --dark-bg:    #1c1510;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(28, 21, 16, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+      padding: 0 2rem;
+    }
+
+    nav .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    nav .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      text-decoration: none;
+    }
+
+    nav .nav-back {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      color: var(--sand);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav .nav-back:hover { color: var(--gold); }
+
+    /* HERO */
+    .poem-hero {
+      background: var(--dark-bg);
+      padding: 140px 2rem 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .poem-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,169,110,0.05) 0%, transparent 70%);
+    }
+
+    .poem-hero .eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: block;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.3s forwards;
+    }
+
+    .poem-hero .greek {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+      display: block;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.4s forwards;
+    }
+
+    .poem-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--parchment);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.5s forwards;
+    }
+
+    .poem-hero .dedicatie {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--gold-light);
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.7s forwards;
+    }
+
+    .hero-divider {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+      margin: 3rem auto 0;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.9s forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* POEM BODY */
+    .poem-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 5rem 2rem 4rem;
+    }
+
+    /* FOTO */
+    .poem-photo {
+      width: 100%;
+      max-width: 420px;
+      display: block;
+      margin: 0 auto 4rem;
+      border-radius: 2px;
+      box-shadow: 0 12px 40px rgba(26, 20, 16, 0.2);
+      filter: sepia(8%) saturate(92%);
+    }
+
+    /* STROFE */
+    .poem-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 300;
+      line-height: 2;
+      color: var(--ink);
+      text-align: center;
+    }
+
+    .poem-text .strofa {
+      margin-bottom: 2.5rem;
+    }
+
+    .poem-text .strofa p {
+      margin-bottom: 0;
+    }
+
+    .poem-text .refren {
+      font-style: italic;
+      color: var(--muted);
+      font-size: 1.45rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .poem-divider {
+      text-align: center;
+      color: var(--gold);
+      letter-spacing: 0.5em;
+      margin: 3rem 0;
+      font-size: 0.9rem;
+      opacity: 0.5;
+    }
+
+    /* SEMNATURA */
+    .poem-signature {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--sand);
+    }
+
+    .poem-signature .author {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+
+    .poem-signature .data {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--muted);
+      display: block;
+      line-height: 1.6;
+    }
+
+    .poem-signature .copyright {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: var(--sand);
+      margin-top: 0.8rem;
+      display: block;
+    }
+
+    /* NAV BOTTOM */
+    .poem-nav-bottom {
+      background: var(--parchment);
+      border-top: 1px solid var(--sand);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .poem-nav-bottom a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      padding: 0.8rem 1.8rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      transition: all 0.3s;
+      display: inline-block;
+      margin: 0.4rem;
+    }
+
+    .poem-nav-bottom a:hover {
+      background: var(--gold);
+      color: var(--dark-bg);
+    }
+
+    footer {
+      background: var(--dark-bg);
+      color: var(--muted);
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(201, 169, 110, 0.15);
+    }
+
+    footer .footer-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+
+    footer p { font-size: 0.8rem; }
+
+    @media (max-width: 700px) {
+      .poem-wrap { padding: 3rem 1.4rem 4rem; }
+      .poem-text { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">A · C · B</a>
+    <a href="ziua-frunza-poemul.html" class="nav-back">← Toate poemele</a>
+  </div>
+</nav>
+
+<div class="poem-hero">
+  <span class="eyebrow">Poem · 2019</span>
+  <span class="greek">πεπρωμένο — destin</span>
+  <h1>Îmi ești poezie până la fior</h1>
+  <div class="dedicatie">Miruței</div>
+  <div class="hero-divider"></div>
+</div>
+
+<div class="poem-wrap">
+
+  <img src="https://www.andreiburdusa.site/images/miruta.jpg" alt="Mirela Mareș" class="poem-photo">
+
+  <div class="poem-text">
+
+    <div class="strofa">
+      <p class="refren">eu te-am iubit</p>
+      <p class="refren">femeie</p>
+      <p>la schimb cu un păcat</p>
+      <p>căzuse luna peste noapte</p>
+      <p>încă de cu seară</p>
+      <p>te așteptasem într-un colț din visul disperat</p>
+      <p>era cam trist prin mine</p>
+      <p>și te pictam pe ceară</p>
+    </div>
+
+    <div class="poem-divider">· · ·</div>
+
+    <div class="strofa">
+      <p class="refren">eu te-am iubit</p>
+      <p class="refren">femeie</p>
+      <p>preț de-un păcat și-un pic</p>
+      <p>eternul e pariul ce l-am hrănit cu viața</p>
+      <p>n-a mai rămas pe lângă noi nimic</p>
+      <p>ne-am învelit în rouă și curgem dimineața</p>
+    </div>
+
+    <div class="poem-divider">· · ·</div>
+
+    <div class="strofa">
+      <p class="refren">eu te-am iubit</p>
+      <p class="refren">femeie</p>
+      <p>la schimb cu un abis</p>
+      <p>ai zăbovit în mine un infinit și-o palmă</p>
+      <p>și de-om muri în doi așa cum ne e scris</p>
+      <p>vom nemuri iubirea lumină să ne cearnă</p>
+    </div>
+
+    <div class="poem-divider">· · ·</div>
+
+    <div class="strofa">
+      <p class="refren">eu te-am iubit</p>
+      <p class="refren">femeie</p>
+      <p>și te-oi iubi și-o moarte</p>
+      <p>tu vecinic vei fi pana cu care crap cuvinte</p>
+      <p>nici timpul</p>
+      <p>nici tăcerea</p>
+      <p>nu au cum ne desparte</p>
+      <p>poem în turnul vieții vei fi de-aici 'nainte</p>
+    </div>
+
+  </div>
+
+  <div class="poem-signature">
+    <span class="author">Andrei Constantin Burdușa</span>
+    <span class="data">în anul de restriște 7527 de la facerea lumii<br>în luna lui mărțișor în a douăzecișișaptea zi<br>încă în cetatea lui Bucur</span>
+    <span class="copyright">Copyright © 2019 · Andrei Constantin Burdușa</span>
+  </div>
+
+</div>
+
+<div class="poem-nav-bottom">
+  <a href="ziua-frunza-poemul.html">← Toate poemele</a>
+  <a href="index.html">Acasă</a>
+</div>
+
+<footer>
+  <div class="footer-logo">ANDREI CONSTANTIN BURDUȘA</div>
+  <p>Copyright © 2026 · All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
