@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gilgameș și Făt-Frumos — Aceeași rană, două lumi — Andrei Burdușa</title>
+  <meta name="description" content="O demonstrație comparativă: structura Epopeii lui Gilgameș și a basmului românesc Tinerețe fără bătrânețe și viață fără de moarte sunt identice. Un eseu în registrul lui Mircea Eliade, la 40 de ani de la moartea sa." />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #faf7f2;
+      --bg2: #f3ede3;
+      --bg3: #ede4d6;
+      --ink: #1a1510;
+      --ink2: #3d3428;
+      --ink3: #6b5d4a;
+      --accent: #8b4513;
+      --accent2: #c4860a;
+      --line: rgba(26,21,16,0.12);
+      --font-serif: 'EB Garamond', 'Georgia', serif;
+      --font-display: 'Cormorant Garamond', 'Georgia', serif;
+      --font-title: 'Cinzel', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-serif);
+      font-size: 20px;
+      line-height: 1.85;
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    .site-header {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .site-header a {
+      font-family: var(--font-title);
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      color: var(--ink3);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .site-header a:hover { color: var(--accent); }
+
+    /* WRAPPER */
+    .wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ARTICOL HEADER */
+    .essay-header {
+      padding: 72px 0 56px;
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .essay-tag {
+      font-family: var(--font-title);
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 32px;
+      display: block;
+    }
+
+    .essay-header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .essay-header h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .essay-subtitle {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-style: italic;
+      color: var(--ink3);
+      line-height: 1.5;
+      margin-bottom: 36px;
+      font-weight: 300;
+    }
+
+    .essay-meta {
+      font-family: var(--font-title);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    /* CORP */
+    .essay-body {
+      padding: 60px 0 80px;
+    }
+
+    .essay-body p {
+      margin-bottom: 28px;
+      color: var(--ink);
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    /* Drop cap */
+    .essay-body .drop-cap::first-letter {
+      float: left;
+      font-family: var(--font-display);
+      font-size: 82px;
+      font-weight: 600;
+      line-height: 0.72;
+      margin: 8px 10px 0 -3px;
+      color: var(--accent);
+    }
+
+    /* SECȚIUNI */
+    .section-marker {
+      text-align: center;
+      margin: 52px 0 44px;
+      position: relative;
+    }
+
+    .section-marker::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .section-marker span {
+      position: relative;
+      background: var(--bg);
+      padding: 0 20px;
+      font-family: var(--font-title);
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .section-number {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 72px;
+      font-weight: 300;
+      color: var(--bg3);
+      text-align: center;
+      line-height: 1;
+      margin-bottom: -20px;
+      letter-spacing: -0.02em;
+      user-select: none;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--ink2);
+      margin-bottom: 32px;
+      line-height: 1.3;
+    }
+
+    /* CITAT */
+    blockquote {
+      margin: 40px 0;
+      padding: 28px 36px;
+      background: var(--bg2);
+      border-left: 3px solid var(--accent);
+      position: relative;
+    }
+
+    blockquote::before {
+      content: '\201C';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      font-family: var(--font-display);
+      font-size: 80px;
+      color: var(--accent2);
+      opacity: 0.3;
+      line-height: 1;
+    }
+
+    blockquote p {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-style: italic;
+      color: var(--ink2);
+      margin-bottom: 12px !important;
+      line-height: 1.7;
+      text-align: left !important;
+    }
+
+    blockquote p::first-letter { float: none !important; font-size: inherit !important; line-height: inherit !important; margin: 0 !important; color: inherit !important; }
+
+    blockquote cite {
+      font-family: var(--font-title);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      display: block;
+      margin-top: 8px;
+    }
+
+    /* TABEL COMPARATIV */
+    .comparison-table {
+      margin: 44px 0;
+      border: 1px solid var(--line);
+      background: var(--bg2);
+    }
+
+    .comparison-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: var(--ink2);
+      color: var(--bg);
+    }
+
+    .comparison-header div {
+      padding: 14px 16px;
+      font-family: var(--font-title);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .comparison-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-top: 1px solid var(--line);
+    }
+
+    .comparison-row:nth-child(even) { background: var(--bg); }
+
+    .comparison-row div {
+      padding: 18px 16px;
+      font-size: 15px;
+      line-height: 1.55;
+      border-right: 1px solid var(--line);
+    }
+
+    .comparison-row div:last-child { border-right: none; }
+
+    .comparison-row .col-label {
+      font-family: var(--font-title);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .comparison-row .col-gilgames {
+      font-style: italic;
+      color: var(--ink2);
+    }
+
+    .comparison-row .col-fatfrumos {
+      font-style: italic;
+      color: var(--ink2);
+    }
+
+    /* BOX EVIDENȚIERE */
+    .insight-box {
+      margin: 44px 0;
+      padding: 32px 36px;
+      background: var(--bg3);
+      border: 1px solid var(--line);
+    }
+
+    .insight-label {
+      font-family: var(--font-title);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .insight-box p {
+      font-size: 17px;
+      color: var(--ink2);
+      margin-bottom: 14px !important;
+      line-height: 1.7;
+      text-align: left !important;
+    }
+
+    .insight-box p:last-child { margin-bottom: 0 !important; }
+    .insight-box p::first-letter { float: none !important; font-size: inherit !important; }
+
+    /* FINAL */
+    .essay-closing {
+      margin-top: 56px;
+      padding-top: 40px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .essay-closing p {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-style: italic;
+      color: var(--ink3);
+      line-height: 1.7;
+      margin-bottom: 0 !important;
+      text-align: center !important;
+    }
+
+    .essay-closing p::first-letter { float: none !important; font-size: inherit !important; }
+
+    /* FOOTER */
+    .essay-footer {
+      border-top: 1px solid var(--line);
+      padding: 32px 0;
+      margin-top: 48px;
+      font-family: var(--font-title);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink3);
+    }
+
+    .essay-footer a { color: var(--ink3); text-decoration: none; }
+    .essay-footer a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 32px 0;
+      text-align: center;
+      font-family: var(--font-title);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink3);
+    }
+
+    footer a { color: var(--ink3); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      body { font-size: 18px; }
+      .essay-header { padding: 48px 0 40px; }
+      .comparison-table { overflow-x: auto; }
+      .comparison-header, .comparison-row { grid-template-columns: 100px 1fr 1fr; }
+      blockquote { padding: 20px 20px 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrapper">
+    <a href="https://andreiburdusa.site">andreiburdusa.site</a>
+  </div>
+</header>
+
+<div class="wrapper">
+
+  <header class="essay-header">
+    <span class="essay-tag">Eseu filosofic · Mitologie comparată</span>
+    <h1>Gilgameș și Făt-Frumos —<br><em>aceeași rană, două lumi</em></h1>
+    <p class="essay-subtitle">Structura Epopeii lui Gilgameș și a basmului românesc<br>„Tinerețe fără bătrânețe și viață fără de moarte"<br>sunt identice. O demonstrație în registrul lui Mircea Eliade.</p>
+    <div class="essay-meta">
+      <span>Andrei Constantin Burdușa</span>
+      <span>22 aprilie 2026</span>
+      <span>În memoria lui Mircea Eliade — 40 de ani</span>
+    </div>
+  </header>
+
+  <article class="essay-body">
+
+    <p class="drop-cap">Era o pădure lângă Poiana Mărului, aproape de Pasul Oituz. Aprilie 1986. Receptorul de la Europa Liberă — singurul canal prin care România comunistă mai respira aer necomprimat — a adus știrea că Mircea Eliade murise la Chicago. Aveam în minte, în acel moment, tocmai structurile mitice pe care el le demonstrase: că există locuri și momente în care timpul profan se suspendă, că pădurea e unul dintre spațiile arhaice în care hierofania e posibilă. Că omul simte instinctiv diferența dintre un timp gol și un timp plin. Acel moment a fost timp plin. Nu știam atunci că, peste decenii, voi reveni la o demonstrație pe care o făcusem în facultate, la cursul de folclor al lui Vasile Crețu, și care nu fusese niciodată publicată. Că Mircea Eliade ar fi recunoscut-o ca pe o confirmare a ceea ce el demonstrase teoretic toată viața.</p>
+
+    <p>Demonstrația e simplă în enunț și complexă în implicații: structura narativă a Epopeii lui Gilgameș — textul mesopotamian de acum patru mii de ani — și structura basmului românesc „Tinerețe fără bătrânețe și viață fără de moarte", cules de Petre Ispirescu din tradiția orală a spațiului carpatic, sunt identice. Nu similare. Nu înrudite prin influență culturală. Identice ca structură, ca parcurs al eroului și ca rezoluție ontologică. Această identitate nu e o coincidență — e o dovadă că ambele texte sunt expresii independente ale aceleiași structuri psihice fundamentale, pe care Eliade o numea sacru.</p>
+
+    <div class="section-marker"><span>I</span></div>
+    <div class="section-number">I</div>
+    <p class="section-title">Eliade și sacrul ca structură a conștiinței</p>
+
+    <p>Pentru a înțelege ce înseamnă că două texte din lumi complet separate sunt structural identice, trebuie să înțelegem mai întâi ce demonstra Eliade. Nu despre religie — ci despre conștiință.</p>
+
+    <p>Contribuția fundamentală a lui Mircea Eliade la gândirea secolului XX nu e o teorie despre zei sau despre rituri. E o teorie despre modul în care conștiința umană organizează realitatea. Eliade a demonstrat că există două modalități ireductibile de a fi în lume: sacrul și profanul. Nu ca domenii separate — unul bisericesc, altul laic — ci ca două moduri de a experimenta spațiul, timpul și existența.</p>
+
+    <blockquote>
+      <p>„Omul care aparține societăților arhaice are tendința să trăiască în sacru sau în imediata proximitate a obiectelor consacrate. Această tendință e de înțeles: pentru omul primitiv și pentru omul societăților tradiționale, sacrul echivalează cu puterea și, în ultimă analiză, cu realitatea prin excelență."</p>
+      <cite>— Mircea Eliade, Sacrul și Profanul, 1957</cite>
+    </blockquote>
+
+    <p>Sacrul, în sensul eliadeean, nu e o proprietate a unor obiecte sau locuri specifice. E o calitate pe care conștiința umană o atribuie unor momente, spații sau ființe în care simte că se manifestă ceva mai real decât realitatea obișnuită. Hierofania — termenul pe care Eliade îl inventează — e actul acestei manifestări: orice poate deveni hierofanie, de la o piatră la un copac, de la un munte la o persoană. Ceea ce contează nu e obiectul, ci structura experienței.</p>
+
+    <p>De aici derivă una dintre cele mai productive idei ale lui Eliade: că mitul nu e o poveste falsă despre lume, ci o narațiune despre structuri reale ale conștiinței. Miturile despre nemurire, despre eroi care refuză condiția umană, despre călătorii în lumea de dincolo — nu sunt fantasme ale unor minți primitive. Sunt expresii simbolice ale unor întrebări pe care conșciința umană nu le poate evita: de ce murim? de ce există timp? ce am pierde dacă am fi nemuritori?</p>
+
+    <p>Mitul eternei reîntoarceri — cea mai amplă demonstrație a lui Eliade — arată că societățile arhaice concep timpul nu ca o linie progresivă, ci ca o structură circulară în care momentele sacre pot fi reactivate ritual. Fiecare Revelion e o reluare a creației lumii. Fiecare inițiere e o moarte și o renaștere. Fiecare mit cosmogonic e un șablon pentru regenerare.</p>
+
+    <blockquote>
+      <p>„Omul religios are setea de a fi, de a participa la realitate, de a se satura de putere."</p>
+      <cite>— Mircea Eliade, Sacrul și Profanul</cite>
+    </blockquote>
+
+    <p>În această cheie trebuie citite ambele texte pe care le comparăm. Gilgameș și Făt-Frumos nu sunt personaje literare care întâmplător seamănă. Sunt expresii ale aceleiași structuri a conștiinței umane care refuză moartea — nu din lașitate, ci din setea de a fi real, de a trăi în sacru, în afara timpului care consumă și distruge.</p>
+
+    <div class="section-marker"><span>II</span></div>
+    <div class="section-number">II</div>
+    <p class="section-title">Gilgameș — regele care a văzut totul</p>
+
+    <p>Epopeea lui Gilgameș e cel mai vechi text narativ major din istoria omenirii — tablițe akkadiene din mileniul al treilea î.Hr., descoperite la Ninive în biblioteca lui Assurbanipal, reconstituite treptat de asiriologi începând cu secolul XIX. Gilgameș, regele Urukului, e descris din primele versuri ca un om între oameni și zei — două treimi divin, o treime muritor. E cel mai puternic, cel mai frumos, cel mai capabil. Și tocmai de aceea — pentru că simte mai intens decât ceilalți — nu poate accepta moartea.</p>
+
+    <p>Prietenul său Enkidu — creat din argilă de zei pentru a-i tempera excesele, ajuns în cele din urmă cel mai apropiat om al său — moare. Și în clipa în care Gilgameș vede moartea de aproape, în trupul celui pe care îl iubea, se produce ruptura existențială care declanșează întreaga epopee. El nu plânge pur și simplu. El refuză ontologic condiția umană.</p>
+
+    <blockquote>
+      <p>„Enkidu, pe care îl iubeam atât de mult, a ajuns praf. Nu voi muri și eu ca Enkidu? Groaza mi-a cuprins trupul. De moarte mi-e frică și fug prin câmpie."</p>
+      <cite>— Epopeea lui Gilgameș, Tablița IX</cite>
+    </blockquote>
+
+    <p>Gilgameș pleacă în căutarea lui Utnapishtim — singurul muritor care a primit nemurirea de la zei, supraviețuitorul potopului, cel care trăiește la marginea lumii, dincolo de apele morții. Drumul e imposibil prin definiție: traversează munții Mashu păziți de scorpion-oameni, navigează apele morții cu ajutorul luntrașului Urshanabi, ajunge în cele din urmă la Utnapishtim.</p>
+
+    <p>Utnapishtim îi spune că nemurirea nu poate fi dată — dar îi dezvăluie existența unei plante de pe fundul mării care restaurează tinerețea. Gilgameș se scufundă, găsește planta. O ține în mână. O are. Și în drumul de întoarcere, când doarme lângă o fântână, un șarpe îi fură planta. Gilgameș se trezește cu mâinile goale. Plânge. Se întoarce la Uruk. Moare muritor.</p>
+
+    <div class="section-marker"><span>III</span></div>
+    <div class="section-number">III</div>
+    <p class="section-title">Făt-Frumos — cel care a refuzat să se nască în timp</p>
+
+    <p>Basmul lui Ispirescu — „Tinerețe fără bătrânețe și viață fără de moarte" — începe cu o scenă unică în literatura universală: un copil care plânge în pântecele mamei sale și refuză să se nască dacă nu i se promite tinerețe fără bătrânețe și viață fără de moarte. Regele tatăl promite — știind că nu poate ține promisiunea. Copilul se naște. Se numește Făt-Frumos.</p>
+
+    <p>Când tânăr, Făt-Frumos cere împlinirea promisiunii. Regele nu poate. Și atunci Făt-Frumos pleacă — nu dintr-o criză declanșată de moartea altcuiva, ca Gilgameș, ci dintr-o criză originară, structurală: el s-a născut știind că nu acceptă moartea. Ruptura lui e mai veche decât nașterea.</p>
+
+    <p>Drumul e la fel de imposibil: balauri, palate fermecate, câmpii ale plângerii. Ajunge la un tărâm de dincolo de timp — palatul Tineretii fara batranete — unde trei zâne trăiesc în afara devenirii. Acolo trăiește, vânează, iubește. Timpul nu există. Nu îmbătrânește.</p>
+
+    <p>Dar într-o zi, urmărind un iepure la vânătoare, intră fără să vrea în Valea Plângerii — un spațiu al timpului profan, al devenirii, al morții. Nostalgia îl cuprinde. Vrea să se întoarcă acasă, la părinți, la regat. Zânele îl avertizează că dacă pleacă nu se mai poate întoarce. El pleacă. Ajunge acasă — dar acasă nu mai există. Regatul e ruinat, părinții de mult morți. Și în clipa în care deschide o odaie interzisă — sau pur și simplu în clipa în care atinge pragul timpului profan — bătrânețea îl lovește fulgerător. Moare.</p>
+
+    <div class="section-marker"><span>IV</span></div>
+    <div class="section-number">IV</div>
+    <p class="section-title">Demonstrația — structura identică</p>
+
+    <p>Cele două texte sunt despărțite de patru mii de ani, de două civilizații fără contact documentat, de două limbi fără rudenie, de două geografii extreme. Și totuși, structura lor e identică în fiecare articulație esențială.</p>
+
+    <div class="comparison-table">
+      <div class="comparison-header">
+        <div>Mișcarea</div>
+        <div>Gilgameș</div>
+        <div>Făt-Frumos</div>
+      </div>
+      <div class="comparison-row">
+        <div class="col-label">1. Refuzul condiției umane</div>
+        <div class="col-gilgames">Moartea lui Enkidu declanșează refuzul morții — „Nu voi muri și eu ca Enkidu?"</div>
+        <div class="col-fatfrumos">Refuzul anterior nașterii — plânge în pântece, cere nemurirea ca preț al venirii pe lume</div>
+      </div>
+      <div class="comparison-row">
+        <div class="col-label">2. Ruptura și plecarea</div>
+        <div class="col-gilgames">Abandonează regatul și puterea pentru a căuta nemurirea dincolo de lumea cunoscută</div>
+        <div class="col-fatfrumos">Abandonează regatul și familia pentru a căuta tinerețea fără bătrânețe dincolo de lume</div>
+      </div>
+      <div class="comparison-row">
+        <div class="col-label">3. Traversarea imposibilului</div>
+        <div class="col-gilgames">Munții Mashu, apele morții, gardianul Scorpion — spații în afara lumii umane</div>
+        <div class="col-fatfrumos">Balaurii, câmpiile de foc, tărâmurile fermecate — spații în afara timpului uman</div>
+      </div>
+      <div class="comparison-row">
+        <div class="col-label">4. Găsirea nemuririi</div>
+        <div class="col-gilgames">Planta vieții de pe fundul mării — nemurirea tangibilă, în mâini</div>
+        <div class="col-fatfrumos">Palatul Tinereții fără Bătrânețe — viața în afara timpului, trăită efectiv</div>
+      </div>
+      <div class="comparison-row">
+        <div class="col-label">5. Pierderea prin întoarcere</div>
+        <div class="col-gilgames">Șarpele fură planta în timp ce doarme. Întoarcerea în timp = moarte</div>
+        <div class="col-fatfrumos">Nostalgia îl întoarce spre lumea veche. Intrarea în timp = moarte instantanee</div>
+      </div>
+      <div class="comparison-row">
+        <div class="col-label">6. Agentul pierderii</div>
+        <div class="col-gilgames">Șarpele — simbol arhaic al timpului cicliv și al morții</div>
+        <div class="col-fatfrumos">Nostalgia — forța care îl reintegrează în timp și în moarte</div>
+      </div>
+      <div class="comparison-row">
+        <div class="col-label">7. Rezoluția</div>
+        <div class="col-gilgames">Moare muritor. Se întoarce la Uruk. Zidurile cetății rămân ca singura nemurire posibilă</div>
+        <div class="col-fatfrumos">Moare instantaneu la contactul cu timpul profan. Nimic nu rămâne</div>
+      </div>
+    </div>
+
+    <p>Identitatea nu e de suprafață — nu e vorba de detalii similare între două aventuri. E identitate structurală profundă: același tip de eroi, aceeași mișcare existențială în trei acte, aceeași logică a pierderii, aceeași rezoluție tragică. Ambii eroi găsesc ceea ce caută. Ambii îl pierd nu prin înfrângere externă, ci prin propria întoarcere în timp. Ambii mor nu pentru că lumea i-a învins — ci pentru că au ales, conștient sau nu, să se reintegreze în condiția umană.</p>
+
+    <div class="insight-box">
+      <span class="insight-label">Observația centrală</span>
+      <p>Pierderea nemuririi în ambele texte nu e un accident narativ. E o necesitate structurală. Eroul nu poate rămâne în sacru pentru că sacrul și profanul nu pot coexista indefinit în aceeași conștiință. Întoarcerea e fatală tocmai pentru că sacrul nu poate fi posedat — poate fi doar trăit, și trăit înseamnă abandonat în cele din urmă pentru timpul uman.</p>
+      <p>Șarpele lui Gilgameș și nostalgia lui Făt-Frumos sunt același lucru în simboluri diferite: forța care reintegrează omul în timp, în devenire, în moarte. Ambele sunt inevitabile. Ambele sunt, în registrul eliadeean, expresii ale condiției umane ca tensiune ireductibilă între sacru și profan.</p>
+    </div>
+
+    <div class="section-marker"><span>V</span></div>
+    <div class="section-number">V</div>
+    <p class="section-title">Ce confirmă această paralelă — și de ce contează</p>
+
+    <p>Eliade a demonstrat teoretic că miturile despre nemurire și refuzul morții sunt universale — că ele exprimă o structură a conștiinței, nu o influență culturală. Demonstrația comparativă între Gilgameș și basmul lui Ispirescu e un argument concret, structural, pentru această teorie. Nu un argument care o susține din exterior — un argument care o confirmă din interior, prin anatomia celor două texte.</p>
+
+    <p>Mesopotamia și spațiul carpatic nu au avut contact cultural direct în mileniul al treilea î.Hr. Nu există nicio cale de transmisie literară sau mitologică documentată între Uruk și folclorul românesc. Identitatea structurală a celor două texte nu poate fi explicată prin împrumut — poate fi explicată doar prin aceea că ambele texte răspund aceleiași întrebări fundamentale pe care conștiința umană o pune în orice cultură și în orice epocă.</p>
+
+    <p>Întrebarea e aceasta: ce pierdem când intrăm în timp?</p>
+
+    <p>Omul care trăiește în sacru — care locuiește în afara devenirii, care nu îmbătrânește, care nu moare — nu e un om fericit în sensul obișnuit. E un om complet, în sensul eliadeean: participă la realitate fără mediere, fără filtrul timpului care consumă și distruge. Gilgameș care ține planta vieții în mâini, Făt-Frumos care vânează pe tărâmul Tineretii fara batranete — ambii trăiesc în ceea ce Eliade numea illud tempus, timpul primordial, timpul mitic în care lucrurile sunt reale fără să devină.</p>
+
+    <p>Și ambii aleg — sau sunt forțați de o forță mai adâncă decât voința — să se întoarcă. Șarpele lui Gilgameș fură planta în timp ce doarme: inconștiența e poarta prin care timpul profan reintrare. Nostalgia lui Făt-Frumos e mai explicită: e dorul de casă, de părinți, de lumea veche — și în registrul eliadeean, dorul e exact instrumentul prin care profanul îl revendică pe cel care a scăpat din el.</p>
+
+    <blockquote>
+      <p>„Nostalgia paradisului e, în fond, dorința de a te afla mereu și fără efort în centrul lumii, în realitate."</p>
+      <cite>— Mircea Eliade, Imaginile și simbolurile, 1952</cite>
+    </blockquote>
+
+    <p>Nostalgia lui Făt-Frumos e nostalgia paradisului întoarsă — nu dorința de a ajunge în centrul realității sacre, ci dorința de a reveni la realitatea profană, la casa de pământ, la părinți muritori. E mișcarea inversă, dar cu aceeași forță irezistibilă. Și ambele mișcări sunt fatale.</p>
+
+    <div class="section-marker"><span>VI</span></div>
+    <div class="section-number">VI</div>
+    <p class="section-title">România profundă în centrul conversației despre condiția umană</p>
+
+    <p>Eliade a făcut ceva pe care puțini intelectuali români au îndrăznit să îl facă fără complexe: a luat folclorul românesc în serios ca sursă filosofică de primă mână. Nu ca curiositate etnografică. Nu ca exotism periferic. Ca expresie autentică a unor structuri mitice universale.</p>
+
+    <p>Miorița ca mit existențial al acceptării morții prin integrare cosmică. Meșterul Manole ca mit al sacrificiului fondator. Și Tinerețea fără bătrânețe ca mit al refuzului condiției umane — identic structural cu cel mai vechi text narativ al omenirii.</p>
+
+    <p>Această identitate nu e o coincidență care flatează orgoliul național. E o confirmare că spațiul carpatic a produs, independent, o gândire mitică de aceeași profunzime și aceeași complexitate cu cea a Mesopotamiei antice. Că întrebările pe care le pune basmul românesc sunt aceleași întrebări pe care le pune Gilgameș. Că răspunsul tragic — nu se poate ieși din timp fără să plătești cu moartea — e același.</p>
+
+    <p>Și că, deci, România profundă nu e la periferia conversației despre condiția umană. A participat la ea, în paralel, din totdeauna.</p>
+
+    <div class="essay-closing">
+      <p>Pádurea de lângă Poiana Mărului, aprilie 1986.<br>
+      Europa Liberă în receptor, știrea că Eliade murise.<br>
+      Și gândul că omul care a demonstrat că timpul sacru există<br>
+      a intrat el însuși în illud tempus — în timpul fără de moarte al operei.<br><br>
+      Gilgameș și Făt-Frumos sunt acolo de mult.<br>
+      Eliade i-a recunoscut.<br>
+      Această demonstrație e, în cele din urmă, un omagiu adus celui care ne-a învățat să îi vedem.</p>
+    </div>
+
+  </article>
+
+  <footer class="essay-footer">
+    <a href="https://andreiburdusa.site">← andreiburdusa.site</a>
+    &nbsp;·&nbsp;
+    Jurnal de ființare
+    &nbsp;·&nbsp;
+    22 aprilie 2026
+  </footer>
+
+</div>
+
+<footer>
+  <div class="wrapper">
+    <p>© 2026 Andrei Constantin Burdușa &nbsp;·&nbsp;
+      <a href="https://andreiburdusa.site">andreiburdusa.site</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
