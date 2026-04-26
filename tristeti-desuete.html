@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>duminică peste tristeți desuete — Andrei Constantin Burdușa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #1a1410;
+      --parchment:  #f5f0e8;
+      --cream:      #faf7f2;
+      --gold:       #c9a96e;
+      --gold-light: #e8d5a3;
+      --amber:      #d4956a;
+      --sand:       #d4c5a9;
+      --muted:      #7a6f62;
+      --dark-bg:    #1c1510;
+      --dark-card:  #251e17;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', serif;
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(28, 21, 16, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+      padding: 0 2rem;
+    }
+    nav .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    nav .nav-logo {
+      font-family: 'Cinzel', serif; font-size: 0.85rem;
+      color: var(--gold); letter-spacing: 0.15em; text-decoration: none;
+    }
+    nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+    nav ul li a {
+      font-family: 'Cinzel', serif; font-size: 0.72rem;
+      letter-spacing: 0.12em; color: var(--sand);
+      text-decoration: none; transition: color 0.3s;
+    }
+    nav ul li a:hover { color: var(--gold); }
+
+    /* HEADER */
+    .poem-header {
+      background: var(--dark-bg);
+      padding: 8rem 2rem 5rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+    }
+    .poem-header .eyebrow {
+      font-family: 'Cinzel', serif; font-size: 0.65rem;
+      letter-spacing: 0.35em; color: var(--gold);
+      margin-bottom: 1.5rem; display: block;
+    }
+    .poem-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 300; font-style: italic;
+      color: var(--parchment); margin-bottom: 1.2rem;
+      line-height: 1.25;
+    }
+    .poem-header .meta {
+      font-family: 'Cinzel', serif; font-size: 0.65rem;
+      letter-spacing: 0.2em; color: var(--muted);
+    }
+
+    /* POEM BODY */
+    .poem-body {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 5rem 2rem 6rem;
+    }
+
+    .poem-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 300;
+      line-height: 2;
+      color: var(--ink);
+    }
+
+    .poem-text p {
+      margin-bottom: 0;
+    }
+
+    .poem-text .stanza {
+      margin-bottom: 2rem;
+    }
+
+    .poem-text .stanza:last-child {
+      margin-bottom: 0;
+    }
+
+    /* refren — secúndele / unele / într-altele / zevzecele */
+    .poem-text .refren {
+      font-style: italic;
+      color: var(--muted);
+      margin: 2rem 0;
+    }
+
+    /* NAV BETWEEN POEMS */
+    .poem-nav {
+      max-width: 680px; margin: 0 auto;
+      padding: 0 2rem 5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid var(--sand);
+      padding-top: 2.5rem;
+    }
+    .poem-nav a {
+      font-family: 'Cinzel', serif; font-size: 0.68rem;
+      letter-spacing: 0.15em; color: var(--gold);
+      text-decoration: none; transition: color 0.3s;
+    }
+    .poem-nav a:hover { color: var(--amber); }
+    .poem-nav .num {
+      font-family: 'Cinzel', serif; font-size: 0.65rem;
+      color: var(--muted); letter-spacing: 0.1em;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark-bg); color: var(--muted);
+      text-align: center; padding: 3rem 2rem;
+      border-top: 1px solid rgba(201, 169, 110, 0.15);
+    }
+    footer .footer-logo {
+      font-family: 'Cinzel', serif; font-size: 0.85rem;
+      letter-spacing: 0.2em; color: var(--gold); margin-bottom: 0.8rem;
+    }
+    footer p { font-size: 0.8rem; }
+
+    @media (max-width: 600px) {
+      .poem-text { font-size: 1.15rem; }
+      nav ul { gap: 1rem; }
+      nav ul li a { font-size: 0.62rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">← A · C · B</a>
+    <ul>
+      <li><a href="ziua-frunza-poemul.html">Ziua, frunza și poemul</a></li>
+      <li><a href="index.html#volume">Volume</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="poem-header">
+  <span class="eyebrow">Ziua, frunza și poemul · #27</span>
+  <h1>duminică peste tristeți desuete</h1>
+  <div class="meta">Timișoara · 26 aprilie 2026</div>
+</header>
+
+<main class="poem-body">
+  <div class="poem-text">
+
+    <div class="stanza">
+      <p>duminică peste tristeți desuete</p>
+    </div>
+
+    <div class="stanza refren">
+      <p>secundele</p>
+      <p>unele</p>
+      <p>într-altele</p>
+      <p>zevzecele</p>
+    </div>
+
+    <div class="stanza">
+      <p>într-o difuză tristețe de duminică</p>
+      <p>ce nu odihnește</p>
+      <p>secvențe muzicale tulburi</p>
+      <p>frânturi de stări confuze și anacronice</p>
+      <p>imposibilitatea înnodării prezentului</p>
+      <p>la nici un alt timp</p>
+    </div>
+
+    <div class="stanza">
+      <p>o incomfortabilă stare de bine</p>
+      <p>racordată la o deja prea lungă stare de încordare</p>
+      <p>o caricaturală existență modernă</p>
+      <p>chipurile</p>
+      <p>progresistă</p>
+      <p>în realitate măcinată de incertitudini</p>
+    </div>
+
+    <div class="stanza refren">
+      <p>și din nou</p>
+      <p>secúndele</p>
+      <p>unele</p>
+      <p>într-altele</p>
+      <p>zevzecele</p>
+    </div>
+
+    <div class="stanza">
+      <p>în aceeași tristețe de duminică</p>
+      <p>de care nu va mai auzi nimeni niciodată</p>
+      <p>pentru că nu are sens</p>
+      <p>și nici logică</p>
+      <p>și nici valoare</p>
+      <p>decât dacă o transformi</p>
+      <p>în poem</p>
+    </div>
+
+    <div class="stanza">
+      <p>în rest e numai larma unei lumi care nu va rămâne</p>
+    </div>
+
+  </div>
+</main>
+
+<div class="poem-nav">
+  <a href="imi-esti-poezie.html">← #26 · Îmi ești poezie până la fior</a>
+  <span class="num">#27</span>
+  <span></span>
+</div>
+
+<footer>
+  <div class="footer-logo">ANDREI CONSTANTIN BURDUȘA</div>
+  <p>Copyright © 2026 · All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
