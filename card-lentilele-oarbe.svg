@@ -1,0 +1,66 @@
+<svg viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
+  <rect width="680" height="680" fill="#0c0c10"/>
+
+  <!-- Subtle warm texture overlay -->
+  <defs>
+    <radialGradient id="warmglow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#2a1f0a" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0c0c10" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="680" height="680" fill="url(#warmglow)"/>
+
+  <!-- Top accent line - warm amber -->
+  <rect x="0" y="0" width="680" height="2" fill="#7a6a4a"/>
+
+  <!-- Zone 1: Site name -->
+  <text x="48" y="56" font-family="Georgia, serif" font-size="12" fill="#7a6a4a" letter-spacing="3">ANDREIBURDUSA.SITE</text>
+
+  <!-- Divider 1 -->
+  <line x1="0" y1="70" x2="680" y2="70" stroke="#1e1a14" stroke-width="0.5"/>
+
+  <!-- Zone 2: Series tag -->
+  <text x="48" y="104" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#4a4038" letter-spacing="2">LENTILELE ȘI ENTITATEA · ESEU XIV</text>
+
+  <!-- Divider 2 -->
+  <line x1="0" y1="120" x2="680" y2="120" stroke="#1e1a14" stroke-width="0.5"/>
+
+  <!-- Zone 3: Title -->
+  <text x="48" y="188" font-family="Georgia, serif" font-size="48" fill="#e0dcd0" font-weight="normal" font-style="italic">Lentilele oarbe</text>
+
+  <text x="48" y="228" font-family="Georgia, serif" font-size="16" fill="#706860" font-style="italic">despre prăbușirea epistemică a democrației</text>
+
+  <!-- Divider 3 -->
+  <line x1="0" y1="258" x2="680" y2="258" stroke="#1e1a14" stroke-width="0.5"/>
+
+  <!-- Zone 4: Lead philosophical question -->
+  <text x="48" y="302" font-family="Georgia, serif" font-size="15" fill="#908880" font-style="italic">De ce o ființă care gândește ajunge să voteze</text>
+  <text x="48" y="326" font-family="Georgia, serif" font-size="15" fill="#908880" font-style="italic">împotriva propriei judecăți?</text>
+
+  <!-- Accent vertical line + quote -->
+  <rect x="48" y="356" width="1" height="96" fill="#7a6a4a"/>
+  <text x="64" y="382" font-family="Georgia, serif" font-size="13" fill="#605850" font-style="italic">Lentila nu devine mai clară prin mai multă</text>
+  <text x="64" y="404" font-family="Georgia, serif" font-size="13" fill="#605850" font-style="italic">lumină brută. Devine mai clară prin calibrare —</text>
+  <text x="64" y="426" font-family="Georgia, serif" font-size="13" fill="#605850" font-style="italic">prin ajustarea lentă a unghiului și a distanței.</text>
+  <text x="64" y="448" font-family="Georgia, serif" font-size="11" fill="#4a4038" letter-spacing="1">— Andrei Burdușa</text>
+
+  <!-- Divider 4 -->
+  <line x1="0" y1="478" x2="680" y2="478" stroke="#1e1a14" stroke-width="0.5"/>
+
+  <!-- Zone 5: Philosophical threads -->
+  <text x="48" y="512" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#4a4038" letter-spacing="2">FIRE FILOSOFICE</text>
+
+  <text x="48" y="544" font-family="Georgia, serif" font-size="12" fill="#605850">Aristotel · Episteme și Doxa</text>
+  <text x="48" y="566" font-family="Georgia, serif" font-size="12" fill="#605850">Husserl · Orizontul fracturat</text>
+  <text x="48" y="588" font-family="Georgia, serif" font-size="12" fill="#605850">Kant · Filtrele cunoașterii</text>
+  <text x="48" y="610" font-family="Georgia, serif" font-size="12" fill="#605850">Lentilele și Entitatea · Lumina care orbește</text>
+
+  <!-- Divider 5 -->
+  <line x1="0" y1="634" x2="680" y2="634" stroke="#1e1a14" stroke-width="0.5"/>
+
+  <!-- Zone 5: Date -->
+  <text x="48" y="662" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#3a3428" letter-spacing="2">APRILIE 2025</text>
+
+  <!-- Bottom accent -->
+  <rect x="0" y="678" width="680" height="2" fill="#7a6a4a" opacity="0.4"/>
+</svg>
