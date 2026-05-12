@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 680" width="680" height="680">
+  <rect width="680" height="680" fill="#0c0c10"/>
+  
+  <!-- Accent line top -->
+  <rect x="0" y="0" width="680" height="3" fill="#8a7a5a"/>
+  
+  <!-- Zone 1: Site + serie -->
+  <text x="40" y="58" font-family="Georgia, serif" font-size="11" letter-spacing="4" fill="#8a7a5a">ANDREIBURDUSA.SITE</text>
+  <text x="460" y="58" font-family="Georgia, serif" font-size="11" letter-spacing="2" fill="#3a3020">ESEU XVI · MAI 2026</text>
+  <rect x="0" y="72" width="680" height="0.5" fill="#1e1e1e"/>
+
+  <!-- Zone 2: Serie tag -->
+  <text x="40" y="108" font-family="Georgia, serif" font-size="12" letter-spacing="3" fill="#5a5040" font-style="italic">Lentilele și Entitatea</text>
+  <rect x="0" y="122" width="680" height="0.5" fill="#1e1e1e"/>
+
+  <!-- Zone 3: Titlu -->
+  <text x="40" y="182" font-family="Georgia, serif" font-size="34" fill="#e8e4d8" font-weight="normal" font-style="italic">Când fizica și filozofia</text>
+  <text x="40" y="224" font-family="Georgia, serif" font-size="34" fill="#e8e4d8" font-weight="normal" font-style="italic">văd același lucru</text>
+
+  <rect x="40" y="244" width="360" height="1" fill="#8a7a5a"/>
+
+  <!-- Zone 4: Subtitlu -->
+  <text x="40" y="278" font-family="Georgia, serif" font-size="15" fill="#7a7060" font-style="italic">Despre conștiință ca program,</text>
+  <text x="40" y="300" font-family="Georgia, serif" font-size="15" fill="#7a7060" font-style="italic">creier ca lentilă, și de ce</text>
+  <text x="40" y="322" font-family="Georgia, serif" font-size="15" fill="#7a7060" font-style="italic">frumusețea florii nu e pentru noi</text>
+
+  <rect x="0" y="352" width="680" height="0.5" fill="#1e1e1e"/>
+
+  <!-- Zone 5: Citate cheie -->
+  <text x="40" y="390" font-family="Georgia, serif" font-size="14" fill="#8a7a5a">—</text>
+  <text x="60" y="390" font-family="Georgia, serif" font-size="14" fill="#9a9080" font-style="italic">Omul nu e sursa. E lentila.</text>
+
+  <text x="40" y="420" font-family="Georgia, serif" font-size="14" fill="#8a7a5a">—</text>
+  <text x="60" y="420" font-family="Georgia, serif" font-size="14" fill="#9a9080" font-style="italic">Conștiința nu e produsă de creier — e procesată prin el.</text>
+
+  <text x="40" y="450" font-family="Georgia, serif" font-size="14" fill="#8a7a5a">—</text>
+  <text x="60" y="450" font-family="Georgia, serif" font-size="14" fill="#9a9080" font-style="italic">Lentila se sparge. Programul continuă.</text>
+
+  <rect x="0" y="476" width="680" height="0.5" fill="#1e1e1e"/>
+
+  <!-- Zone 6: Autori convergenti -->
+  <text x="40" y="514" font-family="Georgia, serif" font-size="12" letter-spacing="1" fill="#5a5040">HAMEROFF · PENROSE · ORCH OR</text>
+  <text x="40" y="538" font-family="Georgia, serif" font-size="12" letter-spacing="1" fill="#5a5040">TEORIA LENTILELOR · ANDREI BURDUȘA</text>
+
+  <rect x="0" y="560" width="680" height="0.5" fill="#1e1e1e"/>
+
+  <!-- Zone 7: Footer -->
+  <text x="40" y="598" font-family="Georgia, serif" font-size="12" fill="#8a7a5a" font-style="italic">„De ce e frumoasă o floare?</text>
+  <text x="40" y="618" font-family="Georgia, serif" font-size="12" fill="#8a7a5a" font-style="italic">Nu pentru noi. Pentru Esență."</text>
+
+  <rect x="0" y="640" width="680" height="0.5" fill="#1e1e1e"/>
+  <text x="40" y="664" font-family="Georgia, serif" font-size="10" fill="#2a2a1a" letter-spacing="3">FILOZOFIE · ȘTIINȚĂ · CONȘTIINȚĂ</text>
+</svg>
