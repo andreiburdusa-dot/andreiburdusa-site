@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 680" width="680" height="680">
+  <rect width="680" height="680" fill="#0c0b09"/>
+  <rect x="0" y="0" width="680" height="4" fill="#c08060"/>
+  
+  <!-- Zone 1: Header -->
+  <text x="40" y="56" font-family="Georgia, serif" font-size="12" letter-spacing="4" fill="#c9a96e">ANDREIBURDUSA.SITE</text>
+  <text x="450" y="56" font-family="Georgia, serif" font-size="11" letter-spacing="2" fill="#6a5a3a">ESEU CIVIC · MAI 2026</text>
+  <rect x="0" y="70" width="680" height="0.5" fill="#2e2c20"/>
+
+  <!-- Zone 2: Serie -->
+  <text x="40" y="104" font-family="Georgia, serif" font-size="13" letter-spacing="2" fill="#a07850" font-style="italic">Eseu civic</text>
+  <rect x="0" y="118" width="680" height="0.5" fill="#2e2c20"/>
+
+  <!-- Zone 3: Titlu mare -->
+  <text x="40" y="192" font-family="Georgia, serif" font-size="52" fill="#f0e8d8" font-weight="normal" font-style="italic">Miorița</text>
+  <text x="40" y="252" font-family="Georgia, serif" font-size="52" fill="#f0e8d8" font-weight="normal" font-style="italic">Reloaded</text>
+  <rect x="40" y="270" width="340" height="2" fill="#c08060"/>
+
+  <!-- Zone 4: Subtitlu -->
+  <text x="40" y="308" font-family="Georgia, serif" font-size="16" fill="#b0a080">Despre revolta împotriva resemnării</text>
+  <text x="40" y="332" font-family="Georgia, serif" font-size="16" fill="#b0a080">și sensul eroului care refuză fatalul</text>
+
+  <rect x="0" y="358" width="680" height="0.5" fill="#2e2c20"/>
+
+  <!-- Zone 5: Citate -->
+  <text x="40" y="394" font-family="Georgia, serif" font-size="14" fill="#c08060">—</text>
+  <text x="60" y="394" font-family="Georgia, serif" font-size="14" fill="#c8c0a0" font-style="italic">Ciobănașul știa. Și a ales să moară frumos.</text>
+
+  <text x="40" y="424" font-family="Georgia, serif" font-size="14" fill="#c08060">—</text>
+  <text x="60" y="424" font-family="Georgia, serif" font-size="14" fill="#c8c0a0" font-style="italic">Bolojanismul: primul reflex anti-Mioriță în 35 de ani.</text>
+
+  <text x="40" y="454" font-family="Georgia, serif" font-size="14" fill="#c08060">—</text>
+  <text x="60" y="454" font-family="Georgia, serif" font-size="14" fill="#c8c0a0" font-style="italic">Odată văzut că se poate, nu mai poate fi nevăzut.</text>
+
+  <rect x="0" y="478" width="680" height="0.5" fill="#2e2c20"/>
+
+  <!-- Zone 6: Citat principal -->
+  <text x="40" y="516" font-family="Georgia, serif" font-size="18" fill="#d4a870" font-style="italic">„Nu mai e despre resetare.</text>
+  <text x="40" y="544" font-family="Georgia, serif" font-size="18" fill="#d4a870" font-style="italic">E despre revoltă împotriva resemnării."</text>
+
+  <rect x="0" y="572" width="680" height="0.5" fill="#2e2c20"/>
+
+  <!-- Zone 7: Footer -->
+  <text x="40" y="610" font-family="Georgia, serif" font-size="12" letter-spacing="1" fill="#7a6a4a">CAMUS · PROMETEU · SISIF · BOLOJENISM</text>
+  <rect x="0" y="632" width="680" height="0.5" fill="#2e2c20"/>
+  <text x="40" y="660" font-family="Georgia, serif" font-size="10" fill="#4a4030" letter-spacing="3">ESEU CIVIC · ANDREIBURDUSA.SITE · 2026</text>
+</svg>
