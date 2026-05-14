@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>În loc de testament | Andrei Burdușa</title>
+<meta name="description" content="Să te întorci când tremură o frunză / Să șchiopătezi când a murit o floare — poem testament al lui Andrei Constantin Burdușa">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel:wght@400;500&display=swap');
+
+  :root {
+    --bg: #09080a;
+    --bg2: #0f0e11;
+    --gold: #c9a96e;
+    --gold-dim: #8a6a3a;
+    --text: #ddd8cc;
+    --text-dim: #9a9080;
+    --rule: #1e1c1a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'EB Garamond', Georgia, serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Candlelight flicker animation */
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.85; }
+    94% { opacity: 1; }
+    96% { opacity: 0.9; }
+    97% { opacity: 1; }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { text-shadow: 0 0 20px rgba(201,169,110,0.3), 0 0 40px rgba(201,169,110,0.1); }
+    50% { text-shadow: 0 0 30px rgba(201,169,110,0.5), 0 0 60px rgba(201,169,110,0.2); }
+  }
+
+  /* Masthead */
+  .masthead {
+    width: 100%;
+    padding: 28px 48px;
+    border-bottom: 0.5px solid var(--rule);
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .masthead a {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold-dim);
+    text-decoration: none;
+  }
+  .masthead span { font-size: 11px; color: #3a3630; letter-spacing: 1px; }
+
+  /* Main wrap */
+  .wrap {
+    max-width: 680px;
+    width: 100%;
+    padding: 80px 48px 140px;
+  }
+
+  /* Candle symbol */
+  .candle {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 40px;
+    animation: flicker 8s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba(201,169,110,0.6));
+  }
+
+  /* Tag */
+  .tag {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    text-align: center;
+    display: block;
+    margin-bottom: 32px;
+  }
+
+  /* Title */
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold);
+    text-align: center;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    animation: glow-pulse 6s ease-in-out infinite;
+  }
+
+  /* Dedication */
+  .dedication {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--text-dim);
+    text-align: center;
+    letter-spacing: 1px;
+    margin-bottom: 56px;
+  }
+
+  /* Rule */
+  .rule {
+    width: 80px;
+    height: 0.5px;
+    background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+    margin: 0 auto 56px;
+  }
+
+  /* Poem */
+  .poem {
+    font-family: 'EB Garamond', serif;
+    font-size: 20px;
+    line-height: 2;
+    color: var(--text);
+  }
+
+  .stanza {
+    margin-bottom: 40px;
+  }
+
+  .stanza p {
+    line-height: 2;
+  }
+
+  /* Special stanza - the imperative one */
+  .stanza-imperative p {
+    color: var(--gold);
+    font-style: italic;
+    font-size: 21px;
+  }
+
+  /* Final lines */
+  .stanza-final {
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 0.5px solid var(--rule);
+  }
+
+  .stanza-final p {
+    color: #c8c0a8;
+  }
+
+  .stanza-final p:last-child {
+    color: var(--gold);
+    font-style: italic;
+    margin-top: 8px;
+  }
+
+  /* Sep */
+  .sep {
+    text-align: center;
+    color: #2a2820;
+    font-size: 16px;
+    letter-spacing: 10px;
+    margin: 48px 0;
+  }
+
+  /* Meta */
+  .meta {
+    margin-top: 72px;
+    padding-top: 32px;
+    border-top: 0.5px solid var(--rule);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #4a4540;
+    text-align: center;
+    line-height: 2.2;
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <a href="https://andreiburdusa.site">Andrei Burdușa</a>
+  <span>·</span>
+  <span>Poem testament</span>
+</div>
+
+<div class="wrap">
+
+  <div class="candle">🕯</div>
+
+  <span class="tag">Poem · Testament</span>
+
+  <h1>În loc de testament</h1>
+
+  <div class="dedication">Copiilor mei</div>
+
+  <div class="rule"></div>
+
+  <div class="poem">
+
+    <div class="stanza">
+      <p>Să te întorci când tremură o frunză</p>
+      <p>Să șchiopătezi când a murit o floare</p>
+      <p>Să-ngenunchezi când un copac se frânge</p>
+      <p>Să simți durerea norului ce doare</p>
+    </div>
+
+    <div class="stanza">
+      <p>Să te apleci când plânge o secundă</p>
+      <p>Să plângi când zborul cade în uitare</p>
+      <p>Să urli când trăirea e imundă</p>
+      <p>Să te cutremuri când tăcerea moare</p>
+    </div>
+
+    <div class="stanza">
+      <p>Să fii doar tu când alții sunt doar alții</p>
+      <p>Să pleci doar tu când alții au venit</p>
+      <p>Să fii mereu același între frații</p>
+      <p>Aceluiași pământ de jefuit</p>
+    </div>
+
+    <div class="sep">· · ·</div>
+
+    <div class="stanza stanza-imperative">
+      <p>Fii ochiul verii care boare lasă</p>
+      <p>Fii cerul nopții ce-nvelește seara</p>
+      <p>Fii pruncul cel senin ce a-nflorit acasă</p>
+      <p>Fii mâna care-așează între țărmuri marea</p>
+    </div>
+
+    <div class="sep">· · ·</div>
+
+    <div class="stanza stanza-final">
+      <p>Să te întorci când tremură o frunză</p>
+      <p>Să șchiopătezi când a murit o floare</p>
+      <p>Să-ngenunchezi când un copac se frânge</p>
+      <p>Să fii doar tu același oarecare</p>
+      <p>Ce face dimineața să surâdă</p>
+      <p>pe prag de rugăciune la culcare</p>
+    </div>
+
+  </div>
+
+  <div class="meta">
+    Andrei Constantin Burdușa<br>
+    Mai 2026 · Timișoara<br><br>
+    andreiburdusa.site
+  </div>
+
+</div>
+</body>
+</html>
