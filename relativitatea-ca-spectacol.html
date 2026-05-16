@@ -1,109 +1,167 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>relativitatea ca spectacol | Andrei Constantin Burdușa</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --ink: #1a1410; --parchment: #f5f0e8; --cream: #faf7f2;
-      --gold: #c9a96e; --sand: #d4c5a9; --muted: #7a6f62;
-      --dark-bg: #1c1510; --dark-card: #251e17;
-    }
-    body { font-family: 'EB Garamond', serif; background: var(--dark-bg); color: var(--parchment); min-height: 100vh; }
-    header { padding: 48px 24px 32px; text-align: center; border-bottom: 1px solid rgba(201,169,110,0.2); }
-    .back-link { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--muted); text-decoration: none; display: inline-block; margin-bottom: 28px; transition: color 0.3s; }
-    .back-link:hover { color: var(--gold); }
-    .eyebrow { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; display: block; margin-bottom: 16px; }
-    h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 300; font-style: italic; color: var(--parchment); line-height: 1.25; max-width: 600px; margin: 0 auto; }
-    .gold-line { width: 60px; height: 1px; background: var(--gold); margin: 24px auto 0; opacity: 0.5; }
-    main { max-width: 580px; margin: 0 auto; padding: 56px 24px 80px; }
-    .poem { font-family: 'EB Garamond', serif; font-size: 1.15rem; font-style: italic; line-height: 2; color: var(--parchment); }
-    .vers { display: block; }
-    .spatiu { display: block; height: 1rem; }
-    .autor { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(201,169,110,0.2); }
-    .nav-link { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--muted); text-decoration: none; border-bottom: 1px solid rgba(201,169,110,0.2); padding-bottom: 2px; transition: color 0.3s; }
-    .nav-link:hover { color: var(--gold); }
-    footer { text-align: center; padding: 32px 24px; border-top: 1px solid rgba(201,169,110,0.15); font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--muted); }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>relativitatea ca spectacol | Andrei Burdușa</title>
+<meta name="description" content="relativitatea ca spectacol — poem de Andrei Constantin Burdușa">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;1,400&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=Cinzel:wght@400&display=swap');
+  :root{--bg:#0c0b09;--text:#ddd8cc;--gold:#c9a96e;--gold-dim:#8a6a3a;--muted:#9a9080;--rule:#1e1c1a}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:'EB Garamond',Georgia,serif;font-size:19px;line-height:1.85}
+  .masthead{padding:28px 40px;border-bottom:0.5px solid var(--rule);display:flex;align-items:baseline;gap:16px}
+  .masthead a{font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;color:var(--gold-dim);text-decoration:none}
+  .masthead span{font-size:11px;color:#3a3630;letter-spacing:1px}
+  .wrap{max-width:680px;margin:0 auto;padding:72px 40px 120px}
+  .tag{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-dim);margin-bottom:28px;display:block}
+  h1{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;font-style:italic;color:var(--text);margin-bottom:48px;line-height:1.2}
+  .poem{font-family:'EB Garamond',serif;font-size:18px;line-height:2.1;color:var(--text);white-space:pre-line}
+  .meta{margin-top:56px;padding-top:28px;border-top:0.5px solid var(--rule);font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--muted);line-height:2}
+  .doem-note{font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:var(--gold-dim);margin-top:32px}
+</style>
 </head>
 <body>
-  <header>
-    <a href="poezie.html" class="back-link">← arhiva de fluturi</a>
-    <span class="eyebrow">Andrei Constantin Burdușa · Poem</span>
-    <h1>relativitatea ca spectacol</h1>
-    <div class="gold-line"></div>
-  </header>
-  <main>
-    <div class="poem">
-      <span class="vers">pe o foiță subțire de răsărit</span>
-      <span class="vers">presar amintiri fărâmate</span>
-      <span class="vers">și-mi fac din ea o țigară subțire</span>
-      <span class="vers">pe care o fumez cu sete</span>
-      <span class="vers">în fața plutonului de execuție</span>
-      <span class="spatiu"></span>
-      <span class="vers">nu a mai rămas nimic de trăit</span>
-      <span class="vers">de spus</span>
-      <span class="vers">de iubit</span>
-      <span class="vers">totul s-a transformat în cenușa imperiului imuabilului timp</span>
-      <span class="spatiu"></span>
-      <span class="vers">în fond nimic nu vine</span>
-      <span class="vers">nu trece</span>
-      <span class="vers">și nici nu rămâne</span>
-      <span class="spatiu"></span>
-      <span class="vers">sunt un punct</span>
-      <span class="vers">dintr-un punct</span>
-      <span class="vers">dintr-un punct</span>
-      <span class="vers">dintre nenumărate puncte</span>
-      <span class="vers">fără nici un fel de identitate</span>
-      <span class="spatiu"></span>
-      <span class="vers">cade cortina peste un spectacol jalnic de geometrie plană</span>
-      <span class="vers">demonstrațiile toate se țin de mâini</span>
-      <span class="vers">și se apleacă reverențios</span>
-      <span class="vers">în fața ultimilor spectatori în viață</span>
-      <span class="spatiu"></span>
-      <span class="vers">spectatorii toți se țin și ei de mâini</span>
-      <span class="vers">și se apleacă triști</span>
-      <span class="vers">în fața geometriei plane</span>
-      <span class="spatiu"></span>
-      <span class="vers">tot ceea ce-am înțeles este relativ</span>
-      <span class="vers">până și teoria relativității poate fi relativă</span>
-      <span class="vers">și se poate curba în dreptul inimii</span>
-      <span class="spatiu"></span>
-      <span class="vers">fumul țigării se disipează lent în fața porții deschise</span>
-      <span class="spatiu"></span>
-      <span class="vers">prin poartă răzbate aceeași lumină orbitoare</span>
-      <span class="vers">pe care o știu de la naștere</span>
-      <span class="vers">numai că acum are un gust ușor amărui</span>
-      <span class="spatiu"></span>
-      <span class="vers">pe poarta aceasta nu vine nimic</span>
-      <span class="vers">și nu pleacă nimic</span>
-      <span class="spatiu"></span>
-      <span class="vers">mă uit la plutonul ăsta de cuvinte cu armele încărcate îndreptate spre pieptul meu</span>
-      <span class="vers">și mă cuprinde o tristețe sticloasă de iarnă înțepenită între ramurile unei iubiri transformate într-o stalactită de lumină</span>
-      <span class="spatiu"></span>
-      <span class="vers">mai trag cu sete un fum din viață și îi fac un semn cu ochiul poemului</span>
-      <span class="spatiu"></span>
-      <span class="vers">poemul se uită la mine rece</span>
-      <span class="vers">și ordonă foc</span>
-      <span class="vers">fix când poarta dă să se închidă</span>
-      <span class="spatiu"></span>
-      <span class="vers">țigara cade pe caldarâm pe jumătate stinsă</span>
-      <span class="vers">din răsărit încă mai iese fumul ultimelor amintiri</span>
-      <span class="vers">poemul ia țigara și trage și el cu sete un fum din aceleași amintiri</span>
-      <span class="spatiu"></span>
-      <span class="vers">poarta se închide pentru o altă eternitate</span>
-      <span class="spatiu"></span>
-      <span class="vers">punct</span>
-    </div>
-    <div class="autor">andrei constantin burdușa</div>
-    <div style="text-align:center; margin-top: 40px;">
-      <a href="poezie.html" class="nav-link">← arhiva de fluturi</a>
-    </div>
-  </main>
-  <footer>ANDREIBURDUSA.SITE &nbsp;·&nbsp; ARHIVA DE FLUTURI</footer>
+<div class="masthead">
+  <a href="https://andreiburdusa.site">Andrei Burdușa</a>
+  <span>·</span>
+  <span>Poezie</span>
+</div>
+<div class="wrap">
+  <span class="tag">Poem · 2023</span>
+  <h1>relativitatea ca spectacol</h1>
+  <div class="poem">relativitatea ca spectacol
+
+ 
+
+ 
+
+ 
+
+ 
+
+pe o foiță subțire de răsărit
+
+presar amintiri fărâmate
+
+și-mi fac din ea o țigară subțire
+
+pe care o fumez cu sete
+
+în fața plutonului de execuție
+
+ 
+
+nu a mai rămas nimic de trăit
+
+de spus
+
+de iubit
+
+totul s-a transformat în cenușa imperiului imuabilului timp
+
+ 
+
+în fond nimic nu vine
+
+nu trece
+
+și nici nu rămâne
+
+ 
+
+sunt un punct
+
+dintr-un punct
+
+dintr-un punct
+
+dintre nenumărate puncte
+
+fără nici un fel de identitate
+
+ 
+
+cade cortina peste un spectacol jalnic de geometrie plană
+
+demonstrațiile toate se țin de mâini
+
+și se apleacă reverențios
+
+în fața ultimilor spectatori în viață
+
+ 
+
+spectatorii toți se țin și ei de mâini
+
+și se apleacă triști
+
+în fața geometriei plane
+
+ 
+
+tot ceea ce-am înțeles este relativ
+
+până și teoria relativității poate fi relativă
+
+și se poate curba în dreptul inimii
+
+ 
+
+fumul țigării se disipează lent în fața porții deschise
+
+ 
+
+prin poartă răzbate aceeași lumină orbitoare
+
+pe care o știu de la naștere
+
+numai că acum are un gust
+ușor amărui
+
+ 
+
+pe poarta aceasta nu vine nimic
+
+și nu pleacă nimic
+
+ 
+
+mă uit la plutonul ăsta de cuvinte cu armele încărcate îndreptate spre
+pieptul meu
+
+și mă cuprinde o tristețe sticloasă de iarnă înțepenită între ramurile unei
+iubiri transformate într-o stalactită de lumină
+
+ 
+
+mai trag cu sete un fum din viață și îi fac un semn cu ochiul poemului
+
+ 
+
+poemul se uită la mine rece
+
+și ordonă foc
+
+fix când poarta dă să se închidă
+
+ 
+
+țigara cade pe caldarâm pe jumătate stinsă
+
+din răsărit încă mai iese fumul ultimelor amintiri
+
+poemul ia țigara și trage și el cu sete un fum din aceleași amintiri
+
+ 
+
+poarta se închide pentru o altă eternitate
+
+ 
+
+punct</div>
+  
+  <div class="meta">Andrei Constantin Burdușa · 2023-01-10</div>
+</div>
 </body>
 </html>
