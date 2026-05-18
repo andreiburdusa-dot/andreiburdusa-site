@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cine și când închide poarta – Andrei Burdușa</title>
+<meta name="description" content="Un eseu filosofic despre luciditate, responsabilitate și dreptul de a decide. Camus, Martin Eden, și întrebarea pe care societatea refuză să o pună.">
+<meta property="og:title" content="Cine și când închide poarta">
+<meta property="og:description" content="Un eseu filosofic despre luciditate, responsabilitate și dreptul de a decide. Camus, Martin Eden, și întrebarea pe care societatea refuză să o pună.">
+<meta property="og:image" content="https://andreiburdusa.site/articles/card-cine-si-cand-inchide-poarta.png">
+<meta property="og:url" content="https://andreiburdusa.site/articles/cine-si-cand-inchide-poarta.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Andrei Burdușa">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cine și când închide poarta">
+<meta name="twitter:description" content="Un eseu filosofic despre luciditate, responsabilitate și dreptul de a decide.">
+<meta name="twitter:image" content="https://andreiburdusa.site/articles/card-cine-si-cand-inchide-poarta.png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0b09;
+    --bg-warm: #111009;
+    --text: #e2d9c8;
+    --text-dim: #a89880;
+    --text-faint: #6b5e50;
+    --accent: #8b2e2e;
+    --accent-soft: #6b2424;
+    --rule: #2a2318;
+    --drop-cap: #c4a882;
+  }
+
+  html { font-size: 18px; }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'EB Garamond', Georgia, serif;
+    line-height: 1.85;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .site-header {
+    border-bottom: 1px solid var(--rule);
+    padding: 1.4rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .site-header a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .site-header a:hover { color: var(--text); }
+
+  .site-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* Article container */
+  article {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 5rem 2rem 8rem;
+  }
+
+  /* Category tag */
+  .category {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2.5rem;
+    display: block;
+  }
+
+  /* Title */
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.01em;
+  }
+
+  /* Subtitle / standfirst */
+  .standfirst {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  /* Byline */
+  .byline {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .byline-text {
+    font-size: 0.8rem;
+    color: var(--text-faint);
+    letter-spacing: 0.05em;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .byline-name {
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  /* Section divider */
+  .section-break {
+    display: block;
+    width: 2px;
+    height: 2.5rem;
+    background: linear-gradient(to bottom, var(--accent-soft), transparent);
+    margin: 3rem auto;
+  }
+
+  /* Body text */
+  .body-text p {
+    margin-bottom: 1.6rem;
+    font-size: 1.05rem;
+    color: var(--text);
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  /* Drop cap */
+  .body-text .drop-cap::first-letter {
+    float: left;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4.2rem;
+    line-height: 0.82;
+    margin-right: 0.1em;
+    margin-top: 0.05em;
+    color: var(--drop-cap);
+    font-weight: 400;
+  }
+
+  /* Em and italic */
+  em {
+    font-style: italic;
+    color: var(--text);
+  }
+
+  /* Pull quote / emphasis block */
+  .pull {
+    border-left: 2px solid var(--accent-soft);
+    margin: 2.5rem 0;
+    padding: 0.5rem 0 0.5rem 1.8rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  /* Footer */
+  .article-footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem;
+    color: var(--text-faint);
+    letter-spacing: 0.08em;
+    text-align: right;
+    font-style: italic;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    h1 { font-size: 2rem; }
+    article { padding: 3rem 1.4rem 6rem; }
+    .pull { padding-left: 1.2rem; font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <span class="site-name">Andrei Burdușa</span>
+  <a href="https://andreiburdusa.site">← Înapoi</a>
+</header>
+
+<article>
+
+  <span class="category">Eseu filosofic</span>
+
+  <h1>Cine și când închide poarta</h1>
+
+  <p class="standfirst">Despre luciditate, responsabilitate și dreptul de a decide. Camus, Martin Eden, și întrebarea pe care societatea refuză să o pună.</p>
+
+  <div class="byline">
+    <div class="byline-text">
+      de <span class="byline-name">Andrei Burdușa</span> &nbsp;·&nbsp; Mai 2026
+    </div>
+  </div>
+
+  <div class="body-text">
+
+    <p class="drop-cap">Albert Camus a formulat-o fără menajamente: există o singură problemă filosofică cu adevărat serioasă. Sinuciderea. Tot restul — sensul existenței, natura libertății, structura moralei — derivă din ea sau o ocolește cu eleganță academică. Întrebarea nu este dacă viața merită trăită în abstract. Întrebarea este dacă <em>a ta</em> merită continuată. Și cine are dreptul să decidă.</p>
+
+    <p>Societățile moderne au construit un răspuns instituțional masiv tocmai pentru a suprima întrebarea. Religia o numește păcat. Psihiatria o numește boală. Codul penal o numește, în unele jurisdicții, infracțiune. Familia o numește trădare. Fiecare dintre aceste cadre are același efect: confiscă decizia de la individ și o transferă unui sistem exterior lui. Nu pentru că sistemul ar ști mai bine. Ci pentru că întrebarea, lăsată liberă, destabilizează ordinea.</p>
+
+    <p>Să fie clar: nu vorbim despre gestul impulsiv al celui copleșit de o durere momentană. Nu vorbim despre adolescentul în criză sau despre omul care nu a dormit trei nopți. Vorbim despre altceva. Vorbim despre luciditate.</p>
+
+    <span class="section-break"></span>
+
+    <p>Înainte de orice argument filosofic, există un adevăr neurobiologic pe care îl ignorăm sistematic. Instinctul de supraviețuire nu este o convingere. Este o arhitectură. Amigdala, trunchiul cerebral, structurile limbice construite în sute de milioane de ani de evoluție nu negociază cu cortexul prefrontal. Nu acceptă argumente. Când corpul simte apropierea morții, sistemul primar preia controlul, indiferent de ce a decis mintea cu o clipă înainte.</p>
+
+    <p>De aceea 99% dintre oameni nu pot. Nu din forță morală, nu din speranță, nu din iubire pentru viață. Din arhitectură. Instinctul este mai vechi decât gândirea critică cu câteva sute de milioane de ani și nu are niciun respect pentru concluziile ei.</p>
+
+    <div class="pull">Cei care reușesc să treacă dincolo sunt, paradoxal, cei mai puternici. Nu cei mai slabi, nu cei mai bolnavi, nu cei mai fricoși.</div>
+
+    <p>Cei care au reușit să țină sub control, pentru câteva minute decisive, cea mai veche și mai tenace forță din biologia umană.</p>
+
+    <span class="section-break"></span>
+
+    <p>Există însă o distincție pe care neurobiologia singură nu o acoperă. Nu toți oamenii sunt egali în fața acestei întrebări — nu din cauza curajului, nu din cauza inteligenței, ci din cauza unui lucru mai fundamental: gradul în care își dețin propria existență.</p>
+
+    <p>Imaginează-ți miliarde de lentile prin care trece lumina realității. Marea majoritate o lasă să treacă. Nu o refractă, nu o prelucrează, nu o transformă în nimic. Existența curge prin ei ca printr-un mediu transparent. Trăiesc — dar nu sunt subiecții vieții lor. Sunt obiectele ei. Instinctul decide, contextul decide, familia decide, societatea decide — și ei numesc asta destin sau nu o numesc deloc.</p>
+
+    <p>Ca să poți decide asupra existenței tale, trebuie mai întâi să o deții. Responsabilitatea față de propria viață nu e un dat — e o construcție. Și majoritatea oamenilor nu o construiesc niciodată. Nu din rea-voință. Pur și simplu nu ajung acolo. Întrebarea lui Camus nu se pune pentru ei — nu pentru că ar fi răspuns-o, ci pentru că nu au atins nivelul la care ea devine reală.</p>
+
+    <p>Gestul autentic — lucid, asumat, responsabil — nu e disponibil oricui. Nu din lipsă de curaj. Din lipsă de substanță interioară.</p>
+
+    <span class="section-break"></span>
+
+    <p>Jack London a înțeles acest mecanism cu o precizie pe care neurobiologia de azi abia o confirmă. Martin Eden nu se aruncă de pe un balcon. Nu se împușcă. Alege apa — și se scufundă deliberat dincolo de pragul de la care reflexul de supraviețuire mai poate câștiga. Planifică împotriva propriului instinct. Calculează marja în care corpul l-ar trăda și o elimină metodic.</p>
+
+    <p>Eden nu moare pentru că a eșuat. Moare după ce a reușit tot ce și-a dorit. A cucerit lumea literară, a obținut recunoașterea, a văzut că era goală. Dezamăgirea lui nu e sentimentală — e ontologică. A văzut până la capăt și nu i-a plăcut ce a văzut. Și a avut puterea să rămână consecvent cu această viziune.</p>
+
+    <div class="pull">Scena scufundării e literatură mare tocmai pentru că London nu o dramatizează. O descrie aproape clinic.</div>
+
+    <p>Un om care luptă conștient cu propriul organism pentru a-și onora o decizie luată în deplină luciditate. Este, în termeni puri, un act de responsabilitate față de sine. Și, dacă îți permiți să gândești fără reflexele morale moștenite, un act de noblețe.</p>
+
+    <span class="section-break"></span>
+
+    <p>Ella, personajul jucat de Helen Mirren în <em>The Leisure Seeker</em>, face același lucru în cu totul alt registru. Știe că are cancer terminal. Știe că John, soțul ei, pierde memoria ireversibil. Organizează o ultimă călătorie, nu ca evadare din realitate, ci ca act de control asupra ei. Alege momentul, alege locul, alege să nu aștepte ca sistemul medical să le confisce ultimele zile sub forma unor protocoale de îngrijire.</p>
+
+    <p>Filmul e prezentat drept comedie-dramă. Nu e nimic comic în el. E un document despre demnitate.</p>
+
+    <p>Ella rezolvă în ficțiune ceea ce legislațiile majorității țărilor refuză să rezolve în realitate: dreptul de a decide <em>când</em>. Nu dacă viața are valoare în abstract. Când <em>a ta</em> a atins limita pe care tu, și numai tu, o poți recunoaște din interior.</p>
+
+    <span class="section-break"></span>
+
+    <p>Problema reală nu este dacă gestul poate fi legitim. Problema este fereastra.</p>
+
+    <p>Capacitatea de judecată nu dispare brusc. Se erodează. Și atunci apare cea mai dificilă întrebare practică: cine știe când fereastra e încă deschisă? Medicul vede simptome. Familia vede suferință. Statul vede un protocol. Nimeni nu vede exact ce vede individul din interiorul propriei minți în declin.</p>
+
+    <p>Sistemele care funcționează — Olanda, Belgia, Elveția — au înțeles că soluția nu e să confișți decizia, ci să o <em>autentifici</em>. Timp, evaluări repetate, mai mulți medici, consimțământ exprimat când luciditatea e intactă. Nu pentru a pune piedici, ci pentru a proteja chiar decizia pe care o validezi.</p>
+
+    <p>Documentul anticipativ — testamentul biologic — e cel mai onest instrument pe care îl avem. Semnat când ești perfect lucid, el vorbește în locul tău când nu mai poți. E imperfect — omul de la șaptezeci de ani nu e același cu cel de la cincizeci care a semnat. Dar e infinit mai onest decât tăcerea instituțională care lasă decizia în mâinile celor mai puțin îndreptățiți să o ia.</p>
+
+    <span class="section-break"></span>
+
+    <p>Există însă ceva dincolo de arhitectura biologică și dincolo de argumentul filosofic. Ceva care nu poate fi numit fără să se altereze în chiar actul numirii.</p>
+
+    <p>Inefabilul.</p>
+
+    <p>Nu e speranță în sensul sentimental al cuvântului. Nu e credință neapărat. E o porozitate față de existență — capacitatea de a fi atins de ceva ce nu poți explica și nu poți anticipa. Dimineața când apa e rece și ești doar tu și mișcarea. Versul care apare nechemat. Privirea cuiva care știe exact ce gândești fără să fi spus nimic.</p>
+
+    <p>Eden l-a pierdut. Sau poate nu l-a avut niciodată în forma aceea. Și când nu mai există nimic care să nu poată fi cântărit și găsit ușor, nu mai rămâne nimic care să justifice amânarea.</p>
+
+    <p>Inefabilul nu argumentează împotriva gestului. Pur și simplu îl face, pentru unii, inactualizat. Nu acum. Nu încă. Mai e ceva după colț pe care nu l-ai văzut.</p>
+
+    <span class="section-break"></span>
+
+    <p>Cine închide poarta? Individul. Numai el. Orice alt răspuns e o formă de violență instituțională mascată în compasiune.</p>
+
+    <p>Când o închide? Când fereastra lucidității e încă deschisă și inefabilul a tăcut.</p>
+
+    <p>Problema e că nu există semnal sonor. Fereastra nu se anunță. De aceea contează atât de mult să o recunoști tu, din interior, înainte ca arhitectura să preia controlul și să decidă în locul tău.</p>
+
+    <div class="pull">Camus n-a dat un răspuns. A dat o întrebare. Și a trăit cu ea.</div>
+
+    <p>Poate că asta e tot ce putem face.</p>
+
+  </div>
+
+  <div class="article-footer">
+    Andrei Burdușa &nbsp;·&nbsp; Mai 2026 &nbsp;·&nbsp; andreiburdusa.site
+  </div>
+
+</article>
+
+</body>
+</html>
