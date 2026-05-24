@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GO World — Andrei Burdușa</title>
+<meta name="description" content="Lumea nu mai arată ca o tablă de șah. Arată ca o tablă de GO. Și aproape nimeni nu știe să joace.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&display=swap');
+
+  :root {
+    --ink: #1a1612;
+    --paper: #f4f0e8;
+    --accent: #8b1a1a;
+    --gold: #c9a84c;
+    --stone: #6b6358;
+    --light-stone: #a09880;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 20px;
+    line-height: 1.75;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* GO board background — subtle grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(139,90,43,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139,90,43,0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 40px 120px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 72px;
+    animation: fadeDown 1.2s ease both;
+  }
+
+  .publication {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    color: var(--light-stone);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(52px, 10vw, 88px);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.08em;
+    line-height: 1;
+    margin-bottom: 8px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .title::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: var(--accent);
+    margin: 24px auto 0;
+  }
+
+  .subtitle {
+    font-size: 17px;
+    font-style: italic;
+    color: var(--stone);
+    margin-top: 24px;
+    letter-spacing: 0.02em;
+  }
+
+  .byline {
+    margin-top: 32px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--light-stone);
+  }
+
+  /* GO stone decorative element */
+  .stone-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 56px 0;
+    animation: fadeIn 1.5s ease both;
+  }
+
+  .stone-divider::before,
+  .stone-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .stone {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--ink);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.15);
+    flex-shrink: 0;
+  }
+
+  .stone.white {
+    background: var(--paper);
+    border: 1.5px solid var(--stone);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  /* Body text */
+  .essay {
+    animation: fadeUp 1.4s ease 0.3s both;
+  }
+
+  p {
+    margin-bottom: 1.6em;
+    font-weight: 300;
+    hyphens: auto;
+  }
+
+  p:first-child::first-letter {
+    font-family: 'Cinzel', serif;
+    font-size: 4.2em;
+    font-weight: 600;
+    float: left;
+    line-height: 0.85;
+    margin: 0.05em 0.08em 0 0;
+    color: var(--accent);
+  }
+
+  strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  em {
+    font-style: italic;
+    color: var(--stone);
+  }
+
+  /* Pull quotes */
+  .pullquote {
+    border-left: 3px solid var(--accent);
+    margin: 48px 0 48px 0;
+    padding: 8px 0 8px 32px;
+    font-size: 1.25em;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  /* Section markers */
+  .section-mark {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin: 56px 0 24px;
+    display: block;
+  }
+
+  /* Players grid */
+  .players {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 48px 0;
+    border: 1px solid rgba(139,90,43,0.2);
+  }
+
+  .player {
+    padding: 20px 24px;
+    background: rgba(139,90,43,0.04);
+    border: 1px solid rgba(139,90,43,0.1);
+  }
+
+  .player-name {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .player-desc {
+    font-size: 16px;
+    font-style: italic;
+    color: var(--stone);
+    line-height: 1.5;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(139,90,43,0.2);
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--light-stone);
+  }
+
+  /* Animations */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 48px 24px 80px; }
+    .players { grid-template-columns: 1fr; }
+    p:first-child::first-letter { font-size: 3.2em; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <header class="header">
+    <div class="publication">Andrei Burdușa &nbsp;·&nbsp; Eseu geopolitic</div>
+    <h1 class="title">GO World</h1>
+    <p class="subtitle">Lumea nu mai arată ca o tablă de șah.<br>Arată ca o tablă de GO.</p>
+    <div class="byline">Mai 2026</div>
+  </header>
+
+  <div class="stone-divider">
+    <div class="stone"></div>
+    <div class="stone white"></div>
+    <div class="stone"></div>
+  </div>
+
+  <article class="essay">
+
+    <p>Timp de opt decenii, am privit lumea ca pe o tablă de șah. Două tabere. Piese cu roluri fixe. Un rege de apărat, un adversar de învins, un final definit — mat sau remiză. Războiul Rece era șah în forma lui cea mai pură: fiecare mișcare răspundea unei alte mișcări, fiecare escaladare avea un contra, fiecare linie roșie era cunoscută de ambele părți. Exista, paradoxal, o ordine în teroare. O gramatică a distrugerii pe care toți o cunoșteau și pe care, tocmai de aceea, nimeni nu o folosea până la capăt.</p>
+
+    <p>Acea lume a murit. Nu brusc — ci prin acumulare, ca toate marile schimbări structurale. Și în locul ei nu a apărut o nouă tablă de șah cu alți jucători. A apărut ceva fundamental diferit, ceva pentru care Occidentul nu are nici vocabular, nici instinct, nici răbdare.</p>
+
+    <p>A apărut o tablă de GO.</p>
+
+    <div class="pullquote">
+      În GO nu cucerești — înconjori. Nu distrugi armata adversarului — îi sufoci teritoriul. Poți pierde o bătălie locală și câștiga jocul global. Sau invers.
+    </div>
+
+    <span class="section-mark">I. Regulile unui joc pe care nu îl înțelegem</span>
+
+    <p>GO este cel mai vechi joc de strategie din lume — și cel mai complex. O tablă de 19×19 intersecții, pietre negre și albe, un singur scop: să controlezi mai mult teritoriu decât adversarul. Dar spre deosebire de șah, nu există piese cu roluri predefinite. Orice piatră poate deveni crucială sau irelevantă în funcție de contextul care se construiește în jurul ei. Tabla e imensă. Se joacă simultan peste tot. Și finalul nu e niciodată o lovitură decisivă — ci rezultatul a mii de mișcări mici, fiecare plasată cu răbdare, fiecare parte dintr-un plan pe care adversarul îl vede prea târziu.</p>
+
+    <p>Aceasta este lumea în care trăim astăzi. Nu bipolaritate, nu nici măcar multipolaritate în sensul clasic al termenului — ci o tablă imensă pe care mai mulți jucători plasează pietre simultan, fiecare cu logica lui, fiecare cu calendarul lui, fiecare cu o definiție proprie a victoriei. Iar mecanismele construite pentru șah — ONU, NATO, G7, toate arhitecturile postbelice — nu au fost proiectate pentru GO. Ele presupun adversari identificabili, fronturi clare, tratate care rezolvă conflicte. Nimic din acestea nu mai funcționează când jocul se joacă pe toată tabla deodată.</p>
+
+    <span class="section-mark">II. Jucătorii și stilul lor</span>
+
+    <div class="players">
+      <div class="player">
+        <div class="player-name">Xi Jinping</div>
+        <div class="player-desc">Singurul jucător autentic de GO. Gândește în decenii, plasează pietre pe trei continente simultan, niciodată nu declară că avansează.</div>
+      </div>
+      <div class="player">
+        <div class="player-name">Vladimir Putin</div>
+        <div class="player-desc">Joacă șah într-un joc de GO. Câștigă tactic, pierde strategic. Și are cel mai puțin timp la dispoziție.</div>
+      </div>
+      <div class="player">
+        <div class="player-name">Donald Trump</div>
+        <div class="player-desc">Nu știe ce joc se joacă. Mută impulsiv, fără plan de tablă. Fiecare mutare rezolvă o problemă și creează trei altele.</div>
+      </div>
+      <div class="player">
+        <div class="player-name">Europa</div>
+        <div class="player-desc">Învață regulile GO cu întârziere — dar le învață. Prima generație de lideri europeni care înțelege că nu mai există arbitru.</div>
+      </div>
+    </div>
+
+    <p>Priviți Centura și Drumul — nu e o inițiativă economică. E o plasare de pietre pe tabla africană, central-asiatică, est-europeană. Priviți Marea Chinei de Sud — nu e o dispută teritorială. E o piatră plasată strategic care schimbă geometria întregii regiuni. Priviți infiltrarea economică în porturile europene, în infrastructura critică, în universitățile occidentale. Fiecare piatră plasată cu răbdare, fiecare parte dintr-un tablou pe care îl vei înțelege abia când va fi prea târziu să răspunzi.</p>
+
+    <p>Putin, în schimb, joacă șah pe o tablă de GO. Ucraina a fost o mișcare de șah — o captură directă, o lovitură decisivă menită să rezolve problema printr-o ofensivă fulger. GO nu funcționează așa. Rezultatul: o piatră prinsă în mijlocul tablei, înconjurată lent, consumând resurse fără să producă teritoriu. Iar Putin știe că timpul nu este de partea lui. La 71 de ani, cu o economie care absoarbe șocuri pe care nu le poate susține la infinit, cu o generație consumată în tranșeele ucrainene — el joacă în grabă. Iar în GO, graba este primul semn al înfrângerii.</p>
+
+    <div class="pullquote">
+      Omul cu cel mai puțin timp la dispoziție stă cu degetul cel mai aproape de deciziile ireversibile.
+    </div>
+
+    <span class="section-mark">III. Haosul în devenire</span>
+
+    <p>Ceea ce face tabloul de azi cu adevărat periculos nu este existența mai multor jucători. Este absența oricărui arbitru. În șah, există reguli universal acceptate și un arbitru care le aplică. În ordinea postbelică, SUA a jucat acest rol — imperfect, hipocrit aplicat, dar funcțional în parametrii săi. Acel arbitru s-a retras. Nu a fost înlocuit. Și niciun jucător de pe tablă nu are nici legitimitatea, nici forța, nici voința să preia rolul.</p>
+
+    <p>Trăim, prin urmare, nu haosul instalat — ci <strong>devenirea haosului</strong>. Și aceasta este, poate, cea mai periculoasă stare posibilă. În haosul deplin există cel puțin o claritate brutală — știi că nu există reguli, și acționezi în consecință. În devenire există iluzia că încă se poate opri. Că o negociere, un summit, un acord vor restabili ordinea. Această iluzie este cea care paralizează.</p>
+
+    <p>Fereastra critică este 2026. Dacă niciun incident major nu destabilizează tabla în acest an — o escaladare navală în Hormuz, o decizie greșită în Belarus, o criză economică declanșată de tarife — există o șansă reală că oboseala de război va produce un înghețat funcțional. Nu pace. Nu victorie. Un armistițiu al epuizării, ca în Coreea, din care lumea să respire suficient pentru a construi noile reguli ale unui joc pe care abia acum începe să îl recunoască.</p>
+
+    <span class="section-mark">IV. Europa și lecția GO</span>
+
+    <p>Există însă o surpriză pozitivă în tot acest tablou, și merită numită fără ezitare: Europa. Continentul care părea condamnat la paralizie după Brexit, după ascensiunea extremelor, după dependența energetică de Rusia — a făcut ceva neașteptat. A început să joace GO.</p>
+
+    <p>ReArm Europe nu este o reacție de panică. Este o plasare de pietre. Sprijinul continuu pentru Ucraina, fără escaladare directă, este GO pur — susții o piatră aliată care îți protejează teritoriul fără să îți expui propriile pietre. Extinderea spre est ca proiect politic serios este GO pe termen lung — înconjori tabla, construiești înainte ca adversarul să blocheze.</p>
+
+    <p>Prudența europeană nu este slăbiciune. Într-un joc de GO, prudența este înțelepciune structurală. Nu poți câștiga GO prin mișcări impulsive. Câștigi prin răbdare, prin viziune de tablă, prin capacitatea de a sacrifica o piatră locală pentru a câștiga teritoriu global. Europa învață asta. Târziu — dar o învață.</p>
+
+    <div class="pullquote">
+      Fără Ucraina, nu există flanc estic. Fără flanc estic, nu există Europa strategică. Aceasta nu este retorică — este geometria tablei de GO.
+    </div>
+
+    <span class="section-mark">V. Quo vadis</span>
+
+    <p>Întrebarea nu este dacă lumea va arăta fundamental diferit în 2040. Va arăta. Întrebarea este cu ce preț uman se plătește tranziția dintre o ordine care moare și una care nu s-a născut încă. Istoricii îi vor da un nume acestui interval. Noi trăim în el fără etichetă, fără hartă, fără garanții.</p>
+
+    <p>Dar există o concluzie clară pe care tabloul de GO o impune: <strong>cine nu înțelege că jocul s-a schimbat va pierde nu o bătălie, ci întreaga tablă.</strong> Și va pierde fără să înțeleagă de ce — pentru că va fi căutat mat acolo unde adversarul construia teritoriu.</p>
+
+    <p>Lumea nu mai arată ca o tablă de șah. Arată ca o tablă de GO. Și aproape nimeni nu știe să joace.</p>
+
+    <p>Acesta este poate cel mai important lucru de înțeles despre epoca în care trăim.</p>
+
+  </article>
+
+  <div class="stone-divider">
+    <div class="stone white"></div>
+    <div class="stone"></div>
+    <div class="stone white"></div>
+  </div>
+
+  <footer class="footer">
+    <p>Andrei Burdușa &nbsp;·&nbsp; andreiburdusa.site &nbsp;·&nbsp; Mai 2026</p>
+  </footer>
+
+</div>
+</body>
+</html>
