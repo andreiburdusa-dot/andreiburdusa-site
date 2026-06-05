@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bushidō și sabia din nisip — Andrei Burdușa</title>
+<meta name="description" content="Arta jocului de Go nu este să câștigi, ci să faci din joc o operă. Despre Calea războinicului, Timpul ca sabie ascunsă și demnitatea de a fi o piatră.">
+<meta property="og:title" content="Bushidō și sabia din nisip — Andrei Burdușa">
+<meta property="og:description" content="Arta jocului de Go nu este să câștigi, ci să faci din joc o operă. Calea războinicului, nu a învinsului — și ce se întâmplă când cineva preferă să spargă tabla.">
+<meta property="og:image" content="https://andreiburdusa.site/articles/card-sabia-din-nisip.png">
+<meta property="og:url" content="https://andreiburdusa.site/sabia-din-nisip.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Andrei Burdușa">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bushidō și sabia din nisip — Andrei Burdușa">
+<meta name="twitter:description" content="Arta jocului de Go nu este să câștigi, ci să faci din joc o operă. Calea războinicului, nu a învinsului.">
+<meta name="twitter:image" content="https://andreiburdusa.site/articles/card-sabia-din-nisip.png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&display=swap');
+
+  :root {
+    --ink: #1a1612;
+    --paper: #f4f0e8;
+    --accent: #8b1a1a;
+    --gold: #c9a84c;
+    --stone: #6b6358;
+    --light-stone: #a09880;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 20px;
+    line-height: 1.75;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(139,90,43,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139,90,43,0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 40px 120px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 72px;
+    animation: fadeDown 1.2s ease both;
+  }
+
+  .publication {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    color: var(--light-stone);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(34px, 6.5vw, 56px);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.06em;
+    line-height: 1;
+    margin-bottom: 8px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .title::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: var(--accent);
+    margin: 24px auto 0;
+  }
+
+  .subtitle {
+    font-size: 17px;
+    font-style: italic;
+    color: var(--stone);
+    margin-top: 24px;
+    letter-spacing: 0.02em;
+  }
+
+  .byline {
+    margin-top: 32px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--light-stone);
+  }
+
+  .stone-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 56px 0;
+    animation: fadeIn 1.5s ease both;
+  }
+
+  .stone-divider::before,
+  .stone-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .stone {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--ink);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.15);
+    flex-shrink: 0;
+  }
+
+  .stone.white {
+    background: var(--paper);
+    border: 1.5px solid var(--stone);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  .essay {
+    animation: fadeUp 1.4s ease 0.3s both;
+  }
+
+  p {
+    margin-bottom: 1.6em;
+    font-weight: 300;
+    hyphens: auto;
+  }
+
+  p:first-child::first-letter {
+    font-family: 'Cinzel', serif;
+    font-size: 4.2em;
+    font-weight: 600;
+    float: left;
+    line-height: 0.85;
+    margin: 0.05em 0.08em 0 0;
+    color: var(--accent);
+  }
+
+  strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  em {
+    font-style: italic;
+    color: var(--stone);
+  }
+
+  /* Termeni-cheie — formula D: cerneală + linie aurie dedesubt */
+  .term {
+    font-weight: 600;
+    color: var(--ink);
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 1px;
+  }
+
+  .pullquote {
+    border-left: 3px solid var(--accent);
+    margin: 48px 0 48px 0;
+    padding: 8px 0 8px 32px;
+    font-size: 1.25em;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  .section-mark {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin: 56px 0 24px;
+    display: block;
+  }
+
+  .footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(139,90,43,0.2);
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--light-stone);
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 48px 24px 80px; }
+    p:first-child::first-letter { font-size: 3.2em; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <header class="header">
+    <div class="publication">Andrei Burdușa &nbsp;·&nbsp; Eseu</div>
+    <h1 class="title">Bushido și sabia din nisip</h1>
+    <p class="subtitle">Go, Calea războinicului și mintea care face din joc o artă</p>
+    <div class="byline">de <strong>Andrei Burdușa</strong> &nbsp;·&nbsp; 5 iunie 2026</div>
+  </header>
+
+  <div class="stone-divider">
+    <div class="stone"></div>
+    <div class="stone white"></div>
+    <div class="stone"></div>
+  </div>
+
+  <article class="essay">
+
+    <p>Arta jocului de Go nu este să câștigi. Cine crede asta n-a înțeles jocul — și, prin el, n-a înțeles mare lucru din ce contează. Arta e să-i arăți adversarului că mintea ta e destul de ascuțită cât să ridice partida la rangul de operă. Joci ca să faci din întâlnirea a două minți un lucru frumos — iar dacă reușești, cine a câștigat devine aproape o chestiune de protocol.</p>
+
+    <div class="pullquote">
+      Victoria e doar zațul rămas pe fundul ceștii. Arta e ceaiul.
+    </div>
+
+    <p>Go-ul nu se ține, de altfel, cu reguli — ele încap în trei fraze. Se ține cu respectul de sine al celor doi. Ordinea lui nu coboară de la un arbitru; urcă dinăuntru. E fața exterioară a unei demnități interioare. De aceea japonezii nu l-au numit joc, ci Cale — un <span class="term">dō</span>, ca scrisul cu pensula sau mânuirea sabiei, în care gestul din afară e doar disciplina vizibilă a unui sine care se cizelează. Partida o numeau <span class="term">shudan</span>: o conversație a mâinilor. Și nu conversezi prin mâini decât cu o minte pe care o respecți. „Pentru că așa vreau eu" nu e o mutare slabă — e sfârșitul conversației, clipa în care mâna nu mai vorbește, ci lovește.</p>
+
+    <span class="section-mark">I. Calea războinicului</span>
+
+    <p>Aici trebuie spus limpede, fiindcă e ușor de alunecat: Calea nu e a învinsului, ci a războinicului. <span class="term">Bushidō</span> nu te învață să pierzi frumos — te învață că înfrângerea nu ajunge până la tine. Demnitatea războinicului nu e un premiu de consolare pentru pierdere; e ceva ce pierderea nu poate atinge, fiindcă el n-a jucat niciodată pentru victorie, ci pentru artă. Kawabata a scris despre asta un roman întreg, <em>Maestrul de Go</em>: un bătrân își joacă ultima partidă murind și pierde în fața unui tânăr înarmat cu metodă rece. Dar maestrul nu e mare fiindcă pierde cu grație. E mare fiindcă rămâne, până la ultima piatră, ceea ce este — iar Calea pe care o întrupează nu poate fi spartă de o înfrângere. Pierderea trece pe lângă el. Pentru el, jocul a fost dintotdeauna artă, nu socoteală.</p>
+
+    <p>Chiar și retragerea, în Go, e a războinicului, nu a învinsului. Când poziția e cu adevărat moartă, te înclini și o spui: am pierdut. Nu e supunere; e sabia pusă în teacă atunci când duelul s-a încheiat în chip onest. A te agăța de o poziție moartă ar dezonora jocul, adversarul și pe tine. Războinicul se retrage din forță, nu din slăbiciune: refuză să strice opera doar ca să mai amâne o socoteală pe care o citește deja limpede.</p>
+
+    <div class="pullquote">
+      Urâtul e singura înfrângere adevărată.
+    </div>
+
+    <span class="section-mark">II. Sabia ascunsă</span>
+
+    <p>Și mai e sabia din nisip: Timpul. Dar nu ceasul de pe perete. Dōgen îi spune pe nume — <span class="term">uji</span>, ființa-timp: nu treci prin timp, ești timp. Piatra pe care o pui e ireversibilă; intră în tine pentru totdeauna; tabla devine registrul ființei tale. A juca pe fugă e trădarea artei, fiindcă arta cere răbdare — graba vrea doar rezultatul, nu frumusețea. Sabia e din nisip fiindcă nu te taie un dușman din afară: e propriul tău sine viitor, care se adună grăunte cu grăunte din fiecare mutare lacomă și te ajunge când clepsidra s-a golit. Iar peste tot plutește <span class="term">mono no aware</span>, duioșia lucrurilor trecătoare: maestrul știe că totul piere, că și el e o piatră ce va fi ridicată într-o zi — și tocmai de aceea joacă frumos. Nu ca să învingă Timpul, ci ca să lase, în trecerea lui, o formă demnă.</p>
+
+    <span class="section-mark">III. Falsul de Go</span>
+
+    <p>Lumea de azi a furat tabla și a aruncat Calea. A păstrat geometria — teritoriu, manevră, simultaneitate — și a lepădat arta. De aceea nu mai e Go; e un fals de Go, un haos cu pretenție de ordine, jucat de niște filistini ai puterii care n-au vrut nicicând decât să câștige și n-au priceput niciodată că jocul era artă. Iar un prezent clădit pe iluzia că poți câștiga fără artă, fără Timp, fără să te înclini vreodată, nu poate naște decât un viitor fals — fiindcă viitorul e ființa-timp a prezentului, iar un sine fals își visează o soartă falsă. Cel mai grav dintre ei e acela care, voind doar victoria, când nu mai poate câștiga, sparge tabla — fiindcă pentru el n-a existat niciodată altceva decât a câștiga ori a nu pierde. Spărgătorul de tablă e anti-artistul, anti-războinicul: are sabia, dar nu are tăișul minții.</p>
+
+    <div class="pullquote">
+      Crevasa nu se deschide unde e lama, ci unde e lama fără Cale.
+    </div>
+
+    <span class="section-mark">IV. Suntem pe tablă</span>
+
+    <p>Iar noi suntem pe tablă, vrând-nevrând. Nu ne-am cerut să jucăm; ne-a așezat acolo nașterea. Dar a fi o piatră care încă joacă pentru artă — partida adevărată pe o tablă plină de falsificatori — înseamnă a ține tabla însăși. Nu o controlăm. Dar fiecare minte care încă face din joc o operă, legată de alte minți, e motivul pentru care mai e tablă și nu deja cenușă. Demnitatea unei singure pietre e mică. Demnitatea pietrelor care se țin laolaltă e singura Ordine care ne-a mai rămas. Aceasta e sabia pe care o mai putem purta — nu cea din nisip, care ne scurge pe toți deopotrivă, ci tăișul minții: mintea destul de ascuțită cât să mai facă din joc o artă, nu împotriva lor, ci pentru tablă, chiar acum, mai ales acum. Iar tabla, mai bătrână decât toți, nu-i iartă pe cei care n-au vrut decât să câștige.</p>
+
+  </article>
+
+  <div class="stone-divider">
+    <div class="stone white"></div>
+    <div class="stone"></div>
+    <div class="stone white"></div>
+  </div>
+
+  <footer class="footer">
+    <p>Andrei Burdușa &nbsp;·&nbsp; andreiburdusa.site &nbsp;·&nbsp; Iunie 2026</p>
+  </footer>
+
+</div>
+</body>
+</html>
