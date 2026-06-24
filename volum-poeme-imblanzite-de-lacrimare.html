@@ -279,6 +279,14 @@
 <div class="container">
     <div class="poems-grid" id="poemsGrid">
 
+        <div class="poem-card" style="border-left:2px solid #c9a96e" onclick='openModal("poem de toamnă și un pic","","","femeia mea de patimi ruginii de toamnă\ncu ochii de cărbune și sufletul de zbor\nîți împletesc în plete din șoapte vii o vamă\nprin car\' să treci la noapte când am să tu de dor\n\nfemeia mea de rânduri pierdute printre șoapte\npoemele se-ntorc la țărmuri  în lacrime cupide\nte scriu la nesfârșire pe reci bucăți de moarte\nsă te păstrez de-a toamna în galbene firide\n\nfemeia mea de-o soartă la capăt de lumină\nce limpezești sfârșitul spălând iubiri la râu\nam să te scriu pe ceru-mi să pot să-ți pun de vină\nun infinit jumate și un poem de grâu","https://www.buzzsprout.com/1760769/episodes/19392508-poem-de-toamna-i-un-pic")'>
+            <div class="poem-title">poem de toamnă și un pic</div>
+            <div class="poem-preview">femeia mea de patimi ruginii de toamnă
+cu ochii de cărbune și sufletul de zbor…</div>
+            <div class="read-more" style="color:#c9a96e">▶ Cu înregistrare audio</div>
+        </div>
+
+
         <div class="poem-card" onclick='openModal("geneza","","","pe alocuri\ncătre marginile acestei zile care nu se mai sfârșește\npentru că nu poate începe\nnici încăpea în buzunarul iubirii neîncepute\nca o apă pururi cristalină\nla marginea zorilor\ndospesc versuri\ncu măsura incredibilă\na unei zile care va să vie\nîn formă de pasăre\nbotezând apa lunii\ncu numele neînceputei îmbrățișări\nsub forma prelinsă a gânguritului de cocon\nstârnind de-a pururi\nuniversul")'>
             <div class="poem-title">geneza</div>
             <div class="poem-preview">pe alocuri
@@ -657,15 +665,22 @@ prăfuindu-mi pașii cu lacrimi…</div>
         <div class="modal-dedicatie" id="modalDedicatie"></div>
         <div class="modal-body" id="modalBody"></div>
         <div class="modal-note" id="modalNote"></div>
+        <div id="modalAudio"></div>
     </div>
 </div>
 
 <script>
-function openModal(title, dedicatie, note, text) {
+function openModal(title, dedicatie, note, text, audioUrl) {
     document.getElementById('modalTitle').textContent = title;
     document.getElementById('modalDedicatie').textContent = dedicatie || '';
     document.getElementById('modalNote').textContent = note ? '^ ' + note : '';
     document.getElementById('modalBody').textContent = text;
+    var audioEl = document.getElementById('modalAudio');
+    if (audioUrl) {
+        audioEl.innerHTML = '<div style="margin-top:1.2rem;padding-top:1rem;border-top:0.5px solid rgba(200,169,110,0.2);font-family:\'Libre Baskerville\',serif;font-size:0.8rem;font-style:italic;color:#a0692a;">▶ <a href=\"' + audioUrl + '\" target=\"_blank\" rel=\"noopener\" style=\"color:#a0692a;text-decoration:none;\">Ascultă înregistrarea pe Buzzsprout →</a></div>';
+    } else {
+        audioEl.innerHTML = '';
+    }
     document.getElementById('poemModal').style.display = 'block';
     document.body.style.overflow = 'hidden';
 }
