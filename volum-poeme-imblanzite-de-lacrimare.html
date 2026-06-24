@@ -677,7 +677,17 @@ function openModal(title, dedicatie, note, text, audioUrl) {
     document.getElementById('modalBody').textContent = text;
     var audioEl = document.getElementById('modalAudio');
     if (audioUrl) {
-        audioEl.innerHTML = '<div style="margin-top:1.2rem;padding-top:1rem;border-top:0.5px solid rgba(200,169,110,0.2);font-family:\'Libre Baskerville\',serif;font-size:0.8rem;font-style:italic;color:#a0692a;">▶ <a href=\"' + audioUrl + '\" target=\"_blank\" rel=\"noopener\" style=\"color:#a0692a;text-decoration:none;\">Ascultă înregistrarea pe Buzzsprout →</a></div>';
+        var a = document.createElement('a');
+        a.href = audioUrl;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = 'Ascultă înregistrarea pe Buzzsprout →';
+        a.style.cssText = 'color:#c9a96e;text-decoration:none;font-style:italic;';
+        var wrap = document.createElement('div');
+        wrap.style.cssText = 'margin-top:1.2rem;padding-top:1rem;border-top:0.5px solid rgba(200,169,110,0.2);font-size:0.85rem;';
+        wrap.appendChild(a);
+        audioEl.innerHTML = '';
+        audioEl.appendChild(wrap);
     } else {
         audioEl.innerHTML = '';
     }
