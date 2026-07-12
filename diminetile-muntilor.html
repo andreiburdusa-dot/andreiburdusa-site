@@ -35,8 +35,13 @@
     font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;
     color:var(--gold-dim);text-transform:uppercase;display:block;margin-bottom:14px;
   }
-  video{width:100%;max-width:640px;border:0.5px solid var(--rule);}
-  audio{width:100%;max-width:420px;accent-color:var(--gold);}
+  .video-embed{
+    position:relative;width:100%;max-width:640px;
+    aspect-ratio:16/9;border:0.5px solid var(--rule);background:#000;
+  }
+  .video-embed iframe{
+    position:absolute;top:0;left:0;width:100%;height:100%;border:0;
+  }
 </style>
 </head>
 <body>
@@ -103,10 +108,9 @@
 
   <div class="podcast-block">
     <span class="podcast-tag">🎬 Vezi și ascultă poemul</span>
-    <video controls preload="none" poster="images/card-diminetile-muntilor.png">
-      <source src="video/diminetile-muntilor.mp4" type="video/mp4">
-      Browserul tău nu suportă redarea video.
-    </video>
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/H_Q2TWwokUs" title="Diminețile munților" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
   </div>
 
   <div class="meta">
