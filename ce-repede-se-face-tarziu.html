@@ -39,6 +39,13 @@
     border:0.5px dashed var(--rule); padding:20px 24px; font-family:'Cormorant Garamond',serif;
     font-style:italic; color:var(--muted); font-size:16px;
   }
+  .video-embed{
+    position:relative;width:100%;max-width:640px;
+    aspect-ratio:16/9;border:0.5px solid var(--rule);background:#000;
+  }
+  .video-embed iframe{
+    position:absolute;top:0;left:0;width:100%;height:100%;border:0;
+  }
 </style>
 </head>
 <body>
@@ -108,9 +115,9 @@
   </div>
 
   <div class="podcast-block">
-    <span class="podcast-tag">🎧 Poemul cântat</span>
-    <div class="in-lucru">
-      Muzica pentru acest poem e în lucru — versiune vorbit-cântat, în producție. Revin cu piesa și cu video-ul de îndată ce sunt gata.
+    <span class="podcast-tag">🎬 Vezi și ascultă poemul</span>
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/AHs4K500K5g" title="Ce repede se face târziu" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
 
