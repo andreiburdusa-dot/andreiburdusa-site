@@ -5,8 +5,16 @@
     <link>https://andreiburdusa.site</link>
     <description>Poet, analist, filosof. Nouă volume de poezie. Seria Lentilele și Entitatea.</description>
     <language>ro</language>
-    <lastBuildDate>Wed, 22 Jul 2026 21:00:00 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 04 Aug 2026 12:00:00 +0300</lastBuildDate>
     <atom:link href="https://andreiburdusa.site/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>descântec de dragobete</title>
+      <link>https://andreiburdusa.site/descantec-de-dragobete.html</link>
+      <description>Mi-e primăvara într-un mod deplin / ca într-un vis albastru de senin / Mi-e primăvara peste tot și toate. Poem dedicat Miruței, cu videoclip.</description>
+      <pubDate>Tue, 04 Aug 2026 12:00:00 +0300</pubDate>
+      <guid>https://andreiburdusa.site/descantec-de-dragobete.html</guid>
+    </item>
 
     <item>
       <title>Ce repede se face târziu</title>
