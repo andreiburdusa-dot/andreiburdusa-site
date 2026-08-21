@@ -1,0 +1,64 @@
+<svg viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
+  
+  <!-- Background -->
+  <rect width="680" height="680" fill="#1a1410"/>
+  
+  <!-- Subtle grid pattern -->
+  <line x1="0" y1="0" x2="680" y2="0" stroke="#2a231d" stroke-width="0.5" opacity="0.5"/>
+  <line x1="0" y1="170" x2="680" y2="170" stroke="#2a231d" stroke-width="0.5" opacity="0.3"/>
+  <line x1="0" y1="340" x2="680" y2="340" stroke="#2a231d" stroke-width="0.5" opacity="0.3"/>
+  <line x1="0" y1="510" x2="680" y2="510" stroke="#2a231d" stroke-width="0.5" opacity="0.3"/>
+  <line x1="0" y1="680" x2="680" y2="680" stroke="#2a231d" stroke-width="0.5" opacity="0.5"/>
+  
+  <!-- Left accent stripe -->
+  <rect width="4" height="680" fill="#c9a96e" opacity="0.4"/>
+  
+  <!-- Series tag -->
+  <text x="40" y="50" font-family="EB Garamond, serif" font-size="13" fill="#a09880" letter-spacing="1.5" text-transform="uppercase">
+    Lentilele și Entitatea
+  </text>
+  
+  <!-- Divider -->
+  <line x1="40" y1="65" x2="640" y2="65" stroke="#3a321a" stroke-width="1" opacity="0.6"/>
+  
+  <!-- Main title -->
+  <text x="40" y="120" font-family="Cormorant Garamond, serif" font-size="36" font-weight="600" fill="#e8e4d8" letter-spacing="-0.5">
+    <tspan x="40" dy="0">Lentila și</tspan>
+    <tspan x="40" dy="45">Relația</tspan>
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="40" y="210" font-family="EB Garamond, serif" font-size="16" fill="#d4cfc0" font-style="italic" letter-spacing="0.3">
+    <tspan x="40" dy="0">De ce Ființa Noastră</tspan>
+    <tspan x="40" dy="22">nu este doar Proces</tspan>
+  </text>
+  
+  <!-- Excerpt section divider -->
+  <line x1="40" y1="255" x2="640" y2="255" stroke="#3a321a" stroke-width="1" opacity="0.5"/>
+  
+  <!-- Excerpt text -->
+  <text x="40" y="310" font-family="EB Garamond, serif" font-size="15" fill="#c8c4b8" letter-spacing="0.2" line-height="1.7">
+    <tspan x="40" dy="0">O critică a dualismului organism-iluzie.</tspan>
+    <tspan x="40" dy="24">Ființa noastră nu este doar procesele</tspan>
+    <tspan x="40" dy="24">fizice. Este arhitectură cu trei straturi:</tspan>
+    <tspan x="40" dy="24">acțiuni, imagini, și relații constituative</tspan>
+    <tspan x="40" dy="24">ce nu sunt externe firii mele, ci</tspan>
+    <tspan x="40" dy="24">constituitive. Sunt un nod într-o rețea</tspan>
+    <tspan x="40" dy="24">de relații care mă constituie.</tspan>
+  </text>
+  
+  <!-- Bottom section divider -->
+  <line x1="40" y1="550" x2="640" y2="550" stroke="#3a321a" stroke-width="1" opacity="0.5"/>
+  
+  <!-- Author & date -->
+  <text x="40" y="590" font-family="EB Garamond, serif" font-size="12" fill="#a09880" letter-spacing="0.8" text-transform="uppercase">
+    Andrei Burdușa
+  </text>
+  
+  <text x="40" y="615" font-family="EB Garamond, serif" font-size="12" fill="#7a7670" letter-spacing="0.5">
+    andreiburdusa.site — august 2026
+  </text>
+  
+  <!-- Right accent detail -->
+  <line x1="676" y1="0" x2="676" y2="680" stroke="#c9a96e" stroke-width="4" opacity="0.2"/>
+</svg>
