@@ -261,6 +261,60 @@
                 padding: 2rem 1.5rem;
             }
         }
+    
+        .front {
+            max-width: 760px;
+            margin: 1rem auto 0;
+            padding: 0 2rem;
+            text-align: center;
+        }
+        .motto {
+            font-style: italic;
+            font-size: 1.35rem;
+            color: #6a1b9a;
+            margin: 1.5rem 0 2rem;
+            line-height: 1.7;
+        }
+        .motto-label {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #8e24aa;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .intro {
+            text-align: left;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #4a148c;
+        }
+        .intro p { margin-bottom: 1rem; }
+        .chapter {
+            grid-column: 1 / -1;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.15rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #6a1b9a;
+            border-bottom: 2px solid #ce93d8;
+            padding-bottom: 0.6rem;
+            margin-top: 1.5rem;
+        }
+        .chapter:first-child { margin-top: 0; }
+        .modal-subtitle {
+            font-style: italic;
+            color: #8e24aa;
+            font-size: 1.1rem;
+            margin: -1.5rem 0 1.5rem;
+        }
+        .count-note {
+            text-align: center;
+            font-style: italic;
+            color: #8e24aa;
+            margin-top: 0.5rem;
+        }
     </style>
   <link rel="canonical" href="https://andreiburdusa.site/volum-pruncul-cuvintelor.html">
 </head>
@@ -268,7 +322,7 @@
     <div class="header">
         <h1>Pruncul cuvintelor noastre</h1>
         <div class="subtitle">volum de doeme</div>
-        <div class="authors">Mirela Mareș & Andrei Constantin Burdușa</div>
+        <div class="authors">Mirela Mareș &amp; Andrei Constantin Burdușa</div>
         <div class="note">
             doemul este o operă literară lirică scris într-o manieră unică nu de unul, 
             ci de doi autori, într-o măsură care nu poate fi nici separată, nici 
@@ -278,6 +332,19 @@
 
     <a href="index.html" class="back-link">← Înapoi la pagina principală</a>
 
+    <div class="front">
+        <div class="motto">
+            <span class="motto-label">Motto</span>
+            „Cuvântul nu e doar sunet<br>— e urmă de zbor, e drum, e devenire.”
+        </div>
+        <div class="intro">
+            <p>Există cărți care nu se scriu — se trăiesc. Se adună în tăceri, în gesturi, în priviri care au învățat să vadă dincolo de contur. Volumul de față este o astfel de carte. Nu se impune, nu se explică, nu se grăbește. Se deschide precum o frunză în bătaia vântului, cu o sinceritate care nu cere nimic și oferă totul.</p>
+            <p>Poezia mea nu e doar vers — e vibrație. E o formă de a fi în lume cu blândețe, cu luciditate, cu o melancolie care nu strivește, ci înalță. Fiecare poem e o treaptă spre sine, o coborâre în adâncul care nu doare, ci luminează.</p>
+            <p>Cititorule, nu te grăbi. Lasă cuvintele să te atingă. Lasă-le să te descheie, precum plopii în toamnă. Și poate, într-un vers, într-o pauză, într-un ecou, te vei regăsi.</p>
+        </div>
+        <p class="count-note">48 de doeme, în unsprezece părți</p>
+    </div>
+
     <div class="search-container">
         <input type="text" class="search-box" id="searchBox" placeholder="Caută în doeme...">
     </div>
@@ -285,319 +352,304 @@
     <div class="container">
         <div class="poems-grid" id="poemsGrid">
 
-            <div class="poem-card" onclick="showPoem(0)">
-                <div class="poem-title">- ea -</div>
-                <div class="poem-preview">ea era atât
-de frumoasa
-încât răsăritul se rezema roşu...</div>
+            <h2 class="chapter" data-chapter="0-5">I. Geneza cuvântului și a iubirii</h2>
+            <div class="poem-card" data-index="0" onclick="showPoem(0)">
+                <div class="poem-title">despre cartea care se scrie</div>
+                <div class="poem-preview">plouă de-a dreapta tatălui
+cu toate valurile durerii mele deodată
+de parcă cerul însuşi ar muşca din piept...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(1)">
-                <div class="poem-title">Aș vrea</div>
-                <div class="poem-preview">aş vrea...
-să mă aud strigându-te
-e atata armonie în vocea mea când te strig...</div>
+            <div class="poem-card" data-index="1" onclick="showPoem(1)">
+                <div class="poem-title">scurtă poezie de dragoste</div>
+                <div class="poem-preview">te rog să mă dezlegi de mine
+ca de năluca unui gol
+cuvântul să-mi rodească-n vine...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(2)">
-                <div class="poem-title">căderea din vis</div>
-                <div class="poem-preview">hipnotic
-culeg mişcările
-care curg asupra mea în vis...</div>
+            <div class="poem-card" data-index="2" onclick="showPoem(2)">
+                <div class="poem-title">clasic poem adăugat iubirii</div>
+                <div class="poem-preview">pe când sărut îmi eşti
+de tine
+prelung în doi...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(3)">
-                <div class="poem-title">despre teama de a citi şi marginile ei rotunde întru mai mult decât poem*</div>
-                <div class="poem-preview">citesc ceea ce scrii
-devenindu-te
-citesc şi recitesc într--una...</div>
+            <div class="poem-card" data-index="3" onclick="showPoem(3)">
+                <div class="poem-title">cuvintele. pruncii. cireşele.</div>
+                <div class="poem-preview">livada noastră s-a umplut de cuvinte, femeie,
+e plin între noi şi livada a rodit a cuvinte gravide
+cireşilor şi merilor şi perilor...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(4)">
-                <div class="poem-title">este cadoul* pe care mi l-am făcut eu singur mie din gândurile Miruței şi pe care bucuros îl depun la picioarele viselor ei pentru miruire</div>
-                <div class="poem-preview">cum zburătorul atinge cu patima trecătoriul
-nu curg
-nu frâng...</div>
+            <div class="poem-card" data-index="4" onclick="showPoem(4)">
+                <div class="poem-title">întâmplarea cuvintelor</div>
+                <div class="poem-preview">ah
+cuvintele astea
+care aleargă între noi...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(5)">
-                <div class="poem-title">curs de cuvinte scurse</div>
-                <div class="poem-preview">colind inacceptabil prin cuvinte
-trăgând sensurile de urechi ca pe iepurii despăduchiați
-nici nu ştiu ce să spun ca să nu mă rostogolesc...</div>
+            <h2 class="chapter" data-chapter="5-8">II. Construirea perechii prin cuvânt</h2>
+            <div class="poem-card" data-index="5" onclick="showPoem(5)">
+                <div class="poem-title">poem simfonic cuvintelor rotunde</div>
+                <div class="poem-preview">te-am zidit poem cuvintelor mele rotunde
+încă de pe când mugurii nu se rosteau în muguri
+încă de pe când zorii nu înfloreau în zori...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(6)">
-                <div class="poem-title">Decăderea din faptă</div>
-                <div class="poem-preview">toți ce scot sabia de sabie vor pieri - zise
-pe când eu tocmai vă spuneam o poveste
-despre cine este fără să vrea ...</div>
+            <div class="poem-card" data-index="6" onclick="showPoem(6)">
+                <div class="poem-title">citindu-mă precum o carte</div>
+                <div class="poem-preview">m-ai gândit
+m-ai scris
+şi m-ai răstignit...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(7)">
-                <div class="poem-title">despre agonie şi vaier</div>
-                <div class="poem-preview">m-am uitat la cel ce moare când moare
-ca o umbră veştedă
-şi n-am zărit decât agonia uşor amară...</div>
+            <div class="poem-card" data-index="7" onclick="showPoem(7)">
+                <div class="poem-title">rugăciunea de tine</div>
+                <div class="poem-preview">toate diminețile mele se recompun
+şi încep cu tine
+în fervoarea luminii care zideşte...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(8)">
-                <div class="poem-title">despre apa care izvorăşte iubitoare</div>
-                <div class="poem-preview">(secțiunea întâi)
-mai duce-mă
-mai curge-mă...</div>
+            <h2 class="chapter" data-chapter="8-14">III. Definiții și portrete</h2>
+            <div class="poem-card" data-index="8" onclick="showPoem(8)">
+                <div class="poem-title">definiția ei</div>
+                <div class="poem-preview">simt adierea vântului în păr
+ca o melodie cântată suav la harpă
+nici o disonanță...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(9)">
-                <div class="poem-title">despre cuvântul ferecat în cuvânt</div>
-                <div class="poem-preview">nimic nu mi-e mai aproape decât tăcerea
-de-aceea îmi tac cuvintele în laptele nopții
-şi le moi cu sârg în adâncul meu...</div>
+            <div class="poem-card" data-index="9" onclick="showPoem(9)">
+                <div class="poem-title">definiția lui</div>
+                <div class="poem-preview">însetat de răcoarea ploii dezlănțuite în plete
+cu un sunet lugubru
+teluric...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(10)">
-                <div class="poem-title">despre inefabilul trecerii</div>
-                <div class="poem-preview">nu ştiu de ce pendulul s-a oprit în mijlocul străzii
-stau împlântat în amiază şi mă uit siderat
-oarecum descumpănit...</div>
+            <div class="poem-card" data-index="10" onclick="showPoem(10)">
+                <div class="poem-title">definiție</div>
+                <div class="poem-preview">tu când eşti
+eşti de la brațul meu drept
+până la brațul meu stâng...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(11)">
-                <div class="poem-title">despre ritualul de împerechere când curge</div>
-                <div class="poem-preview">când este de iubit femeia
-atunci când răsăritul se varsă în Dunăre
-şi sensurile se împletesc mirosind vânătoarea...</div>
+            <div class="poem-card" data-index="11" onclick="showPoem(11)">
+                <div class="poem-title">despre cum se desenează dorința</div>
+                <div class="poem-preview">mâna mea e briza mării ce alunecă fin pe gâtul tău
+mâna mea e lumina ce-mi desenează perechea
+în colțul gurii tale...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(12)">
-                <div class="poem-title">despre seducția târzie a lui Paler</div>
-                <div class="poem-preview">stau
-într-o gară pustie şi chioară
-din noapte îmi cade o şoaptă...</div>
+            <div class="poem-card" data-index="12" onclick="showPoem(12)">
+                <div class="poem-title">despre cum se pregăteşte o femeie devenirii sale</div>
+                <div class="poem-preview">se ia din fereastră o femeie
+dar nu una oarecare
+la-ntâmplare...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(13)">
-                <div class="poem-title">despre sens oarecum</div>
-                <div class="poem-preview">m-am aşternut tăcut în tăcerea cuvintelor mele
-cuvios lipite de mine
-ca-ntr-un ritual de purificare...</div>
+            <div class="poem-card" data-index="13" onclick="showPoem(13)">
+                <div class="poem-title">despre devenire prin împletire</div>
+                <div class="poem-preview">te-am zidit cu cuvintele mele rotunde în poem
+încă de când mugurii nu se rosteau muguri
+şi până la jertfa ultimei frunze ruginii...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(14)">
-                <div class="poem-title">despre</div>
-                <div class="poem-preview">am vrut să-ți vorbesc despre durere
-cu fervoarea celui care slujeşte
-în numele iubirii...</div>
+            <h2 class="chapter" data-chapter="14-17">IV. Trilogia dragostei fizice</h2>
+            <div class="poem-card" data-index="14" onclick="showPoem(14)">
+                <div class="poem-title">a face dragoste (movement no. 1)</div>
+                <div class="poem-preview">împletitu-sa
+amestecatu-sa
+contopindu-sa...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(15)">
-                <div class="poem-title">devreme în pas</div>
-                <div class="poem-preview">aş vrea să îți vorbesc
-tinere ce vei urma
-despre bucuria simplă de a fi numai fire...</div>
+            <div class="poem-card" data-index="15" onclick="showPoem(15)">
+                <div class="poem-title">a face dragoste (movement no. 2)</div>
+                <div class="poem-preview">în timp ce adorm împlinind devenirea
+picură clipele fecunde şi dulci
+aurii ca mierea...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(16)">
-                <div class="poem-title">Doream să vă-ntreb</div>
-                <div class="poem-preview">Ați auzit?
-A mai căzut pe caldarâm o floare
-Oare pe ea cine o plânge?...</div>
+            <div class="poem-card" data-index="16" onclick="showPoem(16)">
+                <div class="poem-title">a face dragoste (movement no. 3)</div>
+                <div class="poem-preview">nici nu mai știu dacă ochiul meu ar putea să te cuprindă dintr-o privire
+sau imaginea s-ar crea ca într-un joc de puzzle
+din mii și mii de fracțiuni de imagini depline...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(17)">
-                <div class="poem-title">După</div>
-                <div class="poem-preview">umbra copacului 
-ce se oglindește resemnat
-în șoaptele toamnei...</div>
+            <h2 class="chapter" data-chapter="17-21">V. Exerciții de feminitate și masculinitate</h2>
+            <div class="poem-card" data-index="17" onclick="showPoem(17)">
+                <div class="poem-title">exercițiul de a fi femeie</div>
+                <div class="poem-preview">se ia mai întâi zâmbetul de dimineață
+cel căzut pe versurile tale
+se amestecă cu o rază de soare şi se aşează în vitrină...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(18)">
-                <div class="poem-title">Fabulă absurdă</div>
-                <div class="poem-preview">Peste nopțile-nşeuate
-Călăresc împreunate
-Două bufnițe uitate...</div>
+            <div class="poem-card" data-index="18" onclick="showPoem(18)">
+                <div class="poem-title">femeie - definiția împlinirii</div>
+                <div class="poem-preview">dimineața
+ți-aş ridica greutatea pleoapei cu geana mea
+şi aş veghea să te mângâie...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(19)">
-                <div class="poem-title">îmbânzitorul de ierni</div>
-                <div class="poem-preview">am sosit în lumina amurgului rece
-la poarta pădurii închise într-o iarnă nesfârşită
-şi-am muşcat cu sete din aerul rece şi rar...</div>
+            <div class="poem-card" data-index="19" onclick="showPoem(19)">
+                <div class="poem-title">bărbatul de pe pământ</div>
+                <div class="poem-preview">sunt drumuri care mă caută demult
+şi
+stând sub vânt...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(20)">
-                <div class="poem-title">Impozitați-mi lumina sub care scriu</div>
-                <div class="poem-preview">Dă-mi tva-ul la piatra pe care ți-am scris ultimul sărut
-Și nu uita de chitanța pe zâmbete
-Pe strângeri de mâini...</div>
+            <div class="poem-card" data-index="20" onclick="showPoem(20)">
+                <div class="poem-title">despre pereche</div>
+                <div class="poem-preview">o femeie se desenează cu ochiul
+se frământă cu toate gândurile
+se modelează cu toate cuvintele...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(21)">
-                <div class="poem-title">Impresii de călătorie</div>
-                <div class="poem-preview">M-am întors de curând din etern
-Nimic nou
-Aceeași atmosferă de cristal limpede și nimic deasupra...</div>
+            <h2 class="chapter" data-chapter="21-26">VI. Meșteșugul iubirii</h2>
+            <div class="poem-card" data-index="21" onclick="showPoem(21)">
+                <div class="poem-title">întru măsura meşteşugită a devenirii</div>
+                <div class="poem-preview">olarului cel la îndemâna lutului
+ochiului devenindu-mă
+şi...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(22)">
-                <div class="poem-title">Început și sfârșitul</div>
-                <div class="poem-preview">cu mirosul ei de copilă
- umed și neted
-dulce și pur...</div>
+            <div class="poem-card" data-index="22" onclick="showPoem(22)">
+                <div class="poem-title">despre creație ca iubire</div>
+                <div class="poem-preview">când voi simți că mi se vor frânge coastele
+sub povara sufletului meu încărcat de dorul tău
+te voi chema să sapi cu dalta în coasta ta...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(23)">
-                <div class="poem-title">insinuîndu-mă zorilor s-adorm</div>
-                <div class="poem-preview">mă picură zborul somnului cocoanei
-şi mă mângâie spre somn
-cu graiul rămas de a tăcea în cuvinte puține...</div>
+            <div class="poem-card" data-index="23" onclick="showPoem(23)">
+                <div class="poem-title">în numele meu</div>
+                <div class="poem-preview">tempo I
+strigă-mă pe numele meu de foc
+Durere...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(24)">
-                <div class="poem-title">Odă femeii care se dăruieşte cu fervoare</div>
-                <div class="poem-preview">neştiut menestrel
-cu chip de dor şi voce pătimaşă de demon
-căntă-mi povestea pe instrumentele tale bătrâne...</div>
+            <div class="poem-card" data-index="24" onclick="showPoem(24)">
+                <div class="poem-title">identitate</div>
+                <div class="poem-preview">eu sunt strigătul tău
+chemarea ta
+eu sunt sărutul tău sigilat pe buzele mele...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(25)">
-                <div class="poem-title">Pecetea</div>
-                <div class="poem-preview">Am vrut să-ți vorbesc despre durere
-cu fervoarea celui care slujeşte
-în numele iubirii...</div>
+            <div class="poem-card" data-index="25" onclick="showPoem(25)">
+                <div class="poem-title">dedublare</div>
+                <div class="poem-preview">am aflat că sunt pământ
+după ce mi-ai spus să rodesc
+am aflat că sunt apă...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(26)">
-                <div class="poem-title">pictură de-avril</div>
-                <div class="poem-preview">plânge cerul rece şi mohorât 
-încrustând inserții de toamnă
-pe-un început de aprilie...</div>
+            <h2 class="chapter" data-chapter="26-31">VII. Profiluri și perspective</h2>
+            <div class="poem-card" data-index="26" onclick="showPoem(26)">
+                <div class="poem-title">te întreb</div>
+                <div class="poem-preview">răsădindu-te
+cine sunt
+și de unde vin...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(27)">
-                <div class="poem-title">a face dragoste</div>
-                <div class="poem-preview">(movement no. 2)
-în timp ce adorm împlinind devenirea 
-picură clipele fecunde şi dulci...</div>
+            <div class="poem-card" data-index="27" onclick="showPoem(27)">
+                <div class="poem-title">din profil</div>
+                <div class="poem-preview">te privesc din profil
+cănd îmi prinzi mâna în palma ta şi ai profil de munte
+cănd mă îmbrățişezi şi miroşi a verde ai profil de pădure...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(28)">
-                <div class="poem-title">Curgere</div>
-                <div class="poem-preview">Am sà curg singur ca o fantana
-In propriile lacrimi
-Am sa curg adanc si amar si intunecat si ferecat...</div>
+            <div class="poem-card" data-index="28" onclick="showPoem(28)">
+                <div class="poem-title">în loc de tăcere</div>
+                <div class="poem-preview">pune urechea la pieptul mării
+şi vei auzi frământarea valului
+pune urechea la pieptul cerului...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(29)">
-                <div class="poem-title">Pre-istorie</div>
-                <div class="poem-preview">o linişte diluviană se lăsa peste copacii
-înfloriți tăcuți într-o miercuri scursă pe zidurile gri
-era încet şi devreme...</div>
+            <div class="poem-card" data-index="29" onclick="showPoem(29)">
+                <div class="poem-title">despre tăcere</div>
+                <div class="poem-preview">ce deplină tăcere simt
+când iubirea devine cerc
+simțind că plec din prima privire...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(30)">
-                <div class="poem-title">Pe buzele fiecărei dimineți</div>
-                <div class="poem-preview">Copila mea îmi întinde mâna
-Și eu iau cuminecătura zilei
-Pios întinzând o lacrimă...</div>
+            <div class="poem-card" data-index="30" onclick="showPoem(30)">
+                <div class="poem-title">să fie tăcere</div>
+                <div class="poem-preview">tăcere
+să fie tăcere
+lăsați-mă să aud şoaptele culorilor curcubeului...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(31)">
-                <div class="poem-title">Ruperea zbuciumului din ritual</div>
-                <div class="poem-preview">Nicicând
-Niciunde
-Nicidecum...</div>
+            <h2 class="chapter" data-chapter="31-35">VIII. Numerologia dragostei</h2>
+            <div class="poem-card" data-index="31" onclick="showPoem(31)">
+                <div class="poem-title">doină</div>
+                <div class="poem-preview">încerc să desenez un sens al numărului doi
+împerechindu-l nouă
+aşa cum ne-am desenat ultima oară...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(32)">
-                <div class="poem-title">schițându-mi durerea în colțul zilei</div>
-                <div class="poem-preview">dintr-un cearcăn
-se scurg irosite câteva clipe
-uitate în doi...</div>
+            <div class="poem-card" data-index="32" onclick="showPoem(32)">
+                <div class="poem-title">adágio</div>
+                <div class="poem-preview">mi-e dor să mă înfăşor
+în parfumul îmbrățişării tale
+ca-n voalul ceții ce-mi coboară dimineața...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(33)">
-                <div class="poem-title">Secunda de fericire</div>
-                <div class="poem-preview">picură clipele 
-fecunde şi dulci
-aurii...</div>
+            <div class="poem-card" data-index="33" onclick="showPoem(33)">
+                <div class="poem-title">întru cheia care deschide sensul</div>
+                <div class="poem-preview">rosteşte-mi numele în temelia cuvintelor
+în sensul cel uitat la soare
+să se usuce de atâta zbucium...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(34)">
-                <div class="poem-title">vânătoarea</div>
-                <div class="poem-preview">- elemente de ritual -
-sunt vânătorul clipelor tale etern înmuiate în iubire
-fiu al poporului de petale...</div>
+            <div class="poem-card" data-index="34" onclick="showPoem(34)">
+                <div class="poem-title">în sens</div>
+                <div class="poem-preview">încerc întâmplător să traversez o viață
+văd semafoarele
+din dreapta...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(35)">
-                <div class="poem-title">balada unui crin ce doare</div>
-                <div class="poem-preview">devreme sau oricum târziu
-eşti singurul tren care vine
-nu e nici pesemne în mine...</div>
+            <h2 class="chapter" data-chapter="35-39">IX. Lumina și devenirea</h2>
+            <div class="poem-card" data-index="35" onclick="showPoem(35)">
+                <div class="poem-title">întru deplinul</div>
+                <div class="poem-preview">deodată
+e atâta lumină violetă
+încât mi-e teamă că ochii mei se vor topi...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(36)">
-                <div class="poem-title">despre lumina lunii cea clăditoare de semne</div>
-                <div class="poem-preview">îmi sărut din poartă luna
-care îmi sărută mâna
-care îmi mângâie fata...</div>
+            <div class="poem-card" data-index="36" onclick="showPoem(36)">
+                <div class="poem-title">înspre iubirea care trăiește în sinele său</div>
+                <div class="poem-preview">în diminețile de vară răsărite lasciv din liniștea
+fierbinte şi umedă în care împreunând
+soarele cu marea...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(37)">
-                <div class="poem-title">despre zilele triste ale omului trist în urmă</div>
-                <div class="poem-preview">astăzi sunt trist
-lipseşte ceva din apusul avid care absoarbe
-în lumină pădurea coborând întunericul...</div>
+            <div class="poem-card" data-index="37" onclick="showPoem(37)">
+                <div class="poem-title">a alerga către</div>
+                <div class="poem-preview">alerg
+inspirând atavic
+de câte ori pot să alerg...</div>
             </div>
-
-            <div class="poem-card" onclick="showPoem(38)">
-                <div class="poem-title">Doar viața ce este</div>
-                <div class="poem-preview">copilul meu şi cu mine
-adăugându-ne
-întrupându-ne...</div>
-            </div>
-
-            <div class="poem-card" onclick="showPoem(39)">
-                <div class="poem-title">eu şi poetul</div>
-                <div class="poem-preview">în noaptea asta îmi voi întinde mâinile
-către mâinile tale răstignite cuvintelor
-şi le voi strânge cu disperarea serilor reci...</div>
-            </div>
-
-            <div class="poem-card" onclick="showPoem(40)">
-                <div class="poem-title">........</div>
-                <div class="poem-preview">dâră de parfum
-nevăzută,
-neştiută,...</div>
-            </div>
-
-            <div class="poem-card" onclick="showPoem(41)">
-                <div class="poem-title">iarna de la capătul poveştii</div>
-                <div class="poem-preview"> e întuneric deplin
-haos şi naos deopotrivă
-viață şi moarte...</div>
-            </div>
-
-            <div class="poem-card" onclick="showPoem(42)">
-                <div class="poem-title">a face dragoste</div>
-                <div class="poem-preview">(movement no. 1)
-împletitu-sa
-amestecatu-sa...</div>
-            </div>
-
-            <div class="poem-card" onclick="showPoem(43)">
-                <div class="poem-title">A face dragoste</div>
-                <div class="poem-preview">(Movement no. 3)
-nici nu mai știu dacă ochiul meu ar putea să te cuprindă dintr-o privire
- sau imaginea s-ar crea ca într-un joc  de puzzle...</div>
-            </div>
-
-            <div class="poem-card" onclick="showPoem(44)">
+            <div class="poem-card" data-index="38" onclick="showPoem(38)">
                 <div class="poem-title">din dragoste ce am</div>
                 <div class="poem-preview">nu cred că aş putea vreodată
- să mă uit în ochii tăi cât aş vrea
+să mă uit în ochii tăi cât aş vrea
 până la capătul privirii tale...</div>
+            </div>
+            <h2 class="chapter" data-chapter="39-43">X. Metamorfoze naturale</h2>
+            <div class="poem-card" data-index="39" onclick="showPoem(39)">
+                <div class="poem-title">lasă-mă cu tine când eşti alb ca un copac</div>
+                <div class="poem-preview">copacului alb dinspre fereastra mea albă
+i-au crescut aripi albe
+în loc de frunze...</div>
+            </div>
+            <div class="poem-card" data-index="40" onclick="showPoem(40)">
+                <div class="poem-title">eterna trecere</div>
+                <div class="poem-preview">eşti primul păr înflorit din livadă
+înfrunzind primordial din seva verde a privirii
+după ce vârfurile degetelor înmugurite...</div>
+            </div>
+            <div class="poem-card" data-index="41" onclick="showPoem(41)">
+                <div class="poem-title">confuză</div>
+                <div class="poem-preview">nici nu mai ştiu dacă ochiul meu ar putea să te cuprindă dintr-o privire
+sau dacă imaginea s-ar compune din imaginile tuturor bărbaților pe care îi admir
+nu știu dacă îmbrățişarea ar desena curbiliniu tărâmul fericirii...</div>
+            </div>
+            <div class="poem-card" data-index="42" onclick="showPoem(42)">
+                <div class="poem-title">înspre armonie dar nu până acolo</div>
+                <div class="poem-preview">ştii
+atunci când scrii
+mă striveşti între pleoape...</div>
+            </div>
+            <h2 class="chapter" data-chapter="43-48">XI. Întoarceri și închideri</h2>
+            <div class="poem-card" data-index="43" onclick="showPoem(43)">
+                <div class="poem-title">întoarcerea</div>
+                <div class="poem-preview">privesc întoarcerea păsărilor fântână
+cu visurile
+cu speranțele...</div>
+            </div>
+            <div class="poem-card" data-index="44" onclick="showPoem(44)">
+                <div class="poem-title">setea ridicării</div>
+                <div class="poem-preview">beau cu sete
+din izvorul meu de munte
+cu apă vie...</div>
+            </div>
+            <div class="poem-card" data-index="45" onclick="showPoem(45)">
+                <div class="poem-title">unicum</div>
+                <div class="poem-preview">să treci pragul pieptului tău cu mine în brațe
+să ascult cum curgi
+izvor limpede privirii tale...</div>
+            </div>
+            <div class="poem-card" data-index="46" onclick="showPoem(46)">
+                <div class="poem-title">ridurile</div>
+                <div class="poem-preview">ridul ochiului meu săpat de trecerea amară a atâtor lacrimi
+ridul din colțul gurii mele păstrând fiecare sărut
+ridul din palma mea mângâind forma inimii tale...</div>
+            </div>
+            <div class="poem-card" data-index="47" onclick="showPoem(47)">
+                <div class="poem-title">aşteptând toamna</div>
+                <div class="poem-preview">îți mângâi părul cu obrazul meu
+şi părul tău străluceşte şi miroase a toamnă
+apoi las să curgă sărutul...</div>
             </div>
 
         </div>
@@ -610,6 +662,7 @@ până la capătul privirii tale...</div>
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <h2 class="modal-title" id="modalTitle"></h2>
+            <div class="modal-subtitle" id="modalSubtitle"></div>
             <div class="modal-poem" id="modalPoem"></div>
         </div>
     </div>
@@ -620,56 +673,62 @@ până la capătul privirii tale...</div>
 
     <script>
         const poems = [
-            {title: "- ea -", text: "ea era atât\nde frumoasa\nîncât răsăritul se rezema roşu\nde umbra ei\ncu plecată sfiiciune\nînflorind\ndevreme\neternitatea"},
-            {title: "Aș vrea", text: "aş vrea...\nsă mă aud strigându-te\n\ne atata armonie în vocea mea când te strig\nîncât timpanele cerului vibrează\nîn prelungi ecouri\nde ploaie a tuturor ploilor\n\naş vrea\nsă mă văd când te privesc\ncu o privire a tuturor privirilor\ncu ochiul meu însângerat\nde sângele rănilor tale\n\naş vrea\nsă mă scriu când te scriu\nprin măsura tuturor cuvintelor\ncare se scufundă în trupul meu\nsub semnul durerilor tale\n\naş vrea\nsă ne iubim când ne iubim\nîmpletindu-ne în sensurile\npropriei noastre dureri\npână la ecoul nostru\nde împlinire\nîn rod\n\n...aş vrea…"},
-            {title: "căderea din vis", text: "hipnotic\nculeg mişcările\ncare curg asupra mea în vis\nca roua rece a dimineții\nşi dintr-o dată\nvisul\ndevine altfel\ndezrotunjindu-se\nşi totuşi\nsentimentele dau năvală\npeste această dimineață uitată de lume\nîntr-o formă demult trecută\nde-abia sosită\n\na fi rotund în tăcere\nla început de zi\nîn cheia unui cântec de apă\nîn truda unei mori\nla întoarcerea din vis\neste\nca şi cum\nte-ar săruta prima clipă a zorilor\ncu aripa unui înger\nîntr-un gest deplin\nde devenire\n\nşi-apoi începe ziua"},
-            {title: "despre teama de a citi şi marginile ei rotunde întru mai mult decât poem*", text: "citesc ceea ce scrii\ndevenindu-te\ncitesc şi recitesc într--una\ndevenindu-mă\neu însumi\nnăpădindu-mă de cuvinte\nrostuindu-mă\nşi rostindu-mă\nşi rostindu-te\nrostogolindu-te\nînclinând trecerea curb\ncătre cub\n\nîntre noi\npluteşte doar aerul din cub\nşi brațele devin doar lungimea laturii\nînsă nici aerul care arde\nnici distanța care mă pătrunde prin oase\nnu pot fi diminuate până la ne-fiirea\npătratelor ardentelor păcate\nfără să strici cubul\nşi-atunci\nte citesc într-una\npănă la sunet\npână la vaier\npână la patimă\npănă orbesc pătruns de sens\npână se ofilesc ochi mei siluiți de durerea\nde a fi dincolo de tine\npururi dincolo de tine\nla o aruncătură de latură\nla o aruncătură de lacrimă\nla o aruncătură de vaier\nşi din acel moment îmi pare\ncă nu mai cunosc literele\ncă nu mai cunosc sunetele\nsunt încolțit de neputiința citirii\nde nefirescul rostirii\nşi mă rog\nCelui care mă întâmplă\nsă nu se întâmple ceva ochiului meu\nmai grav decât orbirea\nsau rostirea\nşi\nsă pot din când în când să rostuiesc\nla sensul\ncredinței mele\nîn dimensiunea sferică\na cubului\nîn care locuim\nla o aruncătură de braț\nla o aruncătură de sărut\nla o aruncătură de dor\ndar nicidecum\nîmperecheați\npână la genunea care curge invers\nfără de sunet\nfără de cuvânt\nfără de margine\nşi\ndeci\nfără sens\nmirându-mă\nşi\ndeci fără de sens\nmirându-te\nConstantine"},
-            {title: "este cadoul* pe care mi l-am făcut eu singur mie din gândurile Miruței şi pe care bucuros îl depun la picioarele viselor ei pentru miruire", text: "cum zburătorul atinge cu patima trecătoriul\n\nnu curg\nnu frâng\nnu rup\nnu strâng\nneiertătoriu nu alung\nnevinovat nu urc pe rug\nneîmplinit nu strâng de gât\neu doar privesc cu ochiul mut\nîn noaptea-n care clipe murg\nîncet\nîncet\nfără de sârg\nnespintecate de adânc\nnerespirate de vreun rug\nnemestecate de  vreun prunc\nsunt gesturi goale de vreun gând\nsunt doar plăcere de pământ\nsunt doar ce trece\nşi nu sunt\ncăci nu iertarea naşte sfânt\nnici farisei care se plâng\nnu rabd\nalături\ncăci nu sunt\nsă iert\nci doar să văd\nde sunt să fie sau nu sunt\nsunt zburătorul pe pământ\neu doar ce văd\ncu ochiul mut\nşi trecătorul cade-n lut\nşi tot ce nu-i\ne doar\natât\n\niubeşte\nşi-ai să crezi\n\natât"},
-            {title: "curs de cuvinte scurse", text: "colind inacceptabil prin cuvinte\ntrăgând sensurile de urechi ca pe iepurii despăduchiați\nnici nu ştiu ce să spun ca să nu mă rostogolesc\nîn prima cratimă\nşi să mă tai la ochiul cu care privesc lung\nşi nesăbuit la părerea lumii\ncare se-mbată cu iluzia că pricepe\ncănd nici moartea nu poate pricepe începutul\n\ngust din lumina verbului muşcând din asfalt\nşi gura mi se face pungă\nşi mă gândesc la hoțomanii ăştia care fac import\n de noțiuni inexistente\nşi mi se face dor de substantivul spălat\nşi curat şi pus la apretat adverbe\nşi-mi vine să dau cu disperare\nîn volumul dat la maxim\nal difuzorului care a spălat putina gărilor\nîn care ceasurile se opriseră\nniciunui gol\nîn nici o formă a căderii\nîn derizoriu\n\nde aceea\nîți zic\nnu trage cu urechea la ziua de măine\ncând abia eşuezi în ziua ce eşti\neşafod\nclipei de tine"},
-            {title: "Decăderea din faptă", text: "toți ce scot sabia de sabie vor pieri - zise\npe când eu tocmai vă spuneam o poveste\ndespre cine este fără să vrea \nși cine nu este pe când crede că ar fi\n\nnu judecați și nu veți fi judecați\nnu condamnați şi nu veți fi condamnați - zise\npe când visele se spărgeau în cioburi\nși adâncurile erau răzbătute de hăuri fără fund\n\nacela care este fără de păcat\nsă arunce primul cu piatra – zise\npe când culorile se scurgeau dureros de reci\npeste lumina nedecisă a dimineții dintâi\nși poarta se deschise larg\nlăsând lumina zilei a lumii de pe urmă\nsă se împlânte în ochiul meu abia născut\ncu teamă de trecere\n\nnu trebuie să văd\nștiu că este aşa – zise\npe când păzitorul închise ușa grăindă tunător\npoarta aceasta îți era hărăzită numai ție\nacum că totul s-a sfârșit mă duc s-o închid\n\nși poarta se zidi în zid\nși eu mă zidii lumii\nimprobabil\nimprecis\nincapabil\nde visare\nși nici moartea nu-mi rămase datoare"},
-            {title: "despre agonie şi vaier", text: "m-am uitat la cel ce moare când moare\nca o umbră veştedă\nşi n-am zărit decât agonia uşor amară\nşi deosebit de tristă\nşi respirația precipitată\nde parcă ar fi vrut să ia cu el \ncât mai mult din cerul cărunt\nşi din pădurea înghețată\nşi\nam văzut opintirea\nincredibila încercare de întoarcere\nînspre devenire\nultima disperare a ființării\ndar nu mi-am dat seama cine încearcă\nsă se întoarcă\nşi de ce\n\nam văzut mai apoi paşii celorlalți\npăşind peste\ncu seninătatea cursului apei\nneînduplecatului râu care nu are cum opri\nîn nici o gară\n\nmai târziu s-a pornit vântul peste muntele înghețat\nşi un freamăt terbil s-a stârnit\ntăcut amar şi cinic\n\nîn depărtare plângea un clopot\nîn semn de trecere\n\nşi trecu tăcut\nşi lumina se stinse tăcută\nşi noaptea se opri tăcută\n\nnimic\nnimic\nnimic\n\nşi de-odată bocetul năvăli spre luna care urca spre zori\ncrăpând ziua\ncu-atâta putere a durerii şi disperării\natât de singur\nîncât \nagoniei îi căzu o lacrimă\nînghețată\n\nşi-atât"},
-            {title: "despre apa care izvorăşte iubitoare", text: "(secțiunea întâi)\n\nmai duce-mă\nmai curge-mă\nmai udă-mă\nmai spală-mă\nmai frânge-mă\nîncrâncenă-mă\nînvârte-mă\nadâncă-mă\nadună-mă\nalungă-mă\nsărută-mă\ndeplin"},
-            {title: "despre cuvântul ferecat în cuvânt", text: "nimic nu mi-e mai aproape decât tăcerea\nde-aceea îmi tac cuvintele în laptele nopții\nşi le moi cu sârg în adâncul meu\nca să curgă în sens\npure\nca mulse de la țâța fătătoarei\n\nnumai aşa\nse simte miezul laptelui cuvântat\nbeut cald\ncu spuma albă şi fecundă\na graiului dinlăuntru\ntăcut\n\ncăci a cuvânta\na învăța tăcerea e\nde vrei să rosteşti\nrefugiul sensului\nDespre eterna tăcere a graiului devenit\n\ngândesc despre trecere\nca despre un salt uriaş peste golul neînțeles\nal lumii de asfalt\no zbatere\no temere\no încruntare\nnimic din lumea de dincolo de frunzele\nabia începute\nşi înțeleg brusc\nrenaşterea pădurii\nîntr-un ciclu ritualic\naşa cum înțeleg\nneputința acestei lumi de oțel\ncare nu trăieşte\npentru că nu ştie să moară\naşa precum nu moare\npentru că nu ştie a trăi\n\nsensul adânc al vieții e împlântat \npână la durere în moartea\ndevenită acerb\nun înger cu ochi de demon\nde aceea caut frunzele\nşi gustul pădurii\nsupt de pe rădăcinile zorilor\nînca necuprinşi de flăcări\n\nde aceea nasc şi mor\ncu fiecare floare\ncu fiecare petală\ncu fiecare rouă\ncu fiecare pas\n\nde aceea durerea mea\npoartă numele zilei de azi\niar trecerea devine dureroasă\nca o rană perpetuă\nîn poemul unei morți eterne\ndintr-o curbă\ncurge primăvara\ncu miros de prunc\nşi aripi de rădăcini de smalț\npictate \nde-o linişte desenată de trilul stăncuțelor\nîn paşii umezi şi reci\nai dimineții care se scurge\nde pe umerii umbrelor copacilor\nîncă\nînfipți în întunericul nopții care va să plece\n\ngăndesc despre trecere\ncu eterna tăcere a graiului devenit piatră\npe tărâmul cuvintelor curbate\nde luna care pleacă\nsă-şi depună ouăle\nîn nisipul mărunt şi fierbinte\nal ferestrei abia deschise\nîn sufletul meu\ndespre începutul tăcerii\n\npesemne\nlumină de semne secunda va fi\ncând nu voi mai fi\neternul căderii se va opri\navida tăcere se va rosti\npe sine\na fi"},
-            {title: "despre inefabilul trecerii", text: "nu ştiu de ce pendulul s-a oprit în mijlocul străzii\nstau împlântat în amiază şi mă uit siderat\noarecum descumpănit\n\ndacă dă vreun autobuz peste el\nşi-mi sfarmă ziua asta\nde care nu aveam nevoie?\n\noare cum îmi mai leg trecutul de viitor?\n\nautobuz nu trecu\nînsă trecu o eclipsă\na unui prezent perplex\n\nam făcut nod \nîncepând aşa de pe lla noiembrie\npână spre mai\n\nau ieşit niste anotimpuri ciudate\nşi moş Crăciun umbla să vândă ghiocei\nla intersectia primăverii\ncu toamna\n\nîncepuseră să cadă florile de măr\nşi copiii ridicau oameni de petale\naşezănd unii peste alții\nbulgării de flori moarte\nvexând dramatic durerea\n\nşi tot oraşul era tulburat peste măsură\ncăci trebuia învățată din nou\nrespirația\ndespicării eternului\ncu o privire de opal\nîntr-o noapte muiată în gestul vrăjit\nal deplinei fervori\n\niar eu?\neu caut derutat\ncapitolul următor\nal romanului pe care tocmai îl scriu\ncu sângele meu\nîntr-o limbă despre care\npasărea-fântână spune\ncă a țâşnit dintr-o piatră\ntăiată cu sabia inefabilă\na unui destin\ndespicat de un pendul\nucis de-o pasăre\npe trecerea de pietoni"},
-            {title: "despre ritualul de împerechere când curge", text: "când este de iubit femeia\natunci când răsăritul se varsă în Dunăre\nşi sensurile se împletesc mirosind vânătoarea\nluna îşi pierde puterea şi se spală în vatra zorilor\ncu timpanele zvâcninde de dorințe flămânde\n\nsângele pulsează nebun alergând venele\nşi muierea simte\ncă vânătorul e aproape şi freamătä\nşi freamătul ei\nse zbate în stomac ca un stol de fluturi\nşi vânătorul aude zborul fluturilor\nşi arcul său stă întins gata să plesnească\nşi dansul vânătorului devine hipnotic\nşi prada nu mai află calea să iasă din joc\nşi nici nu mai vrea\nşi nici nu mai poate\ncăci dezbrăcată e pe jumătate\nşi lumea dispare\nşi timpul dispare\nşi clipa se lungeşte şi se lățeşte atât de tare\nîncât devine eternă\nşi săgeata vânătorului străbate eternitatea\nde-a-ndoaselea\ncătre naştere\ncu viteza cu caee femeia se lasă pradă\nvănătorii\npână nu mai există nimic şi nimeni\ndoar ritualul\nîmperecherii\ndefinitiv\nprecum\ncreația\n\ncând este de iubit femeia\natunci când noaptea apasă asupra apusului înroşindu-l\nşi sensurile se împletesc lascive la poarta întunericului\nchemat de lună să-nvelească trupul blând \nfremătând al femeii goale şi lipsite de apărare şi\ndoritoare foarte de împreunare\ndin vânător se desprinde o floare mirositoare\nşi mirosul ei plăcut doare\npână ce noapte pune stăpânire deplină pe mare\nşi femeiia adorme vânătorului aripă obosită\nde-a dreapta arcului\n\natunci zburătorul merge la culcare"},
-            {title: "despre seducția târzie a lui Paler", text: "stau\nîntr-o gară pustie şi chioară\ndin noapte îmi cade o şoaptă\nafară\neste o oră când moartea se zbate\ne 3 şi 13\nîn miez de noapte\nun ceas se fărâmă undeva într-un zid\nşi este tăcere \ne trist şi e vid\n\nadică nimicul uitat de nimic\nadică nimicul şi-atât\ndoar nimic\n\ntrecutul s-a dus\nnu-i bun de nimic\ndin viitor nu ştim mai nimic\nşi nici în prezent nu-i ceva de nimic\ne moartea pe-aproape\nşi nu simt nimic\n\nnici frică, nici ură,\ndezgust parc-un pic,\ne-aproape departele,\nnu trece nimic\nprin gara pustie şi rece şi chioară\ne 3 dimineața şi-i rece afară\n\nmă doare absența şi las' să mă doară\ne-o noapte de mai infirmă şi goală\nnu-s paşi, nu-s tăceri, nu-s iubiri,\ndoar o gară\nîn care pendulul bătrân stă să moară\n\nperonul e gol, lumina e chioară\nşi trenul plecat s-a-mpuşcat într-o seară\npe când disperarea se-aştepta să mă doară\nşi singurătatea se trata ca o boală\n\nstau - cum spuneam -  e târziu şi-s aici\ndoar Paler mai trece să vadă ce zici\nNichita se zbate să crească un pic\nşi luna se plânge, iar mie mi-e frig\nnu-i urmă de tine, nu-s bun de nimic"},
-            {title: "despre sens oarecum", text: "m-am aşternut tăcut în tăcerea cuvintelor mele\ncuvios lipite de mine\nca-ntr-un ritual de purificare\nşi cuvintele s-au aşternut triste şi ude de lacrimi\npe gesturile mele ezoterice\nera adânc în mine şi întunericul nu mai lăsa\npunți peste foşnetul cuvintelor\naşternute pe hârtia scumpă cu care învelisem seninul\n\nascultam sensul sunetelor distribuite egal\npunctelor cardinale\nşi nu era ieri\nşi nu era azi\nşi nu era nicăieri şi nici totdeauna\nera monoton şi liric\nca foşnetul stejarilor toamna\ncolorat ruginiu şi rebel\nca un vultur rănit de mânia furtunii\npornite de nicăieri spre niciunde\n\ndar până şi sunetul furtunii era trist şi desuet\nşi oarecum trecut în uitare\ncăci timpul îşi spălase urmele\nşi le pusese la uscat\nla umbra dulce a răsăritului de valuri\nprofund împlântate în maluri\n\nm-am aşternut tăcut -spuneam -\nîn tăcerea cuvintelor mele toarse zilelor\nca un caier de lână albă\ncu care îmi acopăr sentimentele\nuitate în zarurile\naruncate destinului în speranța unui \ngest câştigător de putere\n\ngestul se frânse însă brusc în durerea\ntrenului care n-a oprit niciunde\nşi care se pierde în propriul şuierat\nde dinaintea tunelului iertării depline\n\nîn rest - mărunțiş"},
-            {title: "despre", text: "am vrut să-ți vorbesc despre durere\ncu fervoarea celui care slujeşte\nîn numele iubirii\ncăci numai în iubire\ndurerea capătă boboci și înflorește\n\nam vrut să-ți vorbesc despre iubire\ncu fervoarea celui care slujește\nîn numele durerii\ncăci numai în durere\niubirea plânge cu lacrimi de înger\n\nam vrut să-ți vorbesc despre doi\ncu fervoarea celui care slujește\nîn numele celui care este singur\ncăci numai în singurătate\nperechea își înțelege cuibul rotunjindu-se în soare\n\ncum nu erai aici am întins mâna\nși ți-am atins dorul\n cu pleoapa stinsă de–o lacrimă"},
-            {title: "devreme în pas", text: "aş vrea să îți vorbesc\ntinere ce vei urma\ndespre bucuria simplă de a fi numai fire\nprecum un fir de iarbă pe sine\nnumai parte din unul\nnumai parte din tine\nnumai bucuria mângâierii copacului pe marginea \nprivirii\nnumai nevoia atingerilor milioanelor de petale\n care roiesc coamele pomilor înflorind dealurile\nnumai bucuria flăcărilor care trosnesc în vatră în\ndevenirile lor de jar\nnumai criptatul cântec al anonimelor păsări\ncare transformă pădurea\nîntr-o tandră simfonie\n\naş vrea să îți vorbesc pe înțelesul tău\nasfaltat de blocuri şi metrouri\nşi înrămat în larma fiecărei zi\nde încruntat existența\n\ndar cu ce limbă ți-aş putea grăi\ncând zâmbetul tău este trist ca o şedință de redacție\ncând mersul tău este cocoşat\nde zgârie-norii\nîn care tocmai ți-ai investit următorii treizeci de ani\ncând somnul tău\neste un concert alarmant de afon\nîndopat cu lumini care-ți umbresc\ntineețea\n\nîți scriu aceste gânduri\npe care dorem de mult să ți le spun\nsprijinit de o buturugă\ncare tocmai şi-a găsit menirea\nnu e nimic spectaculos\ntinere ce vei urma\nnumai nu uita\nam deschis în tine o poartă\nşi e numai a ta"},
-            {title: "Doream să vă-ntreb", text: "Ați auzit?\nA mai căzut pe caldarâm o floare\nOare pe ea cine o plânge?\nOare pe ea cine o doare?\n\nAți auzit?\nS-au rătăcit pe străzile măturate de vânt\n miliarde de petale\nOare pe ele cine le plânge?\nOare pe ele cine le doare?\n\nZilnic \nsub pașii mei\nsub pașii tăi\nsub pașii tuturor\nmor miile de secunde care ne despart de ziua ce se frânge\nîntre lacrimile noastre amare.\nOare pe toate cine le plânge?\nOare această despărțire nu doare?\n\nCât este un om și cât este o floare?"},
-            {title: "După", text: "umbra copacului \nce se oglindește resemnat\nîn șoaptele toamnei\nfoșnindu-și monoton învinsele ramuri\n\nsuspinul fiecărei frunze\ncare pleacă în căutarea uitării depline\nși aroma cafelei\ndintr-o dimineață rece de toamnă\nle împart cu aminitirea ta prelungă\ndincolo de literă\ndincolo de sunet sau cuvânt\naici\npe drumul care păstrează acum urme umede\noriunde unde nu ești\numbra amintirii tale – spuneam -\nmărginită doar de timpul\ncare curge anapoda\nîndoindu-se spasmodic\nde atâta distanță"},
-            {title: "Fabulă absurdă", text: "Peste nopțile-nşeuate\nCălăresc împreunate\nDouă bufnițe uitate\nCăutând smochine sparte\n\nInspirat trecu misterul\nElefantul şi cățelul\nÎnnodând în barbă trenul\nŞi furând elicopterul\n\nBufnițele mai istețe\nÎmpletiră zile crețe\nCapturară elefantul\nŞi vopsiră cu el gardul\n\nDin cățel făcură cleşte\nŞi-l vărsară peste peşte\nŞi-astupară totu-n jar\nŞi-l dădură la tipar\n\nCând ieşi cartea pe uşă\nBufnița mai jucăuşă\nO sună pe cea bătrână\nCare moțăia pe strună\n\nŞi îi spuse cu-n ton grav\nCă s-a angajat zugrav\nCea bătrână mai acidă\nCu privire de absidă\n\nRupse dintr-un ceas o palmă\nŞi opri timpul în teamă\nŞi-aruncă teama în foc\nSă-nşeueze cu noroc\n\nŞi să ducă peste clape\nJucăuşele silabe\nCare-mpart pământu-n ape\nCare-adorm să nu mai albe\n\nChioambe bufnițele tute\nCu medalii de virtute\nAdormiră în târziu\nPe un clop de vizitiu\n\nŞi povestea fărâmată\nO puseră pe lopată\nŞi o aruncară-n foc\nSă ne fie cu noroc"},
-            {title: "îmbânzitorul de ierni", text: "am sosit în lumina amurgului rece\nla poarta pădurii închise într-o iarnă nesfârşită\nşi-am muşcat cu sete din aerul rece şi rar\nmirosind a pradă\nfocul măsoară tăcerea cu trosnetul lemnelor\nînghițite de flăcări\n\nşi fricilor\nşi temerilor\nînghițite de flăcări\n\nşi îngerilor de oțel\nînghițiți de flăcări\n\nşi am muşcat din nou însetat din amurgul scurs\npe umbrele copacilor încorsetați în gerul\nîncă nedezlipit de scoarța împietrită în neiertare\n\ncăci am sosit la marginea apusului\ncăzut într-o miercuri\nscârțâind sub tălpi\nsenin\nbărbat deplin\nîntrumat de vin\nşi-am muşcat împins de sete\ndin pieptul tău de iarnă deplină\ndin aripile tale albe întinse obsesiv pe vârfurile munților\nşi-am gustat din gura ta înfiorător de rece\ncu măsura prelungă a anotimpurilor ude\nmirosind a pradă\nca orişice femeie\nîn căutarea fecundă a versurilor\nunui dor nescris"},
-            {title: "Impozitați-mi lumina sub care scriu", text: "Dă-mi tva-ul la piatra pe care ți-am scris ultimul sărut\nȘi nu uita de chitanța pe zâmbete\nPe strângeri de mâini\nPe îmbrățișări\nPe aerul care-l respiri alături de mine\nIar pentru ultima noapte petrecută împreună\nPlătește-mi în barter\nC-o iubire contrabandistă"},
-            {title: "Impresii de călătorie", text: "M-am întors de curând din etern\nNimic nou\nAceeași atmosferă de cristal limpede și nimic deasupra\n\nM-am întors mai apoi din liniște\nAm încercat să ascult pauzele dintre cuvintele mele\nDar cum cuvintele nu răsunau\nNu am știut unde începe și unde se termină pauza cuvintelor\n\nM-am întors azi-noapte din absolut\nAcolo a fost și mai crunt pentru că totul era unul\nȘi unul era totul\nAșa că am fost incapabil să definesc noțiunea\n\nMai apoi am vrut să mă duc în fericire\nDar ușa ori era închisă\nOri nu am găsit-o eu\n\nAm închis ochii și mi-am mângâiat copilul\nCu geana primului sărut\nPe fruntea cârlionțată\n\nEra bine"},
-            {title: "Început și sfârșitul", text: "cu mirosul ei de copilă\n umed și neted\ndulce și pur\n îmi sculptez porțile fiecărei nopți\nși podurile fiecărei dimineți\n\nsunt trecerea propriei mele treceri\nși devenirea propriei mele deveniri\nașa precum ea\n este trecerea propriei sale treceri\nși va deveni propria sa devenire\n\nne rotunjim în cercuri concentrice\n ca lacrima căzută perfect rotund\nîn lacul întins printre nuferii albi\n\ncercurile desenează în mine sfere\nîmplinindu-mă rotund\niar eu sap în treptele cerului senin\ncătre lumina zilei care va să vie\nsă așeze perle rotunde\npe obrajii copilului meu\nîmplinindu-mă pe mine\nîn sfârșit"},
-            {title: "insinuîndu-mă zorilor s-adorm", text: "mă picură zborul somnului cocoanei\nşi mă mângâie spre somn\ncu graiul rămas de a tăcea în cuvinte puține\n\nde aceea mă îmbrac în poem\npentru că învăț să tac respectuos\nîn măsura respirației\ncopilei mele\npe când păsările\nse spală în primele triluri ale zorilor\nînrobiți\nla şaua zilei care va veni\ntrecându-se\nsub formă de\nazi\n\n\n\nOamenii – lumină și tăcerea\n\ncobor cu tăcerea pe urmele tăcerii tale\nîmpletite în zilele mele senine\nca-ntr-un puzzle construit cu migală\n\nprimăvara-şi toarce florile \nîn crengile încrâncenate în amiaza crescută la soare\n\nființa ta de lumină\nrezonând la zgomotul apei care cade\nla nesfârşire\nînvârtind moara bătrână\na sufletului meu chinuit de temeri\nse așeză la soare ca un fluture cu aripile largi deschise\npictând cu zbateri roșii și albe poiana\nîntr-o muzică lină de amiază\nnefiresc de încâlcită în razele soarelui\n\ncopacii se apleacă rotund în calea florilor pornite în alai\ncătre lumina nesfârștă a tăcutei iubiri\ndesfătată de brațele atât de lungi și fine\na oamenilor – lumină\n\npe-o clipă se așează o lume de-o clipă\nși noi zâmbim tandru a tăcere"},
-            {title: "Odă femeii care se dăruieşte cu fervoare", text: "neştiut menestrel\ncu chip de dor şi voce pătimaşă de demon\ncăntă-mi povestea pe instrumentele tale bătrâne\ncu glas de ev întunecat \nşi legende tragice\nîn timp ce pictorul şchiop\n îmi va desena umbrele de pe chip cu\ncreioanele capricioasei primăveri lăsate dincolo\nde zidurile trecutei iubiri\nşi-mi va picta cu ruginiul toamnei\nlacrimile ce adapă izvorul ce se varsă\ndincolo de ziduri în durerile\ndeja părăsite...\n\nIar tu, cărturarule aproape orb,\nscrie-mă cu toate vocalele pământului\nşi îmblânzeşte-mi tot atâtea consoane\ncât să mă cânte menestrelul\nsecole de-a rândul\nîn toate limbile pământului\npe toate corzile viorilor deja bătrâne\n\niubeşte-mă\ndoreşte-mă\nvânează-mă\nîn timp ce\nîn perlele ochilor mei\nse vor naşte lacrimile\ntuturor pământenilor care-mi sapă cearcănele\nprinse în lutul înghețat\nal unei ierni pierdute\nde pe glezna ta\nde atipic erou al iubirii înfrânte\nde esența citadelei\npierdute în ceața trecutului ars de patimi\n\nîn urma mea\ndoar o ceață groasă să se lase pe vale\nca un văl peste trupul meu zidit\nîn poarta pe care tocmai ai păşit\nîn fervoare\n\n\n\nANDREI FILIP\n26 04 15\nBUCUREŞTI\n\n\nOdă numărului doi\n\nSe dedică profesorului meu de fizică\n\nBătrân fiind\nAting cu talpa piciorului meu tot universul cunoscut\nȘi tot pământul așa cum este el\nCalc drumurile prăfuite și gust din gustul copt al zilelor ce mi-au rămas\nCu pohta ce-am pohtit\n\nÎntind mâinile\nȘi ating cu ele frunzele care sunt frunze\nCopacii care sunt copacii\nPăsările care sunt păsări\nToate la locul lor și cu rolul lor\nNimic de plastic\nNimic de ciment\n\nDeschid ochii pătrunși de atâția ani\nȘi sărut intinderile inimaginabile ale gândurilor mele\nCu senzația de prea plin\nDeschisă către văzduh\nCa o cale către cunoaștere\n\nȘi\nMai ales\nCând îmi deschid sufletul\nDau de tine împlinită mie și cuvântului meu\nȘi-mi dau seama că\nA trăi înseamnă\nA iubi înainte de toate\nÎnainte de orice\nÎnainte de oricine\n\nA iubi iubirea\nÎnseamnă a mă iubi pe mine mie\nPentru a te iubi pe tine ție\nÎntr-o singură odă numărului doi\nÎncrestată în unu mai bătrân\n\n\n\nAndrei Filip\nSfârșit de aprilie 2015\nBucurești"},
-            {title: "Pecetea", text: "Am vrut să-ți vorbesc despre durere\ncu fervoarea celui care slujeşte\nîn numele iubirii\ncăci numai în iubire durerea devine rotundă\n\nAm vrut să-ți vorbesc despre bătăile inimii\nca despre un ritm ancestral devenit etern\nînchinându-se umanului\ndar inima ta bate mai repede şi mai roşu\n\nAm vrut să-ți vorbesc despre tăcere\ncu pasiunea celui care tace prin cuvinte\nîn numele tuturor cuvintelor crescute în limba mea\ndar tăcerile s-au topit odată cu nopțile\nînmuiate în zorile acestei întoarceri\n\nAcum\ncă am încercat tot ce a fost spus\nmă duc să-mi rescriu trecerea\nprin trecerea ta înfrunzită pe buzele mele\ncu sângele tău\nlăsat zălog iubirii\nca o pecete a sorții"},
-            {title: "pictură de-avril", text: "plânge cerul rece şi mohorât \nîncrustând inserții de toamnă\npe-un început de aprilie\n\nziua se frământă nervoasă\nşi crengile copacilor şuieră\ndisperarea unei ierni părăsite\ncu un vânt visceral\nfrământat până la furie\n\ne atât de frig\n încât mugurii au fugit înapoi în crengi\niar florile au dat buzna înapoi\n în ideea de muguri\n\ne atât de frig\nîncât imaginea ta recreată de mine\nîngheață frigid şi crispat\nîntr-o grimasă\ndin care nu pot să te trăiesc\npe dinlăuntrul meu\nprecum nici tăcerea\nnu mă poate trăi\npe dinlăuntrul ei\n\nferestrele tremură și ele\nși pădurea scârțâie lugubru\nîntr-o zi confuz de neclară\npe-o pagină de primăvară încă nerostită\n\ntârziu în avril se rostuiește anul\ncu rodul său încă nerodit\ncu rostul său încă nerostit\nși cu fiecare dintre noi la capetele unei lumi\ndescompuse în gri ud"},
-            {title: "a face dragoste", text: "(movement no. 2)\n\nîn timp ce adorm împlinind devenirea \npicură clipele fecunde şi dulci\naurii ca mierea\npicură sensurile surprinzător de senine\nrespirația ta picură pe brațul meu drept\negală şi adâncă\nsculptând visului trepte tandre de piatră\ncurg gesturile tale șerpuitoare de leoaică tânără\nmă arde privirea ta de femeie devenită femeie\nmă adulmecă nările tale fremătătoare\npicură vertical zilele săptămânii\nluând-o razna\nnerostitele tăceri\npicură drumurilor pustii fluturi colorați în roșu  și alb\nde parcă lumea ar fi rămas brusc\nîncorsetată\nîn ziua de ieri cu draperiile trase peste mâine\nîntr-o palidă încercare de a argumenta\nnemurirea\n\n\n\nschițându-mi durerea în colțul zilei\n\ndintr-un cearcăn\nse scurg irosite câteva clipe\nuitate în doi\npe un şevalet de seară\ncu o îndârjire de culoare\ncare sapă în stânca obrajilor\n\nprin păr\naproape lichidă\nse scurge\nlipsa totală a definiției pe \no dorință de adulmecare pregnantă\n\nîn pântecul meu duc lipsa\n o lipsă definitivă\n completată de fiecare cuvânt de-al tău\nde privirea ta minerală\nînfiptă până la prăsele\nîn orele scurse\nde-a lungul singurătății\ndin sensul unic al ființării\nși mă-nchin ție\nstăpân\nal clipei trăite de sine stătătoriu\ncu limbă de moarte\nîntr-un capăt de noapte\n\ne târziu de devreme pentru șoapte\nși ridurile adorm expresiv\nîn durere\n\n\nAndrei Filip\n3 martie 2015\nBucurești"},
-            {title: "Curgere", text: "Am sà curg singur ca o fantana\nIn propriile lacrimi\nAm sa curg adanc si amar si intunecat si ferecat\nPrecum apele intre stanci\nMuşcându-mi zabalele\nAm sa curg\nInevitabil masculin\nImuabil simfonic\nRotund pătrunzând \nIn liniştea nebănuită\nA cubului locuit de cercuri\n\n\nAndrei Filip\n02.04.15\nPoemul\n\nPoemul meu este ca o respirație scurtă de uimire\nÎn fața unei zile luminoase ivite printre copaci\nCa aerul rece al muntelui care îmi inundă plămânii\nCu gustul liber al norilor iviți la orizontul\nÎmbrăcat în mantia luminoasă a răsăritului\nCa miliardele de pete care colorează împrejurul meu\nCu viață în verde pur și viu\n\nPoemul meu vine singur ca străinul călător\nPe poteca îngustă a fiorului de dimineață\nCu chipul ușor tras de efort și cu mâinile încă prăfuite\nÎși scoate pălăria trasă pe ochi și dezvăluie părul aburind încă\nPrivește în sus pe paralele copacilor care se înalță deasupra\nTrage aer în piept și îmi scutură cu putere mâna\n\nPoemul meu puternic nu este totdeauna o cale\nCi de multe ori este doar un tablou așezat cu grijă\nÎn fața ochilor tăi încă nesărutați de lumină\nÎncărcându-ți cugetul cu parfumul sălbatic al usturoiului sălbatic\nȘi mângâierea sublimă a pădurii de brad\n\nPoemul și versul meu este ruda săracă a mersului pe apă\nEvident nu vei putea călca apa cu el\nDar cu siguranță îți vei roti gândurile către tine\nȘi vei putea păși pe cioburile tăioase ale sentimentelor tale\nÎmprăștiate te–miri-cine-știe-unde\n\nPoemul meu – spuneam – este picătura de sens\nStrecurată în cafeaua dimineților tale mirosind a flori de tei\nBea-mă de setea ta de tine!\n\nAndrei Filip\n29 aprilie 2015\nBucurești"},
-            {title: "Pre-istorie", text: "o linişte diluviană se lăsa peste copacii\nînfloriți tăcuți într-o miercuri scursă pe zidurile gri\nera încet şi devreme\nşi lumea amorțise brusc\ncu brațele desprinse de trup\nca-ntr-o imagine epică\na nerostirii\n\nse simțea în aer\nmirosul veşniciei\ncare trecea pe lângă noi\naşa cum trec zborurile\npăsărilor întoarse din\ncălătoriile lor sisifice\n\nera ne-început de lume\nși rostul era nerostit\ndar se așeza tihnit pe muchea buturugii\ncare se odihnea de-atâta iarnă\ncu ridurile încercuite rezemate de soare\n\nera atât de liniște încât trilurile păsărilor\ncoborau alene pe briză\nîn forme fecunde de mâine\nși truda iubirii\nse rostuia alene pe sânii primăverii încă neîncepute\n\ncărarea cobora devreme către pașii care vor veni\ncălcând clipa trecută\nîntru devenirea celei prezente\n\nera o zi de miercuri întoarsă din cuget\nsculptată în vers\npeste care s-a stors ca pe-o lămâie\n zarea unei plutiri rotunde\nde iubire deplină\nîntr-o frecvență de roșu putred\n\n\n\nAndrei Filip\n4 mai 2015\nBucurești\n\n\n\nrătăcirea dinspre noapte\n(portret din amintire)\n\nîntunecă-mă\ncu chip zadarnic de noapte strâmtă-n \nîntunericul aproape deplin\n\nîntind mâna în întunecatul învăluit de întuneric\nîncercând negura cu flacăra ochilor\nrătăcind pădurii cu gust misterios foşnitoriu\n\nşi nimic nu-i nimic\nşi nimic e nimic\nşi capătă sens şi sudoare\nşi degetele se zăresc în umbrele goale\n\nşi paşii şovăiesc pe cărarea nebătută de paşi\nşi gesturile prididesc rebel şi aiurea\nşi cuvintele nu găsesc gura\nşi frica pândeşte propria frică\ncu o ură născută din teama de noapte\nînfiptă în rodul fricii de moarte\nşi universul urlă agonic a disperare\nşi nu mai sunt şoapte\nşi nu mai sunt fapte\nci numai o dorimță atavică de a păşi către viață\ncătre lumea cunoscută\naşa cum este ea\n\no tinichea\n\n\nAndrei Filip\n11 mai 2015\nBucureşti\n\n\nRugăciunea de dimineață"},
-            {title: "Pe buzele fiecărei dimineți", text: "Copila mea îmi întinde mâna\nȘi eu iau cuminecătura zilei\nPios întinzând o lacrimă\n\nAndrei Filip\n13 mai 2015\nBucurești"},
-            {title: "Ruperea zbuciumului din ritual", text: "Nicicând\nNiciunde\nNicidecum\nTrecut-am pragul tău de scrum\nCu viața scursä ca un fum\nÎntr-o legendă dintr-un drum\n\nEra târziu, era devreme,\nErau nici verzi şi nici perene\nEra-n modul, trăiam în semne\nDoar ele viețuiau eterne\n\nEra devreme de târziu\nEram şi nu vroiam să fiu\nEram un suflet în pustiu\nÎntr-un apus cărămiziu\n\nNicicând\nNiciunde\nNiciodată\nNu am gândit să rup din roată\nIubirea ta neîntinată\nPrivirea ta nevinovată\n\nDar ai venit şi nu ştiu care\nFu clipa care te-a adus din zare\nNici timpul când te-ai scurs din mare\nNici noaptea care plânse - n boare\n\nŞi de atunci mă zbat într-una\nSă redevin din mare una\nSă las doar nopții-n prag arvuna\nSă fiu doar eu şi tu doar una\n\nNicicând\nNiciunde\nNicidecum\nNu vom mai fi parfum de fum\nŞi nici legenda de pe drum\nŞi nici doar praguri pentru scrum\n\nVom fi doar noi sens de tăcere\nTăcerea urmă de durere\nDurerea  praful din plăcere\nPlăcerea urma unor semne\n\nNicicând\nNiciunde\nNiciodată\nIubirea nu va fi uitată\nTăcerea nu va fi pătată\nȘi nici durerea înșelată\nCăci totdeauna-i niciodată\n\nEra târziu, era devreme,\nErau nici verzi şi nici perene\nEra-n modul, trăiam în semne\nDoar ele viețuiau eterne\n\nÎntr-o legendă dintr-un drum\nCu viața scursä ca un fum\nTrecut-am pragul tău de scrum\nNicicând\nNiciunde\nNicidecum"},
-            {title: "schițându-mi durerea în colțul zilei", text: "dintr-un cearcăn\nse scurg irosite câteva clipe\nuitate în doi\npe un şevalet de seară\ncu o îndârjire de culoare\ncare sapă în stânca obrajilor\n\nprin păr\naproape lichidă\nse scurge\nlipsa totală a definiției pe \no dorință de adulmecare pregnantă\n\nîn pântecul meu duc lipsa\n o lipsă definitivă\n completată de fiecare cuvânt de-al tău\nde privirea ta minerală\nînfiptă până la prăsele\nîn orele scurse\nde-a lungul singurătății\ndin sensul unic al ființării\nși mă-nchin ție\nstăpân\nal clipei trăite de sine stătătoriu\ncu limbă de moarte\nîntr-un capăt de noapte\n\ne târziu de devreme pentru șoapte\nși ridurile adorm expresiv\nîn durere\n\n\nAndrei Filip\n3 martie 2015\nBucurești"},
-            {title: "Secunda de fericire", text: "picură clipele \nfecunde şi dulci\naurii\nca mierea\npicură sensurile surprinzător de senine\npicură privirea ta de femeie devenită femeie\n\npicură vertical zilele săptămânii\nluând-o razna\nnerostitele tăceri\npicură drumurile pustii\nde parcă lumea ar fi rămas brusc\nîncorsetată\nîn ziua de ieri\nîntr-o palidă încercare de a argumenta\nnemurirea\n\nrespirația ta picură pe brațul meu drept\negală şi adâncă\ncolorând visul în trepte de piatră\nîn timp ce adorm\nîmplinind devenirea\n\nnimic spectaculos\ndoar un cuib de berze\ndând sens stâlpului\n\n\n\nandrei filip\n23 aprilie 2015\n                                                                                                         Moroen\n\n\n\nsentimentală\n\ncând te iubesc\neste ca şi cum\nm-aş înălța la cer\nsă ating sensul\ncu respirația mea plină de fervoare\nşi sensul s-ar curba\ndeplin\n\n\nAndrei Filip\n14.05.1959\n\n\nTablou peren\n\nîn roua zilei \ncare respiră  în însângerata dimineață\ncu gustul nebun\nal însetării rămase de pe urma nopții scurse\nde pe umbrele copacilor umezi\nmângâiați de cristalina chemare a izvoarelor\nmereu flămânde\nse moaie cântecul văilor\nce se lasă pe umerii munților\nînşeuați de un vânt rece şi aspru de primăvară\nîntr-un senin învelit în ceasurile\ntuturor regretelor şterse\nde pe pleoapele obosite de chemarea\ntuturor dorințelor adorrmite deja\n\neste ziua în care florile roiesc aiurea prin crengile perilor\nîntr-o simfonie albă a rodirii ce va să vie\nîmplinindu-ne deplin într-un troc peren\nde necuprindere a devenirii\n\neste albastru devreme\nîn cutia cu amintiri\n\n\n\nAndrei Filip\n25 arilie 2015\nBucureşti"},
-            {title: "vânătoarea", text: "- elemente de ritual -\n\nsunt vânătorul clipelor tale etern înmuiate în iubire\nfiu al poporului de petale\nîntru milioane de flori vii\nşi trupeşe de alb\nşi de infuze parfumuri\nîntr-un tărâm al copacilor\nlăsând umbre prelungi pe caldarâmul zilei ce tocmai trece\ncu o corolă deplină de frunze şi sensuri\nstoarsă de umbre\nplină de freamătul simfonic al pădurii\nşi de gustul interzis al libertății eterne şi\nal zborului vegetal\nîn timp ce femeile tinere ca tine mirosind a vånat\ntrec cu mers calin către ziua care tocmai pleacă\nîntr-o lume care se prăbuşeşte în întuneric\n\npădurea poartă haine noi\nşi graurul țopăie precaut printre\nclipele care se varsă în apusul ce curge\nîn valuri\nîn timp ce copacii se lasă purtați\nde refrenele tandre ale înserării\nca-ntr-un poem rebel împletit în regrete de iubire\n\ndealurile s-au încărcat furibund cu florile albe\nca-ntr-o sărbătoare păgână în care totul e fecund\n\npe seară pădurea miroase a lumină\n precum femeile miros a pradă\n\n\nsunt - spuneam - vânătorul care simte noaptea mirosind a femeie\nşi paşii lui vaşnici de vânător\nrâvnesc la pânda \numbrelor prelungi ce zugrăvesc secundele stoarse\nde sunetele păsărilor\ncare-şi pictează gesturile\nîn milioane de limbi neştiute\nlegate armonic\nde un univers elementar\nretras din durerea facerii\nîn timp ce lumina\nse scurge pe urmele sânilor tăi respirându-şi dorințele\nşi eu încă adulmec\namintirea trupului tău lăsat să freamete\nîn sângele unei iubiri care îmi curge\nşi acum în vine\nşi nici nu mai ştiu\ndacă sunt vânătorul sau vânatul\nca-ntr-un ritual desăvârşit\nde a ucide spre a se naşte\n\n\nandrei filip\n29 aprilie 2015\nBucureşti"},
-            {title: "balada unui crin ce doare", text: "devreme sau oricum târziu\neşti singurul tren care vine\nnu e nici pesemne în mine\nnu e nici măcar de-un pariu,\n\neternul e-un hoit şi pute a jalnic\nşi liber e doar muribundul\nstă în pustiu la fereastră un paznic\nşi-n inimă bate doar vântul\n\ncad stelele-ntr-una peste deşert\nşi marea îndoaie nisipul\ndorința trezeşte durerea din piept\nşi-acoperă-n riduri tot chipul\n\nsunt strigătul morții croind un pustiu\nsunt poarta ce nu mai ține\ndevreme sau oricum târziu\neşti singurul tren ce mai vine\n\n\nAndrei Filip\n18 mai 2015\nBucureşti"},
-            {title: "despre lumina lunii cea clăditoare de semne", text: "îmi sărut din poartă luna\ncare îmi sărută mâna\ncare îmi mângâie fata\ncare îmi mângâie viața\ncare trece peste mine\nlăsând ridurile fine\nîn care citeşti ce vine\npresărat în colb de mâine\ncare tocmai-şi scaldă fața\nîntr-o bună dimineața\ncare-a coborât din munte\nsă mai pună înc-o punte\nîntre ieri şi ziua care\na sosit să plece-n grabă\ncătre-un sens care îmi scapă\nîntr-o ciutură cu apă\n\neu în ciutură -mi spăl chipul\ncare îmi citeşte timpul\ncare trece peste toate\nlăsând porțile crăpate\ncât să poți vedea în urmă\ndacă ai lăsat vreo urmă\ncare merită să şadă\ncând coboară luna-n poartă\npe care-o deschid cu mâna\npe care se-aşează luna\n\n\nAndrei Filip\n23 mai 2015\nMoroeni\nduminică\n\n\n\nsecundele, unele într-altele, zevzecele,\nîntr-o mohorâtă zi de duminică\nce nu odihneşte\nsecvențe muzicale tulburi,\nfrânturi de stări confuze şi anacronice,\nimposibilitatea înnodării prezentului\nla nici un alt timp\no incomfortabilă stare de bine\nracordată la o deja prea lungă stare de încordare\no caricaturală existență modernă\nchipurile\nprogresistă\nîn realitate măcinată de incertitudini\n\nşi din nou\nsecundele, unele într-altele, zevzecele,\nîn aceeaşi zi de duminică\nde care nu va mai auzi nimeni niciodată\npentru că nu are sens\nşi nici logică şi nici valoare\ndecât dacă o transformi\nîn poem\n\nîn rest e numai larma unei lumi care nu va rămâne\n\nandrei filip\n29.03.15\nbucureşti"},
-            {title: "despre zilele triste ale omului trist în urmă", text: "astăzi sunt trist\nlipseşte ceva din apusul avid care absoarbe\nîn lumină pădurea coborând întunericul\nca o pleoapă cercuită\nprin care\nfulguiesc fecund de tine\nîn cuvinte risipite dintr-un puzzle ce nu se leagă\n\naş vrea să mă topesc în sens\nca o pasăre în cuibul ei rotund\nca o potecă în adâncul muntelui\nca un gând într-o prelingere lăcrimândă\n\nşi totuşi astăzi sunt trist\nmă cuibăresc la umbra tàmplei tale\nşi sorb fiecare respirație să-mi astâmpăr setea de tine\nşi buzele-mi împietresc într-un sărut\ncare încă nu a sosit\nîntr-o mângâiere\ncare nu se lasă purtată de goliciunea nopții\n\ntotul în jurul meu grăieşte\nîntr-un univers al sensului pe care eu nu-l capăt\npe drumul acesta spulberat de căderile\nde pietre ştiute şi neştiute\naflate şi neaflate\nspulberate sau ocolite sau îngropate\npur-şi-simplu\nîn miile de ani cu care îmi încarc poverile\ncu care urc treptele tăcerii care cuvântă\nîn limbi pe care le vorbesc fără să le cunosc\n\ncopilul meu lângă mine îşi țese cu meticulozitate\npropria poveste într-o altă pădure\npe alte cărări întru alte zboruri \ncântate de păsările umbrite copacilor\npăsările acestea simple care trăiesc atât de simplu\nîncât nu poartă pecetea păcatului\npentru că pentru ele\nesența păcatului nu există\n\nşi totuşi astăzi sunt atât de trist\npurtându-mi poverile\npe drumurile de munte uitate de urme\nşi negăsite de femeia mea care va fi să vie\ndintr-o altă poveste în care nu este\nşi\nstau aici\nla marginea sensului pădurii care cade în râu\nca o poveste pe care râul o poartă lichidă\nspre marea cea mare\ncare îmbătrâneşte numărând\nmiliardele de plecăciuni ale frunzelor\ncătre devenirile\nnenumăratelor clipe care se scurg\ndntr-o legendă iruptă din jertfa neostenită\na devenirii care mereu devine\n\nastăzi sunt trist\nîntr-o zi care se lasă tristă\npe umerii mei\nla chemarea înserării\nîn forme numai gândite\nîntr-un gând amar\ncare plânge\nîn timp ce tălpile mele se scurg în țărână\ndin ce în ce mai adânc\nafundându-se\nînclinat \nîn zilele înălțării depline\nAndrei Filip\n22 mai 2015\nMoroeni"},
-            {title: "Doar viața ce este", text: "copilul meu şi cu mine\nadăugându-ne\nîntrupându-ne\nînsensându-ne\nunul celuilalt şi celuilalt unu\nca un dar întâmpinat darului\nşi nimic peste\n\ndinspre sens\ndoar viața ce este\n\n\nAndrei Filip\n20 mai 2015\nBucureşti\n\neternul şi lacrima*\n\n\nîntr-un infinit de dimineți am risipit lumina\nşi-n alt infinit de nopți am risipit stelele\nşi-n infinite ceasuri orele-au tăcut\nînainte de a mă naşte\n\nînainte de a te naşte\nai fost predestinată să fii frunză\nîntre miliardele de frunze care îmbracă pădurea\nşi floare între miliardele de flori\n care zăvorăsc parfumul\nşi secundă între secundele ale căror ceasuri tac\nşi-ai fost scrisă să fii a mea\n\nînainte de a mă naşte\nam fost predestinat\nsă deschid zorii arămii ca mierea arsă\ncu paşii mei însetați de curgea drumului \npe urmele de şoapte ale luminii\nşi să-mi zgârii gleznele \nîn cioburile tuturor cuvintelor sparte\nşi să-mi tocesc degetele\nprivirile\nsensurile\nîn rime ale unui ritm asumat de miliarde de culori\nîn căutarea ritualului iubirii\n\nînainte de a te naşte\nai fost predestinată\nsă fii a mea ca un sens unic pe un curcubeu\ncoborât în cascada vieții\npe cioburile tuturor cuvintelor sparte\nîntr-o dimineață arămie ca mierea arsă\ndintr-un infinit de dimineți în care-am risipit lumina\npe-o lacrimă\n\n\n\nAndrei Filip\n30 aprilie 2015\n*poem pornit de la o poezie scrisă de Miruța"},
-            {title: "eu şi poetul", text: "în noaptea asta îmi voi întinde mâinile\ncătre mâinile tale răstignite cuvintelor\nşi le voi strânge cu disperarea serilor reci\nde mai risipite pe podeaua zilelor pierdute\nde teamă că aş putea să mă rătăcesc\necoului vocii tale\nşi m-aş putea preface din nou în lacrimă\n\ncu tine de mână\nnemurirea va adormi la sânul meu\nşi ne vom polei de aceeaşi lumină \nîn clinchetul zorilor de zi\ncrescuți în ciorchini\nîn coada ochilor lascivi\nde atâta iubire\n\n\nAndrei Filip\n10 mai 2015\nBucureşti"},
-            {title: "........", text: "dâră de parfum\nnevăzută,\nneştiută,\nnepalpată,\ndată fiecărei dimineți\nciuntite de brațele mele\ncăutându-te incoerent\nprintre neaccentuatele sunete\n\nroua neîncepută întâiului anotimp\nce se prelinge împotriva sensului curgerii\ndinspre interior interiorului\nîn timp ce setea o pândeşte\n\nraza de lumină\nnepermis de curbă\naproape fracturată\nîncolăcită în jurul jurului tău\naşteptând\nmereu aşteptând\nzorii pătimaşi ai mărțişorului\nabia înmugurit"},
-            {title: "iarna de la capătul poveştii", text: " e întuneric deplin\nhaos şi naos deopotrivă\nviață şi moarte\n\nîn aceeaşi măsură\nstelele plutesc\n în unduiri de lumină difuză\nsau cad în hăul neființei lor\n\nnu aud dacă orologiul universului mai bate\nsau s-a oprit să se adape\n din căuşul ireversibilului\n\ne intuneric  şi gerul înveleşte cu durerea lui albă\nsărutul care se zdobeşte\nde zâmbetul timid al zorilor\nnenăscuți încă\n\npăcatul originar încă zace uitat în\nzăpada care cerne dimineața\nla sfârşitul neființei\n\ne încă unic\nşi e devreme pentru zbor\n\nnemăsurat se-ntinde cerul spre orizontul devenirii\ncu glasul etern\nal necurgerii\nîn cuget\n\n\nAndrei Filip\n18.04 2015\nBucureşti\ndespre somnul oraşului şi mirosul nopții\n\n\noraşul respiră fin şi calm\nca somnul copilei mele atât de frumos odihnindu-se\n\naerul nopții răcoreşte şi odihneşte somnul\ncare se aşterne adânc peste încăperea\nafundată în liniştea care linişteşte\n\nnu e nicicum şi totuşi e\nde aceea copila îmi cere seara\nsă-i deschid fereastra\n\nmirosul nopții e ca mirosul iubirii\nun drog de care nu te mai saturi\nşi care te poartă\npe țărmuri care sunt numai acolo\n\ncând întunericul se împlineşte odihnitoriu\ntăcerea capătă sens\nşi se rostuieşte\nîn cuvântul rostit sau nerostit\n\ntotuna\n\nabia atunci pana capătă valoarea zborului\niar\noraşul respiră fin monoton\nca somnul copilei mele odihnindu-se\nîn povestea vieții ei\n\n\nAndrei Filip\n20.05.2015\nBucureşti"},
-            {title: "a face dragoste", text: "(movement no. 1)\n\n\nîmpletitu-sa\namestecatu-sa\ncontopindu-sa\ndevenindu-sa\ndevenirea cu noaptea\nşi piatra cu lava\nşi apa cu focul\nşi muntele cu valul\nvaietul cu zâmbetul\nplutirea cu tăcerea\npână când în palmele mele de foc\nse transformă în rugăciune\nfemeia vioară cu chip de fecioară\nrăsplată a tuturor\ndorințelor mele\nşi nimic din cer şi nimic de pe pământ\ncare să mai fi fost vreodată\naltfel sau la fel\ndoar unu"},
-            {title: "A face dragoste", text: "(Movement no. 3)\n\n\nnici nu mai știu dacă ochiul meu ar putea să te cuprindă dintr-o privire\n sau imaginea s-ar crea ca într-un joc  de puzzle\n din mii și mii de fracțiuni de imagini depline\n\nnu știu dacă îmbrățișarea ar însemna curbiliniu\n sau mișcările ar fi sacadate\nca într-o reluare alcătuită\n din mai multe mișcări alăturate stângaci și febril\n\ndacă te-as iubi însă\naș recompune toate gândurile mele din strigăte\ndin gemete\ndin lacrimi\n m-aș dărui reinventându-mă circular de rotund\n și te-aș păstra\n măsurându-ți trecerea\nmăsurându-ți cu toată măsura lumii trecerea\nca-ntr-un fertile suspin simfonic\ncultivat de un surd\nîntr-un lan de lavandă pură\n\nAndrei Filip\n4 mai 2015\nBucurești"},
-            {title: "din dragoste ce am", text: "nu cred că aş putea vreodată\nsă mă uit în ochii tăi cât aş vrea\n\npână la capătul privirii tale\nmi s-ar termina privirea \nşi mi s-ar îndoi după fiecare respirație\n\nnu cred că aş putea vreodată\nsă îți zâmbesc\ncât aş vrea\n\nmi s-ar termina zâmbetul sau mi-ar adormi\nla jumătatea drumului\nspre gura ta\n\nnu cred că aş putea vreodată\nsă te scriu cât aş vrea\n\nmi s-ar termina cuvintele\nînainte de intrarea în noapte\npe peroane pustii\n\ndar ştiu că dincolo de tot şi toate\nce am\nîți sunt mai mult decât vreau"}
+            {"title": "despre cartea care se scrie", "subtitle": "", "text": "plouă de-a dreapta tatălui\ncu toate valurile durerii mele deodată\n\nde parcă cerul însuşi ar muşca din piept\ncu toate tăcerile zilei şi nopții\n\nde parcă seninul s-ar curba trecător în albastrul mării\nşi apoi s-ar ascunde în toamnă să se odihnească\n\nde parcă toată durerea mea\nar fi semănată cerului\nşi cerul s-ar crăpa fulgerat de durere\nşi peste trupul meu ar pica deodată şi tăcere şi mare\nşi peste tot pământul din mine ar cădea şi apă şi foc\npentru că plouă cu toți stropii durerii mele deodată\nsă curețe tot pământul din mine\npână la desăvârşirea\nsensului\niubirii ca devenire a trecerii\nprin clipa cu care te-am sărutat a val\nde dimineața dimineților sosite pe înserat\nîn formă de pasăre-fântână\nla rădăcina trecutului care tocmai vine\nsă-mi şadă alături\nîn cartea care se citeşte melancolic pe sine"},
+            {"title": "scurtă poezie de dragoste", "subtitle": "", "text": "te rog să mă dezlegi de mine\nca de năluca unui gol\ncuvântul să-mi rodească-n vine\nsă-mi fie dor să nu mai mor\n\ndescântă-mă de neiubire\ncu versuri trupeşe de-amor\nşi lasă-mă să dorm în tine\nsă-mi fie dor să nu mai mor\n\ndeoache-mă îmbrățişată\nsărutul tău cel acrişor\nsă-l gust cu nemurirea toată\nsă-mi fii tu dor şi pot să mor"},
+            {"title": "clasic poem adăugat iubirii", "subtitle": "", "text": "pe când sărut îmi eşti\nde tine\nprelung în doi\natent\nsimfonic de ploaie\nte rog\nadunându-te\nsă mă laşi\nsă mă preling\npe trupul tău\nadăugându-mă-n\nadágio\nparfum de rouă\npeste\ngest\n\nmăsoară-mă\ncu toamna ta\nde tine"},
+            {"title": "cuvintele. pruncii. cireşele.", "subtitle": "", "text": "livada noastră s-a umplut de cuvinte, femeie,\ne plin între noi şi livada a rodit a cuvinte gravide\ncireşilor şi merilor şi perilor\nrostuind rodului\nde mii de ani\nstrăbunilor împlinindu-se resemnați în mirosul ierbii cosite\nşi parcă strigându-ne pe nume\npe noi doi parcă strigându-ne pe nume\nşi numele noastre împletindu-se cu numele copacilor\nîn ritmul războiului de țesut\nla care țes an de an anotimpurile\niar numele ne rămâne mic\nşi zâmbetul nu ne mai încape înflorind în straturile de bujori\nşi îți arăt cu degetul fiecare cireaşă pe care o cunosc\nşi fiecare măr\nşi strig fiecare pară pe nume până când\nrând pe rând rodul devine rodire deplină\nşi umărul tău se lasă mângâiat de tâmpla mea stângă\n\nşi atât mai vreau să îți spun\nlivada noastră e plină de rod, omule,\nadorm a rodire de tine\ncu țâțele muşcate cu setea pruncului încă neînțărcat\nîntr-o vară şi livada noastră e plină de rod\nrodindu-se şi rodindu-ne din plin\ncuvintele\npruncii\nşi fructele\npână la sens\nînchină-te"},
+            {"title": "întâmplarea cuvintelor", "subtitle": "", "text": "ah\ncuvintele astea\ncare aleargă între noi\nînsingurate\nîncrâncenate\nînviorate\nînmugurite\nînfrunzite\nînflorite\nînserate\ninfernal dărâmate de gesturi și fapte\ndând sensuri peste sensuri\nși drumuri peste drumuri\nși dureri peste dureri\nși veniri peste plecări\nsunt doar cuvinte de la tâmpla mea la tâmpla ta\nde la tâmpla ta la tâmpla mea\ncând se întâmplă\nsă ne întâmplăm"},
+            {"title": "poem simfonic cuvintelor rotunde", "subtitle": "", "text": "te-am zidit poem cuvintelor mele rotunde\nîncă de pe când mugurii nu se rosteau în muguri\nîncă de pe când zorii nu înfloreau în zori\nîncă de pe când clipele nu se fărâmau în secunde\nşi până la jertfa ultimei frunze ruginii\nblând aşternută privirii într-o mută durere\npe covorul celorlalte dureri\n\nîncă de la răsăritul răsăritului\ncând culoarea încă nu se vărsa în întuneric\nşi până la apusul apusului\ncând cerul fierbea albastru\n\nîncă de pe când mâna mea dreaptă\nîți atingea fruntea\nşi genele îți înfrunzeau verde peren\npână când mă încolăceam în jurul tău\nîntotdeauna perechii măsură\nnepereche nicicând\n\nîncă de când umărul\nsau şoldul meu timid de femeie\nîți legăna fiecare vis după fiecare vis\nîntru fiecare vis\n\nsau încă de când m-ai rupt din lut\npână când ai ostenit să roteşti\nîntru rotire roata\nşi te-ai oprit\ncă îmi era nevoie\nde un strop de sudoare să curg\nîntâmplare\n\npână la urmă de pe tâmpla ta\npână la tâmpla mea\nne adânceam în urma poemului\ndin care\nprivisem copacul\nîn care fiecare floare era perechea unei flori\n\ndin care privisem cerul în care fiecare pasăre\nera perechea unei păsări\n\ndin care călcasem pământul în care încolțise\nfiecare fir de iarbă a pereche\nşi fiecare spic a pereche a perechii\nşi jarul mocnise in ideea de foc\nşi secunda murise în ideea de ev\n\nşi eu\neu te căutam hăituită de mine însămi\nsă rostim împreună eternitatea\nîn jocuri secunde\nde cuvinte rotunde\nînflorind în petale\nde mister purtătoare\nîn decoruri de ieri"},
+            {"title": "citindu-mă precum o carte", "subtitle": "(pe partea din dreapta a chipului rugăciunii de tine)", "text": "m-ai gândit\nm-ai scris\nşi m-ai răstignit\npe nemurirea cuvântului tău\nde scrib teluric\npână când trupul meu s-a prefăcut într-o carte\ndoar de tine citită\nîn care iubesc să-mi dai paginile\ncu sărutul gândurilor tale\n\nsunt ediția princeps a devenirii tale\nşi\nuite\nmi-ai rupt coperțile de atâta zbucium\nşi mi-ai scrijelit zilele cu atâta migală\nîncât trupul meu s-a gravat cu versul tău\nşi respirația mea s-a versificat\niar prin sângele meu se scurg acum rime\n\npe fiecare filă ai iscălit cu dârele de sare\nrămase plânsului cronicilor\ndurerilor\ntăcerilor\nşi patimilor mele\n\nam fost citită şi m-am răsfoit\neu pe mine însămi\nde atâtea ori\nîncât nu mai ştiu de unde am început\nşi nici unde mă voi închide\nşi nici nu mai are importanță\n\nai grijă însă\nsă te aşezi drept semn cărții acolo unde ai rămas\nde fiecare dată\ncând îți reazemi fruntea\nde tăcerea mea\n\neu te voi înveli cu următoarea filă\ndeschisă\nîmplinindu-mă îmbrățişării tale\nprecum o legendă\nîncă neterminată"},
+            {"title": "rugăciunea de tine", "subtitle": "", "text": "toate diminețile mele se recompun\nşi încep cu tine\nîn fervoarea luminii care zideşte\n\ntoate radicalurile sub care m-aştern\nla pieptul tău\nmirosind a toamna părului meu\n\ntoate luminile care-mi răsar-n prag\nnumai pentru ca să pot întinde mâna\nspre tine\n\ntoți fluturii colorați şi temători\nconştienți de fragilitatea aripilor\nşi a zborului lor desen deplin de efemer\n\nşi pe mine mă iubesc uneori\ncând ştiu că locuiesc în palma ta\nefemer\nca un zbor de fluture"},
+            {"title": "definiția ei", "subtitle": "", "text": "simt adierea vântului în păr\nca o melodie cântată suav la harpă\nnici o disonanță\nnici o notă cântată dincolo de portativ\naceleași note\nce sună la fel\naceeași măsură\ndoar adierea aceasta ca un sărut\ndoar vântul ce-aduce mângâierea ta"},
+            {"title": "definiția lui", "subtitle": "", "text": "însetat de răcoarea ploii dezlănțuite în plete\ncu un sunet lugubru\nteluric\ndisonant\ninuman\natavic\nși mereu furtuna ca un destin\nși mereu furtuna\npe deplin înscrisă puterii\nde a iubi\npână la necuprinderea depărtării"},
+            {"title": "definiție", "subtitle": "", "text": "tu când eşti\neşti de la brațul meu drept\npână la brațul meu stâng\n\ndar în general nu eşti\npentru că răsare soarele\npentru că se aşterne noaptea\npentru că faci o mulțime de alte treburi importante\nci eşti pentru că eşti\nşi fără de tine\nlumina nu s-ar putea curba după inima mea\nîn formă de nuntă\nde aceea tu\ncând eşti\neşti bărbatul meu pe pământ"},
+            {"title": "despre cum se desenează dorința", "subtitle": "", "text": "mâna mea e briza mării ce alunecă fin pe gâtul tău\nmâna mea e lumina ce-mi desenează perechea\nîn colțul gurii tale\nmâna mea e o rugăciune ce se şopteşte\npentru a-ți împlini aura\nmâna mea te sărută în nopțile\nîn care visul îmi colindă\npe nebănuite cărări\npână când te întâlneşte\napoi brusc se întoarce la mine\npurtând pe buze gustul sărutului\nşi în palmă versul tău pereche\nîn palma mâinii mele"},
+            {"title": "despre cum se pregăteşte o femeie devenirii sale", "subtitle": "", "text": "se ia din fereastră o femeie\ndar nu una oarecare\nla-ntâmplare\nci acea femeie care\nîți aduce toată lumina dimineții pe pragul pleoapelor tale\nşi o filtrează printre gene cu surâsul sărutului\n\nse ia această femeie goală\ndupă ce s-a zidit în cuvinte\nşi s-a clădit în poeme\nşi se strânge puternic în brațe în încleştarea dimineții\npână când se fărâmă\nşi se transformă în praf de femeie\n\npraful de femeie se amestecă bine bine\npână la dizolvare cu apă neîncepută de izvor\nşi cenuşa albă a nopții împărtăşite\n\nse ia aceasta femeie măsurată cu măsura ta nemăsurată\n- singura măsură a ta -\nşi se bagă în cuptorul inimii tale\npână creşte la țărmul nedesluşit\nal devenirii\n\nla final se presară puțină fericire.\npentru culoare"},
+            {"title": "despre devenire prin împletire", "subtitle": "", "text": "te-am zidit cu cuvintele mele rotunde în poem\nîncă de când mugurii nu se rosteau muguri\nşi până la jertfa ultimei frunze ruginii\ncăzute într-o tăcută durere pe covorul celorlalte dureri\nde la răsăritul răsăritului când culoarea încă nu se vărsa în întuneric\nşi până la apusul apusului când cerul fierbea albastru\n\nam privit copacul în care fiecare floare era perechea unei flori şi te-am înflorit\nam privit cerul în care fiecare pasăre\nera perechea unei păsări\nşi te-am aşezat de-a dreapta zborului\nam călcat pământul în care încolțise\nfiecare fir de iarbă a pereche\nşi fiecare spic a pereche a perechii\nşi jarul mocnea in ideea de foc\nşi secunda murea in ideea de ev\nşi te-am aşezat în urma mea ca pe mine\nmăsură a mea de tine"},
+            {"title": "a face dragoste (movement no. 1)", "subtitle": "", "text": "împletitu-sa\namestecatu-sa\ncontopindu-sa\ndevenindu-sa\ndevenirea cu noaptea\nşi piatra cu lava\nşi apa cu focul\nşi muntele cu valul\nvaietul cu zâmbetul\nplutirea cu tăcerea\npână când în palmele mele de foc\nse transformă în rugăciune\nfemeia vioară cu chip de fecioară\nrăsplată a tuturor\ndorințelor mele\nşi nimic din cer şi nimic de pe pământ\ncare să mai fi fost vreodată\naltfel sau la fel\ndoar unu"},
+            {"title": "a face dragoste (movement no. 2)", "subtitle": "", "text": "în timp ce adorm împlinind devenirea\npicură clipele fecunde şi dulci\naurii ca mierea\npicură sensurile surprinzător de senine\nrespirația ta picură pe brațul meu drept\negală şi adâncă\nsculptând visului trepte tandre de piatră\ncurg gesturile tale șerpuitoare de leoaică tânără\nmă arde privirea ta de femeie devenită femeie\nmă adulmecă nările tale fremătătoare\npicură vertical zilele săptămânii\nluând-o razna\nnerostitele tăceri\npicură drumurilor pustii fluturi colorați în roșu și alb\nde parcă lumea ar fi rămas brusc\nîncorsetată\nîn ziua de ieri cu draperiile trase peste mâine\nîntr-o palidă încercare de a argumenta\nnemurirea"},
+            {"title": "a face dragoste (movement no. 3)", "subtitle": "", "text": "nici nu mai știu dacă ochiul meu ar putea să te cuprindă dintr-o privire\nsau imaginea s-ar crea ca într-un joc de puzzle\ndin mii și mii de fracțiuni de imagini depline\n\nnu știu dacă îmbrățişarea ar însemna curbiliniu\nsau mișcările ar fi sacadate\nca într-o reluare alcătuită\ndin mai multe mișcări alăturate stângaci și febril\n\ndacă te-aş iubi însă\naș recompune toate gândurile mele din strigăte\ndin gemete\ndin lacrimi\nm-aș dărui reinventându-mă circular de rotund\nși te-aș păstra\nmăsurându-ți trecerea\nmăsurându-ți cu toată măsura lumii trecerea\nca-ntr-un fertil suspin simfonic\ncultivat de un surd\nîntr-un lan de lavandă pură"},
+            {"title": "exercițiul de a fi femeie", "subtitle": "", "text": "se ia mai întâi zâmbetul de dimineață\ncel căzut pe versurile tale\nse amestecă cu o rază de soare şi se aşează în vitrină\n\nse ia apoi strigătul\nba nu\nse iau miliardele de strigăte ale numelui tău\nauzite şi udate şi pătrunse numai de ploaie\n\nse adaugă din belşug plânsul meu de noapte\nde fiecare noapte\npe versurile tale\npe fiecare cuvânt\nscris şi nescris\npe toate acordurile cuvintelor\npână întunericul îmi lipeşte visele\nsă se păstreze sub pleoapă\nstatuia ta de sare din ochiul meu\n\nse adaugă din când în când\nneputința\nvulnerabilitatea\ndorința\ndin fiecare câte puțin\ntoate capriciile\ncâte au mai rămas\nşi se dau la cuptor\nla soare\nla ploaie\nla vânt\nla zilele liniştite de primăvară\n\ndin când în când se gustă cu atenție\nsă nu te frigi\nîntre două poeme"},
+            {"title": "femeie - definiția împlinirii", "subtitle": "", "text": "dimineața\nți-aş ridica greutatea pleoapei cu geana mea\nşi aş veghea să te mângâie\ndoar o fantă de răsărit căprui\n\nla prânz\nmi-aş strivi dureros buzele de buzele tale până la esența cuvântului de dincolo de cuvânt\n\nnoaptea\nți-aş apune în durerea iubirii\ncu patima mea de femeie lăsată de Dumnezeu\nfemeie să-ți fie\n\nşi dimineață să ne fie iar"},
+            {"title": "bărbatul de pe pământ", "subtitle": "", "text": "sunt drumuri care mă caută demult\nşi\nstând sub vânt\nplâng pe urmele mele putrede de uitare\nşi apoi sărut umilul drum\ncătre ziua care va veni niciunde\ncătre odihna zămbetului tău de scrum\nşi-apoi mă caut prin fiecare cotlon\nuşor panicată\nuşor neatentă\nşi dau\nîntr-un târziu\nde mine\nde la brațul meu drept\npână la brațul meu stâng\nde la picioarele mele obosite\npână la ochii mei\naproape miopi\nşi mă-ntreb cu înfrigurare unde eşti\nşi unde am rămas\n\ndar în general nu eşti\npentru că răsare soarele\npentru că se aşterne noaptea\npentru că faci sau fac\no mulțime de alte treburi importante\nşi eşti pentru că eşti sau sunt\nşi fără de mine\nşi fără de tine\n\nnumai\nlumina nu s-ar putea curba după inima mea\nîn formă de cunună\nde aceea tu\ncând eşti\neşti bărbatul meu pe pământ"},
+            {"title": "despre pereche", "subtitle": "", "text": "o femeie se desenează cu ochiul\nse frământă cu toate gândurile\nse modelează cu toate cuvintele\nse ascute cu ridurile frunții\nse şlefuieşte cu cutele dintre sprâncene\npână când capătă forme perfecte\n\nscriind poem după poem\nbărbatul construieşte cu migală\nfemeia care va să fie\nşi care nu va fi nicicând\n\nun bărbat se frământă cu mult\ncu foarte mult\nrăsărit\nse modelează cu ochiul şi brațele albe\nse ciopleşte cu seninul luminii şi cu gura fierbinte\nse şlefuieşte cu zâmbetul zorilor pe pieptul indecent de frumos\nse ascute cu tonuri şi semne\nchemări şi dorințe\napoi se iubeşte până la ultima suflare\n\no femeie care iubeşte\ncare iubeşte zori după zori\ncreează iminent un bărbat care va să fie\nşi care nu va fi nicicând\n\ndoar basmul care povesteşte perechea\nva fi să dăinuie\ncu parfumul unei iubiri\ncare tocmai s-a scris\nîntr-o noapte de sticlă mirosind a primăvară"},
+            {"title": "întru măsura meşteşugită a devenirii", "subtitle": "", "text": "olarului cel la îndemâna lutului\nochiului devenindu-mă\nşi\ntâmplarului cel la îndemâna lemnului\ncrestându-mă în răsunetul mut\npe când\npietrarului cel măsurat de piatră\nmă dărui murmur\nşi tu\ncuvântului\nşlefuindu-mă\ncu mângâierea lutului\nla întretăierea lemnului cu piatra\ncare cuvântă\npână la măsura nemăsurii tale\n\nfără măsură sinelui meu\ncel înflorit în patimă"},
+            {"title": "despre creație ca iubire", "subtitle": "", "text": "când voi simți că mi se vor frânge coastele\nsub povara sufletului meu încărcat de dorul tău\nte voi chema să sapi cu dalta în coasta ta\npână când bucăți o vei face\nsă poți cârpi pe ici pe colo\ncoastele mele firave\n\ncând voi simți\ncă vocea mea ar putea să devină tăcere\nte voi chema să rupi o bucată din cuvântul tău\nsă mai cârpeşti pe ici pe colo\ncă eu din tine am fost făcută femeie\nşi cuvânt mi-ai suflat peste însuflețire\ndin tine\nmărturisind iubire\nprin mine"},
+            {"title": "în numele meu", "subtitle": "", "text": "tempo I\n\nstrigă-mă pe numele meu de foc\nDurere\ncântă-mă pe numele tău de apă\nTăcere\nscrie-mă cu numele nostru de pământ\nPlăcere\nşi strigă-mă când mă scrii\nşi scrie-mă când mă strigi\npe deplin\n\ntempo II\n\nscrie-mă cu numele tău\ncu care m-ai numit\nde când m-ai gândit\npână când m-ai iubit\nde când m-ai iubit\npână când m-ai tăcut\nde când m-ai tăcut\npână când m-ai rescris\nde când m-ai scris\nşi cu care respir\nca elixir\n\nşi strigă-mă când mă scrii\nşi scrie-mă când mă strigi\npe deplin"},
+            {"title": "identitate", "subtitle": "", "text": "eu sunt strigătul tău\nchemarea ta\neu sunt sărutul tău sigilat pe buzele mele\neu sunt lumina amară din privirea ta\nşi sunt prezența şi absența ta\ndeopotrivă\nca o măsură a efemerului\n\nuneori îmi amintesc cum mă cheamă\nalteori nu-mi amintesc decât că sunt a ta\nuneori sunt doar o boare pe cerul albastru şi rece\nal primăverii care ai venit\n\nuneori simt ca ai respirat tot aerul de sub aripile mele\nşi de aceea zborul meu s-a transformat într-un ritual de dragoste\nşi nu mă mai pot înălța pentru că\nîntre timp m-ai devenit femeie\n\nuneori mă întreb unde încep eu\nşi unde te sfârşeşti tu\n\nalteori rămân acelaşi poem trist\nscris\npe eternitate"},
+            {"title": "dedublare", "subtitle": "", "text": "am aflat că sunt pământ\ndupă ce mi-ai spus să rodesc\nam aflat că sunt apă\ndupă ce mi-ai spus să curg\nam aflat că sunt foc\ndupă ce mi-ai spus să ard\napoi am mai aflat că pot să ning\nsă plâng\nsă răsar\nsă înfloresc\nsă rodesc\nsă ofilesc\ndeşi tu\nîn nespunerea ta\nîn care\nnu mi-ai mai spus nimic\ndespre mine\nai pus sămânța devenirii\nla răsăritul mării\ncare întoarce\nmuntele care curge\n\nacum"},
+            {"title": "te întreb", "subtitle": "", "text": "răsădindu-te\n\ncine sunt\nși de unde vin\nspre tine\n\nte întreb\n\nde-aş ridica greutatea nopții de pe pleoapa ta\ndimineața\ncu geana mea\nşi dacă aş veghea să înfrunzeşti\nlumina răsăritului ar fi verde aprins\n\ndacă mi-aş strivi dureros buzele mele de buzele tale\nla nămiază\npână la esența cuvântului\nsorbit cu sete sunet cu sunet\nnorii ar pluti înapoi în sfere tăcute\n\nși dacă va fi să fie noapte\nși să-ți apun durerea\ncu patima mea de femeie\nblestemată\nfemeie să-ți fie\nnoapte şi zi\nsensuri şi semne\nfemeie să-ți fie\ntu m-ai fii"},
+            {"title": "din profil", "subtitle": "", "text": "te privesc din profil\ncănd îmi prinzi mâna în palma ta şi ai profil de munte\ncănd mă îmbrățişezi şi miroşi a verde ai profil de pădure\nmă mângâi cu profil de ploaie\nmă săruți cu profil de fulger\ndoar cănd mă iubeşti capeți profil de jar\nşi mă întreb care e de fapt profilul tău\ncând eu am veşnic profil de suspin"},
+            {"title": "în loc de tăcere", "subtitle": "", "text": "pune urechea la pieptul mării\nşi vei auzi frământarea valului\npune urechea la pieptul cerului\nşi vei auzi frământarea zborului\npune urechea la pieptul pământului\nşi vei auzi frământarea răsăritului\n\nde te vei apleca şi vei pune urechea la pieptul meu\nvei auzi respirația poemelor tale\nnăscute sau nenăscute\nscrise sau nescrise\niubite sau neiubite\n\nori poate vei auzi doar elementara fervoare care mă cuprinde\ncănd respiri adânc în\ncugetul\ncuvântului meu\nîn loc de tăcere"},
+            {"title": "despre tăcere", "subtitle": "", "text": "ce deplină tăcere simt\ncând iubirea devine cerc\nsimțind că plec din prima privire\nşi mă înfăşor īn chipul meu rotund\nîncercuindu-mă până la ultima mea privire\n\nşi această iubire circulară\ndefineşte tăcerea perfectă\ndintre două poeme\nce urmează a se scrie\nîntre două săruturi\nşi o carte deschisă\nla o cană de răsărit\ntâmplele cetății\nde acasă"},
+            {"title": "să fie tăcere", "subtitle": "", "text": "tăcere\nsă fie tăcere\n\nlăsați-mă să aud şoaptele culorilor curcubeului\nlegănându-mă să adorm\nîn zborul pleoapei tale legănată\npână la frângerea verdelui crud al ierbii între aripi\npâna la zbuciumul limpezimii apei de izvor\npână la fierbințeala soarelui topită în adâncul pădurii\n\ntăcere\nsă fie tăcere\n\nlăsați-mă să aud cuvintele săpate în porii buzelor tale\nchiar dacă nu-ți mai aud şoapta\nde atâta durere căzută ca roua rece\npe urmele paşilor tăi abia plecați\n\nsă fie tăcere"},
+            {"title": "doină", "subtitle": "", "text": "încerc să desenez un sens al numărului doi\nîmperechindu-l nouă\naşa cum ne-am desenat ultima oară\nzborul\ncrescând tăcerii\nmisterios ca o devenire\nca o nălucă a aşteptării care nu se termină\n\nsau colorat albastru\ncu cuvântul înmuiat în apa mării\nşi încă sărat\nprelingându-se fiecărui unu\nîn fire de nisip sărate\ncuarțificate trecerii\nca o măsură a valorii\ncenuşei stelare\nuitate în pragul unui răsărit pustiu\n\nîncerc să desenez din amintire\nîn ce am înmuiat cuvântul\nperechii\nde ne-am prăbuşit atât de adânc\nîn fântâna acestui prezent\nîn care\nnu mai există nici o diviziune\nsuportabilă\na dorului"},
+            {"title": "adágio", "subtitle": "", "text": "mi-e dor să mă înfăşor\nîn parfumul îmbrățişării tale\nca-n voalul ceții ce-mi coboară dimineața\ndin brațele nopții deja amorfe\ntrupului tău\na tine fior\na bărbatului meu esență de mine\nvreau sa te adulmec de tine\ncu trupul meu"},
+            {"title": "întru cheia care deschide sensul", "subtitle": "", "text": "rosteşte-mi numele în temelia cuvintelor\nîn sensul cel uitat la soare\nsă se usuce de atâta zbucium\nşi învață-mă\nînvățându-te\ncitindu-mă\ncitindu-te\nsă iubeşti iubindu-mă\nsă iubesc iubindu-te\nsă mor murindu-te\nmurind însumi\nîn punctul din centrul punctului\ndin nou\nla intersecția sensurilor"},
+            {"title": "în sens", "subtitle": "", "text": "încerc întâmplător să traversez o viață\nvăd semafoarele\ndin dreapta\ndin stânga\nde sus\nde jos\nde dimineață\nde noapte\n\ndin toate părțile\n\nvâjâie violent sentimente\nnerăbdătoare\nsă ajungă la destinația lor de sentimente\n\nculoarea semaforului dă brusc în pârg\nși\nmă traversează o primă iubire\ncu viteza aripilor de fluturi\nfâlfâind cu disperare în stomac\n\nde nu știu unde vine un sens unic și mă înscriu\npentru un timp\npe care n-am să-l mai revăd niciodată\n\ne acum?\ne aici?\ne mereu?\n\nnu\n\neste\npur-și-simplu\neste\nși atât\n\ndurerea?\n\ne prima la dreapta\n\nîncerc întâmplător să traversez o viață și să deschid\no ușă\nspre o nouă încăpere\n\no rază de lumină mă sărută pe umăr în chip\nde prunc"},
+            {"title": "întru deplinul", "subtitle": "", "text": "deodată\ne atâta lumină violetă\nîncât mi-e teamă că ochii mei se vor topi\nşi se vor scurge în palmele umede\nlăcrimând pustiul\n\ndoar aşa\ndemiurgic\nvoi putea să-ți astâmpar setea de toamnă\nsorbindu-mi privirea\ndin căuşul vorbelor tale"},
+            {"title": "înspre iubirea care trăiește în sinele său", "subtitle": "", "text": "în diminețile de vară răsărite lasciv din liniștea\nfierbinte şi umedă în care împreunând\nsoarele cu marea\nîți răsar noaptea gustând visul\nce îți închide pleoapa ostenită\nîn zgomotul infernal de strident al păcatului\n\ndevin parfumul şi durerea pământului proaspăt arat\ndevin eşecul valului de a păşi dincolo de țărm\nşi petală îți sunt\nşi culoare fragedă de mac\nşi cântec aş putea să-ți fiu\nde nu ți-aş fi\nde nu m-aş îndârji-ntr-atât\nsă-ți fiu femeie"},
+            {"title": "a alerga către", "subtitle": "", "text": "alerg\ninspirând atavic\nde câte ori pot să alerg\n\nalerg pe nisip\nşi tălpile-mi adulmecă marea\ncrepuscular\nşi pe zăpadă alerg\nşi tălpile îmi adulmecă iarna\nalveolar\nalerg pe pământ\nşi tălpile-mi îngenunchează\npe urmele rănilor tale\ncu gustul dulceag\ncorpuscular\n\nacum\nde pildă\nalergarea are gustul tău bărbătesc\nuşor presat\npăstrat între urmele mele\nînflorite\nîn gustul urmelor tale\ncare aleargă\nîn ritmul atent\nal unui sunet deplin"},
+            {"title": "din dragoste ce am", "subtitle": "", "text": "nu cred că aş putea vreodată\nsă mă uit în ochii tăi cât aş vrea\npână la capătul privirii tale\n\nmi s-ar termina privirea\nşi mi s-ar îndoi după fiecare respirație\n\nnu cred ca aş putea vreodată\nsă iți zâmbesc\ncât aş vrea\n\nmi s-ar termina zâmbetul sau mi-ar adormi\nla jumătatea drumului\nspre gura ta\n\nnu cred că aş putea vreodată\nsa te scriu cât aş vrea\n\nmi s-ar termina cuvintele\nînainte de intrarea în noapte\npe peroane pustii\n\ndar ştiu că dincolo de tot şi toate\nce am\nîți sunt mai mult decât vreau"},
+            {"title": "lasă-mă cu tine când eşti alb ca un copac", "subtitle": "", "text": "copacului alb dinspre fereastra mea albă\ni-au crescut aripi albe\nîn loc de frunze\nîn timp ce păsările\npe sărite înfrunzeau timid\nîn cântecul lor nocturn\nlegat căderii\n\ntu mă priveai cu privirea ta\nverde verdelui\nca şi cum alb ar clădi fereastra\nîn timp ce eu te priveam cu privirea mea\nîntomnată de ruginiu\n\nmă întrebam dacă păsărilor le vor cădea frunzele\ncând li se va face zbor de dor\nşi dacă copacul se va dezrădăcina\nşi va plăti tribut dorului\nsă se înalțe când i se va face toamnă"},
+            {"title": "eterna trecere", "subtitle": "", "text": "eşti primul păr înflorit din livadă\nînfrunzind primordial din seva verde a privirii\ndupă ce vârfurile degetelor înmugurite\nîți bat în fereastra sufletului\ncroind delicate umbre în conturul mângâierii\npe tâmplele tăcerii şi pe zâmbetul larg\nal nesfârşitei treceri"},
+            {"title": "confuză", "subtitle": "", "text": "nici nu mai ştiu dacă ochiul meu ar putea să te cuprindă dintr-o privire\nsau dacă imaginea s-ar compune din imaginile tuturor bărbaților pe care îi admir\nnu știu dacă îmbrățişarea ar desena curbiliniu tărâmul fericirii\nsau dacă mişcările ar cădea sacadate precum cioburile cerului\nzdrobite de ritualul unui etern deja-vù\n\nnici nu mai ştiu dacă te-aş compune\ndin toate gândurile mele\ndin strigătele\ndin gemetele\ndin lacrimile\ndin miile de clipe chinuite de dorința împlinirii\nca de o obligatorie înflorire\n\nnici nu mai ştiu dacă m-aş dărui\nreinventându-mă\ncircular de rotundă\nşi dacă te-aş păstra\nmăsurându-ți trecerea\nmăsurându-ți cu toată măsura lumii\ntrecerea\nprin clipa pe care o întregeşti\ncu mine"},
+            {"title": "înspre armonie dar nu până acolo", "subtitle": "", "text": "ştii\natunci când scrii\nmă striveşti între pleoape\nde atâta durere\n\nştii\natunci când scriu\nte strivesc între gene de atâta lacrimă\n\neu te desenez în fiece clipire\ntu mă înfiori în fiecare oftat\n\nde aceea\nîn fiecare rază de soare arde o lacrimă\nşi-n fiecare lacrimă se curbă\no rază de soare\ndurerii"},
+            {"title": "întoarcerea", "subtitle": "", "text": "privesc întoarcerea păsărilor fântână\ncu visurile\ncu speranțele\ncu iubirile lor\n\nse întorc acasă\nca şi cum\nîntoarcerea ar fi dintotdeauna\ncălătoare\nchiar dinainte de-a pleca\nsau poate dinainte de a fi fântână\n\npăsările noastre atât de călătoare\nse întorc întru fântânile lor\nîntru caselor lor călătoare\ncu gust de fântână\nși întoarcerea lor lăuntrică\ne vie\nprecum apa rece a mântuirii"},
+            {"title": "setea ridicării", "subtitle": "", "text": "beau cu sete\ndin izvorul meu de munte\ncu apă vie\n\nmă aplec\nși-mi dizolv mâinile\nîn apa mea rece\nși-mi mângâi fruntea în căutarea\nsărutului fierbinte\n\niau apa în pumni\nși-mi astâmpăr setea de tine\n\nmai apoi\ncu mânecile suflecate\ncroiesc din lutul trupului meu\nși curgerea ta\nadăpostul visului nostru\n\nși pe când tu ești limpede\nși învolburată\neu sunt adâncul albastru al încă timpului\nși curgerea mea și a ta\nînseamna de fapt\ntrecerea noastră"},
+            {"title": "unicum", "subtitle": "", "text": "să treci pragul pieptului tău cu mine în brațe\nsă ascult cum curgi\nizvor limpede privirii tale\nsă văd iarba crescând în urmele paşilor tăi\nsă simt timpul rostogolindu-se\ndinspre inima ta înspre trupul tău\nşi-apoi\ndar numai apoi\nsă mă iubeşti cu toată iubirea mea\npână\nla capăt"},
+            {"title": "ridurile", "subtitle": "", "text": "ridul ochiului meu săpat de trecerea amară a atâtor lacrimi\nridul din colțul gurii mele păstrând fiecare sărut\nridul din palma mea mângâind forma inimii tale\nridurile de dor ale inimii mele ticăind disperarea necuprinderii\nşi-apoi toate celelalte riduri\nsculptate în fiecare zi a vieții mele\nde-atâta aşteptare\n\ncu toate ridurile la un loc\nabia reuşesc să te desenez\nîn chip de toamnă"},
+            {"title": "aşteptând toamna", "subtitle": "", "text": "îți mângâi părul cu obrazul meu\nşi părul tău străluceşte şi miroase a toamnă\napoi las să curgă sărutul\npe fiecare şuviță rebelă\nîn forma lacrimilor inimii mele\nzdrobite de atâta\naşteptare\n\nşi apoi contemplu în tihnă\nce bine îți stă sărutul în părul ud\nde lacrimile mele\n\nîntr-o bună zi\nvoi adormi cu toamna în brațele mele\nde frunze ruginii"}
         ];
 
         function showPoem(index) {
             const poem = poems[index];
             document.getElementById('modalTitle').textContent = poem.title;
+            const sub = document.getElementById('modalSubtitle');
+            sub.textContent = poem.subtitle;
+            sub.style.display = poem.subtitle ? 'block' : 'none';
             document.getElementById('modalPoem').textContent = poem.text;
             document.getElementById('poemModal').style.display = 'block';
             document.body.style.overflow = 'hidden';
@@ -680,42 +739,37 @@ până la capătul privirii tale...</div>
             document.body.style.overflow = 'auto';
         }
 
-        // Close modal on background click
         document.getElementById('poemModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
+            if (e.target === this) closeModal();
         });
 
-        // Close modal on ESC key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
+            if (e.key === 'Escape') closeModal();
         });
 
-        // Search functionality
         const searchBox = document.getElementById('searchBox');
         const poemsGrid = document.getElementById('poemsGrid');
         const noResults = document.getElementById('noResults');
 
         searchBox.addEventListener('input', function() {
             const searchTerm = this.value.toLowerCase().trim();
-            const cards = poemsGrid.getElementsByClassName('poem-card');
             let visibleCount = 0;
-
-            Array.from(cards).forEach((card, index) => {
-                const poem = poems[index];
-                const searchContent = (poem.title + ' ' + poem.text).toLowerCase();
-                
-                if (searchTerm === '' || searchContent.includes(searchTerm)) {
-                    card.style.display = 'block';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
+            poemsGrid.querySelectorAll('.poem-card').forEach(card => {
+                const poem = poems[Number(card.dataset.index)];
+                const content = (poem.title + ' ' + poem.subtitle + ' ' + poem.text).toLowerCase();
+                const show = searchTerm === '' || content.includes(searchTerm);
+                card.style.display = show ? 'block' : 'none';
+                if (show) visibleCount++;
             });
-
+            poemsGrid.querySelectorAll('.chapter').forEach(h => {
+                const [a, b] = h.dataset.chapter.split('-').map(Number);
+                let any = false;
+                for (let i = a; i < b; i++) {
+                    const c = poemsGrid.querySelector('.poem-card[data-index="' + i + '"]');
+                    if (c && c.style.display !== 'none') any = true;
+                }
+                h.style.display = any ? 'block' : 'none';
+            });
             noResults.style.display = visibleCount === 0 ? 'block' : 'none';
         });
     </script>
