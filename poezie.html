@@ -29,7 +29,7 @@
     .subtitle { font-family: 'EB Garamond', serif; font-size: 1rem; color: var(--muted); margin-top: 12px; font-style: italic; }
     .gold-line { width: 60px; height: 1px; background: var(--gold); margin: 24px auto 0; opacity: 0.5; }
 
-    main { max-width: 820px; margin: 0 auto; padding: 48px 24px 80px; }
+    main { max-width: 1040px; margin: 0 auto; padding: 48px 24px 80px; }
 
     .poem-grid { display: grid; gap: 24px; }
 
@@ -42,203 +42,1015 @@
     .poem-arrow { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--gold); }
 
     footer { text-align: center; padding: 32px 24px; border-top: 1px solid rgba(201,169,110,0.15); font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--muted); }
+  
+    .intro { max-width: 640px; margin: 0 auto 32px; text-align: center; font-style: italic; color: var(--sand); font-size: 1.02rem; line-height: 1.7; }
+    .intro a { color: var(--gold); }
+    .search { display: block; width: 100%; max-width: 520px; margin: 0 auto 12px; padding: 12px 16px; background: var(--dark-card); border: 1px solid rgba(201,169,110,0.3); color: var(--parchment); font-family: 'EB Garamond', serif; font-size: 1rem; }
+    .search:focus { outline: none; border-color: var(--gold); }
+    .count { text-align: center; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.25em; color: var(--sand); margin-bottom: 40px; }
+    .year { font-family: 'Cinzel', serif; font-weight: 400; font-size: 0.85rem; letter-spacing: 0.35em; color: var(--gold); margin: 48px 0 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(201,169,110,0.2); }
+    .poem-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+    .poem-incipit { color: #b8ad9c; }
+    .back-link { color: var(--sand); }
   </style>
   <link rel="canonical" href="https://andreiburdusa.site/poezie.html">
 </head>
 <body>
   <header>
     <a href="index.html" class="back-link">← andreiburdusa.site</a>
-    <span class="eyebrow">Versuri &amp; Poeme</span>
+    <span class="eyebrow">Poeme din afara volumelor</span>
     <h1>Arhiva de fluturi</h1>
     <p class="subtitle">Andrei Constantin Burdușa</p>
     <div class="gold-line"></div>
   </header>
 
   <main>
-    <div class="poem-grid">
+    <p class="intro">Poemele care nu și-au găsit încă locul într-un volum. Cele din cărți se citesc în <a href="volumele-mele.html">volume</a>, iar cele scrise în doi, la <a href="doeme.html">doeme</a>.</p>
+    <input class="search" id="q" type="search" placeholder="Caută după titlu sau vers…" aria-label="Caută">
+    <p class="count" id="count" data-unit="POEM|POEME">154 POEME</p>
 
-      <a href="gustul-toamnei.html" class="poem-card">
+    <h2 class="year">2026</h2>
+    <div class="poem-grid">
+      <a href="gustul-toamnei.html" class="poem-card" data-s="gustul toamnei scriu de o toamnă și-un pustiu / scriu de-o soartă și de-un drum / chiar de sunt / chiar de nu știu...">
         <div class="poem-num">· POEM · OCTOMBRIE 2026 · CU VIDEOCLIP ·</div>
         <div class="poem-title">gustul toamnei</div>
         <div class="poem-incipit">Scriu de o toamnă și-un pustiu / scriu de-o soartă și de-un drum / chiar de sunt / chiar de nu știu...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-      <a href="bacoviana-de-final-de-octombrie.html" class="poem-card">
-        <div class="poem-num">· POEM · OCTOMBRIE 2026 ·</div>
+      <a href="bacoviana-de-final-de-octombrie.html" class="poem-card" data-s="bacoviană de final de octombrie plouă peste noapte / plouă cu cuvinte / plouă peste toamnă cu tristeță udă...">
+        <div class="poem-num">· POEM · OCTOMBRIE 2026 · CU VIDEOCLIP ·</div>
         <div class="poem-title">bacoviană de final de octombrie</div>
         <div class="poem-incipit">Plouă peste noapte / Plouă cu cuvinte / Plouă peste toamnă cu tristeță udă...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-      <a href="epigonica.html" class="poem-card">
-        <div class="poem-num">· POEM · OCTOMBRIE 2020 ·</div>
-        <div class="poem-title">epigonica</div>
-        <div class="poem-incipit">la capătul vremii mor orașe boțite / desculță toamnă rătăcește prin plopi / se-nchide la vamă în prag stau doi popi...</div>
+      <a href="ce-repede-se-face-tarziu.html" class="poem-card" data-s="ce repede se face târziu se lasă înserarea peste iubirile noastre / tonurile de roșu trec strada la gri / nu mai știu / nu mai știi...">
+        <div class="poem-num">· POEM · 22 IULIE 2026 · CU VIDEOCLIP ·</div>
+        <div class="poem-title">ce repede se face târziu</div>
+        <div class="poem-incipit">se lasă înserarea peste iubirile noastre / tonurile de roșu trec strada la gri / nu mai știu / nu mai știi...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-      <a href="starea-de-copac.html" class="poem-card">
+      <a href="diminetile-muntilor.html" class="poem-card" data-s="diminețile munților diminețile se trezesc precum florile / ridicând capetele şi ițindu-se peste umbrele munților / cu larma păsărilor...">
+        <div class="poem-num">· POEM · 12 IULIE 2026 · CU VIDEOCLIP ·</div>
+        <div class="poem-title">Diminețile munților</div>
+        <div class="poem-incipit">diminețile se trezesc precum florile / ridicând capetele şi ițindu-se peste umbrele munților / cu larma păsărilor...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="bacoviana-de-noapte-arida.html" class="poem-card" data-s="bacoviană de noapte aridă orașul taie frunză la câini / e foarte târziu și foarte devreme / bețivii și triștii sorb din pustiu...">
+        <div class="poem-num">· POEM · 4 IULIE 2026 ·</div>
+        <div class="poem-title">bacoviană de noapte aridă</div>
+        <div class="poem-incipit">orașul taie frunză la câini / e foarte târziu și foarte devreme / bețivii și triștii sorb din pustiu...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="poem-de-toamna-si-un-pic.html" class="poem-card" data-s="poem de toamnă și un pic femeia mea de patimi ruginii de toamnă / cu ochii de cărbune și sufletul de zbor / îți împletesc în plete din șoapte vii o vamă...">
+        <div class="poem-num">· POEM · 23 IUNIE 2026 · AUDIO ·</div>
+        <div class="poem-title">poem de toamnă și un pic</div>
+        <div class="poem-incipit">femeia mea de patimi ruginii de toamnă / cu ochii de cărbune și sufletul de zbor / îți împletesc în plete din șoapte vii o vamă...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="efemerul-ce-sunt.html" class="poem-card" data-s="efemerul ce sunt ziua aceasta miroase a patimă de trandafir roșu închis / mi se face frig de mine / m-aș înveli cu lumină...">
+        <div class="poem-num">· POEM · 1 IUNIE 2026 ·</div>
+        <div class="poem-title">efemerul ce sunt</div>
+        <div class="poem-incipit">ziua aceasta miroase a patimă de trandafir roșu închis / mi se face frig de mine / m-aș înveli cu lumină...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="mai-soptit.html" class="poem-card" data-s="mai șoptit lumea s-a dus la culcare / în fundul infinitului / miroase a iarbă proaspătă / și a poem...">
+        <div class="poem-num">· POEM · 17 MAI 2026 ·</div>
+        <div class="poem-title">mai șoptit</div>
+        <div class="poem-incipit">lumea s-a dus la culcare / în fundul infinitului / miroase a iarbă proaspătă / și a poem...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="nod-25.html" class="poem-card" data-s="nod 25 luna tăiată / dintr-o urmă desculță / lumină scursă...">
+        <div class="poem-num">· POEM · 16 MAI 2026 ·</div>
+        <div class="poem-title">nod 25</div>
+        <div class="poem-incipit">luna tăiată / dintr-o urmă desculță / lumină scursă...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="starea-de-copac.html" class="poem-card" data-s="starea de copac uneori mă gândesc că / într-o bună zi / aș putea îmbătrâni / copac fiind / descheiat la umbră...">
         <div class="poem-num">· POEM · MAI 2026 ·</div>
         <div class="poem-title">starea de copac</div>
         <div class="poem-incipit">uneori mă gândesc că / într-o bună zi / aș putea îmbătrâni / copac fiind / descheiat la umbră...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-            <a href="roz-in-modul.html" class="poem-card">
-        <div class="poem-num">· POEM ·</div>
+      <a href="roz-in-modul.html" class="poem-card" data-s="roz. în modul lumea se rotește încă în sensul acelor ceasornicului / simt eu că pe sub ușă intră mirosul de piersică al nesfârșirii...">
+        <div class="poem-num">· POEM · 16 APRILIE 2026 ·</div>
         <div class="poem-title">roz. în modul</div>
         <div class="poem-incipit">lumea se rotește încă în sensul acelor ceasornicului / simt eu că pe sub ușă intră mirosul de piersică al nesfârșirii...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-      <a href="lectia-a-douazecea.html" class="poem-card">
-        <div class="poem-num">· POEM ·</div>
-        <div class="poem-title">lecția a douăzecea. arta seducției la corăbii trecătoare</div>
-        <div class="poem-incipit">pun pasul pe piatră / și pe piatră / rămâne urma nisipului mării risipit / în prezentul care tocmai trecea...</div>
+      <a href="pasari-mute.html" class="poem-card" data-s="păsări mute păsări mute / vântul aspru mă pătrunde / zile sparte / gânduri ude...">
+        <div class="poem-num">· POEM · 19 MARTIE 2026 ·</div>
+        <div class="poem-title">Păsări mute</div>
+        <div class="poem-incipit">păsări mute / vântul aspru mă pătrunde / zile sparte / gânduri ude...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-
-      <a href="reverul-cu-medalii.html" class="poem-card">
-        <div class="poem-num">· POEM ·</div>
-        <div class="poem-title">reverul cu medalii</div>
-        <div class="poem-incipit">cel al omului care a murit cu chipul străbunicului / numindu-se Ion / și care nu a mai apucat să mă boteze...</div>
+      <a href="relativitatea-relativitatii.html" class="poem-card" data-s="relativitatea relativității între curgerea care vine / și curgerea care pleacă / este o singură diferență / tu...">
+        <div class="poem-num">· POEM · 14 MARTIE 2026 ·</div>
+        <div class="poem-title">relativitatea relativității</div>
+        <div class="poem-incipit">între curgerea care vine / și curgerea care pleacă / este o singură diferență / tu...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-      <a href="imagini-cuantice.html" class="poem-card">
-        <div class="poem-num">· POEM ·</div>
-        <div class="poem-title">imagini cuantice</div>
-        <div class="poem-incipit">invers / imaginea mea pusă invers / cu trecutul înainte / și cu ce va veni / în urmă / dezbătrânindu-mă...</div>
+      <a href="de-dor-si-tremur.html" class="poem-card" data-s="de dor și tremur rotundă-mă rebel în zbor / respiră-mă pe nări ușor / și cerul s-o opri mai gol / din tremur...">
+        <div class="poem-num">· POEM · 11 MARTIE 2026 ·</div>
+        <div class="poem-title">de dor și tremur</div>
+        <div class="poem-incipit">rotundă-mă rebel în zbor / respiră-mă pe nări ușor / și cerul s-o opri mai gol / din tremur...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-      <a href="despre-ritualul-de-imperechere.html" class="poem-card">
-        <div class="poem-num">· POEM ·</div>
-        <div class="poem-title">despre ritualul de împerechere când curge</div>
-        <div class="poem-incipit">când este de iubit femeia / atunci când răsăritul se varsă în Dunăre / și sensurile se împletesc mirosind vânătoarea...</div>
+      <a href="angoasa.html" class="poem-card" data-s="angoasă e complicat să trăiești / e / așa / un efort incomensurabil...">
+        <div class="poem-num">· POEM · 7 MARTIE 2026 ·</div>
+        <div class="poem-title">angoasă</div>
+        <div class="poem-incipit">e complicat să trăiești / e / așa / un efort incomensurabil...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-      <a href="masura-fiirii-mele.html" class="poem-card">
-        <div class="poem-num">· DOEM ·</div>
-        <div class="poem-title">măsura fiirii mele</div>
-        <div class="poem-incipit">la capătul lumii lumina umple întunericul cu lucruri / oameni / regrete / la celălalt capăt al lumii noaptea aprinde luna...</div>
+      <a href="insomnii-de-primavara.html" class="poem-card" data-s="insomnii de primăvară scriu pentru că doare / undeva / înăuntru / cuvântul arde precum fierul incandescent...">
+        <div class="poem-num">· POEM · 7 MARTIE 2026 ·</div>
+        <div class="poem-title">insomnii de primăvară</div>
+        <div class="poem-incipit">scriu pentru că doare / undeva / înăuntru / cuvântul arde precum fierul incandescent...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-
-      <a href="pasul-de-dinainte.html" class="poem-card">
-        <div class="poem-num">· POEM ·</div>
-        <div class="poem-title">pasul de dinainte</div>
-        <div class="poem-incipit">la capătul lumii este o liniște de moarte care se revarsă înghețată / peste gesturile unui freamăt învins...</div>
+      <a href="viata-cu-amanuntul.html" class="poem-card" data-s="viața cu amănuntul diavolul rezidă în detalii / detaliul sunt eu / de unde să încep să detaliez...">
+        <div class="poem-num">· POEM · 7 MARTIE 2026 ·</div>
+        <div class="poem-title">viața cu amănuntul</div>
+        <div class="poem-incipit">diavolul rezidă în detalii / detaliul sunt eu / de unde să încep să detaliez...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-      <a href="ingerul-meu-cara-lemne.html" class="poem-card">
-        <div class="poem-num">· POEM ·</div>
-        <div class="poem-title">îngerul meu cară lemne</div>
-        <div class="poem-incipit">pe lacrimi în sus doar de patimi și ger / se sparg de tăceri mii de ceasuri prelinse / și ce a fost azi devine tot ieri...</div>
+      <a href="vineri-13.html" class="poem-card" data-s="vineri 13 cândva vom deveni copaci / va ninge vremea peste noi...">
+        <div class="poem-num">· POEM · 1 MARTIE 2026 ·</div>
+        <div class="poem-title">Vineri 13</div>
+        <div class="poem-incipit">cândva vom deveni copaci / va ninge vremea peste noi...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-      <a href="din-gerul-cuvintelor-de-dor.html" class="poem-card">
-        <div class="poem-num">· POEM ·</div>
-        <div class="poem-title">din gerul cuvintelor de dor sau când la capăt stă începutul</div>
-        <div class="poem-incipit">nu / nu ninge / — / curge timpul în țurțuri de întuneric / se rup ceasurile bătrâne / din arterele iernii...</div>
+    </div>
+    <h2 class="year">2024</h2>
+    <div class="poem-grid">
+      <a href="riduri-de-toamna.html" class="poem-card" data-s="riduri de toamnă sunt toamnă dintr-o toamnă care-mi ești / dintr-un târziu care-a făcut o pană / a tras pe dreapta între două cești...">
+        <div class="poem-num">· POEM · AUGUST 2024 · AUDIO ·</div>
+        <div class="poem-title">riduri de toamnă</div>
+        <div class="poem-incipit">sunt toamnă dintr-o toamnă care-mi ești / dintr-un târziu care-a făcut o pană / a tras pe dreapta între două cești...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-      <a href="poemul-si-drumul-neimblanzit.html" class="poem-card">
-        <div class="poem-num">· POEM ·</div>
-        <div class="poem-title">poemul și drumul neîmblânzit</div>
-        <div class="poem-incipit">cerul nu încape niciodată tot într-o clipă / durerea nu încape niciodată toată / într-un strigăt...</div>
+      <a href="rid-4.html" class="poem-card" data-s="rid 4 buna vestire / și nori și flori și păsări / și zborul de zbor...">
+        <div class="poem-num">· POEM · 25 MARTIE 2024 ·</div>
+        <div class="poem-title">rid 4</div>
+        <div class="poem-incipit">Buna Vestire / și nori și flori și păsări / și zborul de zbor...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-      <a href="ninge.html" class="poem-card">
-        <div class="poem-num">· POEM ·</div>
-        <div class="poem-title">ninge</div>
-        <div class="poem-incipit">ninge disperat de alb și de înghețat / pătimaș și adânc / din pântecul spart al cerului...</div>
+      <a href="rid-5.html" class="poem-card" data-s="rid 5 luni de infinit / în priveghiul lunii / strigătul florii...">
+        <div class="poem-num">· POEM · 25 MARTIE 2024 ·</div>
+        <div class="poem-title">rid 5</div>
+        <div class="poem-incipit">luni de infinit / în priveghiul lunii / strigătul florii...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-      <a href="relativitatea-ca-spectacol.html" class="poem-card">
+      <a href="ridul-lui-sisif.html" class="poem-card" data-s="ridul lui sisif rostogolesc cuvântul / pe întuneric în sus / pe cărările nopții / la țărmul oboselii...">
         <div class="poem-num">· POEM ·</div>
-        <div class="poem-title">relativitatea ca spectacol</div>
-        <div class="poem-incipit">pe o foiță subțire de răsărit / presar amintiri fărâmate / și-mi fac din ea o țigară subțire...</div>
+        <div class="poem-title">ridul lui Sisif</div>
+        <div class="poem-incipit">rostogolesc cuvântul / pe întuneric în sus / pe cărările nopții / la țărmul oboselii...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-      <a href="poem-vertical.html" class="poem-card">
-        <div class="poem-num">· POEM ·</div>
+    </div>
+    <h2 class="year">2023</h2>
+    <div class="poem-grid">
+      <a href="poem-vertical.html" class="poem-card" data-s="poem vertical am plecat din acest timp / am plecat din această măsură a verticalului / și-am stins noaptea...">
+        <div class="poem-num">· POEM · 12 IANUARIE 2023 ·</div>
         <div class="poem-title">poem vertical</div>
         <div class="poem-incipit">am plecat din acest timp / am plecat din această măsură a verticalului / și-am stins noaptea...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-      <a href="despre-calea-cuvintelor.html" class="poem-card">
+      <a href="ninge.html" class="poem-card" data-s="ninge ninge disperat de alb și de înghețat / pătimaș și adânc / din pântecul spart al cerului...">
+        <div class="poem-num">· POEM · 10 IANUARIE 2023 ·</div>
+        <div class="poem-title">ninge</div>
+        <div class="poem-incipit">ninge disperat de alb și de înghețat / pătimaș și adânc / din pântecul spart al cerului...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="relativitatea-ca-spectacol.html" class="poem-card" data-s="relativitatea ca spectacol pe o foiță subțire de răsărit / presar amintiri fărâmate / și-mi fac din ea o țigară subțire...">
+        <div class="poem-num">· POEM · 10 IANUARIE 2023 ·</div>
+        <div class="poem-title">relativitatea ca spectacol</div>
+        <div class="poem-incipit">pe o foiță subțire de răsărit / presar amintiri fărâmate / și-mi fac din ea o țigară subțire...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="poemul-si-drumul-neimblanzit.html" class="poem-card" data-s="poemul și drumul neîmblânzit cerul nu încape niciodată tot într-o clipă / durerea nu încape niciodată toată / într-un strigăt...">
+        <div class="poem-num">· POEM · 4 IANUARIE 2023 ·</div>
+        <div class="poem-title">poemul și drumul neîmblânzit</div>
+        <div class="poem-incipit">cerul nu încape niciodată tot într-o clipă / durerea nu încape niciodată toată / într-un strigăt...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="despartirea-apelor-in-ani.html" class="poem-card" data-s="despărțirea apelor în ani se despart apele / stânga și dreapta se despart / cuvintele se despart...">
+        <div class="poem-num">· POEM · 1 IANUARIE 2023 ·</div>
+        <div class="poem-title">despărțirea apelor în ani</div>
+        <div class="poem-incipit">se despart apele / stânga și dreapta se despart / cuvintele se despart...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+    </div>
+    <h2 class="year">2022</h2>
+    <div class="poem-grid">
+      <a href="pasul-de-dinainte.html" class="poem-card" data-s="pasul de dinainte la capătul lumii este o liniște de moarte care se revarsă înghețată / peste gesturile unui freamăt învins...">
+        <div class="poem-num">· POEM · 26 DECEMBRIE 2022 ·</div>
+        <div class="poem-title">pasul de dinainte</div>
+        <div class="poem-incipit">la capătul lumii este o liniște de moarte care se revarsă înghețată / peste gesturile unui freamăt învins...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="masura-fiirii-mele.html" class="poem-card" data-s="măsura fiirii mele la capătul lumii lumina umple întunericul cu lucruri / oameni / regrete / la celălalt capăt al lumii noaptea aprinde luna...">
+        <div class="poem-num">· POEM · 16 DECEMBRIE 2022 ·</div>
+        <div class="poem-title">măsura fiirii mele</div>
+        <div class="poem-incipit">la capătul lumii lumina umple întunericul cu lucruri / oameni / regrete / la celălalt capăt al lumii noaptea aprinde luna...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="bacoviana-de-iarna-2.html" class="poem-card" data-s="bacoviană de iarnă - / bacoviană de iarnă - / (11)...">
+        <div class="poem-num">· POEM · 8 DECEMBRIE 2022 ·</div>
+        <div class="poem-title">bacoviană de iarnă</div>
+        <div class="poem-incipit">- / bacoviană de iarnă - / (11)...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="de-dor-si-de-jale.html" class="poem-card" data-s="de dor şi de jale apune-mă tu / apune-mă cu / lumina căzând...">
+        <div class="poem-num">· POEM · 8 DECEMBRIE 2022 ·</div>
+        <div class="poem-title">de dor şi de jale</div>
+        <div class="poem-incipit">apune-mă tu / apune-mă cu / lumina căzând...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="descantec-dezlegatoriu-de-iele.html" class="poem-card" data-s="descântec dezlegătoriu de iele descântec / dezlegătoriu de iele / trece-mă...">
+        <div class="poem-num">· POEM · 8 DECEMBRIE 2022 ·</div>
+        <div class="poem-title">descântec dezlegătoriu de iele</div>
+        <div class="poem-incipit">descântec / dezlegătoriu de iele / trece-mă...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="starile-lacrimei-dintaiu.html" class="poem-card" data-s="stările lacrimei dintâiu sunt / atât de adânc în lacrimă / atât...">
+        <div class="poem-num">· POEM · 8 DECEMBRIE 2022 ·</div>
+        <div class="poem-title">stările lacrimei dintâiu</div>
+        <div class="poem-incipit">sunt / atât de adânc în lacrimă / atât...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="tu-pe-doua-laturi-sau-cum-se-impatureste-o-sfera.html" class="poem-card" data-s="tu. pe două laturi. sau cum se împăturește o sferă dăruit fiicei / mele thea de ziua ei / fiecare...">
+        <div class="poem-num">· POEM · 8 DECEMBRIE 2022 ·</div>
+        <div class="poem-title">TU. pe două laturi. sau cum se împăturește o sferă</div>
+        <div class="poem-incipit">Dăruit fiicei / mele Thea de ziua ei / fiecare...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="credinta.html" class="poem-card" data-s="credința legenda ruptă / dezlegându-se de lemn / aşa ca o frunză...">
+        <div class="poem-num">· POEM · 8 DECEMBRIE 2022 ·</div>
+        <div class="poem-title">credința</div>
+        <div class="poem-incipit">legenda ruptă / dezlegându-se de lemn / aşa ca o frunză...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="trist-tablou-de-iarna.html" class="poem-card" data-s="trist tablou de iarnă trist / tablou de iarnă / putred oraşul plânge pe tristeți fetide...">
+        <div class="poem-num">· POEM · 3 DECEMBRIE 2022 ·</div>
+        <div class="poem-title">trist tablou de iarnă</div>
+        <div class="poem-incipit">trist / tablou de iarnă / putred oraşul plânge pe tristeți fetide...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="bacoviana-de-noiembrie.html" class="poem-card" data-s="bacoviană de noiembrie sunt toamnă / sunt frunză / patimi și dor...">
+        <div class="poem-num">· POEM · 8 NOIEMBRIE 2022 ·</div>
+        <div class="poem-title">bacoviană de noiembrie</div>
+        <div class="poem-incipit">sunt toamnă / sunt frunză / patimi și dor...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="bacoviana-de-toamna-la-vrsac.html" class="poem-card" data-s="bacoviană de toamnă. la vršac bacoviană de / toamnă. la vršac / trec peste noapte tăceri de...">
+        <div class="poem-num">· POEM · 18 SEPTEMBRIE 2022 ·</div>
+        <div class="poem-title">bacoviană de toamnă. La Vršac</div>
+        <div class="poem-incipit">bacoviană de / toamnă. La Vršac / trec peste noapte tăceri de...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="bacoviana-de-inceput-de-toamna.html" class="poem-card" data-s="bacoviană de început de toamnă pe tarabe murdare anii curg despletiți / trec femei violet sau femei de amor / iarmaroc de plăceri printre pași decrepiți...">
+        <div class="poem-num">· POEM · 1 SEPTEMBRIE 2022 ·</div>
+        <div class="poem-title">bacoviană de început de toamnă</div>
+        <div class="poem-incipit">pe tarabe murdare anii curg despletiți / trec femei violet sau femei de amor / iarmaroc de plăceri printre pași decrepiți...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="vers-clasic-ofranda.html" class="poem-card" data-s="vers clasic. ofrandă din arderea unei iubiri / am scris o viață și o / moarte...">
+        <div class="poem-num">· POEM · 4 AUGUST 2022 ·</div>
+        <div class="poem-title">vers clasic. ofrandă</div>
+        <div class="poem-incipit">din arderea unei iubiri / am scris o viață și o / moarte...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="vis-descult.html" class="poem-card" data-s="vis desculț vis / desculț / desculț...">
+        <div class="poem-num">· POEM · 8 IULIE 2022 ·</div>
+        <div class="poem-title">vis desculț</div>
+        <div class="poem-incipit">vis / desculț / desculț...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="cantec-de-crasma-si-amar.html" class="poem-card" data-s="cântec de crâșmă și amar cântec / de crâșmă și amar / stau...">
+        <div class="poem-num">· POEM · 8 IULIE 2022 ·</div>
+        <div class="poem-title">cântec de crâșmă și amar</div>
+        <div class="poem-incipit">cântec / de crâșmă și amar / stau...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="murmur-de-patima.html" class="poem-card" data-s="murmur de patimă murmurul de / patimă / ochii mei...">
+        <div class="poem-num">· POEM · 6 IULIE 2022 ·</div>
+        <div class="poem-title">murmur de patimă</div>
+        <div class="poem-incipit">murmurul de / patimă / ochii mei...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="femeia-unduitoare-si-curgerea-ei.html" class="poem-card" data-s="femeia unduitoare și curgerea ei femeia / unduitoare și curgerea ei / lacrima nopții...">
+        <div class="poem-num">· POEM · 5 IULIE 2022 ·</div>
+        <div class="poem-title">femeia unduitoare și curgerea ei</div>
+        <div class="poem-incipit">femeia / unduitoare și curgerea ei / lacrima nopții...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="uneori-ma-iert-in-cuvinte.html" class="poem-card" data-s="uneori mă iert în cuvinte iată-mă-s / doamne / mă las în genunchi...">
+        <div class="poem-num">· POEM · 5 IULIE 2022 ·</div>
+        <div class="poem-title">uneori mă iert în cuvinte</div>
+        <div class="poem-incipit">iată-mă-s / Doamne / mă las în genunchi...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="florile-si-visul-cu-sanziene.html" class="poem-card" data-s="florile și visul cu sânziene florile / și visul cu sânziene / am visat...">
+        <div class="poem-num">· POEM · 4 IULIE 2022 ·</div>
+        <div class="poem-title">florile și visul cu sânziene</div>
+        <div class="poem-incipit">florile / și visul cu sânziene / am visat...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="patima-ca-trecere-sau-ce-ramane.html" class="poem-card" data-s="patima ca trecere sau ce rămâne patima / ca trecere sau ce rămâne / când râurile tac...">
+        <div class="poem-num">· POEM · 4 IULIE 2022 ·</div>
+        <div class="poem-title">patima ca trecere sau ce rămâne</div>
+        <div class="poem-incipit">patima / ca trecere sau ce rămâne / când râurile tac...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="poetul-si-marea-citita-pe-furis.html" class="poem-card" data-s="poetul și marea citită pe furiș poetul / și marea citită pe furiș / încet...">
+        <div class="poem-num">· POEM · 4 IULIE 2022 ·</div>
+        <div class="poem-title">poetul și marea citită pe furiș</div>
+        <div class="poem-incipit">poetul / și marea citită pe furiș / încet...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="despre-tine-femeie.html" class="poem-card" data-s="despre tine femeie femeia aceea / nu începe cu sine / ci începe cu bărbatul ei...">
+        <div class="poem-num">· POEM · 3 IULIE 2022 ·</div>
+        <div class="poem-title">despre tine Femeie</div>
+        <div class="poem-incipit">femeia aceea / nu începe cu sine / ci începe cu bărbatul ei...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="iubirea-ca-vraja.html" class="poem-card" data-s="iubirea ca vrajă iubirea ca / vrajă / deșir...">
+        <div class="poem-num">· POEM · 3 IULIE 2022 ·</div>
+        <div class="poem-title">iubirea ca vrajă</div>
+        <div class="poem-incipit">iubirea ca / vrajă / deșir...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="lunga-vara-pierduta.html" class="poem-card" data-s="lunga vară pierdută ecoul încins / al tăcerii desculțe / zaț de patimă...">
+        <div class="poem-num">· POEM · 3 IULIE 2022 ·</div>
+        <div class="poem-title">lunga vară pierdută</div>
+        <div class="poem-incipit">ecoul încins / al tăcerii desculțe / zaț de patimă...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="declaratie-de-iubire-neconforma.html" class="poem-card" data-s="declarație de iubire neconformă declarația / de iubire neconformă / mi-e toamnă până la prăsele...">
+        <div class="poem-num">· POEM · 2 IULIE 2022 ·</div>
+        <div class="poem-title">declarație de iubire neconformă</div>
+        <div class="poem-incipit">declarația / de iubire neconformă / mi-e toamnă până la prăsele...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="delir-bacovian.html" class="poem-card" data-s="delir bacovian un gri târziu / un lung delir / îmi cântă gerul la clavir...">
+        <div class="poem-num">· POEM · 1 IULIE 2022 ·</div>
+        <div class="poem-title">delir bacovian</div>
+        <div class="poem-incipit">un gri târziu / un lung delir / îmi cântă gerul la clavir...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="despre-poemul-alb.html" class="poem-card" data-s="despre poemul alb despre / poemul alb / am să trăiesc din cuvinte...">
+        <div class="poem-num">· POEM · 1 IULIE 2022 ·</div>
+        <div class="poem-title">despre poemul alb</div>
+        <div class="poem-incipit">despre / poemul alb / am să trăiesc din cuvinte...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="calator-fara-de-umbra.html" class="poem-card" data-s="călător fără de umbră mi-e toamnă până la prăsele / și mii de kilometri dor / se culcă noaptea în ulcele...">
+        <div class="poem-num">· POEM · 28 IUNIE 2022 · AUDIO ·</div>
+        <div class="poem-title">călător fără de umbră</div>
+        <div class="poem-incipit">mi-e toamnă până la prăsele / și mii de kilometri dor / se culcă noaptea în ulcele...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="de-vara.html" class="poem-card" data-s="de vară aștern / pe sânii tăi o vară / muiată...">
+        <div class="poem-num">· POEM · 28 IUNIE 2022 ·</div>
+        <div class="poem-title">de vară</div>
+        <div class="poem-incipit">aștern / pe sânii tăi o vară / muiată...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="schita-de-martie-urban-si-orfan.html" class="poem-card" data-s="schiță de martie urban și orfan la / capătul tejghelei / cartierul...">
+        <div class="poem-num">· POEM · 16 MARTIE 2022 ·</div>
+        <div class="poem-title">schiță de martie urban și orfan</div>
+        <div class="poem-incipit">la / capătul tejghelei / cartierul...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="acasa.html" class="poem-card" data-s="acasa deasupra / ușii / un înger...">
+        <div class="poem-num">· POEM · 14 FEBRUARIE 2022 ·</div>
+        <div class="poem-title">acasa</div>
+        <div class="poem-incipit">deasupra / ușii / un înger...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="urme-de-descant-in-noapte-de-crin.html" class="poem-card" data-s="urme de descânt în noapte de crin urme de descânt în / noapte de crin / m-am culcat pe mâna...">
+        <div class="poem-num">· POEM · 13 FEBRUARIE 2022 ·</div>
+        <div class="poem-title">urme de descânt în noapte de crin</div>
+        <div class="poem-incipit">urme de descânt în / noapte de crin / m-am culcat pe mâna...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="petecul-de-apocalipsa.html" class="poem-card" data-s="petecul de apocalipsă petecul de / apocalipsă / motto:...">
+        <div class="poem-num">· POEM · 10 FEBRUARIE 2022 ·</div>
+        <div class="poem-title">petecul de apocalipsă</div>
+        <div class="poem-incipit">petecul de / apocalipsă / motto:...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="poetul-primordial-2.html" class="poem-card" data-s="poetul primordial poetul / primordial / poetul...">
+        <div class="poem-num">· POEM · 9 FEBRUARIE 2022 ·</div>
+        <div class="poem-title">poetul primordial</div>
+        <div class="poem-incipit">poetul / primordial / poetul...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="dorul-de-ritual-liturgic.html" class="poem-card" data-s="dorul de ritual liturgic dorul / de ritual liturgic / maica domnului...">
+        <div class="poem-num">· POEM · 5 FEBRUARIE 2022 ·</div>
+        <div class="poem-title">dorul de ritual liturgic</div>
+        <div class="poem-incipit">dorul / de ritual liturgic / Maica Domnului...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="despre-arta-de-a-nu-fi-tu-ca-sa-fii-2.html" class="poem-card" data-s="despre arta de a nu fi tu ca să fii ești / o tu / ca...">
+        <div class="poem-num">· POEM · 3 FEBRUARIE 2022 ·</div>
+        <div class="poem-title">despre arta de a nu fi tu ca să fii</div>
+        <div class="poem-incipit">ești / o tu / ca...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="nesfarsirea-ce-dor.html" class="poem-card" data-s="nesfârșirea ce dor se rupe din mine nesfârșirea / se desface în sunete paralelipipedice / înflorește durerea...">
+        <div class="poem-num">· POEM · 3 FEBRUARIE 2022 ·</div>
+        <div class="poem-title">nesfârșirea ce dor</div>
+        <div class="poem-incipit">se rupe din mine nesfârșirea / se desface în sunete paralelipipedice / înflorește durerea...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="detaliu-de-lacrima-cu-vultur-de-nori.html" class="poem-card" data-s="detaliu de lacrimă cu vultur de nori am deschis la viață / de cu zorii aprinși felinare la sorți / vând porți în cuvinte...">
+        <div class="poem-num">· POEM · 1 FEBRUARIE 2022 ·</div>
+        <div class="poem-title">detaliu de lacrimă cu vultur de nori</div>
+        <div class="poem-incipit">am deschis la viață / de cu zorii aprinși felinare la sorți / vând porți în cuvinte...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="poem-duminicat.html" class="poem-card" data-s="poem duminicat la / capătul tăcerii se întind pânzele de păianjen / ale cuvintelor care-și caută țărmurile...">
+        <div class="poem-num">· POEM · 28 IANUARIE 2022 ·</div>
+        <div class="poem-title">poem duminicat</div>
+        <div class="poem-incipit">la / capătul tăcerii se întind pânzele de păianjen / ale cuvintelor care-și caută țărmurile...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="despre-tacerea-cardinala-a-timpului-descompus-in-cuvinte.html" class="poem-card" data-s="despre tăcerea cardinală a timpului descompus în cuvinte despre / tăcerea cardinală a timpului descompus în cuvinte / trăiesc...">
+        <div class="poem-num">· POEM · 26 IANUARIE 2022 ·</div>
+        <div class="poem-title">despre tăcerea cardinală a timpului descompus în cuvinte</div>
+        <div class="poem-incipit">despre / tăcerea cardinală a timpului descompus în cuvinte / trăiesc...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="vers-clasic-de-visat-adanc-in-respirare.html" class="poem-card" data-s="vers clasic de visat adânc în respirare eu / te-am iubit cu o tandră clipire de nor / erai...">
+        <div class="poem-num">· POEM · 26 IANUARIE 2022 ·</div>
+        <div class="poem-title">Vers clasic de visat adânc în respirare</div>
+        <div class="poem-incipit">Eu / te-am iubit cu o tandră clipire de nor / Erai...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="vertical.html" class="poem-card" data-s="vertical adânc / în / cel mai adânc pustiu...">
+        <div class="poem-num">· POEM · 26 IANUARIE 2022 ·</div>
+        <div class="poem-title">vertical</div>
+        <div class="poem-incipit">adânc / în / cel mai adânc pustiu...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="eu-sculptura-in-cuvant.html" class="poem-card" data-s="eu. sculptură în cuvânt am lăcrimat de-a dumnezeu / și dumnezeu m-a lăcrimat pe mine / și-apoi s-a luminat...">
         <div class="poem-num">· POEM ·</div>
-        <div class="poem-title">despre calea cuvintelor la răsăritul drumului</div>
-        <div class="poem-incipit">la țărmul fiecărei dimineți / sărut marea cu cuvintele mele lichide / și marea se umple de sensuri...</div>
+        <div class="poem-title">eu. sculptură în cuvânt</div>
+        <div class="poem-incipit">am lăcrimat de-a Dumnezeu / și Dumnezeu m-a lăcrimat pe mine / și-apoi s-a luminat...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-      <a href="bacoviana-de-capat-de-drum.html" class="poem-card">
+      <a href="eu-nu-incepeam.html" class="poem-card" data-s="eu eu nu începeam cu sinele meu / ci cu sinele cerului începeam / și cu cel al pământului...">
         <div class="poem-num">· POEM ·</div>
-        <div class="poem-title">bacoviană de capăt de drum</div>
-        <div class="poem-incipit">e-atâta iarnă-n mine / și mă doare / din paseri curg tăceri pe cer de plumb...</div>
+        <div class="poem-title">eu</div>
+        <div class="poem-incipit">eu nu începeam cu sinele meu / ci cu sinele cerului începeam / și cu cel al pământului...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-      <a href="despre-seductia-tarzie-a-lui-paler.html" class="poem-card">
+    </div>
+    <h2 class="year">2021</h2>
+    <div class="poem-grid">
+      <a href="catre-femeia-mea-sau-unu-in-baza-doi.html" class="poem-card" data-s="către femeia mea sau unu în bază doi sufletul meu umblă desculț printre cuvintele tale / printre cuvintele mele...">
+        <div class="poem-num">· POEM · 20 DECEMBRIE 2021 ·</div>
+        <div class="poem-title">către femeia mea sau unu în bază doi</div>
+        <div class="poem-incipit">sufletul meu umblă desculț printre cuvintele tale / printre cuvintele mele...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="despre-sapte-toamne-impletite-in-cuvinte.html" class="poem-card" data-s="despre șapte toamne împletite în cuvinte plâng / pe umerii unei singurătăți șchioape / cu...">
+        <div class="poem-num">· POEM · 29 OCTOMBRIE 2021 ·</div>
+        <div class="poem-title">despre șapte toamne împletite în cuvinte</div>
+        <div class="poem-incipit">plâng / pe umerii unei singurătăți șchioape / cu...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="fervoarea-ca-o-toamna-de-ingeri.html" class="poem-card" data-s="fervoarea ca o toamnă de îngeri fervoarea / ca o toamnă de îngeri / atât...">
+        <div class="poem-num">· POEM · 26 OCTOMBRIE 2021 ·</div>
+        <div class="poem-title">fervoarea ca o toamnă de îngeri</div>
+        <div class="poem-incipit">fervoarea / ca o toamnă de îngeri / atât...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="idee-cu-toamna-la-deplin.html" class="poem-card" data-s="idee cu toamnă la deplin viața se întâmplă / înlăuntrul lui unu / moartea se întâmplă...">
+        <div class="poem-num">· POEM · 26 OCTOMBRIE 2021 ·</div>
+        <div class="poem-title">idee cu toamnă la deplin</div>
+        <div class="poem-incipit">viața se întâmplă / înlăuntrul lui unu / moartea se întâmplă...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="amantul-si-toamna-de-cartier.html" class="poem-card" data-s="amantul și toamna de cartier a fi amant este o meserie / tare periculoasă / este ca și cum ai merge pe...">
+        <div class="poem-num">· POEM · 22 OCTOMBRIE 2021 ·</div>
+        <div class="poem-title">amantul și toamna de cartier</div>
+        <div class="poem-incipit">a fi amant este o meserie / tare periculoasă / este ca și cum ai merge pe...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="a-framanta-deci-framanta-te.html" class="poem-card" data-s="a frământa deci frământă-te a / frământa deci frământă-te / strigă-mă pe numele tău...">
+        <div class="poem-num">· POEM · 4 OCTOMBRIE 2021 ·</div>
+        <div class="poem-title">a frământa deci frământă-te</div>
+        <div class="poem-incipit">a / frământa deci frământă-te / strigă-mă pe numele tău...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="namaste.html" class="poem-card" data-s="namaste mi-e / dor de tine / spuse...">
+        <div class="poem-num">· POEM · 2 OCTOMBRIE 2021 ·</div>
+        <div class="poem-title">namaste</div>
+        <div class="poem-incipit">mi-e / dor de tine / spuse...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="umbra-si-umbra-sa.html" class="poem-card" data-s="umbra și umbra sa este un poem scris sub / licența @drian ©onstantin burdușa™ . / în istoriografia personală este datat...">
+        <div class="poem-num">· POEM · 2 OCTOMBRIE 2021 ·</div>
+        <div class="poem-title">umbra și umbra sa</div>
+        <div class="poem-incipit">este un poem scris sub / licența @drian ©onstantin burdușa™ . / În istoriografia personală este datat...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="mesajul-din-sticla-cel-calator-cu-umbra.html" class="poem-card" data-s="mesajul din sticlă cel călător cu umbra mesajul / din sticlă cel călător cu umbra / răsfoindu-te...">
+        <div class="poem-num">· POEM · 1 OCTOMBRIE 2021 ·</div>
+        <div class="poem-title">mesajul din sticlă cel călător cu umbra</div>
+        <div class="poem-incipit">mesajul / din sticlă cel călător cu umbra / răsfoindu-te...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="narcisa.html" class="poem-card" data-s="narcisa mă uit la înflorirea / florii și plâng / plâng de fericirea florii care înflorește...">
+        <div class="poem-num">· POEM · 1 OCTOMBRIE 2021 ·</div>
+        <div class="poem-title">narcisa</div>
+        <div class="poem-incipit">mă uit la înflorirea / florii și plâng / plâng de fericirea florii care înflorește...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="bacoviana-de-primavara.html" class="poem-card" data-s="bacoviană de primăvară bacoviană / de primăvară / e primăvară făr-o zi...">
+        <div class="poem-num">· POEM · 30 SEPTEMBRIE 2021 ·</div>
+        <div class="poem-title">bacoviană de primăvară</div>
+        <div class="poem-incipit">bacoviană / de primăvară / e primăvară făr-o zi...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="iubirea-ca-hotar.html" class="poem-card" data-s="iubirea ca hotar iubirea / ca hotar / atât...">
+        <div class="poem-num">· POEM · 29 SEPTEMBRIE 2021 ·</div>
+        <div class="poem-title">iubirea ca hotar</div>
+        <div class="poem-incipit">iubirea / ca hotar / atât...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="toamna-siskin-o-schita.html" class="poem-card" data-s="toamnă. șișkin. o schiță. i / curg valurile în aripile mele întinse / şi drumurile curg apusurilor...">
+        <div class="poem-num">· POEM · 11 AUGUST 2021 ·</div>
+        <div class="poem-title">toamnă. Șișkin. o schiță.</div>
+        <div class="poem-incipit">I / curg valurile în aripile mele întinse / şi drumurile curg apusurilor...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="preacuvantul-din-jar.html" class="poem-card" data-s="preacuvântul din jar preacuvântul / din jar / la marginea fiecărui cuvânt e o piedică trasă...">
+        <div class="poem-num">· POEM · 27 IUNIE 2021 ·</div>
+        <div class="poem-title">preacuvântul din jar</div>
+        <div class="poem-incipit">preacuvântul / din jar / la marginea fiecărui cuvânt e o piedică trasă...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="ultimul-drum-intaia-liniste-2.html" class="poem-card" data-s="ultimul drum întâia liniște veneam de la tine / de fapt nu nu mai veneam / de la tine...">
+        <div class="poem-num">· POEM · 27 IUNIE 2021 ·</div>
+        <div class="poem-title">ultimul drum întâia liniște</div>
+        <div class="poem-incipit">veneam de la tine / de fapt nu nu mai veneam / de la tine...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="la-cumpana-cuvintelor.html" class="poem-card" data-s="la cumpăna cuvintelor la / cumpăna cuvintelor / am început să scriu poemul acesta...">
+        <div class="poem-num">· POEM · 25 IUNIE 2021 ·</div>
+        <div class="poem-title">la cumpăna cuvintelor</div>
+        <div class="poem-incipit">la / cumpăna cuvintelor / am început să scriu poemul acesta...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="poem-de-miez-de-noapte.html" class="poem-card" data-s="poem de miez de noapte poem / de miez de noapte / găsește-mi ultima pagină de iubire...">
+        <div class="poem-num">· POEM · 25 IUNIE 2021 ·</div>
+        <div class="poem-title">poem de miez de noapte</div>
+        <div class="poem-incipit">poem / de miez de noapte / găsește-mi ultima pagină de iubire...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="strigatul-rupt.html" class="poem-card" data-s="strigătul rupt strigătul / rupt / pe raftul cu nopți...">
+        <div class="poem-num">· POEM · 18 IUNIE 2021 ·</div>
+        <div class="poem-title">strigătul rupt</div>
+        <div class="poem-incipit">strigătul / rupt / pe raftul cu nopți...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="despre-umbra-mai-ales-si-despre-urme-tu.html" class="poem-card" data-s="despre umbră mai ales și despre urme. tu umbra mea / de atâtea ori umbră / umbra...">
+        <div class="poem-num">· POEM · 4 IUNIE 2021 ·</div>
+        <div class="poem-title">despre umbră mai ales și despre urme. tu</div>
+        <div class="poem-incipit">umbra mea / de atâtea ori umbră / umbra...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="amanta-perfecta-2.html" class="poem-card" data-s="amanta perfectă cel / mai mult îmi iubesc durerea / îmi...">
+        <div class="poem-num">· POEM · 2 IUNIE 2021 ·</div>
+        <div class="poem-title">amanta perfectă</div>
+        <div class="poem-incipit">cel / mai mult îmi iubesc durerea / îmi...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="capatul-cuvintelor-2.html" class="poem-card" data-s="capătul cuvintelor capătul / cuvintelor / am...">
+        <div class="poem-num">· POEM · 2 IUNIE 2021 ·</div>
+        <div class="poem-title">capătul cuvintelor</div>
+        <div class="poem-incipit">capătul / cuvintelor / am...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="al-treilea-serafim-cel-tatuat-cu-lumina-pe-piept-2.html" class="poem-card" data-s="al treilea serafim. cel tatuat cu lumină pe piept ce-am / pierdut ? - spuse / ce-am...">
+        <div class="poem-num">· POEM · 31 MAI 2021 ·</div>
+        <div class="poem-title">al treilea serafim. cel tatuat cu lumină pe piept</div>
+        <div class="poem-incipit">ce-am / pierdut ? - spuse / ce-am...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="tarmul-linistii-care-nu-linisteste-2.html" class="poem-card" data-s="țărmul liniștii care nu liniștește țărmul / liniștii care nu liniștește / cu cearcănul plin de...">
+        <div class="poem-num">· POEM · 30 MAI 2021 ·</div>
+        <div class="poem-title">țărmul liniștii care nu liniștește</div>
+        <div class="poem-incipit">țărmul / liniștii care nu liniștește / cu cearcănul plin de...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="increderea-in-destinul-de-floare-de-mai-al-poetului-celui-ga.html" class="poem-card" data-s="încrederea īn destinul de floare de mai al poetului celui găsit în cuvintele lui încrederea īn destinul de floare de mai al poetului celui găsit în cuvintele / lui / motto: “la început era cuvântul...">
+        <div class="poem-num">· POEM · 28 MAI 2021 ·</div>
+        <div class="poem-title">încrederea īn destinul de floare de mai al poetului celui găsit în cuvintele lui</div>
+        <div class="poem-incipit">încrederea īn destinul de floare de mai al poetului celui găsit în cuvintele / lui / motto: “La început era Cuvântul...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="visul-pictat-cu-umbre.html" class="poem-card" data-s="visul pictat cu umbre cutele / timpului se strângeau dimineața după / colțurile tristeților...">
+        <div class="poem-num">· POEM · 28 MAI 2021 ·</div>
+        <div class="poem-title">visul pictat cu umbre</div>
+        <div class="poem-incipit">cutele / timpului se strângeau dimineața după / colțurile tristeților...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="haiku-3.html" class="poem-card" data-s="haiku 3 haiku / 3 / desperecheată...">
+        <div class="poem-num">· POEM · 28 MAI 2021 ·</div>
+        <div class="poem-title">haiku 3</div>
+        <div class="poem-incipit">haiku / 3 / desperecheată...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="haiku-4.html" class="poem-card" data-s="haiku 4 haiku / 4 / desperecheată...">
+        <div class="poem-num">· POEM · 28 MAI 2021 ·</div>
+        <div class="poem-title">haiku 4</div>
+        <div class="poem-incipit">haiku / 4 / desperecheată...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="haiku-5.html" class="poem-card" data-s="haiku 5 mirosul de mir / icoană pe pieptul meu / răsăritul semn...">
+        <div class="poem-num">· POEM · 28 MAI 2021 ·</div>
+        <div class="poem-title">haiku 5</div>
+        <div class="poem-incipit">mirosul de mir / icoană pe pieptul meu / răsăritul semn...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="orizontal.html" class="poem-card" data-s="orizontal la / capătul poemului este un hol / care...">
+        <div class="poem-num">· POEM · 28 MAI 2021 ·</div>
+        <div class="poem-title">orizontal</div>
+        <div class="poem-incipit">la / capătul poemului este un hol / care...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="pasare-pasare-cuvintele-din-inima-mea.html" class="poem-card" data-s="pasăre pasăre cuvintele din inima mea ne / iubim / aici...">
+        <div class="poem-num">· POEM · 27 MAI 2021 ·</div>
+        <div class="poem-title">pasăre pasăre cuvintele din inima mea</div>
+        <div class="poem-incipit">ne / iubim / aici...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="cuvantul-mut.html" class="poem-card" data-s="cuvântul mut nici / un rămas bun / durere...">
+        <div class="poem-num">· POEM · 26 MAI 2021 ·</div>
+        <div class="poem-title">cuvântul mut</div>
+        <div class="poem-incipit">nici / un rămas bun / durere...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="despre-viitorul-trecut.html" class="poem-card" data-s="despre viitorul trecut de la-nceput am vrut să facem curățenie în cuvânt / în fiecare cuvânt săpat între noi / de aceea am trecut înapoi în clipa care vei fi venit...">
+        <div class="poem-num">· POEM · 24 MAI 2021 ·</div>
+        <div class="poem-title">despre viitorul trecut</div>
+        <div class="poem-incipit">de la-nceput am vrut să facem curățenie în cuvânt / în fiecare cuvânt săpat între noi / de aceea am trecut înapoi în clipa care vei fi venit...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="alba-de-alb.html" class="poem-card" data-s="albă de alb răsari întotdeauna / alb / de...">
+        <div class="poem-num">· POEM · 16 MAI 2021 ·</div>
+        <div class="poem-title">albă de alb</div>
+        <div class="poem-incipit">răsari întotdeauna / Alb / de...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="exercitiu-de-patime.html" class="poem-card" data-s="exercițiu de patime mi-ești sete / patimă și-abis / femeie...">
+        <div class="poem-num">· POEM · 16 MAI 2021 ·</div>
+        <div class="poem-title">exercițiu de patime</div>
+        <div class="poem-incipit">mi-ești sete / patimă și-abis / femeie...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="melancolie.html" class="poem-card" data-s="melancolie aș / prefera să nu fumezi / spuse...">
+        <div class="poem-num">· POEM · 16 MAI 2021 ·</div>
+        <div class="poem-title">melancolie</div>
+        <div class="poem-incipit">aș / prefera să nu fumezi / spuse...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="second-hand.html" class="poem-card" data-s="second hand second / hand / dau...">
+        <div class="poem-num">· POEM · 16 MAI 2021 ·</div>
+        <div class="poem-title">second hand</div>
+        <div class="poem-incipit">second / hand / dau...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="unitatea-de-masura-a-timpului.html" class="poem-card" data-s="unitatea de măsură a timpului eu / sunt o închipuire a timpului meu / uite...">
+        <div class="poem-num">· POEM · 16 MAI 2021 ·</div>
+        <div class="poem-title">unitatea de măsură a timpului</div>
+        <div class="poem-incipit">eu / sunt o închipuire a timpului meu / uite...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="doare.html" class="poem-card" data-s="doare doare înlăuntru o iubire / doare abrupt / ochiul se chinuie abisal...">
+        <div class="poem-num">· POEM · 15 MAI 2021 ·</div>
+        <div class="poem-title">doare</div>
+        <div class="poem-incipit">doare înlăuntru o iubire / doare abrupt / ochiul se chinuie abisal...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="octombrie-24-si-un-sfert.html" class="poem-card" data-s="octombrie. 24 și-un sfert am la mine ultimul apus / ediție limitată și prescurtată / în nouă volume de-o clipă fiecare...">
+        <div class="poem-num">· POEM · 15 MAI 2021 ·</div>
+        <div class="poem-title">octombrie. 24 și-un sfert</div>
+        <div class="poem-incipit">am la mine ultimul apus / ediție limitată și prescurtată / în nouă volume de-o clipă fiecare...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="octombrie-ii.html" class="poem-card" data-s="octombrie ii destulă / toamnă / un...">
+        <div class="poem-num">· POEM · 15 MAI 2021 ·</div>
+        <div class="poem-title">octombrie II</div>
+        <div class="poem-incipit">destulă / toamnă / un...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="octombrie-iv.html" class="poem-card" data-s="octombrie iv despletitele / zilele bocitoare / diluviale...">
+        <div class="poem-num">· POEM · 15 MAI 2021 ·</div>
+        <div class="poem-title">octombrie IV</div>
+        <div class="poem-incipit">despletitele / zilele bocitoare / diluviale...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="scrisul-nescris.html" class="poem-card" data-s="scrisul nescris aș scrie / despre noapte / dar...">
+        <div class="poem-num">· POEM · 14 MAI 2021 ·</div>
+        <div class="poem-title">scrisul nescris</div>
+        <div class="poem-incipit">aș scrie / despre noapte / dar...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="asertiuni-de-toamna.html" class="poem-card" data-s="aserțiuni de toamnă din pasăre nu se întoarce niciodată zborul / zborul e curgătoriu / în sensul setei fântânii...">
+        <div class="poem-num">· POEM · 12 MAI 2021 ·</div>
+        <div class="poem-title">aserțiuni de toamnă</div>
+        <div class="poem-incipit">din pasăre nu se întoarce niciodată zborul / zborul e curgătoriu / în sensul setei fântânii...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="bacoviana-de-octombrie.html" class="poem-card" data-s="bacoviană de octombrie bacoviană / de octombrie / plouă de-un pol și cam trist și cam gol...">
+        <div class="poem-num">· POEM · 11 MAI 2021 ·</div>
+        <div class="poem-title">bacoviană de octombrie</div>
+        <div class="poem-incipit">bacoviană / de octombrie / plouă de-un pol și cam trist și cam gol...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="qi.html" class="poem-card" data-s="qi nerespirare / din strigătul despicat / de iubirea mea...">
+        <div class="poem-num">· POEM · 11 MAI 2021 ·</div>
+        <div class="poem-title">qi</div>
+        <div class="poem-incipit">nerespirare / din strigătul despicat / de iubirea mea...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="singur.html" class="poem-card" data-s="singur octombrie / a început să curgă / pe...">
+        <div class="poem-num">· POEM · 11 MAI 2021 ·</div>
+        <div class="poem-title">singur</div>
+        <div class="poem-incipit">octombrie / a început să curgă / pe...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="tao.html" class="poem-card" data-s="tao la capătul păsării e cântecul / din el picură timpul clipă cu clipă / până la lumină...">
+        <div class="poem-num">· POEM · 11 MAI 2021 ·</div>
+        <div class="poem-title">tao</div>
+        <div class="poem-incipit">la capătul păsării e cântecul / din el picură timpul clipă cu clipă / până la lumină...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="maica.html" class="poem-card" data-s="maica fără de pată / senin fără patimă / lumină-n...">
+        <div class="poem-num">· POEM · 10 MAI 2021 ·</div>
+        <div class="poem-title">Maica</div>
+        <div class="poem-incipit">fără de pată / senin fără patimă / lumină-n...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="oglinda.html" class="poem-card" data-s="oglinda m-am scris într-o piatră curgătoare / curgea din ea lumina / rotund glisând pe fiecare floare...">
+        <div class="poem-num">· POEM · 10 MAI 2021 ·</div>
+        <div class="poem-title">oglinda</div>
+        <div class="poem-incipit">m-am scris într-o piatră curgătoare / curgea din ea lumina / rotund glisând pe fiecare floare...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="tristesse.html" class="poem-card" data-s="tristesse motto: “nu putem iubi / fără să aflăm / ce înseamnă teribila...">
+        <div class="poem-num">· POEM · 10 MAI 2021 ·</div>
+        <div class="poem-title">tristesse</div>
+        <div class="poem-incipit">motto: “Nu putem iubi / fără să aflăm / ce înseamnă teribila...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="bacoviana-iar.html" class="poem-card" data-s="bacoviană iar ard toamnele în mine doamnă / și vântul suflă cu putere-n zori / plouă abrupt și mă desfac în nori...">
+        <div class="poem-num">· POEM · 9 MAI 2021 ·</div>
+        <div class="poem-title">bacoviană iar</div>
+        <div class="poem-incipit">ard toamnele în mine doamnă / și vântul suflă cu putere-n zori / plouă abrupt și mă desfac în nori...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="mi-e-toamna.html" class="poem-card" data-s="mi-e toamnă . / mi-e toamnă / mi-e...">
+        <div class="poem-num">· POEM · 9 MAI 2021 ·</div>
+        <div class="poem-title">mi-e toamnă</div>
+        <div class="poem-incipit">. / mi-e toamnă / mi-e...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="haiku-1.html" class="poem-card" data-s="haiku 1 haiku / 1 / desperecheată...">
+        <div class="poem-num">· POEM · 6 MAI 2021 ·</div>
+        <div class="poem-title">haiku 1</div>
+        <div class="poem-incipit">haiku / 1 / desperecheată...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+    </div>
+    <h2 class="year">2020</h2>
+    <div class="poem-grid">
+      <a href="epigonica.html" class="poem-card" data-s="epigonica la capătul vremii mor orașe boțite / desculță toamnă rătăcește prin plopi / se-nchide la vamă în prag stau doi popi...">
+        <div class="poem-num">· POEM · OCTOMBRIE 2020 · CU VIDEOCLIP ·</div>
+        <div class="poem-title">epigonica</div>
+        <div class="poem-incipit">la capătul vremii mor orașe boțite / desculță toamnă rătăcește prin plopi / se-nchide la vamă în prag stau doi popi...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="venit-tarziu-la-ziua-mea.html" class="poem-card" data-s="venit târziu la ziua mea venit târziu la ziua mea / flămând / urât / și cam plăpând / am rupt din noapte un cuvânt...">
         <div class="poem-num">· POEM ·</div>
-        <div class="poem-title">despre seducția târzie a lui Paler</div>
-        <div class="poem-incipit">stau / într-o gară pustie și chioară / din noapte îmi cade o șoaptă / afară...</div>
+        <div class="poem-title">venit târziu la ziua mea</div>
+        <div class="poem-incipit">venit târziu la ziua mea / flămând / urât / și cam plăpând / am rupt din noapte un cuvânt...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-      <a href="inlauntrul-semintei-din-care-vin.html" class="poem-card">
-        <div class="poem-num">· POEM · 11 FEBRUARIE 2016 · BUCUREȘTI</div>
-        <div class="poem-title">înlăuntrul seminței din care vin</div>
-        <div class="poem-incipit">îmi sap fântâna cu propriul meu zbor / și simt cum înlăuntru se deschid ferestrele întunericului...</div>
+    </div>
+    <h2 class="year">2019</h2>
+    <div class="poem-grid">
+      <a href="de-toamna-doamna.html" class="poem-card" data-s="de toamnă doamnă stă să cernă / poemul alb deschis în rană / mă doare verbul curs prin vene...">
+        <div class="poem-num">· POEM · 6 SEPTEMBRIE 2019 ·</div>
+        <div class="poem-title">de toamnă doamnă</div>
+        <div class="poem-incipit">stă să cernă / poemul alb deschis în rană / mă doare verbul curs prin vene...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-
-      <a href="caderea-din-vis.html" class="poem-card">
+      <a href="ursita.html" class="poem-card" data-s="ursita am cumpărat de-o veșnicie preacuvinte / de restul o iubire și tutun...">
         <div class="poem-num">· POEM ·</div>
-        <div class="poem-title">căderea din vis</div>
-        <div class="poem-incipit">hipnotic / culeg mişcările / care curg asupra mea în vis...</div>
+        <div class="poem-title">ursita</div>
+        <div class="poem-incipit">am cumpărat de-o veșnicie preacuvinte / de restul o iubire și tutun...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-      <a href="oda-femeii-care-se-daruieste-cu-fervoare.html" class="poem-card">
+      <a href="rondelul-noptilor.html" class="poem-card" data-s="rondelul nopților de dor să se facă țăndări noaptea / din cuvinte neștiute / patemi arse și zălude...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">rondelul nopților de dor</div>
+        <div class="poem-incipit">să se facă țăndări noaptea / din cuvinte neștiute / patemi arse și zălude...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="saizeci.html" class="poem-card" data-s="60 am lăcrimat de-a dumnezeu / și dumnezeu m-a lăcrimat pe mine / apoi s-a luminat și a fost ieri...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">60</div>
+        <div class="poem-incipit">am lăcrimat de-a Dumnezeu / și Dumnezeu m-a lăcrimat pe mine / apoi s-a luminat și a fost ieri...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="uitarea-inapoi.html" class="poem-card" data-s="uitarea înapoi de dinaintea cuvântului din țara aceasta au rămas numai tăcerile / și rădăcinile copacilor tăiați din respirația mea...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">uitarea înapoi de dinaintea cuvântului</div>
+        <div class="poem-incipit">din țara aceasta au rămas numai tăcerile / și rădăcinile copacilor tăiați din respirația mea...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="port-octombrie.html" class="poem-card" data-s="port octombrie la verighetă port octombrie la verighetă / nu eu mi l-am pus / de vreo săptămână e acolo...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">port octombrie la verighetă</div>
+        <div class="poem-incipit">port octombrie la verighetă / nu eu mi l-am pus / de vreo săptămână e acolo...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="rugaciune-catre-dumnezeu.html" class="poem-card" data-s="rugăciune către dumnezeul tatăl în genunchi te rog împacă-te / doamne / cu mine / îmbracă-mi zilele și nopțile...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">rugăciune către Dumnezeul Tatăl</div>
+        <div class="poem-incipit">în genunchi Te rog împacă-Te / Doamne / cu mine / îmbracă-mi zilele și nopțile...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="femeie-cu-trupul-de-nori.html" class="poem-card" data-s="femeie cu trupul de nori și-am să dorm ca o pasăre-n zbor / cu nările larg deschise spre mare...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">femeie cu trupul de nori</div>
+        <div class="poem-incipit">și-am să dorm ca o pasăre-n zbor / cu nările larg deschise spre mare...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="pergament.html" class="poem-card" data-s="pergament scriu pe propriul meu poem / scriu de mână / de la dreapta la stânga / de la somn / spre vis...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">pergament</div>
+        <div class="poem-incipit">scriu pe propriul meu poem / scriu de mână / de la dreapta la stânga / de la somn / spre vis...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+    </div>
+    <h2 class="year">2018</h2>
+    <div class="poem-grid">
+      <a href="aici-ca-de-unde-vin.html" class="poem-card" data-s="aici ca de unde vin sunt rotund / ca un cuvânt de lumină / ca o undă pe apă sunt...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">aici ca de unde vin</div>
+        <div class="poem-incipit">sunt rotund / ca un cuvânt de lumină / ca o undă pe apă sunt...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="limpede-ca-semnul.html" class="poem-card" data-s="limpede ca semnul deschis ferestrei așa așa să iubești / ca și cum viața ar începe cu tine / și s-ar sfârși cu ea...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">limpede ca semnul deschis ferestrei așa</div>
+        <div class="poem-incipit">așa să iubești / ca și cum viața ar începe cu tine / și s-ar sfârși cu ea...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+    </div>
+    <h2 class="year">2016</h2>
+    <div class="poem-grid">
+      <a href="de-o-vorba-cu-kafka.html" class="poem-card" data-s="de-o vorbă cu kafka la poarta legii există pe lumea asta / o măsură a fericirii / aşa cum există şi una a durerii...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">de-o vorbă cu Kafka la poarta legii</div>
+        <div class="poem-incipit">există pe lumea asta / o măsură a fericirii / aşa cum există şi una a durerii...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+    </div>
+    <h2 class="year">2015</h2>
+    <div class="poem-grid">
+      <a href="oda-femeii-care-se-daruieste-cu-fervoare.html" class="poem-card" data-s="odă femeii care se dăruieşte cu fervoare neştiut menestrel / cu chip de dor şi voce pătimaşă de demon / căntă-mi povestea pe instrumentele tale bătrâne...">
         <div class="poem-num">· POEM · APRILIE 2015 ·</div>
         <div class="poem-title">Odă femeii care se dăruieşte cu fervoare</div>
         <div class="poem-incipit">neştiut menestrel / cu chip de dor şi voce pătimaşă de demon / căntă-mi povestea pe instrumentele tale bătrâne...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-      <a href="dara-de-parfum.html" class="poem-card">
+    </div>
+    <h2 class="year">2013</h2>
+    <div class="poem-grid">
+      <a href="copii.html" class="poem-card" data-s="copii când te iubesc / este ca şi cum / m-aş înălța la cer / să ating sensul / cu respirația mea plină de fervoare...">
+        <div class="poem-num">· POEM · 19 MARTIE 2013 ·</div>
+        <div class="poem-title">copii</div>
+        <div class="poem-incipit">când te iubesc / este ca şi cum / m-aş înălța la cer / să ating sensul / cu respirația mea plină de fervoare...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+    </div>
+    <h2 class="year">2011</h2>
+    <div class="poem-grid">
+      <a href="o-poezie-pe-care-am-scris-o-acum-mai-bine-de-40-de-ani.html" class="poem-card" data-s="o poezie pe care am scris-o acum mai bine de 40 de ani pătrunsă ca o săgeată / mi-ai făcut să-mi sîngereze inima / și să-mi plesnească arterele iubirii....">
+        <div class="poem-num">· POEM · 16 NOIEMBRIE 2011 ·</div>
+        <div class="poem-title">o poezie pe care am scris-o acum mai bine de 40 de ani</div>
+        <div class="poem-incipit">pătrunsă ca o săgeată / mi-ai făcut să-mi sîngereze inima / și să-mi plesnească arterele iubirii....</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+    </div>
+    <h2 class="year">fără dată</h2>
+    <div class="poem-grid">
+      <a href="ingerul-meu-cara-lemne.html" class="poem-card" data-s="îngerul meu cară lemne pe lacrimi în sus doar de patimi și ger / se sparg de tăceri mii de ceasuri prelinse / și ce a fost azi devine tot ieri...">
         <div class="poem-num">· POEM ·</div>
-        <div class="poem-title">........</div>
+        <div class="poem-title">îngerul meu cară lemne</div>
+        <div class="poem-incipit">pe lacrimi în sus doar de patimi și ger / se sparg de tăceri mii de ceasuri prelinse / și ce a fost azi devine tot ieri...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="din-gerul-cuvintelor-de-dor.html" class="poem-card" data-s="din gerul cuvintelor de dor sau când la capăt stă începutul nu / nu ninge / — / curge timpul în țurțuri de întuneric / se rup ceasurile bătrâne / din arterele iernii...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">din gerul cuvintelor de dor sau când la capăt stă începutul</div>
+        <div class="poem-incipit">nu / nu ninge / — / curge timpul în țurțuri de întuneric / se rup ceasurile bătrâne / din arterele iernii...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="bacoviana-de-capat-de-drum.html" class="poem-card" data-s="bacoviană de capăt de drum e-atâta iarnă-n mine / și mă doare / din paseri curg tăceri pe cer de plumb...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">bacoviană de capăt de drum</div>
+        <div class="poem-incipit">e-atâta iarnă-n mine / și mă doare / din paseri curg tăceri pe cer de plumb...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="caderea-din-vis.html" class="poem-card" data-s="căderea din vis hipnotic / culeg mişcările / care curg asupra mea în vis...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">căderea din vis</div>
+        <div class="poem-incipit">hipnotic / culeg mişcările / care curg asupra mea în vis...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="dara-de-parfum.html" class="poem-card" data-s="…… dâră de parfum / nevăzută, / neştiută,...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">……</div>
         <div class="poem-incipit">dâră de parfum / nevăzută, / neştiută,...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
-
-      <a href="poem-de-toamna-si-un-pic.html" class="poem-card">
-        <div class="poem-num">· POEM · 2015 · CU ÎNREGISTRARE AUDIO ·</div>
-        <div class="poem-title">poem de toamnă și un pic</div>
-        <div class="poem-incipit">femeia mea de patimi ruginii de toamnă / cu ochii de cărbune și sufletul de zbor / îți împletesc în plete din șoapte vii o vamă...</div>
+      <a href="despre-pustiu.html" class="poem-card" data-s="despre pustiu sau mult mai devreme pe sub pleoapele mele alb întredeschise / sunetul curgerii / curg precum pașii foșniți / sunt o toamnă târzie / înnorată...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">despre pustiu sau mult mai devreme</div>
+        <div class="poem-incipit">pe sub pleoapele mele alb întredeschise / sunetul curgerii / curg precum pașii foșniți / sunt o toamnă târzie / înnorată...</div>
         <div class="poem-arrow">CITEȘTE →</div>
       </a>
-
+      <a href="intrebatoare.html" class="poem-card" data-s="întrebătoare cum de te-ai gândit tu / femeie / să mă iubeşti pe mine / aşa strein de tine / ca o pasăre deasupra tăcerii...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">întrebătoare</div>
+        <div class="poem-incipit">cum de te-ai gândit tu / femeie / să mă iubeşti pe mine / aşa strein de tine / ca o pasăre deasupra tăcerii...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="luna-prin-nori.html" class="poem-card" data-s="luna prin nori poem...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">Luna prin nori</div>
+        <div class="poem-incipit">poem...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="nerespirarea.html" class="poem-card" data-s="nerespirarea poem...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">nerespirarea</div>
+        <div class="poem-incipit">poem...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="ricoseu.html" class="poem-card" data-s="întru înfiorătorul ricoșeu al destinului poem...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">întru înfiorătorul ricoșeu al destinului</div>
+        <div class="poem-incipit">poem...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="zare.html" class="poem-card" data-s="zare poem...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">zare</div>
+        <div class="poem-incipit">poem...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="zorilor.html" class="poem-card" data-s="despre relativitatea zorilor poem...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">despre relativitatea zorilor</div>
+        <div class="poem-incipit">poem...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
+      <a href="imi-esti-poezie.html" class="poem-card" data-s="îmi ești poezie până la fior eu te-am iubit / femeie / la schimb cu un păcat / căzuse luna peste noapte / încă de cu seară / te așteptasem într-un colț din visul disperat...">
+        <div class="poem-num">· POEM ·</div>
+        <div class="poem-title">Îmi ești poezie până la fior</div>
+        <div class="poem-incipit">eu te-am iubit / femeie / la schimb cu un păcat / căzuse luna peste noapte / încă de cu seară / te așteptasem într-un colț din visul disperat...</div>
+        <div class="poem-arrow">CITEȘTE →</div>
+      </a>
     </div>
   </main>
 
   <footer>ANDREIBURDUSA.SITE &nbsp;·&nbsp; ARHIVA DE FLUTURI</footer>
+<script>
+(function(){
+  var q=document.getElementById('q'),c=document.getElementById('count'),unit=c.getAttribute('data-unit').split('|');
+  var fold=function(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();};
+  var cards=[].slice.call(document.querySelectorAll('.poem-card'));
+  cards.forEach(function(x){x._s=fold(x.getAttribute('data-s'));});
+  q.addEventListener('input',function(){
+    var v=fold(q.value.trim()),n=0;
+    cards.forEach(function(x){var ok=!v||x._s.indexOf(v)>-1;x.style.display=ok?'':'none';if(ok)n++;});
+    document.querySelectorAll('.poem-grid').forEach(function(g){
+      var vis=[].some.call(g.children,function(x){return x.style.display!=='none';});
+      g.style.display=vis?'':'none';g.previousElementSibling.style.display=vis?'':'none';
+    });
+    c.textContent=n+' '+(n===1?unit[0]:unit[1]);
+  });
+})();
+</script>
 </body>
 </html>
